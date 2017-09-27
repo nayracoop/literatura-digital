@@ -6,7 +6,7 @@ use App\Models\BaseModel;
 
 class Story extends BaseModel 
 {
-
+        
     /**
      * The attributes that are mass assignable.
      *
@@ -26,12 +26,12 @@ class Story extends BaseModel
 
     public function textNodes()
     {
-        return $this->embedsMany('TextNodes');
+        return $this->embedsMany('TextNode');
     }
 
     public function comments()
     {
-        return $this->embedsMany('Comments');
+        return $this->embedsMany('Comment');
     }
 
     public function labels()

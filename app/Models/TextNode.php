@@ -22,7 +22,7 @@ class Story extends BaseModel
 
     public function comments()
     {
-        return $this->embedsMany('Comments');
+        return $this->embedsMany('Comment');
     }
 
     public function labels()
