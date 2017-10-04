@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Story;
+use App\Models\TextNode;
 
 class StoryController extends Controller
 {
@@ -29,9 +30,28 @@ class StoryController extends Controller
     {
         //
        $story = Story::where('slug', $slug)->first();
+       $story->views ++;
+       $story->save();
        //print_r($story);
        return view('stories.story')
        ->with('story', $story);
+     }
+
+
+    /**
+     * Get the requested Storiy
+     *
+     * @return Story
+     */
+    public function showNode($slug,$slugNode)
+    {
+        //
+       $story = Story::where('slug', $slug)->first();
+
+       //print_r($story);
+       return view('nodes.node')
+       ->with('story', $story)
+       ->with('textNode', $story->textNodes->where('slug', $slugNode)->first()  );
      }
 
 }

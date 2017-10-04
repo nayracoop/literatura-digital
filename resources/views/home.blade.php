@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title') Inicio @endsection
 @section('content')
 	@include('snippets.about')   
     <hr>

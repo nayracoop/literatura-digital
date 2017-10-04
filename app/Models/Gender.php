@@ -18,12 +18,12 @@ class Gender extends BaseModel
 
     public function comments()
     {
-        return $this->embedsMany('Comment');
+        return $this->embedsMany('\App\Models\Comment');
     }
 
     public function labels()
     {
-        return $this->embedsMany('Label');
+        return $this->embedsMany('\App\Models\Label');
     }
 
 }

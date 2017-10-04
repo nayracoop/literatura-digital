@@ -13,7 +13,7 @@ class Story extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'cover', 'type', 'attachment', 'published_at',
+        'title', 'slug','description', 'cover', 'type', 'attachment','published_at',
     ];
 
     protected $dates = [
@@ -21,7 +21,7 @@ class Story extends BaseModel
     ];
 
     public function gender() {
-        return $this->belongsTo('Gender');
+        return $this->belongsTo('\App\Models\Gender');
     }
 
     public function textNodes()
@@ -31,17 +31,17 @@ class Story extends BaseModel
 
     public function comments()
     {
-        return $this->embedsMany('Comment');
+        return $this->embedsMany('\App\Models\Comment');
     }
 
     public function labels()
     {
-        return $this->embedsMany('Label');
+        return $this->embedsMany('\App\Models\Label');
     }
     
     public function likes()
     {
-        return $this->embedsMany('Like');
+        return $this->embedsMany('\App\Models\Like');
     }
 
 

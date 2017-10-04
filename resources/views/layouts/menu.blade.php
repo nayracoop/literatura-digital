@@ -7,12 +7,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://bardo.surwww.com/home.html#">Escrituras digitales</a>
+        <a class="navbar-brand" href="{{ route('index') }}">Escrituras digitales</a>
       </div>
       <div class="collapse navbar-collapse navbar-escrituras-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="http://bardo.surwww.com/home.html#about">Sobre Escrituras digitales</a></li>
-          <li><a href="http://bardo.surwww.com/home.html#services">Relatos</a></li>
+          <li><a href="#about">Sobre Escrituras digitales</a></li>
+          <li><a href="#services">Relatos</a></li>
         </ul>
         <ul class="nav navbar-nav pull-right">
           <li><a data-toggle="modal" href="http://bardo.surwww.com/home.html#ingresar">Ingresar</a></li>

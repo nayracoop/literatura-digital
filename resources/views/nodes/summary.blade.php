@@ -1,10 +1,9 @@
-<div class="col-lg-4 col-md-6">
-    
+<div class="col-lg-4 col-md-6">    
     <div class="thumbnail">
-       <a href="http://bardo.surwww.com/nodo.html">
+       <a href="{{ route('node.show', [$story->slug, $textNode->slug] ) }}">
         <div class="caption">
-     	    <h3>Hacha</h3>
-       		<p>Quisque eget justo et dolor malesuada tristique</p>
+     	    <h3>{{ $textNode->title }}</h3>
+       		<p>{{ $textNode->text }}</p>
         </div>
         </a>
     </div>

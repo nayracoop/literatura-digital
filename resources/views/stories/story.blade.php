@@ -9,7 +9,7 @@
         <div>
           <h1>{{ $story->title }}</h1>
           <p class="lead">De <a href="http://bardo.surwww.com/relato.html#">Mike Wilson</a></p>
-          <p><span class="glyphicon glyphicon-time"></span>Publicado on August 24, 2013 at 9:00 PM</p>
+          <p><span class="glyphicon glyphicon-time"></span>Publicado {{ $story->published_at }}</p>
         </div>
 
         <hr style="clear: both;">
