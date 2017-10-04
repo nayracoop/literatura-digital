@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Models;
 
 use App\Models\BaseModel;
 
-class Story extends BaseModel
+class TextNode extends BaseModel
 {
 
     /**

@@ -14,9 +14,24 @@ class StoryController extends Controller
      */
     public function index()
     {
-        $stories = Story::all();
+        //
+        $stories = Story::moreVoted();
         return view('home')
         ->with('stories', $stories);
+     }
+
+     /**
+     * Get the requested Storiy
+     *
+     * @return Story
+     */
+    public function show($slug)
+    {
+        //
+       $story = Story::where('slug', $slug)->first();
+       //print_r($story);
+       return view('stories.story')
+       ->with('story', $story);
      }
 
 }

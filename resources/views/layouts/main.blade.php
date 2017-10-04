@@ -15,13 +15,7 @@
 <body>
   @include('layouts.menu')
   <div class="container">
-  @include('snippets.about')   
-
-    <hr>
-    @include('snippets.voted_stories')    
-    <hr>
-    @include('layouts.footer')    
-
+  @yield('content') 
   </div>
 @push('javascript')
   <script src="{{ asset('js/jquery.min.js')}}"></script>

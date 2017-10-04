@@ -26,7 +26,7 @@ class Story extends BaseModel
 
     public function textNodes()
     {
-        return $this->embedsMany('TextNode');
+        return $this->embedsMany('\App\Models\TextNode');
     }
 
     public function comments()
@@ -43,5 +43,24 @@ class Story extends BaseModel
     {
         return $this->embedsMany('Like');
     }
+
+
+    /**
+    * scopeMoreVoted
+    *
+    * Nos da los relatos . 
+    * 
+    * @todo ordenados por valor de votacion
+    * @author Jose Casanova <jose.casanova@nayra.coop>
+    * 
+    * @param $count  cantidad de items a traer. Default 4
+    *
+    * @return Collection Story  
+    **/
+    public function scopeMoreVoted($query, $count = 4){
+        return $query->take(4)->get();
+    }
+
+
 
 }
