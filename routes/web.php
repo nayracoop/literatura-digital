@@ -11,7 +11,12 @@ Route::get('/relatos/{slug}', 'StoryController@show')->name('story.show');
 Route::get('/relatos/{slug}/fragmentos/{slugFragmento}', 'StoryController@showNode')->name('node.show');
 
 #perfil-usuario
-
+Route::get('/salir', function(){
+    if(Auth::check()){
+        Auth::logout();
+    }
+    return redirect()->back();
+})->name('salir');
 
 #edicion relatos nodos
 
@@ -59,3 +64,6 @@ Route::post('/new-story', function(Request $request){
     
     return redirect()->route('stories');
 })->name('story.store');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
