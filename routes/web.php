@@ -20,6 +20,11 @@ Route::get('/salir', function(){
 
 #edicion relatos nodos
 
+
+# Controlador de pruebas
+Route::get('/delete-user','TestController@deleteUser');
+Route::get('/list-users','TestController@listUsers');
+
 #rutas temporales para pruebas
 Route::get('/save', function(){
     $a = new \App\Models\Story();
@@ -61,4 +66,4 @@ Route::post('/new-story', function(Request $request){
 })->name('story.store');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
