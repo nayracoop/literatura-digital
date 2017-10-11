@@ -9,4 +9,5 @@ return [
     'news' => 'News',
     'forge' => 'Forge',
     'github' => 'GitHub',
+    'about_menu' => 'About it'
 ];

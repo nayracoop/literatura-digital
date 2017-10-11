@@ -9,4 +9,5 @@ return [
     'news' => 'Novedades',
     'forge' => 'Forge',
     'github' => 'GitHub',
+    'about_menu' => 'Sobre Escrituras digitales'
 ];
