@@ -19,8 +19,8 @@
        <li><a data-toggle="modal" href="#perfil">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</a></li>
        <li><a data-toggle="modal" href="{{ route('salir') }}">Salir</a></li>
   @else
-    <li><a data-toggle="modal" href="http://bardo.surwww.com/home.html#ingresar">Ingresar</a></li>
-    <li><a data-toggle="modal" href="http://bardo.surwww.com/home.html#registrarse">Registrarse</a></li>
+    <li><a data-toggle="modal" href="#ingresar">Ingresar</a></li>
+    <li><a data-toggle="modal" href="#registrarse">Registrarse</a></li>
   @endif
           
         </ul>
@@ -40,7 +40,7 @@
             <input type="submit" name="user-login" class="login loginmodal-submit" value="Ingresar">
           </form>
         <div class="login-help">
-            <a data-toggle="modal" href="http://bardo.surwww.com/home.html#registrarse">Registrarse</a> - <a href="http://bardo.surwww.com/home.html#">Olvidaste tu contraseña?</a>
+            <a data-toggle="modal" href="#registrarse">Registrarse</a> - <a href="#">Olvidaste tu contraseña?</a>
         </div>
         </div>
     </div>
@@ -50,10 +50,14 @@
     <div class="modal-dialog">
         <div class="loginmodal-container">
         <h1>Registrarse</h1>
-          <form>
-        <input type="text" name="user" placeholder="Nombre de usuario">
-            <input type="text" name="user" placeholder="Tu email">
-              <input type="password" name="pass" placeholder="Tu contraseña">
+          <form method="POST" action="{{ url('/register') }}">
+            {{ csrf_field() }}
+              <input type="text" name="first_name" placeholder="Nombre">
+              <input type="text" name="last_name" placeholder="Apellido">
+              <input type="text" name="username" placeholder="Nombre de usuario">
+              <input type="text" name="email" placeholder="Tu email">
+              <input type="password" name="password" placeholder="Tu contraseña">
+               <input type="password" name="password_confirmation" placeholder="Confirma tu contraseña">
               <input type="submit" name="login" class="login loginmodal-submit" value="Comenzá a escribir">
           </form>
         <div class="login-help">
