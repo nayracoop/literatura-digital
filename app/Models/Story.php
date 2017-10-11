@@ -44,7 +44,6 @@ class Story extends BaseModel
         return $this->embedsMany('\App\Models\Like');
     }
 
-
     /**
     * scopeMoreVoted
     *
@@ -58,9 +57,7 @@ class Story extends BaseModel
     * @return Collection Story  
     **/
     public function scopeMoreVoted($query, $count = 4){
-        return $query->take(4)->get();
+        return $query->take($count)->get();
     }
-
-
 
 }

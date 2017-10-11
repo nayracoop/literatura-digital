@@ -20,16 +20,12 @@ Route::get('/salir', function(){
 
 #edicion relatos nodos
 
-
-
 #rutas temporales para pruebas
-
 Route::get('/save', function(){
     $a = new \App\Models\Story();
     $a->title = 'hola Mongo';
     $a->save();
 });
-
 
 Route::get('/save-nodes', function(){
     $a =  \App\Models\Story::where('slug', 'macri-gato')->first();
@@ -52,8 +48,7 @@ Route::get('/stories', function(){
     }
 })->name('stories');
 
-Route::get('/new-story', function(){
-    
+Route::get('/new-story', function(){    
     return view('nodes.create_story');
 })->name('story.create');
 

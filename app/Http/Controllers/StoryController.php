@@ -22,7 +22,7 @@ class StoryController extends Controller
      }
 
      /**
-     * Get the requested Storiy
+     * Get the requested Story
      *
      * @return Story
      */
@@ -39,11 +39,11 @@ class StoryController extends Controller
 
 
     /**
-     * Get the requested Storiy
+     * Get the requested Story
      *
      * @return Story
      */
-    public function showNode($slug,$slugNode)
+    public function showNode($slug, $slugNode)
     {
         //
        $story = Story::where('slug', $slug)->first();

@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Foundation\Auth\CanResetPassword;
-//use Jenssegers\Mongodb\Auth\PasswordResetServiceProvider as PasswordResetServiceProvider;
 
 class User extends Authenticatable  
 {
