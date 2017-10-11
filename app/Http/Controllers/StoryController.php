@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Flash;
+use Auth;
 use App\Models\Story;
 use App\Models\TextNode;
 
@@ -37,6 +39,38 @@ class StoryController extends Controller
        ->with('story', $story);
      }
 
+     /**
+     * Muestra el formulario para metadatos de relato
+     */
+    public function createStory()
+    {
+      return view('stories.create_story')
+       ;
+    }
+
+     /**
+     * Guarda la informacion del relato asociado a un usuario
+     */
+    public function storeStory(Request $request)
+    {
+      
+      $author = Auth::user();
+      $input = $request->all();
+      $story =  new \App\Models\Story();
+     
+      //@todo validar slug   
+      $s = $story->create($input);
+     // echo "ss $story->title";
+      //$story->save();
+      $s->slug = str_slug( $s->title );
+      $s->author()->associate($author);
+      $s->save();
+      print_r($s);
+
+      //return redirect()->back();
+    
+    }
+
 
     /**
      * Get the requested Story
@@ -45,13 +79,13 @@ class StoryController extends Controller
      */
     public function showNode($slug, $slugNode)
     {
-        //
-       $story = Story::where('slug', $slug)->first();
-
-       //print_r($story);
+       $story = Story::where('slug', $slug)->first();       
        return view('nodes.node')
        ->with('story', $story)
        ->with('textNode', $story->textNodes->where('slug', $slugNode)->first()  );
      }
+
+
+
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Story;
 use App\User;
+use Auth;
 
 class TestController extends Controller
 {
@@ -21,6 +22,19 @@ class TestController extends Controller
    	 } 
 	
    }
+
+
+    public function listUserStories(){
+     foreach (Auth::user()->getStories() as $story ) {
+      echo "<br> $story->title";
+      // print_r($story);
+       echo "<br>";
+     } 
+
+
+  
+   }
+
 
 
 }

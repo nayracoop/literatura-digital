@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\CanResetPassword;
 //use Moloquent\Eloquent\SoftDeletes;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 //use Jenssegers\Mongodb\Auth\PasswordResetServiceProvider as PasswordResetServiceProvider;
-
+use App\Models\Story;
 
 class User extends Authenticatable  
 {
@@ -33,4 +33,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+/*
+        public function stories()
+    {
+        return $this->hasMany('App\Models\Story');
+    }
+*/
+
+    public function getStories(){
+        return Story::getFromAuthor( $this->id )->get();
+    }
+
 }

@@ -8,7 +8,7 @@
         </div>
         <div>
           <h1>{{ $story->title }}</h1>
-          <p class="lead">De <a href="http://bardo.surwww.com/relato.html#">Mike Wilson</a></p>
+          <p class="lead">De <a href="http://bardo.surwww.com/relato.html#">{{ $story->author->first_name }} {{ $story->author->last_name }}</a></p>
           <p><span class="glyphicon glyphicon-time"></span>Publicado {{ $story->published_at }}</p>
         </div>
 

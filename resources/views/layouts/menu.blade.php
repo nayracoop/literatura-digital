@@ -12,8 +12,11 @@
     </div>
     <div class="collapse navbar-collapse navbar-escrituras-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#about">Sobre Escrituras digitales</a></li>
+        <li><a href="#about">@lang('messages.about_menu')</a></li>
         <li><a href="#services">Relatos</a></li>
+        @if( Auth::check() )
+        <li><a href="{{  route('story.create') }}">Crear Relato</a></li>
+        @endif
       </ul>
       <ul class="nav navbar-nav pull-right">
         @if( Auth::check() )

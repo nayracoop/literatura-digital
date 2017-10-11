@@ -5,7 +5,7 @@
         <img alt="" src="./Escrituras digitales_files/tapa150x200.png">
       </div>
       <h3>{{$story->title}}</h3>
-      <p class="lead">De <a href="http://bardo.surwww.com/usuario.html">Mike Wilson</a></p>
+      <p class="lead">De <a href="http://bardo.surwww.com/usuario.html">{{ $story->author->first_name }} {{ $story->author->last_name }}</a></p>
       <p>{{ $story->description }}</p>
 
       <a href="http://bardo.surwww.com/home.html#">Ciencia Ficción</a>

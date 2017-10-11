@@ -7,8 +7,15 @@ use Illuminate\Http\Request;
 Route::get('/', 'StoryController@index')->name('index');
 #relatos y nodos 
 Route::get('/relatos', 'StoryController@index')->name('story.index');
+#edicion relatos nodos
+Route::get('/relatos/nuevo', 'StoryController@createStory')->name('story.create');
+Route::post('/relatos/nuevo', 'StoryController@storeStory')->name('story.store');
+
 Route::get('/relatos/{slug}', 'StoryController@show')->name('story.show');
 Route::get('/relatos/{slug}/fragmentos/{slugFragmento}', 'StoryController@showNode')->name('node.show');
+
+
+
 
 #perfil-usuario
 Route::get('/salir', function(){
@@ -18,14 +25,15 @@ Route::get('/salir', function(){
     return redirect()->back();
 })->name('salir');
 
-#edicion relatos nodos
 
 
 # Controlador de pruebas
 Route::get('/delete-user','TestController@deleteUser');
 Route::get('/list-users','TestController@listUsers');
+Route::get('/list-user-stories','TestController@listUserStories');
 
 #rutas temporales para pruebas
+/*
 Route::get('/save', function(){
     $a = new \App\Models\Story();
     $a->title = 'hola Mongo';
@@ -57,6 +65,7 @@ Route::get('/new-story', function(){
     return view('nodes.create_story');
 })->name('story.create');
 
+
 Route::post('/new-story', function(Request $request){
     $input = $request->all();
     $story =  new \App\Models\Story();
@@ -64,6 +73,7 @@ Route::post('/new-story', function(Request $request){
     
     return redirect()->route('stories');
 })->name('story.store');
+*/
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

@@ -13,12 +13,16 @@ class Story extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'title', 'slug','description', 'cover', 'type', 'attachment','published_at',
+        'title', 'slug','description', 'typology', 'cover', 'type', 'attachment','published_at',
     ];
 
     protected $dates = [
         'published_at',
     ];
+
+    public function author() {
+        return $this->belongsTo('\App\User');
+    }
 
     public function gender() {
         return $this->belongsTo('\App\Models\Gender');
@@ -59,5 +63,31 @@ class Story extends BaseModel
     public function scopeMoreVoted($query, $count = 4){
         return $query->take($count)->get();
     }
+
+
+/**
+    * scopeMoreVoted
+    *
+    * Nos da los relatos pertenecientes al usuario solicitado . 
+    * @author Jose Casanova <jose.casanova@nayra.coop>
+    * 
+    * @param $id 
+    *
+    * @return Collection Story  
+    **/
+
+    public function scopeGetFromAuthor( $query, $id ){
+        return $query->where('author_id', $id)->first();
+     }
+
+
+     /**
+     * getAuthorName
+     * @return String
+     */
+
+     public function getAuthorName(){
+        //return 
+     }
 
 }
