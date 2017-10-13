@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 
-class Gender extends BaseModel
+class Genre extends BaseModel
 {
 
     /**

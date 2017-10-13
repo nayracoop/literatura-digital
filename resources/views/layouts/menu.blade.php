@@ -2,21 +2,21 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-escrituras-collapse">
-          <span class="sr-only">Desplegar navegación</span>
+          <span class="sr-only">@lang('Desplegar navegación')</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
 
-      <a class="navbar-brand" href="{{ route('index') }}">Escrituras digitales</a>
+      <a class="navbar-brand" href="{{ route('index') }}">@lang('Escrituras digitales')</a>
     </div>
     <div class="collapse navbar-collapse navbar-escrituras-collapse">
       <ul class="nav navbar-nav">
         <li><a href="#about">@lang('messages.about_menu')</a></li>
-        <li><a href="#services">Relatos</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#services">@lang('Relatos')</a></li>
+        <li><a href="#contacto">@lang('Contacto')</a></li>
         @if( Auth::check() )
-        <li><a href="{{  route('story.create') }}">Crear Relato</a></li>
+        <li><a href="{{  route('story.create') }}">@lang('Crear Relato')</a></li>
         @endif
       </ul>
       <ul class="nav navbar-nav pull-right">
@@ -24,8 +24,8 @@
         <li><a data-toggle="modal" href="#perfil">{{auth()->user()->getName() }}</a></li>
         <li><a data-toggle="modal" href="{{ route('salir') }}">Salir</a></li>
         @else
-        <li><a data-toggle="modal" href="http://bardo.surwww.com/home.html#ingresar">Ingresar</a></li>
-        <li><a data-toggle="modal" href="http://bardo.surwww.com/home.html#registrarse">Registrarse</a></li>
+        <li><a data-toggle="modal" href="#ingresar">@lang('Ingresar')</a></li>
+        <li><a data-toggle="modal" href="#registrarse">@lang('Registrarse')</a></li>
         @endif
 
       </ul>

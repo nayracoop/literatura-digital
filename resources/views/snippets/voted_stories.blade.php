@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12">
-    <h3>Los más votados</h3>
+    <h3>@lang('Los más votados')</h3>
   </div>
 </div>
 

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title') {{ $story->title }} de Mike Wilson  @endsection  
+@section('title') {{ $story->title }} @lang('de') {{ $story->getAuthorName() }}  @endsection  
 @section('content')
 <div class="row">
   <div class="col-lg-8">

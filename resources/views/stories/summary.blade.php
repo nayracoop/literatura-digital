@@ -1,4 +1,3 @@
-
   <div class="thumbnail">
     <div class="caption">
       <div class="media-item">
@@ -8,7 +7,7 @@
       <p class="lead">@lang('De') <a href="{{ route('author.show', $story->author->slug) }}">{{ $story->getAuthorName() }}</a></p>
       <p>{{ $story->description }}</p>
 
-      <a href="http://bardo.surwww.com/home.html#">genero</a>
+      <a href="http://bardo.surwww.com/home.html#">{{$story->genre}}</a>
       <div>
         @if($story->views > 0)
           <span>@lang('Visto'): {{ $story->views }}</span>

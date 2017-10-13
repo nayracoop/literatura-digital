@@ -23,6 +23,8 @@ Route::get('/relatos/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')-
 
 
 #perfil-usuario
+Route::get('/mi-perfil', 'UserController@profile')->name('author.edit');
+Route::patch('/mi-perfil', 'UserController@updateUrofile')->name('author.update');
 #vista publica de autor
 Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
 
