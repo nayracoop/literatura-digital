@@ -12,6 +12,7 @@ use App\User;
 
 class UserController extends Controller
 {
+   
    /**
    * Perfil publico del usuario
    *
@@ -22,7 +23,10 @@ class UserController extends Controller
 
    }
 
-
+  /**
+   * Guardar comentario sobre el autor
+   *
+   */
 
     public function storeComment(Request $request, $slug){
       $user = Auth::user();
@@ -37,6 +41,17 @@ class UserController extends Controller
 
       return redirect()->back();
     }
+
+
+    /**
+   * Perfil del usuario logueado
+   *
+   */
+   public function myProfile(){
+      return view('user.profile')
+        ->with('user', Auth::user() );
+
+   }
 
 
 }
