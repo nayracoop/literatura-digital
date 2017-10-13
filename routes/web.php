@@ -15,6 +15,7 @@ Route::post('/relatos/nuevo', 'StoryController@storeStory')->name('story.store')
 Route::get('/relatos/{slug}', 'StoryController@show')->name('story.show');
 #dejar comentario
 Route::post('/relatos/{slug}/comentar','StoryController@storeComment')->name('comment.store');
+Route::post('/autor/{slug}/comentar','UserController@storeComment')->name('comment.author.store');
 //crear nodos de un relato
 Route::get('/relatos/{slug}/nuevo-fragmentos','StoryController@createNode')->name('node.create');
 Route::post('/relatos/{slug}/nuevo-fragmentos','StoryController@storeNode')->name('node.store');
@@ -22,6 +23,12 @@ Route::get('/relatos/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')-
 
 
 #perfil-usuario
+#vista publica de autor
+Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
+
+
+
+
 Route::get('/salir', function(){
     if(Auth::check()){
         Auth::logout();

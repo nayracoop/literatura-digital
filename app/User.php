@@ -54,5 +54,13 @@ class User extends Authenticatable
         return $this->first_name.' '.$this->last_name;
      }
 
-
+/**
+* Comentarios sobre el autor
+*
+*/
+    
+    public function comments()
+    {
+        return $this->embedsMany('\App\Models\Comment');
+    }
 }

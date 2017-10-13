@@ -7,7 +7,9 @@
 <div class="row text-center">
   <!-- BLOQUE -->
   @foreach($stories as $story) 
+	<div class="col-lg-3 col-sm-6">
     @include('stories.summary') 
+	</div>
   @endforeach
   <!-- BLOQUE -->
 </div>
