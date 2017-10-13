@@ -76,18 +76,19 @@ class Story extends BaseModel
     * @return Collection Story  
     **/
 
-    public function scopeGetFromAuthor( $query, $id ){
+    public function scopeGetAuthor( $query, $id ){
         return $query->where('author_id', $id)->first();
      }
 
 
      /**
-     * getAuthorName
+     * getAuthorName helper para nombre completo del autor
      * @return String
      */
 
      public function getAuthorName(){
-        //return 
+       // $author
+        return $this->author->getName();
      }
 
 }

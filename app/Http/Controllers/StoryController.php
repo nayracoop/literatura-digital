@@ -7,6 +7,7 @@ use Flash;
 use Auth;
 use App\Models\Story;
 use App\Models\TextNode;
+use App\Models\Comment;
 
 class StoryController extends Controller
 {
@@ -59,13 +60,11 @@ class StoryController extends Controller
       $story =  new \App\Models\Story();
      
       //@todo validar slug   
-      $s = $story->create($input);
-     // echo "ss $story->title";
-      //$story->save();
+      $s = $story->create($input);    
+      
       $s->slug = str_slug( $s->title );
       $s->author()->associate($author);
       $s->save();
-      print_r($s);
 
       //return redirect()->back();
     
@@ -85,7 +84,56 @@ class StoryController extends Controller
        ->with('textNode', $story->textNodes->where('slug', $slugNode)->first()  );
      }
 
+  /**
+     * Muestra el formulario para nuevos fragmentos (Node)
+     */
+    public function createNode($slug)
+    {
+      return view('nodes.create_node')
+        ->with('story',Story::where('slug', $slug)->first())
+       ;
+    }
 
+     /**
+     * Guarda un nuevo nodo en el relato indicado via slug
+     */
+    public function storeNode(Request $request,$slug)
+    {
+      $story = Story::where('slug', $slug)->first();
+      $input = $request->all();
+
+      $node = new \App\Models\TextNode($input);  
+
+      //slug temporario si es guardar - para publicar debería estar referido al titulo
+      if( $node->title !== '' && $node->title !== null ){
+        $node->slug = str_slug($node->title);
+      }else{
+        $node->slug = str_slug( date('amdHIs') );
+      }      
+     
+    //---
+      $story->textNodes()->save($node) ;
+    //  $n->save();
+    //  echo 'Nodo '.$node->getIdAttribute();
+      $story->save();
+      return redirect()->route('story.show',$story->slug);    
+    }
+
+
+
+    public function storeComment(Request $request, $slug){
+      $user = Auth::user();
+      $input = $request->all();
+      $story =  Story::where('slug',$slug)->first();
+      $comment = new Comment( $input );
+      
+      $comment->user()->associate($user);
+
+      $story->comments()->save($comment) ; 
+      $story->save();
+
+      return redirect()->back();
+    }
 
 
 }

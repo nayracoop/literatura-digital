@@ -14,13 +14,14 @@
       <ul class="nav navbar-nav">
         <li><a href="#about">@lang('messages.about_menu')</a></li>
         <li><a href="#services">Relatos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
         @if( Auth::check() )
         <li><a href="{{  route('story.create') }}">Crear Relato</a></li>
         @endif
       </ul>
       <ul class="nav navbar-nav pull-right">
         @if( Auth::check() )
-        <li><a data-toggle="modal" href="#perfil">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</a></li>
+        <li><a data-toggle="modal" href="#perfil">{{auth()->user()->getName() }}</a></li>
         <li><a data-toggle="modal" href="{{ route('salir') }}">Salir</a></li>
         @else
         <li><a data-toggle="modal" href="http://bardo.surwww.com/home.html#ingresar">Ingresar</a></li>

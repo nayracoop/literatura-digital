@@ -11,10 +11,14 @@ Route::get('/relatos', 'StoryController@index')->name('story.index');
 Route::get('/relatos/nuevo', 'StoryController@createStory')->name('story.create');
 Route::post('/relatos/nuevo', 'StoryController@storeStory')->name('story.store');
 
+
 Route::get('/relatos/{slug}', 'StoryController@show')->name('story.show');
-Route::get('/relatos/{slug}/fragmentos/{slugFragmento}', 'StoryController@showNode')->name('node.show');
-
-
+#dejar comentario
+Route::post('/relatos/{slug}/comentar','StoryController@storeComment')->name('comment.store');
+//crear nodos de un relato
+Route::get('/relatos/{slug}/nuevo-fragmentos','StoryController@createNode')->name('node.create');
+Route::post('/relatos/{slug}/nuevo-fragmentos','StoryController@storeNode')->name('node.store');
+Route::get('/relatos/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')->name('node.show');
 
 
 #perfil-usuario

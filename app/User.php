@@ -35,15 +35,24 @@ class User extends Authenticatable
     ];
 
 
-/*
-        public function stories()
-    {
-        return $this->hasMany('App\Models\Story');
-    }
-*/
 
+/**
+* getStories nos da los relatos pertenecientes al usuario instanciado
+* @return collection
+*/
     public function getStories(){
         return Story::getFromAuthor( $this->id )->get();
     }
+
+/**
+* getAuthorName helper para nombre completo del autor
+* @return String
+*/
+
+     public function getName(){
+       // $author
+        return $this->first_name.' '.$this->last_name;
+     }
+
 
 }
