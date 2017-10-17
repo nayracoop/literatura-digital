@@ -13,7 +13,7 @@ class Genre extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'name',
+        'name','slug'
     ];
 
     public function comments()

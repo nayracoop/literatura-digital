@@ -60,7 +60,7 @@ class Story extends BaseModel
     *
     * @return Collection Story  
     **/
-    public function scopeMoreVoted($query, $count = 4){
+    public function scopeMoreVoted($query, $count = 40){
         return $query->take($count)->get();
     }
 

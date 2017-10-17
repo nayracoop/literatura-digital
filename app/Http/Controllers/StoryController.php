@@ -58,7 +58,15 @@ class StoryController extends Controller
       $author = Auth::user();
       $input = $request->all();
       $story =  new \App\Models\Story();
-     
+      
+      if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){
+
+         $cover = date('Y/m/dHis').'.'.$request->cover->extension(); 
+         $path = $request->cover->storeAs('',$cover, 'nayra');
+         $input['cover'] = $cover;
+
+      }
+
       //@todo validar slug   
       $s = $story->create($input);    
       

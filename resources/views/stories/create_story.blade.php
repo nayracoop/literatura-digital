@@ -2,11 +2,12 @@
 @section('title') @lang('Nuevo relato') @endsection  
 @section('content')
     <div class="row">
+      <form class="form-horizontal" role="form" method="POST" action="{{ route('story.store') }}" enctype="multipart/form-data">
       <div class="col-lg-8">
 
         <h1>@lang('Detalles del relato')</h1>
 
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('story.store') }}">
+        
           {{ csrf_field() }}
           <div class="form-group">
             <label class="control-label">@lang('Título')</label>
@@ -25,8 +26,10 @@
           </div>
           <div class="form-group">
             <label class="control-label">@lang('Género')</label>
-            <select class="form-control" name="gender">
-              <option selected="selected" value="piratas">@lang('Piratas')</option>
+            <select class="form-control" name="genre">
+              @foreach( \App\Models\Genre::all() as $genre )
+              <option  value="{{$genre->slug}}">{{$genre->name}}</option>
+              @endforeach
             </select>
           </div>
           <div class="form-group">
@@ -38,7 +41,7 @@
           <button type="submit" class="btn btn-default">@lang('Publicar')</button>
           <button class="btn btn-default">@lang('Guardar Borrador')</button>
 
-        </form>
+     
       </div>
 
       <div class="col-lg-4">
@@ -48,9 +51,9 @@
                 <img alt="" src="{{ asset( 'img/tapa150x200.png' )}}">
           </div>
         <label for="portada">@lang('Cargar portada'):</label>
-        <input type="file" name="portada" id="portada" style="width: 90%;" value="">
+        <input type="file" name="cover" id="portada" style="width: 90%;" value="">
       </div>
     </div>
-
+     </form>
   </div>
  @endsection

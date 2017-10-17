@@ -21,7 +21,7 @@
       </ul>
       <ul class="nav navbar-nav pull-right">
         @if( Auth::check() )
-        <li><a data-toggle="modal" href="#perfil">{{auth()->user()->getName() }}</a></li>
+        <li><a data-toggle="modal" href="{{ route('author.edit') }}">{{auth()->user()->getName() }}</a></li>
         <li><a data-toggle="modal" href="{{ route('salir') }}">Salir</a></li>
         @else
         <li><a data-toggle="modal" href="#ingresar">@lang('Ingresar')</a></li>
