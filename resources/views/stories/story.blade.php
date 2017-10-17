@@ -4,7 +4,11 @@
     <div class="row">
       <div class="col-lg-8">
         <div class="media-item pull-left" style="margin-right: 20px;  margin-bottom: 15px;">
-          <img alt="" src="{{  asset('img/tapa150x200.png')}}">
+           @if(  $story->cover != null && !empty($story->cover)  )
+        <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">        
+        @else
+        <img alt="" src="{{ asset('img/tapa150x200.png')}}"> 
+        @endif
         </div>
         <div>
           <h1>{{ $story->title }}</h1>
