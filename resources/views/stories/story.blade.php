@@ -26,7 +26,7 @@
           @else
             <div class="col-lg-4 col-md-6">@lang('No hay fragmentos')</div>
           @endif       
-          <a href="{{ route('node.create', $story->slug) }}">@lang('Nuevo fragmento')</a>
+          @include('author.new_node')
         </div>
         <hr>
         @include('snippets.comments')       

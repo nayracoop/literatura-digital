@@ -15,11 +15,10 @@
         <li><a href="#about">@lang('messages.about_menu')</a></li>
         <li><a href="#services">@lang('Relatos')</a></li>
         <li><a href="#contacto">@lang('Contacto')</a></li>
-        @if( Auth::check() )
-        <li><a href="{{  route('story.create') }}">@lang('Crear Relato')</a></li>
-        @endif
+        @include('author.main_menu')       
       </ul>
       <ul class="nav navbar-nav pull-right">
+
         @if( Auth::check() )
         <li><a data-toggle="modal" href="{{ route('author.edit') }}">{{auth()->user()->getName() }}</a></li>
         <li><a data-toggle="modal" href="{{ route('salir') }}">Salir</a></li>
