@@ -8,6 +8,7 @@ use Auth;
 use App\Models\Story;
 use App\Models\TextNode;
 use App\Models\Comment;
+use App\Models\Like;
 use App\User;
 
 class UserController extends Controller
@@ -50,6 +51,23 @@ class UserController extends Controller
    public function myProfile(){
       return view('user.profile')
         ->with('user', Auth::user() );
+
+   }
+
+
+    /**
+   * Seguir usuario
+   * @return json con status
+   *
+   */
+   public function follow($username){
+
+      $follow = User::where('username',$username)->first();
+      $me = Auth::user();
+      
+      $like = new Like();
+        
+      return json( ['status' => 'ok'] );
 
    }
 

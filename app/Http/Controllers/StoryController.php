@@ -8,6 +8,7 @@ use Auth;
 use App\Models\Story;
 use App\Models\TextNode;
 use App\Models\Comment;
+use App\Models\Like;
 
 class StoryController extends Controller
 {
@@ -142,6 +143,41 @@ class StoryController extends Controller
 
       return redirect()->back();
     }
+
+
+
+    /**
+   * Seguir historia - nodo
+   * @return json con status
+   *
+   */
+   public function like($story,$node = null){
+     $likeable = Story::where('slug',$story)->first();
+
+      if( $node != null ){
+        $likeable = $likeable->textNodes->where('slug', $node)->first();
+      }
+       
+     //echo $likeable;
+      $me = Auth::user();
+      //cosa estranha che---
+      //echo $lik;
+      $currentLike = $likeable->likes->where('user_id',$me->getIdAttribute())->first();
+         
+      if( $currentLike !== null  ){
+      
+         $likeable->likes()->destroy($currentLike) ;
+      } else{
+          
+         $like = new Like();
+         $like->user()->associate($me);
+         
+         $likeable->likes()->save($like);
+      } 
+        
+      return response()->json( ['status' => 'ok'] );
+
+   }
 
 
 }

@@ -21,6 +21,11 @@ Route::get('/relatos/{slug}/nuevo-fragmentos','StoryController@createNode')->nam
 Route::post('/relatos/{slug}/nuevo-fragmentos','StoryController@storeNode')->name('node.store');
 Route::get('/relatos/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')->name('node.show');
 
+#Like - relato - fragmento  
+Route::post('/favoritos/{stroy}/{node?}','StoryController@like')->name('like');
+#Like pero para users
+Route::post('/seguir/{username}','UserController@follow')->name('follow');
+
 
 #perfil-usuario
 Route::get('/mi-perfil', 'UserController@myProfile')->name('author.edit');
@@ -38,6 +43,9 @@ Route::get('/salir', function(){
     return redirect()->back();
 })->name('salir');
 
+
+#ADMIN
+Route::get('/admin/usuarios','AdminController@listUsers')->name('admin.list-users');
 
 
 # Controlador de pruebas

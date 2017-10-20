@@ -17,7 +17,7 @@
           <span>@lang('Visto'): {{ $story->views }}</span>
         @endif 
         @if($story->likes->count() > 0)
-          <span>@lang('Likeado'): {{ $story->likes->count() }}</span>
+          <span>@lang('Likeado'): {{ $story->likes->where('deleted_at',null)->count() }}</span>
         @endif
         <span>@lang('Partes'): {{ $story->textNodes->count() }}</span>
       </div>

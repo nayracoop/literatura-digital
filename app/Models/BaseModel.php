@@ -8,7 +8,7 @@ use Moloquent;
 class BaseModel extends Moloquent
 {
 
-    use SoftDeletes;
+ //   use SoftDeletes;
 
     protected $dates = [
         'created_at',

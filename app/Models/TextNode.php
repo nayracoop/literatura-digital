@@ -35,5 +35,8 @@ class TextNode extends BaseModel
         return $this->belongsTo('\App\Models\Story');
     }
 
-
+    public function likes()
+    {
+        return $this->embedsMany('\App\Models\Like');
+    }
 }
