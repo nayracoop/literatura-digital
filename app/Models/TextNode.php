@@ -39,4 +39,12 @@ class TextNode extends BaseModel
     {
         return $this->embedsMany('\App\Models\Like');
     }
+/*
+
+    public function next()
+    {
+        return $this->hasMany('\App\Models\TextNode');
+    }
+*/
+
 }

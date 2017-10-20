@@ -82,7 +82,6 @@ class Story extends BaseModel
         return $query->where('author_id', $id)->first();
      }
 
-
      /**
      * getAuthorName helper para nombre completo del autor
      * @return String
@@ -92,5 +91,50 @@ class Story extends BaseModel
        // $author
         return $this->author->getName();
      }
+
+     /**
+     *  Reader
+     * 
+     * Envia el proceso de la histortia de acuerdo al tipo de relato
+     */
+
+     public function reader(){
+        switch ($this->typology) {
+            case 'lineal':
+                # code...
+                break;
+            case 'temporal':
+                # code...
+                break;
+            case 'cyowa':
+                # code...
+                break;
+
+            case 'coral':
+                # code...
+                break;
+            case 'episode':
+                # code...
+                break;                
+            
+            default:
+                # code...
+                break;
+        }
+
+
+     }
+
+
+     /**
+     *
+     *
+     */
+
+     public function lineal(){
+        
+     }
+
+
 
 }
