@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse navbar-escrituras-collapse">
           <ul class="nav navbar-nav">
             <li><a href="#about">@lang('Escribir')</a></li>
-            <li class="active"><a href="#services">@lang('Relatos')</a></li>
+            <li class="active"><a href="{{ route('stories') }}">@lang('Relatos')</a></li>
             <li><a href="#contact">@lang('Contacto')</a></li>
              @include('author.main_menu')
           </ul>

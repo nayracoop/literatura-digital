@@ -5,7 +5,7 @@
                     @if(  $story->cover != null && !empty($story->cover)  )
         <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">        
         @else
-        <img alt="" src="{{ asset('img/tapa150x200.png')}}"> 
+        <img alt="" src="{{ asset('img/tapa200x200.png')}}"> 
         @endif
                   </div>
                   <h2>{{$story->title}}</a></h2>

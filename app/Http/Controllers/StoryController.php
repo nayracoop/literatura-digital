@@ -20,8 +20,28 @@ class StoryController extends Controller
     public function index()
     {
         //
-        $stories = Story::moreVoted();
+        $stories = Story::featured();
         return view('home')
+        ->with('stories', $stories);
+     }
+
+
+     /**
+     * Relatos
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function stories(Request $request)
+    {   $search = trim($request->search);
+        //
+      //  echo "$search";
+      if($request->has('search')){
+          $stories = Story::where('title','like',"%$search%")->orWhere('description','like',"%$search%")->get();
+      }else{
+          $stories = Story::featured();
+      }
+        //dd($stories);
+        return view('stories.stories')
         ->with('stories', $stories);
      }
 

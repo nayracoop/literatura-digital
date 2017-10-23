@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 #home
 Route::get('/', 'StoryController@index')->name('index');
 #relatos y nodos 
-Route::get('/relatos', 'StoryController@index')->name('story.index');
+Route::get('/relatos', 'StoryController@stories')->name('stories');
 #edicion relatos nodos
 Route::get('/relatos/nuevo', 'StoryController@createStory')->name('story.create');
 Route::post('/relatos/nuevo', 'StoryController@storeStory')->name('story.store');
