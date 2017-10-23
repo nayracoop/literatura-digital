@@ -1,0 +1,93 @@
+$font-face-caecilia-roman: 'caecilialtstd-roman-webfont';
+$font-face-caecilia-bold: 'caecilialtstd-bold-webfont';
+$font-face-caecilia-heavy: 'caecilialtstd-heavy-webfont';
+$font-face-caecilia-bold-italic: 'caecilialtstd-bolditalic-webfont';
+
+$font-face-meta: 'meta-normal-regular-webfont';
+$font-face-meta-bold: 'meta-bold-regular-webfont';
+
+$font-face-brandon-grotesque-regular: 'brandon_reg';
+$font-face-brandon-grotesque-bold: 'brandon_bld';
+
+@font-face {
+    font-family: 'Caecilia'; font-style: normal; font-weight: normal;
+    src: url('../fonts/caecilia/#{$font-face-caecilia-roman}.eot');
+    src: url('../fonts/caecilia/#{$font-face-caecilia-roman}.eot?') format('eot'),
+        url('../fonts/caecilia/#{$font-face-caecilia-roman}.woff') format('woff'),
+        url('../fonts/caecilia/#{$font-face-caecilia-roman}.ttf')  format('truetype'),
+        url('../fonts/caecilia/#{$font-face-caecilia-roman}.svg') format('svg');
+ }
+
+@font-face {
+    font-family: 'Caecilia'; font-style: normal; font-weight: bold;
+    src: url('../fonts/caecilia/#{$font-face-caecilia-bold}.eot');
+    src: url('../fonts/caecilia/#{$font-face-caecilia-bold}.eot?') format('eot'),
+        url('../fonts/caecilia/#{$font-face-caecilia-bold}.woff') format('woff'),
+        url('../fonts/caecilia/#{$font-face-caecilia-bold}.ttf')  format('truetype'),
+        url('../fonts/caecilia/#{$font-face-caecilia-bold}.svg') format('svg');
+ }
+
+ @font-face {
+    font-family: 'Caecilia'; font-style: italic; font-weight: normal;
+    src: url('../fonts/caecilia/#{$font-face-caecilia-bold-italic}.eot');
+    src: url('../fonts/caecilia/#{$font-face-caecilia-bold-italic}.eot?') format('eot'),
+        url('../fonts/caecilia/#{$font-face-caecilia-bold-italic}.woff') format('woff'),
+        url('../fonts/caecilia/#{$font-face-caecilia-bold-italic}.ttf')  format('truetype'),
+        url('../fonts/caecilia/#{$font-face-caecilia-bold-italic}.svg') format('svg');
+ }
+
+@font-face {
+    font-family: 'Caecilia Heavy'; font-style: normal; font-weight: normal;
+    src: url('../fonts/caecilia/#{$font-face-caecilia-heavy}.eot');
+    src: url('../fonts/caecilia/#{$font-face-caecilia-heavy}.eot?') format('eot'),
+        url('../fonts/caecilia/#{$font-face-caecilia-heavy}.woff') format('woff'),
+        url('../fonts/caecilia/#{$font-face-caecilia-heavy}.ttf')  format('truetype'),
+        url('../fonts/caecilia/#{$font-face-caecilia-heavy}.svg') format('svg');
+ }
+
+ @font-face {
+    font-family: 'Meta Bold'; font-style: normal; font-weight: bold;
+    src: url('../fonts/meta/#{$font-face-meta-bold}.eot');
+    src: url('../fonts/meta/#{$font-face-meta-bold}.eot?') format('eot'),
+        url('../fonts/meta/#{$font-face-meta-bold}.woff') format('woff'),
+        url('../fonts/meta/#{$font-face-meta-bold}.ttf')  format('truetype'),
+        url('../fonts/meta/#{$font-face-meta-bold}.svg') format('svg');
+ }
+
+ @font-face {
+    font-family: 'Meta'; font-style: normal; font-weight: bold;
+    src: url('../fonts/meta/#{$font-face-meta}.eot');
+    src: url('../fonts/meta/#{$font-face-meta}.eot?') format('eot'),
+        url('../fonts/meta/#{$font-face-meta}.woff') format('woff'),
+        url('../fonts/meta/#{$font-face-meta}.ttf')  format('truetype'),
+        url('../fonts/meta/#{$font-face-meta}.svg') format('svg');
+ }
+
+ @font-face {
+    font-family: 'Brandon Grotesque'; font-style: normal; font-weight: normal;
+    src: url('../fonts/brandon-grotesque/#{$font-face-brandon-grotesque-regular}.eot');
+    src: url('../fonts/brandon-grotesque/#{$font-face-brandon-grotesque-regular}.eot?') format('eot'),
+        url('../fonts/brandon-grotesque/#{$font-face-brandon-grotesque-regular}.woff') format('woff'),
+        url('../fonts/brandon-grotesque/#{$font-face-brandon-grotesque-regular}.ttf')  format('truetype'),
+        url('../fonts/brandon-grotesque/#{$font-face-brandon-grotesque-regular}.svg') format('svg');
+ }
+
+@font-face {
+    font-family: 'Brandon Grotesque'; font-style: normal; font-weight: bold;
+    src: url('../fonts/brandon-grotesque/#{$font-face-brandon-grotesque-bold}.eot');
+    src: url('../fonts/brandon-grotesque/#{$font-face-brandon-grotesque-bold}.eot?') format('eot'),
+        url('../fonts/brandon-grotesque/#{$font-face-brandon-grotesque-bold}.woff') format('woff'),
+        url('../fonts/brandon-grotesque/#{$font-face-brandon-grotesque-bold}.ttf')  format('truetype'),
+        url('../fonts/brandon-grotesque/#{$font-face-brandon-grotesque-bold}.svg') format('svg');
+ }
+
+
+$caecilia-roman: 'Caecilia', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$caecilia-bold: 'Caecilia', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$caecilia-heavy: 'Caecilia Heavy', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+
+$meta: 'Meta', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$meta-bold: 'Meta Bold', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+
+$brandon-grotesque-bold: 'Brandon Grotesque', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$brandon-grotesque-regular: 'Brandon Grotesque', Arial,  Helvetica, 'Liberation Sans', sans-serif;

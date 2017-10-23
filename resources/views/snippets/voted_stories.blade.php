@@ -1,15 +1,20 @@
-<div class="row">
-  <div class="col-lg-12">
-    <h3>@lang('Los más votados')</h3>
-  </div>
-</div>
+ <div class="container listado-container">
+    <div class="row">
+      <div class="col-md-12 listado">
 
-<div class="row text-center">
+        <div class="row">
+          <div class="col-md-12">
+
+          <div class="items-listado">
+          <div class="items-listado">
   <!-- BLOQUE -->
   @foreach($stories as $story) 
-	<div class="col-lg-3 col-sm-6">
+	
     @include('stories.summary') 
-	</div>
+
   @endforeach
   <!-- BLOQUE -->
-</div>
+        </div>
+
+</div></div></div>
+</div></div></div>

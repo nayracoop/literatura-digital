@@ -1,0 +1,177 @@
+.navbar-brand{ 
+	background: $color-destacado url(../img/logo/logo-lexia.svg) no-repeat 0 0;
+	width: 96px;
+	height: 43px;  
+}
+
+.navbar-toggle .icon-bar { background: $color-destacado; }
+
+.navbar-lexia{ padding-top: 65px; margin-bottom: 45px;}
+
+.navbar-lexia .navbar-toggle { margin-top: 6px; margin-right: 9px; border-radius: 0; }
+
+
+@media only screen and (max-width: ($screen-md - 1)) {
+	.navbar-lexia{ padding-top: 45px; margin-bottom: 0;}
+}
+
+@media only screen and (max-width: ($screen-xs - 1)) {
+	.navbar-lexia{ padding-top: 15px;}
+}
+
+.navbar-lexia li{ margin: 0 12px; }
+
+@media only screen and (max-width: ($screen-md - 1)) {
+	.navbar-lexia li{ margin: 0 0; }
+}
+
+.navbar-lexia li:first-child{ margin-left: 50px; }
+
+.navbar-lexia li > a{
+	text-transform: uppercase;
+    line-height: 1;
+    font-size: 1em;
+    letter-spacing: 1.5px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 8px;
+    color: $color-blanco;
+	font-family: $brandon-grotesque-bold;
+	font-weight: bold;
+}
+
+.navbar-lexia li > a:hover, .navbar-lexia li > a:focus, .navbar-lexia li.active > a{
+	background: transparent;
+	color: $color-destacado;
+	border-bottom: 4px solid $color-destacado;
+}
+
+@media only screen and (min-width: ($screen-md - 1)) {
+
+	.login li:first-child{ margin: 0; margin-right: -29px;}
+
+	.login li > a{
+		width: 44px;
+		height: 44px;
+		display: block;
+		background: url(../img/iconos/login.svg) no-repeat center center; 	
+	}
+
+	.navbar-lexia .login li > a:hover, .navbar-lexia .login li > a:focus{ 
+		background: url(../img/iconos/login-hover.svg) no-repeat center center; 
+		border-bottom-width: 0;
+	}
+
+	.navbar-lexia .invis { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+
+}
+
+@media only screen and (max-width: ($screen-md - 1)) {
+
+	.navbar-toggle{ margin-top: 4px; }
+
+	.navbar-lexia li > a{
+	  padding-left: 15px;
+      padding-right: 15px;
+    }
+}
+
+/* MENU MOBILE */
+
+@media only screen and (max-width: ($screen-md - 1)) {
+
+	.navbar-brand{ 
+		background: url(../img/logo/logo-lexia.svg) no-repeat 0 0;
+		margin-top: 7px;
+		width: 80px;
+		height: 36px; 
+		background-size: 100% 100%; 
+		margin-left: 3px;
+	}
+
+	.navbar-lexia{
+		border-width: 0;
+		padding-top: 0;
+		background: $color-destacado;
+    	max-height: 49px;
+	}
+
+	.navbar-lexia .padding-container{ padding: 0; }
+
+	.navbar-lexia .icon-bar{ 
+		background: $color-fondo; 
+		height: 3px;
+	}
+
+	.navbar-lexia .icon-bar + .icon-bar {
+    	margin-top: 3px;
+	}
+
+	.navbar-lexia .navbar-toggle{ 
+		margin-top: 7px; 
+		padding-right: 14px;
+		padding-left: 14px;
+		margin-right: 4px;
+		padding-top: 10px;
+		padding-bottom: 16px;
+	}
+
+	.navbar-lexia button:hover .icon-bar, .navbar-lexia button:focus .icon-bar{
+		background: $color-destacado;
+		height: 2px;	
+	}
+
+	.navbar-lexia button:hover .icon-bar + .icon-bar, .navbar-lexia button:focus .icon-bar + .icon-bar {
+    	margin-top: 4px;
+	}
+
+	.navbar-lexia button:hover .icon-bar:last-child, .navbar-lexia button:focus .icon-bar:last-child{ margin-bottom: 1px;}
+
+	.navbar-lexia .navbar-toggle:hover, .navbar-lexia .navbar-toggle:focus {
+    	background-color: $color-fondo;
+    }
+
+	.navbar-lexia .padding-container{ position: relative; }
+
+	.navbar-lexia .navbar-collapse{
+		position: absolute;
+		top: 49px;
+		right: 5px;
+		z-index: 50;
+		background: transparent;
+		box-shadow: -7px 8px 6px -6px rgba(0,0,0,.3);
+	}
+
+	.navbar-lexia .navbar-collapse, .navbar-lexia .login{ width: 269px; }
+
+	.navbar-lexia .navbar-nav { margin: 0 -15px; position: relative;}
+
+	.navbar-lexia .navbar-nav li{ margin-left: 0; background: $color-fondo;}
+
+	.navbar-lexia .navbar-nav li a{ 
+		padding-top: 12px; 
+		padding-bottom: 12px;
+		color: $color-blanco;
+		/*border-left: 1px solid #333;
+		border-right: 1px dotted #000;*/
+		border-bottom: 1px solid #333;
+	}
+
+	.navbar-lexia li > a:hover, .navbar-lexia li > a:focus, .navbar-lexia li.active > a{ 
+		color: #000;
+		background: $color-destacado;
+	}
+
+	.navbar-lexia .navbar-nav li:last-child a{
+		border-bottom: 1px solid #333;
+	}
+
+	.navbar-lexia .login li:last-child a{
+		border-bottom: 0 solid #40404C;
+	}
+
+	.navbar-lexia .login{
+		float: left !important;
+	}
+
+}

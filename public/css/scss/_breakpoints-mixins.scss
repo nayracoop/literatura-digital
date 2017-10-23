@@ -1,0 +1,34 @@
+/* BREAKPOINTS */
+
+$screen-xs: 576px;
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
+
+/*
+.col- 	 < 576px
+.col-sm- ≥ 576px	
+.col-md- ≥ 768px	
+.col-lg- ≥ 992px	
+.col-xl- ≥1200px
+*/
+
+.invisible { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+
+$color-destacado: #C1D82F;
+$color-destacado-link: #84931C;
+$color-fondo: #40404C;
+$color-titulo: #FF0163;
+$color-blanco: #F3F3F3;
+
+/* verde agua: #17FFE9 */
+/* verde fluo: #00B450 */
+/* celeste fluo: #0CA3C0 */
+/* celeste: #0BA3BB */
+
+/* gris fondo osucro: #252628 */ 
+
+
+
+

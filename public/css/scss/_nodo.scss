@@ -1,0 +1,172 @@
+.background-nodo{
+	background: $color-blanco url(../img/nodo/bckg-cunia.svg) no-repeat 0 160px;
+	padding: 75px 90px;
+	font-family: $caecilia-bold;
+	font-size: 16px;
+	overflow: hidden;
+}
+
+@media only screen and (max-width: ($screen-lg - 1)) {
+	.background-nodo{ padding: 55px 55px; }
+}
+
+@media only screen and (max-width: ($screen-md - 1)) {
+	.background-nodo{ 
+	  background-size: 5px 10px; 
+	  overflow: visible;
+	  padding: 50px 20px 50px 20px;
+	}
+}
+
+@media only screen and (max-width: ($screen-xs - 1)) {
+	.background-nodo{ 
+	  padding: 18px 7px 50px 7px;
+	}
+}
+
+.background-nodo h1{ 
+	font-family: $meta-bold; 
+	color: $color-titulo;
+	font-size: 2.5em;
+}
+
+@media only screen and (max-width: ($screen-md - 1)) {
+	.background-nodo h1{ 
+		font-size: 1.75em;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+.nodo-meta{ 
+	border-top: 1px solid #CFCFD2;  
+	border-bottom: 1px solid #CFCFD2;
+	overflow: hidden;
+}
+
+.nodo-meta-relato{ 
+	font-family: $meta; 
+	font-size: 1.25em; 
+	padding: 0 4px; 
+	margin-bottom: 0;
+	float: left;
+}
+
+.nodo-meta-autor, .nodo-meta-titulo{ font-family: $meta-bold; color: $color-titulo;}
+
+.nodo-fecha-relato{ 
+	font-family: $caecilia-bold; 
+	font-size: 0.875em;  
+	font-style: italic;
+	margin-top: 6px;
+	margin-bottom: 0;
+	color: #666;
+	float: right;
+}
+
+@media only screen and (max-width: ($screen-xs - 1)) {
+	.nodo-meta{ 
+		border-top: 0 solid #CFCFD2;  
+		border-bottom: 0 solid #CFCFD2;
+	}
+
+	.nodo-meta-relato{ 
+		font-size: 1.125em; 
+		padding: 0;
+		border-bottom: 1px solid #cfcfd2;
+		float: none;
+	}
+	
+	.nodo-fecha-relato{ float: left; clear: both; }
+	}
+
+.background-nodo a{ color: $color-destacado-link; border-bottom: 1px dotted $color-destacado;}
+.background-nodo a:hover{ color: $color-titulo;  border-bottom: 1px dotted $color-titulo; text-decoration: none;}
+
+.background-nodo p{	line-height: 1.75; }
+.background-nodo p strong, .background-nodo p b{ font-family: $caecilia-heavy; }
+.background-nodo p em, .background-nodo p i{ font-family: $caecilia-bold; font-style: italic; }
+
+
+@media only screen and (max-width: ($screen-xs - 1)) {
+	.background-nodo{	font-size: 15px; }
+	.background-nodo p{ line-height: 1.5; }
+}
+
+
+.nodo-texto{ clear: both; }
+
+/* GENEROS */
+
+.generos{ 
+	padding-left: 0;
+	list-style: none;
+	overflow: hidden;
+}
+
+.generos li{ float: left; } 
+
+.generos li::after {
+  content: ",";
+  padding-right: 3px;
+}
+
+.generos li:last-child::after{ content: ""; padding-right: 0;}
+
+/* AUDIENCIA */
+
+.audiencia{ 
+	display: block;
+	overflow: hidden; 
+	margin: 14px 8px 5px 0; 
+	list-style: none;
+	float: right;
+}
+
+.item-relato .audiencia{ 
+	float: none; 
+	margin-left: 0; 
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 5px;
+	border-top: 1px dotted #999;
+	font-size: 16px;
+	text-align: center;
+}
+
+.item-relato .audiencia li{ 
+	margin-left: 0; 
+	margin-right: 0; 
+	padding-left: 22px;
+}
+
+.item-relato .audiencia li:nth-child(2){ float: none; display: inline-block; vertical-align: top}
+.item-relato .audiencia li:nth-child(3){ float: right; }
+
+@media only screen and (max-width: ($screen-xs - 150px)) {
+	.item-relato .audiencia{ padding-top: 10px; }
+	.item-relato .audiencia li{ width: 55px; margin-bottom: 5px; }
+	.item-relato .audiencia li:nth-child(2){ display: block;}
+	.item-relato .audiencia li:nth-child(1), .item-relato .audiencia li:nth-child(3){ float: none;}
+}
+
+.audiencia li{  float: left; font-size: 0.875em; margin-left: 30px; padding-left: 25px; color: #666; }
+
+.audiencia li:nth-child(1){ background: url(../img/iconos/leido.png) no-repeat 0 1px; }
+.audiencia li:nth-child(2){ background: url(../img/iconos/favorito.png) no-repeat 0 0; }
+.audiencia li:nth-child(3){ background: url(../img/iconos/comentarios.png) no-repeat 0 1px; }
+
+.audiencia li a{ color: #666; text-decoration: none;}
+
+
+@media only screen and (max-width: ($screen-xs - 1)) {
+
+	.audiencia{ 
+		float: none; 
+		padding-left: 0; 
+		margin: 5px 8px 5px 0;
+		padding-top:10px;
+		border-top: 1px solid #cfcfd2;
+	}
+	.audiencia li:nth-child(1){ margin-left: 0; }
+}

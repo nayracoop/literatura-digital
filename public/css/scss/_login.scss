@@ -1,0 +1,110 @@
+/****** LOGIN MODAL ******/
+
+.modal-dialog { width: 325px; }
+
+.loginmodal-container {
+  padding: 0 34px;
+  max-width: 325px;
+  width: 100% !important;
+  background-color: $color-fondo;
+  color: $color-blanco;
+  margin: 0 auto;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border: 3px solid $color-destacado;
+  font-family: $caecilia-roman;
+}
+
+.loginmodal-container h1 {
+  background: $color-destacado;
+  color: $color-fondo;
+  text-align: center;
+  font-size: 1.375em;
+  min-height: 42px;
+  margin: 0 0 32px 0;
+  margin-left: -34px;
+  margin-right: -34px;
+  padding: 14px 0;
+  font-family: $brandon-grotesque-bold;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.loginmodal-container label strong{
+  color: $color-destacado;
+}
+
+.loginmodal-container input[type=submit] {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.loginmodal-container input[type=text], input[type=password] {
+  height: 35px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 16px;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #CCC;
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.loginmodal-container input.email {
+  height: 40px;
+}
+
+.loginmodal-container input[type=text]:hover, input[type=password]:hover {
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.loginmodal {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
+}
+
+.loginmodal-submit {
+  border: 0;
+  color: $color-fondo;
+  font-family: $caecilia-heavy;
+  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  background-color: #C1D82F;
+  padding: 12px 0px;
+  font-size: 1.125em;
+  margin: 15px 0 0 0;
+}
+
+.loginmodal-submit:hover {
+  border: 0px;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #357ae8;
+}
+
+.loginmodal-container a {
+  text-decoration: none;
+  color: $color-destacado;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  opacity: 0.6;
+  transition: opacity ease 0.5s;
+} 
+
+.login-help{
+  margin: 20px auto;
+  font-size: .8125em;
+  text-align: center;
+}
+
+.login-help a{ text-decoration: underline; }

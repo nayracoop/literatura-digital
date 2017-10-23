@@ -1,0 +1,52 @@
+body {
+    background: $color-fondo;
+    padding-bottom: 70px;
+}
+
+@media only screen and (max-width: ($screen-md + 50)) {
+   body { padding-bottom: 0; }
+}
+
+.white{
+   background-color: $color-blanco;
+   box-shadow: inset 0 300px 0 $color-fondo;
+}
+
+@media only screen and (max-width: ($screen-md - 1)) {
+  .white{ background: $color-fondo; box-shadow: none;}
+}
+
+.reborde-top, .reborde-right, .reborde-bottom, .reborde-left{
+  position: fixed;
+  z-index: 5;
+  background: $color-destacado;
+}
+
+.reborde-top{ top: 0; left: 0; width: 100%; height: 10px;}
+.reborde-right{ top: 0; right: 0; height: 100%; width: 10px;}
+.reborde-bottom{ bottom: 0; left: 0; width: 100%; height: 10px;}
+.reborde-left{ top: 0; left: 0; height: 100%; width: 10px;}
+
+.padding-container{ padding: 0 70px; }
+
+@media only screen and (max-width: ($screen-lg - 1)) {
+   .padding-container{ padding: 0 0; }
+}
+
+@media only screen and (max-width: ($screen-md + 50)) {
+   .padding-container{ padding: 0 20px; }
+}
+
+@media only screen and (max-width: ($screen-md - 1)) {
+   .reborde-top{ height: 0;}
+   .reborde-right{ width: 5px;}
+   .reborde-bottom{ height: 5px;}
+   .reborde-left{ width: 5px;}
+	
+   .padding-container{ padding: 0 0; }
+
+   .navbar-lexia .padding-container{ 
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+}
