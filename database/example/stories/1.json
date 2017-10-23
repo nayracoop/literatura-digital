@@ -1,0 +1,56 @@
+{
+    "_id" : ObjectId("59de6f9350d3de124800593a"),
+    "title" : "Subite al tren de locura",
+    "summary" : "A mí me da miedo,  no la voy a ver",
+    "description" : "No vengo tampoco a herir con adjetivos innecesarios al vecino poderoso en su propia casa.",
+    "typology" : "episodico",
+    "genre" : "policial",
+    "updated_at" : ISODate("2017-10-23T17:27:22.000Z"),
+    "created_at" : ISODate("2017-10-11T19:22:59.000Z"),
+    "slug" : "tren-de-locura",
+    "author_id" : "59de229550d3de124800591a",
+    "cover" : "2017/10/17150216.jpeg",
+    "views" : 50,
+    "textNodes" : [ 
+        {
+            "title" : null,
+            "text" : " y deben ser aplicados universalmente en las relaciones entre los Estado",
+            "slug" : "pm101314014",
+            "updated_at" : ISODate("2017-10-13T14:46:14.000Z"),
+            "created_at" : ISODate("2017-10-13T14:46:14.000Z"),
+            "_id" : ObjectId("59e0d1b650d3de124800595b"),
+            "next" : [ 
+                {
+                    "textNode_id" : ObjectId("59e0e5a950d3de124800595e"),
+                    "updated_at" : ISODate("2017-10-20T16:23:03.000Z"),
+                    "created_at" : ISODate("2017-10-13T16:11:21.000Z")
+                }
+            ]
+        }, 
+        {
+            "title" : "Tramo I",
+            "text" : "No es posible negarlo. Cuando se analiza la estructura del mundo contemporáneo ...",
+            "slug" : "tramo-i",
+            "updated_at" : ISODate("2017-10-20T16:23:03.000Z"),
+            "created_at" : ISODate("2017-10-13T16:11:21.000Z"),
+            "_id" : ObjectId("59e0e5a950d3de124800595e"),
+            "likes" : []
+        }
+    ],
+    "comments" : [ 
+        {
+            "content" : "Esta historía es genial!",
+            "updated_at" : ISODate("2017-10-13T14:46:14.000Z"),
+            "created_at" : ISODate("2017-10-13T14:46:14.000Z"),
+            "user_id" : "59de229550d3de124800591a"
+        }
+    ],
+    "likes" : [ 
+        {
+            "user_id" : "59e766b1e90c48f3089bf62c",
+            "updated_at" : ISODate("2017-10-20T16:23:29.000Z"),
+            "created_at" : ISODate("2017-10-20T16:23:29.000Z"),
+            "_id" : ObjectId("59ea230150d3de2104001e3e")
+        }
+    ]
+}

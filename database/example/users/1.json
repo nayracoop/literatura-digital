@@ -1,0 +1,29 @@
+{
+    "_id" : ObjectId("59de229550d3de124800591a"),
+    "slug" : "jose-maria-casanova",
+    "first_name" : "José María",
+    "last_name" : "Casanova",
+    "username" : "josecasanova",
+    "email" : "jose@gmail.com",
+    "password" : "$2y$10$tF9uZ2e7JBZO1oW8iBb5seLYEiN3X02wY.kxY5T3iVx6wAEz6RnNK",
+    "role" : "author",
+    "updated_at" : ISODate("2017-10-13T19:03:46.000Z"),
+    "created_at" : ISODate("2017-10-11T13:54:29.000Z"),
+    "remember_token" : "Ut0gF4ep3mdYkbR4khyMJ1U3BNrhAaOVWNM2zsuYVEFBuAR3jkamey0d8Ymm",
+    "comments" : [ 
+        {
+            "content" : "Ey gato!!",
+            "user_id" : "59de229550d3de124800591a",
+            "updated_at" : ISODate("2017-10-13T18:59:48.000Z"),
+            "created_at" : ISODate("2017-10-13T18:59:48.000Z"),
+            "_id" : ObjectId("59e10d2450d3de1248005960")
+        }, 
+        {
+            "content" : "gatisimo",
+            "user_id" : "59de229550d3de124800591a",
+            "updated_at" : ISODate("2017-10-13T19:03:46.000Z"),
+            "created_at" : ISODate("2017-10-13T19:03:46.000Z"),
+            "_id" : ObjectId("59e10e1250d3de1248005962")
+        }
+    ]
+}
