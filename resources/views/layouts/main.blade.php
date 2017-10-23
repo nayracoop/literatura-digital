@@ -16,7 +16,7 @@
 
   <body @yield('body_class') >
     <div class="reborde-top"></div><div class="reborde-right"></div><div class="reborde-bottom"></div><div class="reborde-left"></div>
-    @include('layouts.menu')
+      @include('layouts.menu')
     <div class="container">
       @yield('content')
     </div>

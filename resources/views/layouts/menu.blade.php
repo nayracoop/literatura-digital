@@ -30,8 +30,6 @@
       </div>
     </div>
   </nav>
-
-
 @include('snippets.register_form')
 @include('snippets.login_form')  
 
