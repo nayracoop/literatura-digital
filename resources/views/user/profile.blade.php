@@ -9,11 +9,11 @@
         <form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="control-label">@lang('Email')</label>
-            <input type="text" class="form-control" placeholder="Leñador">
+            <input type="text" class="form-control" placeholder="Leñador" value="{{ $user->email }}">
           </div>
           <div class="form-group">
             <label class="control-label">@lang('Contraseña')</label>
-            <input type="text" class="form-control" placeholder="Leñador">
+            <input type="text" class="form-control" placeholder="Leñador" value="">
           </div>
           <div class="form-group">
             <div class="row">
@@ -52,7 +52,11 @@
       <div class="well">
           <h4>@lang('Foto de perfil')</h4>
           <div class="media-item">
-                <img alt="" src="{{ asset('img/tapa150x200.png')}}">
+              @if( $user->avatar == null)
+                <img alt="" src="{{ asset('img/tapa200x200.png')}}">
+              @else
+                <img alt="" src="{{ route('imagenes',['cover',$user->avatar])}}">
+              @endif  
           </div>
         <label for="portada">@lang('Cargar foto'):</label>
         <input type="file" name="portada" id="portada" style="width: 90%;" value="">
