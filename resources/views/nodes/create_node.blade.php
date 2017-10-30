@@ -21,9 +21,9 @@
              <label class="control-label">{{$node->title}}<input type="checkbox" name="nodes[]" value="{{ $node->_id }}"></label>
           @endforeach
         </div>  
-
+         @include('typologies.node_fields.'.$story->typology)
         @if( $story->typology === 'temporal' )
-          @include('typologies.node_fields.temporal')
+         
         @endif
 
         <button type="submit" class="btn btn-default">@lang('Publicar')</button>

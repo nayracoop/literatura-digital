@@ -13,7 +13,7 @@ class TextNode extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'title','slug','text', 'image', 'published_at','nodes'
+        'title','slug','text', 'image', 'published_at','nodes','order'
     ];
 
     protected $dates = [

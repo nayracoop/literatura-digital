@@ -20,8 +20,11 @@
           <div class="form-group">
             <label class="control-label">@lang('Tipología')</label>
             <select class="form-control" name="typology">
+              <option selected="selected" value="temporal">@lang('Temporal')</option>              
+              <option selected="selected" value="lineal">@lang('Lineal')</option>
+              <option selected="selected" value="episodic">@lang('Episódico')</option>
               <option selected="selected" value="coral">@lang('Coral')</option>
-              <option selected="selected" value="episodico">@lang('Episódico')</option>
+              <option selected="selected" value="rizome">@lang('Rizoma')</option>
             </select>
           </div>
           <div class="form-group">
@@ -34,7 +37,7 @@
           </div>
           <div class="form-group">
             <label class="control-label">@lang('Etiquetas')</label>
-            <input type="text" class="form-control" placeholder="Agregar etiquetas" name="label">
+            <input type="text" class="form-control" placeholder="@lang('Agregar etiquetas')" name="label">
           </div>
 
           
@@ -48,7 +51,7 @@
       <div class="well">
           <h4>@lang('Portada')</h4>
           <div class="media-item">
-                <img alt="" src="{{ asset( 'img/tapa150x200.png' )}}">
+                <img alt="" src="{{ asset( 'img/tapa200x200.png' )}}">
           </div>
         <label for="portada">@lang('Cargar portada'):</label>
         <input type="file" name="cover" id="portada" style="width: 90%;" value="">
