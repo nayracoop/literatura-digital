@@ -25,11 +25,10 @@
                 @include('snippets.like')
                 <ul class="relato-nodos">
                  @if( $story->textNodes->count() > 0 )
-                  @foreach( $story->textNodes as $textNode )
-                  <li><h3><a href="{{ route('node.show', [$story->slug, $textNode->slug] ) }}">{{ $textNode->title }}</a></h3></li>
-                  
-                  @endforeach
-                  @else
+                    {{--  Separamos la presentación de nodos de acuerdo a la tipologia --}}
+                    @include('typologies.node_presentation.'.$story->typology)
+                    
+                 @else
                   <div class="col-lg-4 col-md-6">@lang('No hay fragmentos')</div>
                  @endif  
                 </ul>

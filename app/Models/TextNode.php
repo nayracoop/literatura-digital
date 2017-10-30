@@ -13,7 +13,7 @@ class TextNode extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'title','slug','text', 'image', 'published_at',
+        'title','slug','text', 'image', 'published_at','nodes'
     ];
 
     protected $dates = [
@@ -39,11 +39,11 @@ class TextNode extends BaseModel
     {
         return $this->embedsMany('\App\Models\Like');
     }
-/*
 
-    public function next()
+/*
+    public function nodes()
     {
-        return $this->hasMany('\App\Models\TextNode');
+     //   return $this->hasMany('\App\Models\TextNode');
     }
 */
 

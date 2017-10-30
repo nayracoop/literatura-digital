@@ -9,6 +9,7 @@ use App\Models\Story;
 use App\Models\TextNode;
 use App\Models\Comment;
 use App\Models\Like;
+use Carbon\Carbon;
 
 class StoryController extends Controller
 {
@@ -138,10 +139,24 @@ class StoryController extends Controller
         $node->slug = str_slug($node->title);
       }else{
         $node->slug = str_slug( date('amdHIs') );
-      }      
-     
-    //---
-      $story->textNodes()->save($node) ;
+      }   
+
+      if(!isset( $input['published_at'] )){
+        $node->published_at = Carbon::now();  
+      }else{
+        $date = str_replace('/', '-', $input['published_at']);
+        $node->published_at = date( 'Y-m-d H:i:s', strtotime($date) );
+      }
+
+      
+    /*
+      foreach ($input['nextNode'] as $n) {
+           echo "- $n ";
+           $nextNode = $story->textNodes->where('id',$n)->first();
+           $node->nodes[] = $nextNode->_id;
+      }
+      */
+        $story->textNodes()->save($node) ;
     //  $n->save();
     //  echo 'Nodo '.$node->getIdAttribute();
       $story->save();
