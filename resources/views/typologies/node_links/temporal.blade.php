@@ -1,11 +1,3 @@
-{{--
-@if( $textNode->next !== null )
-              @foreach( $textNode->next as $next )      
-             <a  href="{{ route('node.show',[ $story->slug , $story->textNodes->find($next)->first()->slug ]) }}" >{{$story->textNodes->find($next)->first()->title}}</a>        
-      
-@endforeach
-@endif
---}}
 @php
 
 $prev = $story->textNodes->where('published_at','<', $textNode->published_at)->sortByDesc('published_at')->first();

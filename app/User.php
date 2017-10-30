@@ -41,7 +41,7 @@ class User extends Authenticatable
 * @return collection
 */
     public function getStories(){
-        return Story::getFromAuthor( $this->id )->get();
+        return Story::getFromAuthor( $this->getIdAttribute() )->get();
     }
 
 /**

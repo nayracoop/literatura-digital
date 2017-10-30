@@ -96,7 +96,7 @@ class StoryController extends Controller
       $s->author()->associate($author);
       $s->save();
 
-      //return redirect()->back();
+      return redirect()->back();
     
     }
 

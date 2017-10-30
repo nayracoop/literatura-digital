@@ -79,7 +79,7 @@ class Story extends BaseModel
     **/
 
     public function scopeGetFromAuthor( $query, $id ){
-        return $query->where('author_id', $id)->first();
+        return $query->where('author_id', $id);
      }
 
      /**
