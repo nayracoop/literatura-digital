@@ -140,7 +140,7 @@ class StoryController extends Controller
       }else{
         $node->slug = str_slug( date('amdHIs') );
       }   
-
+      //
       if(!isset( $input['published_at'] )){
         $node->published_at = Carbon::now();  
       }else{
@@ -149,6 +149,13 @@ class StoryController extends Controller
       }
 
       
+
+      //coral
+      if( $request->has('new_voice') && $request->new_voice != ''){
+        $node->voice = $request->new_voice ;  
+      }elseif( $request->has('voice')){
+        $node->voice = $input['voice'] ;  
+      }
     /*
       foreach ($input['nextNode'] as $n) {
            echo "- $n ";

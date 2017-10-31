@@ -35,6 +35,7 @@ class Story extends BaseModel
         return $this->embedsMany('\App\Models\TextNode');
     }
 
+  
     public function comments()
     {
         return $this->embedsMany('\App\Models\Comment');
@@ -81,6 +82,22 @@ class Story extends BaseModel
     public function scopeGetFromAuthor( $query, $id ){
         return $query->where('author_id', $id);
      }
+
+
+/**
+    * scopeChoralVoices
+    *
+    * Si es relato coral devuelve las voces existentes.
+    * @author Jose Casanova <jose.casanova@nayra.coop>
+    * 
+    * @param $id 
+    *
+    * @return Array
+    **/
+
+    public  function choralVoices( ){
+        return $this->textNodes->unique('voice');
+     }     
 
      /**
      * getAuthorName helper para nombre completo del autor

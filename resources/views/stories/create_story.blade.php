@@ -23,7 +23,7 @@
               <option selected="selected" value="temporal">@lang('Temporal')</option>              
               <option selected="selected" value="lineal">@lang('Lineal')</option>
               <option selected="selected" value="episodic">@lang('Episódico')</option>
-              <option selected="selected" value="coral">@lang('Coral')</option>
+              <option selected="selected" value="choral">@lang('Coral')</option>
               <option selected="selected" value="rizome">@lang('Rizoma')</option>
             </select>
           </div>
