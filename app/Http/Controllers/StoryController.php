@@ -81,6 +81,7 @@ class StoryController extends Controller
       $input = $request->all();
       $story =  new \App\Models\Story();
       
+      //imagen de portada
       if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){
 
          $cover = date('Y/m/dHis').'.'.$request->cover->extension(); 
@@ -88,10 +89,22 @@ class StoryController extends Controller
          $input['cover'] = $cover;
 
       }
+      //titulo
+      if( empty($input['title']) ){
+        $input['title'] = 'borrador-'.date('dmYHis');
+      }
+      // print_r($input);
 
       //@todo validar slug   
       $s = $story->create($input);    
       
+      // publicar o borrador
+      if( $request->has('draft') ) {
+        $s->status = 'draft';
+      }else{
+        $s->status = 'publish';
+      }
+
       $s->slug = str_slug( $s->title );
       $s->author()->associate($author);
       $s->save();

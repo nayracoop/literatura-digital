@@ -1,4 +1,4 @@
-<div > 
+<div class="form-group"> 
 <label class="control-label" for="order">@lang('Orden')</label>
 <select id="order" name="order"  class="form-control"  >
 	@php

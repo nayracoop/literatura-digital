@@ -42,7 +42,7 @@
 
           
           <button type="submit" class="btn btn-default">@lang('Publicar')</button>
-          <button class="btn btn-default">@lang('Guardar Borrador')</button>
+          <button type="submit" name="draft" value="draft" class="btn btn-default">@lang('Guardar Borrador')</button>
 
      
       </div>

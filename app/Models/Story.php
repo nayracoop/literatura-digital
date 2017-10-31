@@ -64,7 +64,7 @@ class Story extends BaseModel
     * @return Collection Story  
     **/
     public function scopeFeatured($query, $count = 40){
-        return $query->take($count)->get();
+        return $query->where('status','publish')->take($count)->get();
     }
 
 
