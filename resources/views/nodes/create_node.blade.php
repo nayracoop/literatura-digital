@@ -14,12 +14,8 @@
           <label for="inputPassword" class="control-label">@lang('Editor de texto')</label>
           <textarea class="form-control" rows="20" name="text"></textarea>
         </div>
-
         
-         @include('typologies.node_fields.'.$story->typology)
-        @if( $story->typology === 'temporal' )
-         
-        @endif
+         @include('typologies.node_fields.'.$story->typology)     
 
         <button type="submit" class="btn btn-default">@lang('Publicar')</button>
         <button class="btn btn-default">@lang('Guardar')</button>
