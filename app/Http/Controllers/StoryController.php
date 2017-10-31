@@ -169,13 +169,14 @@ class StoryController extends Controller
       }elseif( $request->has('voice')){
         $node->voice = $input['voice'] ;  
       }
-    /*
-      foreach ($input['nextNode'] as $n) {
-           echo "- $n ";
-           $nextNode = $story->textNodes->where('id',$n)->first();
-           $node->nodes[] = $nextNode->_id;
+    
+       // publicar o borrador
+      if( $request->has('draft') ) {
+        $node->status = 'draft';
+      }else{
+        $node->status = 'publish';
       }
-      */
+
         $story->textNodes()->save($node) ;
     //  $n->save();
     //  echo 'Nodo '.$node->getIdAttribute();

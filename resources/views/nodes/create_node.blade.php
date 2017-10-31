@@ -17,8 +17,8 @@
         
          @include('typologies.node_fields.'.$story->typology)     
 
-        <button type="submit" class="btn btn-default">@lang('Publicar')</button>
-        <button class="btn btn-default">@lang('Guardar')</button>
+        <button type="submit" class="btn btn-default">@lang('Publicar')</button>        
+        <button type="submit" name="draft"  value="draft" class="btn btn-default">@lang('Guardar')</button>
         <button class="btn btn-default">@lang('Vista previa')</button>
       </form>
       
