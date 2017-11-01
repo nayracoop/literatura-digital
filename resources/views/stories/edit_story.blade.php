@@ -2,36 +2,37 @@
 @section('title') @lang('Nuevo relato') @endsection  
 @section('content')
     <div class="row">
-      <form class="form-horizontal" role="form" method="POST" action="{{ route('story.store') }}" enctype="multipart/form-data">
+      <form class="form-horizontal" role="form" method="post" action="{{ route('story.update',$story->slug) }}" enctype="multipart/form-data">
       <div class="col-lg-8">
 
         <h1>@lang('Detalles del relato')</h1>
 
         
           {{ csrf_field() }}
+          {{ method_field('PATCH') }}
           <div class="form-group">
             <label class="control-label">@lang('Título')</label>
-            <input type="text" class="form-control" placeholder="Leñador" name="title">
+            <input type="text" class="form-control" placeholder="Leñador" name="title" value="{{ $story->title }}">
           </div>
           <div class="form-group">
             <label for="inputPassword" class="control-label">@lang('Descripción')</label>
-            <textarea class="form-control" rows="10" name="description"></textarea>
+            <textarea class="form-control" rows="10" name="description">{{$story->description}}</textarea>
           </div>
           <div class="form-group">
             <label class="control-label">@lang('Tipología')</label>
             <select class="form-control" name="typology">
-              <option value="temporal">@lang('Temporal')</option>              
-              <option value="lineal">@lang('Lineal')</option>
-              <option value="episodic">@lang('Episódico')</option>
-              <option value="choral">@lang('Coral')</option>
-              <option value="rizome">@lang('Rizoma')</option>
+              <option @if($story->typology == 'temporal') selected="selected" @endif value="temporal">@lang('Temporal')</option>              
+              <option @if($story->typology == 'lineal') selected="selected" @endif value="lineal">@lang('Lineal')</option>
+              <option @if($story->typology == 'episodic') selected="selected" @endif value="episodic">@lang('Episódico')</option>
+              <option @if($story->typology == 'choral') selected="selected" @endif value="choral">@lang('Coral')</option>
+              <option @if($story->typology == 'rizome') selected="selected" @endif value="rizome">@lang('Rizoma')</option>
             </select>
           </div>
           <div class="form-group">
             <label class="control-label">@lang('Género')</label>
             <select class="form-control" name="genre">
               @foreach( \App\Models\Genre::all() as $genre )
-              <option  value="{{$genre->slug}}">{{$genre->name}}</option>
+              <option @if($story->genre == $genre->slug) selected="selected" @endif  value="{{$genre->slug}}">{{$genre->name}}</option>
               @endforeach
             </select>
           </div>
@@ -51,7 +52,11 @@
       <div class="well">
           <h4>@lang('Portada')</h4>
           <div class="media-item">
-                <img alt="" src="{{ asset( 'img/tapa200x200.png' )}}">
+                 @if(  $story->cover != null && !empty($story->cover)  )
+                  <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">        
+                  @else
+                  <img alt="" src="{{ asset('img/tapa200x200.png')}}"> 
+                  @endif
           </div>
         <label for="portada">@lang('Cargar portada'):</label>
         <input type="file" name="cover" id="portada" style="width: 90%;" value="">

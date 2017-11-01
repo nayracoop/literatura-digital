@@ -7,18 +7,26 @@ use Illuminate\Http\Request;
 Route::get('/', 'StoryController@index')->name('index');
 #relatos y nodos 
 Route::get('/relatos', 'StoryController@stories')->name('stories');
-#edicion relatos nodos
+#Crear Relato
 Route::get('/relatos/nuevo', 'StoryController@createStory')->name('story.create');
 Route::post('/relatos/nuevo', 'StoryController@storeStory')->name('story.store');
 
-
 Route::get('/relatos/{slug}', 'StoryController@show')->name('story.show');
+#editar relato
+Route::get('/relatos/{slug}/editar', 'StoryController@editStory')->name('story.edit');
+Route::patch('/relatos/{slug}/nuevo', 'StoryController@updateStory')->name('story.update');
+
+
+
 #dejar comentario
 Route::post('/relatos/{slug}/comentar','StoryController@storeComment')->name('comment.store');
 Route::post('/autor/{slug}/comentar','UserController@storeComment')->name('comment.author.store');
 //crear nodos de un relato
 Route::get('/relatos/{slug}/nuevo-fragmentos','StoryController@createNode')->name('node.create');
 Route::post('/relatos/{slug}/nuevo-fragmentos','StoryController@storeNode')->name('node.store');
+
+
+
 Route::get('/relatos/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')->name('node.show');
 
 #Like - relato - fragmento  

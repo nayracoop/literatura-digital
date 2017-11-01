@@ -114,6 +114,49 @@ class StoryController extends Controller
     }
 
 
+
+    public function editStory($slug){
+       return view('stories.edit_story')->with('story', Story::where('slug',$slug)->first())
+       ;
+    }
+
+    public function updateStory(Request $request,$slug ){
+   //    $author = Auth::user();
+      $input = $request->all();
+      $story = Story::where('slug',$slug)->first();
+      
+      //imagen de portada
+      if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){
+
+         $cover = date('Y/m/dHis').'.'.$request->cover->extension(); 
+         $path = $request->cover->storeAs('',$cover, 'nayra');
+         $input['cover'] = $cover;
+
+      }
+      //titulo
+      if( empty($input['title']) ){
+        $input['title'] = 'borrador-'.date('dmYHis');
+      }
+      // print_r($input);
+
+      //@todo validar slug   
+      $s = $story->update($input);    
+      
+      // publicar o borrador
+      if( $request->has('draft') ) {
+        $story->status = 'draft';
+      }else{
+        $story->status = 'publish';
+      }
+
+      $story->slug = str_slug( $story->title );
+   //  $s->author()->associate($author);
+      $story->save();
+
+      return redirect()->back();
+    
+    }
+
     /**
      * Get the requested Story
      *

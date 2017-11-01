@@ -20,11 +20,11 @@
           <div class="form-group">
             <label class="control-label">@lang('Tipología')</label>
             <select class="form-control" name="typology">
-              <option value="temporal">@lang('Temporal')</option>              
-              <option value="lineal">@lang('Lineal')</option>
-              <option value="episodic">@lang('Episódico')</option>
-              <option value="choral">@lang('Coral')</option>
-              <option value="rizome">@lang('Rizoma')</option>
+              <option selected="selected" value="temporal">@lang('Temporal')</option>              
+              <option selected="selected" value="lineal">@lang('Lineal')</option>
+              <option selected="selected" value="episodic">@lang('Episódico')</option>
+              <option selected="selected" value="choral">@lang('Coral')</option>
+              <option selected="selected" value="rizome">@lang('Rizoma')</option>
             </select>
           </div>
           <div class="form-group">
