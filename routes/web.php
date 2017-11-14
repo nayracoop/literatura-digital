@@ -41,6 +41,8 @@ Route::patch('/mi-perfil', 'UserController@updateProfile')->name('author.update'
 #vista publica de autor
 Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
 
+#Subir imagen temporal
+Route::post('/upload-picture/{story?}', 'TestController@storeXhrPicture')->name('upload-picture');
 
 
 

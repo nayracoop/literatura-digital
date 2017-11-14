@@ -22,10 +22,12 @@
     </div>
 
     {{-- @include('layouts.footer')     --}}
-    @push('javascript')
+   
     <script src="{{ asset('js/jquery.min.js')}}"></script>
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
-    @endpush @stack('javascript')
+  
+    @stack('javascript')
+
   </body>
 
 </html>

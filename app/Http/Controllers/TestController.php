@@ -9,7 +9,43 @@ use Auth;
 
 class TestController extends Controller
 {
-   
+
+  public function storeXhrStory(Request $request){
+
+  }
+
+  /**
+   * 
+   */
+  public function storeXhrPicture(Request $request){
+    $cover = '';
+   // $input = $request->all();
+   // print_r($input);
+    if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){
+      
+               $cover = date('Y/m/dHis').'.'.$request->cover->extension(); 
+               $path = $request->cover->storeAs('',$cover, 'nayra');
+           //    $input['cover'] = $cover;
+      
+    }
+
+    return response()->json([
+      'picUrl' => url('imagenes/cover/'.$cover),'picName' => $cover
+    ]);
+  }
+
+  /**
+   * 
+   */
+  public function searchXhr(Request $request){
+      
+  }
+
+
+
+  /**
+   * 
+   */
    public function deleteUser(){
    	$user = User::where('email','jose@gmail.com')->first();
 	$user->delete();
