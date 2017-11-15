@@ -11,24 +11,49 @@ class TestController extends Controller
 {
 
   public function storeXhrStory(Request $request){
+      $story = null;$s = null;
+      $input = $request->all();
+      //echo 'fgd '.$input['slug'];
+      if($request->has('slug') ){
+        $s =  Story::where('_id',$request->slug)->orWhere('slug',$request->slug)->first();
+        $a = $s->update( $input );
+       // echo "g";
+      }else{
+        $story = new Story();
+        $s = $story->create( $input );
+        $s->author()->associate( Auth::user() );
+      //  echo "new";
+      }
+   
+           
+      if( empty($s->title)   ){
+          $s->slug = $s->getIdAttribute();
+      }else{
+          $s->slug = str_Slug($s->title);
+      } 
+      $s->save(); 
 
+      return response()->json([
+        'slug' => $s->slug, 'input' => $input
+      ]);
   }
 
   /**
-   * 
+   * storeXhrPicture
+   * Guarda foto y si existe la asocia al relato
    */
-  public function storeXhrPicture(Request $request){
+  public function storeXhrPicture(Request $request, $story = null){
     $cover = '';
-   // $input = $request->all();
-   // print_r($input);
-    if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){
-      
+    if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){      
                $cover = date('Y/m/dHis').'.'.$request->cover->extension(); 
-               $path = $request->cover->storeAs('',$cover, 'nayra');
-           //    $input['cover'] = $cover;
-      
+               $path = $request->cover->storeAs('',$cover, 'nayra');         
     }
 
+    if($story != null){   
+      $s = Story::where('_id',$story)->orWhere('slug',$story)->first();
+      $s->cover = $cover;
+      $s->save(); 
+    }
     return response()->json([
       'picUrl' => url('imagenes/cover/'.$cover),'picName' => $cover
     ]);

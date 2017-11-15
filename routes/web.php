@@ -43,7 +43,8 @@ Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
 
 #Subir imagen temporal
 Route::post('/upload-picture/{story?}', 'TestController@storeXhrPicture')->name('upload-picture');
-
+#Guardar relato
+Route::post('/save-story', 'TestController@storeXhrStory')->name('save-story');
 
 
 Route::get('/salir', function(){

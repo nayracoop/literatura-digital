@@ -2,7 +2,7 @@
 @section('title') @lang('Nuevo relato') @endsection  
 @section('content')
     <div class="row">
-      <form class="form-horizontal" role="form" method="POST" action="{{ route('story.store') }}" enctype="multipart/form-data">
+      <form id="story-form" class="form-horizontal" role="form" method="POST" action="{{ route('story.store') }}" enctype="multipart/form-data">
       <div class="col-lg-8">
 
         <h1>@lang('Detalles del relato')</h1>
@@ -39,11 +39,9 @@
             <label class="control-label">@lang('Etiquetas')</label>
             <input type="text" class="form-control" placeholder="@lang('Agregar etiquetas')" name="label">
           </div>
-
           
-          <button type="submit" class="btn btn-default">@lang('Publicar')</button>
-          <button type="submit" name="draft" value="draft" class="btn btn-default">@lang('Guardar Borrador')</button>
-
+          <button type="submit" name="publish" class="btn btn-default">@lang('Publicar')</button>
+          <button type="submit" name="save" value="draft" class="btn btn-default">@lang('Guardar Borrador')</button>
      
       </div>
 
@@ -99,5 +97,46 @@ $storyRoute = null;
                     }
                 });
         });
+
+
+ /* Guardar Borrador */
+    
+    sendData();
+
+
+
+ function sendData(){
+  $('button[name="save"]').on('click',function(e) {           
+    //alert('c');
+
+    e.preventDefault();
+    var formElement = document.getElementById("story-form");
+    var xhr = new XMLHttpRequest();   
+    var formData = new FormData( formElement ); 
+    formData.append('status', 'draft');             
+    formData.append('_token', '{{ csrf_token() }}');                
+    xhr.open("POST", '{{ route( 'save-story' ) }}');
+    xhr.send(formData);
+    
+    xhr.addEventListener("readystatechange", function(e) {
+                    var xhr = e.target;
+                    if (xhr.readyState == 4) {
+    console.log('h');
+                        if(xhr.status == 200) {
+                            
+                            console.log('200');               
+                            newResponse = JSON.parse( xhr.response);
+                            var slug = newResponse.slug;                                                         
+                            $('#story-form').append('<input type="hidden" name="slug" value="'+slug+'" />');     
+                            sendData();                                                    
+                             //$('#cover-'+hash).value(  newId);                      
+
+                        } else console.log(xhr.statusText);
+                    }
+                });
+
+ });
+ }
+
 </script>
  @endpush
