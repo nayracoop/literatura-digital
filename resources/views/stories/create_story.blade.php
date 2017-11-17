@@ -79,7 +79,7 @@
 
                         if(xhr.status == 200) {
                             // Acá actualizo la imagen   
-                            //console.log(xhr.statusText);
+                            console.log(xhr.response);
                            
                             newResponse = JSON.parse( xhr.response);
                              // console.log(JSON.parse( xhr.response).fileName  ); 

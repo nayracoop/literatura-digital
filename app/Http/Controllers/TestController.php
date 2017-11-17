@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UploadPicture;
 use App\Models\Story;
 use App\User;
 use Auth;
@@ -56,7 +57,7 @@ class TestController extends Controller
    * storeXhrPicture
    * Guarda foto y si existe la asocia al relato
    */
-  public function storeXhrPicture(Request $request, $story = null){
+  public function storeXhrPicture(UploadPicture $request, $story = null){
     $cover = '';
     if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){      
                $cover = date('Y/m/dHis').'.'.$request->cover->extension(); 
