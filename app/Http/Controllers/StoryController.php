@@ -124,7 +124,7 @@ class StoryController extends Controller
    //    $author = Auth::user();
       $input = $request->all();
       $story = Story::where('slug',$slug)->first();
-      
+      print_r($story);
       //imagen de portada
       if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){
 

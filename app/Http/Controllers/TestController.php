@@ -38,6 +38,20 @@ class TestController extends Controller
       ]);
   }
 
+
+  public function updateXhrStory(Request $request, $slug){
+    $input = $request->all();
+    $story = Story::where('slug',$slug)->first();
+    $story->update($input);
+  //  extract($input);
+    $editedField = $input['field'];
+
+    return response()->json([
+     'slug' => $story->title, 'input' => $input[ $editedField ], 'field' => $input['field']
+    ]);
+}
+
+
   /**
    * storeXhrPicture
    * Guarda foto y si existe la asocia al relato

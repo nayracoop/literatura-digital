@@ -14,7 +14,7 @@ Route::post('/relatos/nuevo', 'StoryController@storeStory')->name('story.store')
 Route::get('/relatos/{slug}', 'StoryController@show')->name('story.show');
 #editar relato
 Route::get('/relatos/{slug}/editar', 'StoryController@editStory')->name('story.edit');
-Route::patch('/relatos/{slug}/nuevo', 'StoryController@updateStory')->name('story.update');
+Route::patch('/relatos/{slug}/editar', 'StoryController@updateStory')->name('story.update');
 
 
 
@@ -45,6 +45,7 @@ Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
 Route::post('/upload-picture/{story?}', 'TestController@storeXhrPicture')->name('upload-picture');
 #Guardar relato
 Route::post('/save-story', 'TestController@storeXhrStory')->name('save-story');
+Route::patch('/update-story/{slug}', 'TestController@updateXhrStory')->name('update-story');
 
 
 Route::get('/salir', function(){

@@ -5,10 +5,9 @@
       <form id="story-form" class="form-horizontal" role="form" method="POST" action="{{ route('story.store') }}" enctype="multipart/form-data">
       <div class="col-lg-8">
 
-        <h1>@lang('Detalles del relato')</h1>
-
-        
+        <h1>@lang('Detalles del relato')</h1>        
           {{ csrf_field() }}
+
           <div class="form-group">
             <label class="control-label">@lang('Título')</label>
             <input type="text" class="form-control" placeholder="Leñador" name="title">
@@ -55,12 +54,11 @@
         <input type="file" name="cover_drag" id="portada" style="width: 90%;" value="">
       </div>
     </div>
+    
      </form>
   </div>
  @endsection
-@php
-$storyRoute = null;
-@endphp
+
  @push('javascript')
  <script type="text/javascript">
  /* Autoupload */
@@ -99,15 +97,9 @@ $storyRoute = null;
         });
 
 
- /* Guardar Borrador */
-    
-    sendData();
+ /* Guardar Borrador */    
 
-
-
- function sendData(){
-  $('button[name="save"]').on('click',function(e) {           
-    //alert('c');
+  $('button[name="save"]').on('click',function(e) {      
 
     e.preventDefault();
     var formElement = document.getElementById("story-form");
@@ -136,7 +128,7 @@ $storyRoute = null;
                 });
 
  });
- }
+ 
 
 </script>
  @endpush
