@@ -34,6 +34,7 @@ class TestController extends Controller
           $s->slug = str_Slug($s->title);
       } 
     //  print_r( $request->tags);
+      $s->unset('tags');
       foreach( $request->tags as $tag ){
         $tag = trim($tag);
         $t = Tag::where('_id',$tag)->orWhere('name',$tag)->first();
