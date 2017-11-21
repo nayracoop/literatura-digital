@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UploadPicture;
 use App\Models\Story;
+use App\Models\Tag;
 use App\User;
 use Auth;
 
@@ -32,10 +33,28 @@ class TestController extends Controller
       }else{
           $s->slug = str_Slug($s->title);
       } 
+    //  print_r( $request->tags);
+      foreach( $request->tags as $tag ){
+        $tag = trim($tag);
+        $t = Tag::where('_id',$tag)->orWhere('name',$tag)->first();
+
+        if($t  === null ){
+            $newTag =  Tag::create( ['name' => $tag] );
+            //$newTag->name = trim($tag);
+            $s->tags()->associate($newTag);
+        }else{
+            if( $s->tags->where('_id',$t->id)->first() === null ){
+              $s->tags()->associate($t);
+            }
+            
+        }
+      }
+
+      $s->status = 'draft';
       $s->save(); 
 
       return response()->json([
-        'slug' => $s->slug, 'input' => $input
+        'author' => Auth::user()->_id,'slug' => $s->slug, 'input' => $input
       ]);
   }
 

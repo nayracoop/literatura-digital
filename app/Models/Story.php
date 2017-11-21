@@ -15,7 +15,7 @@ class Story extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'title', 'slug','description', 'typology', 'genre', 'cover', 'type', 'attachment','published_at',
+        'title', 'slug','description', 'typology', 'genre', 'cover', 'type', 'attachment','published_at'
     ];
 
     protected $dates = [
@@ -41,9 +41,9 @@ class Story extends BaseModel
         return $this->embedsMany('\App\Models\Comment');
     }
 
-    public function labels()
+    public function tags()
     {
-        return $this->embedsMany('\App\Models\Label');
+        return $this->embedsMany('\App\Models\Tag');
     }
     
     public function likes()

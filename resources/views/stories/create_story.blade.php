@@ -1,5 +1,11 @@
 @extends('layouts.main')
 @section('title') @lang('Nuevo relato') @endsection  
+
+@push('stylesheets')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.bootstrap3.min.css.map" />
+@endpush
+
 @section('content')
     <div class="row">
       <form id="story-form" class="form-horizontal" role="form" method="POST" action="{{ route('story.store') }}" enctype="multipart/form-data">
@@ -36,7 +42,9 @@
           </div>
           <div class="form-group">
             <label class="control-label">@lang('Etiquetas')</label>
-            <input type="text" class="form-control" placeholder="@lang('Agregar etiquetas')" name="label">
+            <select  placeholder="@lang('Agregar etiquetas')" name="tags[]">
+            
+            </select>
           </div>
           
           <button type="submit" name="publish" class="btn btn-default">@lang('Publicar')</button>
@@ -120,7 +128,7 @@
                             newResponse = JSON.parse( xhr.response);
                             var slug = newResponse.slug;                                                         
                             $('#story-form').append('<input type="hidden" name="slug" value="'+slug+'" />');     
-                            sendData();                                                    
+                           // sendData();                                                    
                              //$('#cover-'+hash).value(  newId);                      
 
                         } else console.log(xhr.statusText);
@@ -130,5 +138,27 @@
  });
  
 
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
+
+<script>
+$('select[name="tags[]"]').selectize({
+          delimiter: ',',
+					maxItems: null,
+					valueField: 'id',
+					labelField: 'title',
+					searchField: 'title',
+					options: [
+            @foreach( \App\Models\Tag::all() as $tag )
+						{id: '{{ $tag->id }}', title: '{{$tag->name}}',value: '{{$tag->name}}'},					
+            @endforeach
+					],
+          create: true,
+          render: {
+    option_create: function(data, escape) {
+      return '<div class="create">Agregar <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+    }
+  }
+				});
 </script>
  @endpush

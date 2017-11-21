@@ -9,9 +9,10 @@
 
     <title>Escrituras digitales | @yield('title')</title>
 
-    @push('stylesheets')
+
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('css/escrituras.css')}}" rel="stylesheet"> @endpush @stack('stylesheets')
+    <link href="{{ asset('css/escrituras.css')}}" rel="stylesheet">
+    @stack('stylesheets')
   </head>
 
   <body @yield('body_class') >

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 
-class Label extends BaseModel 
+class Tag extends BaseModel 
 {
     
     /**

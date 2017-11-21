@@ -83,5 +83,4 @@ $('.editable button').on('click',function(e) {
  
 
 </script>
-</script>
 @endpush
