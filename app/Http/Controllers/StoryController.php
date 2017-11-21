@@ -9,6 +9,7 @@ use App\Models\Story;
 use App\Models\TextNode;
 use App\Models\Comment;
 use App\Models\Like;
+use App\Models\Tag;
 use Carbon\Carbon;
 use View;
 
@@ -279,16 +280,17 @@ class StoryController extends Controller
 
    }
 
-
+/** */
    public function search(Request $request){
      $input = $request->all();
      $search = trim($input['search']);
     //
   //  echo "$search";
-    $stories = [];
+    $stories = [];$tags = [];
      if($request->has('search')){
        $stories = Story::where('title','like',"%$search%")->orWhere('description','like',"%$search%")->orWhere('tags.name','like',"%$search%")->get();
-     }else{
+       $tags = Tag::where('name','like',"%$search%")->get(); 
+      }else{
        $stories = Story::featured();
     }
    
@@ -296,7 +298,7 @@ class StoryController extends Controller
 
     return response()->json(
       [
-        'search' => $search,  'results' => $results]
+        'search' => $search,  'results' => $results , 'tags' => $tags ]
     );
 
   }
