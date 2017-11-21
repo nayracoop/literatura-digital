@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 Route::get('/', 'StoryController@index')->name('index');
 #relatos y nodos 
 Route::get('/relatos', 'StoryController@stories')->name('stories');
+Route::post('/relatos/busqueda', 'StoryController@search')->name('stories.search');
+
+
 #Crear Relato
 Route::get('/relatos/nuevo', 'StoryController@createStory')->name('story.create');
 Route::post('/relatos/nuevo', 'StoryController@storeStory')->name('story.store');

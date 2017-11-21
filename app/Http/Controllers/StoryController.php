@@ -10,6 +10,7 @@ use App\Models\TextNode;
 use App\Models\Comment;
 use App\Models\Like;
 use Carbon\Carbon;
+use View;
 
 class StoryController extends Controller
 {
@@ -277,6 +278,28 @@ class StoryController extends Controller
       return response()->json( ['status' => 'ok'] );
 
    }
+
+
+   public function search(Request $request){
+     $input = $request->all();
+     $search = trim($input['search']);
+    //
+  //  echo "$search";
+  $stories = [];
+     if($request->has('search')){
+       $stories = Story::where('title','like',"%$search%")->orWhere('description','like',"%$search%")->get();
+     }else{
+       $stories = Story::featured();
+    }
+   
+    $results = View::make( 'snippets.featured_stories')->with('stories', $stories)->render();
+
+    return response()->json(
+      [
+        'search' => $search,  'results' => $results]
+    );
+
+  }
 
 
 }

@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-md-12">      
           <div class="buscador">
-              <form>
+              <form  id="stories_search" >
                 <label for="search" class="sr-only">Buscar:</label>
                 <input type="text" name="search" placeholder="Buscar relatos">
               </form>
@@ -20,3 +20,42 @@
 </div></div>
  
 @endsection
+
+@push('javascript')
+<script>
+//formElement = document.getElementById("stories_search");
+$('stories_search').on('submit',function(e){
+  e.preventDefault();
+});
+$('input[name="search"]').bind('input',function(){
+  console.log('gato');
+  formElement = document.getElementById("stories_search");
+
+  var xhr = new XMLHttpRequest();   
+    var formData = new FormData( formElement ); 
+  
+    formData.append('_token', '{{ csrf_token() }}');
+    console.log(formData);   
+   // formData.append('_method', 'PATCH');             
+    xhr.open("POST", '{{ route( 'stories.search') }}');
+    xhr.send(formData);
+    
+    xhr.addEventListener("readystatechange", function(e) {
+                    var xhr = e.target;
+                    if (xhr.readyState == 4) {
+  //  console.log('h');
+                        if(xhr.status == 200) {
+                            
+                            console.log('200');               
+                            newResponse = JSON.parse( xhr.response);
+                            var results = newResponse.results;                                                                                   
+                            $('.items-listado').empty(); 
+                            $('.items-listado').append(results);
+                        } else console.log(xhr.statusText);
+                    }
+    });
+
+});
+
+</script>
+@endpush

@@ -1,11 +1,13 @@
 
   <div class="items-listado">
   <!-- BLOQUE -->
-  @foreach($stories as $story) 
+  @forelse($stories as $story) 
 	
     @include('stories.summary') 
 
-  @endforeach
+  @empty
+    No hay resultados
+  @endforelse
   <!-- BLOQUE -->
  </div>
 
