@@ -288,7 +288,9 @@ class StoryController extends Controller
   //  echo "$search";
     $stories = [];$tags = [];
      if($request->has('search')){
-       $stories = Story::where('title','like',"%$search%")->orWhere('description','like',"%$search%")->orWhere('tags.name','like',"%$search%")->get();
+       $stories = Story::where('title','like',"%$search%")
+        ->orWhere('description','like',"%$search%")
+        ->orWhere('tags.name','like',"%$search%")->where('status','publish')->get();
        $tags = Tag::where('name','like',"%$search%")->get(); 
       }else{
        $stories = Story::featured();

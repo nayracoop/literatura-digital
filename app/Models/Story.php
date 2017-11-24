@@ -52,7 +52,7 @@ class Story extends BaseModel
     }
 
     /**
-    * scopeMoreVoted
+    * scopeFeatured
     *
     * Nos da los relatos . 
     * 
@@ -67,9 +67,8 @@ class Story extends BaseModel
         return $query->where('status','publish')->take($count)->get();
     }
 
-
 /**
-    * scopeMoreVoted
+    * scopeGetFromAuthor
     *
     * Nos da los relatos pertenecientes al usuario solicitado . 
     * @author Jose Casanova <jose.casanova@nayra.coop>
@@ -140,16 +139,6 @@ class Story extends BaseModel
         }
 
 
-     }
-
-
-     /**
-     *
-     *
-     */
-
-     public function lineal(){
-        
      }
 
 
