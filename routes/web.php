@@ -5,8 +5,13 @@ use Illuminate\Http\Request;
 */
 #home
 Route::get('/', 'StoryController@index')->name('index');
+
+
 #relatos y nodos 
 Route::get('/relatos', 'StoryController@stories')->name('stories');
+Route::post('/relatos/genero', 'StoryController@searchByGenre')->name('searchByGenre');
+Route::get('/relatos/genero/{genre?}', 'StoryController@searchByGenre')->name('stories.genre');
+
 Route::post('/relatos/busqueda', 'StoryController@search')->name('stories.search');
 
 
