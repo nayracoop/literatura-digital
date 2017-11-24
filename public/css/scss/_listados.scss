@@ -1,0 +1,204 @@
+.listado-relatos .data-relato{ 
+  width: 250px;
+  float: right; 
+  margin: 25px 15px 20px 0;
+  text-align: right;
+}
+
+.listado-relatos .data-relato .image-clip{ 
+  float: right;
+  margin-left: 10px; 
+  margin-top: 5px;
+}
+.listado-relatos .tit-relato{ font-size: 15px;}
+.listado-relatos .autor-relato{ font-size: 13px }
+
+@media only screen and (max-width: ($screen-lg)) {
+  .listado-relatos .data-relato{ 
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: ($screen-md)) {
+  .listado-relatos .data-relato{ 
+    float: left; 
+    margin-top: 15px;
+    text-align: left;
+     margin-right: 0; 
+     width: 240px;
+  }
+  .listado-relatos .data-relato .image-clip{ 
+    float: left;
+    margin-left: 0;
+  }
+  .listado-relatos h1{
+    clear: both;
+  }
+}
+
+
+.listado-relatos h1{
+	font-family: $akzidenz-grotesk-pro-med;
+	font-size: 2.142857142857143em;
+	font-weight: bold;
+	margin-top: 42px;
+	margin-bottom: 2px;
+}
+
+.listado-relatos hr{ 
+    width: 45px; 
+    height: 3px; 
+    margin: 8px 0 30px 0;
+    background: $color-destacado; 
+    border-width: 0;
+    float: left;
+}
+
+.listado-relatos table{ clear: both; }
+
+.listado-relatos table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.listado-relatos th, .listado-relatos td {
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+  font-size: 16px;
+  font-family: $akzidenz-grotesk-pro-regular;
+}
+
+.listado-relatos th{
+  font-family: $akzidenz-grotesk-pro-bold;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: $screen-sm){
+ .listado-relatos th, .listado-relatos td {  font-size: 14px; }
+}
+
+.listado-relatos thead th{
+  padding: 5px 10px 15px 10px;
+  border-bottom: 2px solid #D6DADD;
+}
+
+.listado-relatos tbody tr{
+  background: #F4F3F2;
+  border-bottom: 2px solid #FFF;
+}
+
+.listado-relatos tbody tr:hover{
+  background: #FFF;
+  color: $color-destacado;
+  border-bottom: 2px solid #FFF;
+  cursor: pointer;
+}
+
+.listado-relatos tbody tr:hover button, .listado-relatos tbody tr button:hover{
+  background-image: url("../img/iconos/flecha-publicar-hover.svg");
+  color: #000;
+  opacity: .4;
+}
+
+.listado-relatos tr td:nth-child(1){
+  font-family: $akzidenz-grotesk-pro-bold;
+   font-weight: bold;
+   color: #666;
+}
+
+.listado-relatos th:nth-child(2){ text-align: left; }
+
+.listado-relatos th a{ color: #5F7D8C; }
+.listado-relatos th:nth-child(2){ text-align: left; }
+.listado-relatos td:last-child button{ float: right; margin-right: 10px; }
+
+.listado-relatos th.ordenar{ 
+  border-bottom: 3px solid $color-destacado; 
+}
+
+.listado-relatos td.tit-listado{ 
+  font-family: $akzidenz-grotesk-pro-bold;
+  font-weight: bold;
+  text-align: left; 
+}
+
+.listado-relatos td .image-clip{ 
+  margin: 2px 0; 
+  width: 46px;
+  height: 46px;
+}
+
+@media only screen and (max-width: $screen-lg){
+ .ocultar-lg{ display: none; }
+}
+
+@media only screen and (max-width: $screen-sm){
+ .ocultar-sm{ display: none; }
+}
+
+
+.listado-relatos tbody td button{
+  color: $color-destacado;
+  padding-right: 30px;
+  color: #0CA6BE;
+  font-family: $brandon-grotesque-bold;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  display: block;
+  background: url("../img/iconos/flecha-publicar.svg") no-repeat center right;
+  margin: 0;
+  padding: 10px 45px 10px 0;
+  border: none;
+}
+
+@media only screen and (max-width: $screen-sm){
+  .listado-relatos tbody td button{
+    background: none;
+    padding-right: 0;
+  }
+
+  .listado-relatos tbody tr:hover button, .listado-relatos tbody td button:hover{
+    background: none;
+  }
+}
+
+.btn-nuevo-relato{
+  float: right;
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: 1em;
+  letter-spacing: .5px;
+  padding: 4px 14px 6px 20px;
+  margin: 10px 10px 80px 0;
+  border-radius: 2px;
+  font-family: $brandon-grotesque-bold;
+  font-weight: bold;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+  background-color: $color-destacado;
+  color: #FFF;
+}
+
+.btn-nuevo-relato span{ 
+  float: left; 
+  margin-top: 10px;
+}
+
+.btn-nuevo-relato .plus{
+  display: block;
+  background: #0CA6BE url(../img/iconos/more-tag.svg) no-repeat center center;
+  border: 2px solid #F7F6F5;
+  border-radius: 30px;
+  margin-left: 10px;
+  margin-top: 1px;
+  width: 29px;
+  height: 29px;
+  float: left;
+}
+
+.btn-nuevo-relato:hover{ 
+  background-color: #000;
+  color: #FFF;
+}
+
+.btn-nuevo-relato:hover .plus{  background-color: #000; }

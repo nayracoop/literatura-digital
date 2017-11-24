@@ -1,38 +1,63 @@
 /****** LOGIN MODAL ******/
 
-.modal-dialog { width: 325px; }
+.modal-backdrop.in {  background: #FFF; opacity: .8; }
+
+.modal-login { 
+  width: 500px;
+  border-left: 125px solid $color-destacado;
+  box-shadow: 0px 2px 32px rgba(0, 0, 0, 0.3);
+}
 
 .loginmodal-container {
-  padding: 0 34px;
-  max-width: 325px;
+  padding: 0 75px 0 42px;
+  max-width: 500px;
   width: 100% !important;
-  background-color: $color-fondo;
-  color: $color-blanco;
+  background-color: #FFFEFC;
+  color: #8D8D8D;
   margin: 0 auto;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  border: 3px solid $color-destacado;
-  font-family: $caecilia-roman;
+  font-family: $akzidenz-grotesk-pro-med;
 }
 
-.loginmodal-container h1 {
-  background: $color-destacado;
-  color: $color-fondo;
-  text-align: center;
-  font-size: 1.375em;
-  min-height: 42px;
-  margin: 0 0 32px 0;
-  margin-left: -34px;
-  margin-right: -34px;
-  padding: 14px 0;
-  font-family: $brandon-grotesque-bold;
-  font-weight: bold;
-  text-transform: uppercase;
+.loginmodal-container form{ clear: both; }
+
+@media only screen and (max-width: ($screen-md - 1 )) {
+  .modal-login { width: auto; background-color: #FFFEFC;}
+  .loginmodal-container { max-width: auto; }
 }
 
-.loginmodal-container label strong{
-  color: $color-destacado;
+.loginmodal-container h2 {
+  color: #010101;
+  font-size: 20px;
+  margin: 0;
+  padding: 35px 0 0 0;
+  font-family: $akzidenz-grotesk-pro-med;
 }
+
+@media only screen and (max-width: ($screen-xs - 1 )) {
+  .loginmodal-container { padding: 0 30px; }
+  .loginmodal-container h2 {  padding-top: 30px;}
+}
+
+.loginmodal-container hr{ 
+    width: 45px; 
+    height: 3px; 
+    margin: 8px 0 30px 0;
+    background: $color-destacado; 
+    border-width: 0;
+    float: left;
+  }
+
+.loginmodal-container label{
+  margin-bottom: 0;
+}
+
+.loginmodal-container label span{
+  font-family: $akzidenz-grotesk-pro-light;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
 
 .loginmodal-container input[type=submit] {
   width: 100%;
@@ -42,28 +67,24 @@
 }
 
 .loginmodal-container input[type=text], input[type=password] {
-  height: 35px;
+  height: 32px;
   font-size: 16px;
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   -webkit-appearance: none;
-  background: #fff;
-  border: 1px solid #CCC;
-  padding: 0 8px;
+  background: transparent;
+  color: #000;
+  border: 0 solid #CCC;
+  border-bottom: 1px solid #DEDEDE;
+  padding: 0 2px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+  letter-spacing: .5px;
 }
 
 .loginmodal-container input.email {
   height: 40px;
-}
-
-.loginmodal-container input[type=text]:hover, input[type=password]:hover {
-  border: 1px solid #b9b9b9;
-  border-top: 1px solid #a0a0a0;
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  font-size: 18px;
 }
 
 .loginmodal {
@@ -75,20 +96,24 @@
 }
 
 .loginmodal-submit {
-  border: 0;
-  color: $color-fondo;
-  font-family: $caecilia-heavy;
+  border-width: 0;
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-family: $brandon-grotesque-bold;
+  font-weight: bold;
   text-shadow: 0 1px rgba(0,0,0,0.1); 
-  background-color: #C1D82F;
-  padding: 12px 0px;
-  font-size: 1.125em;
+  background-color: $color-destacado;
+  font-size: 14px;
+  color: #FFF;
+  letter-spacing: 1px;
   margin: 15px 0 0 0;
+  padding: 13px 0;
 }
 
 .loginmodal-submit:hover {
-  border: 0px;
   text-shadow: 0 1px rgba(0,0,0,0.3);
-  background-color: #357ae8;
+  background-color: $color-destacado;
+  color: #000;
 }
 
 .loginmodal-container a {
@@ -97,14 +122,39 @@
   font-weight: 400;
   text-align: center;
   display: inline-block;
-  opacity: 0.6;
   transition: opacity ease 0.5s;
 } 
 
 .login-help{
-  margin: 20px auto;
-  font-size: .8125em;
+  margin: 10px auto 20px auto;
   text-align: center;
+  font-family: $akzidenz-grotesk-pro-med;
 }
 
-.login-help a{ text-decoration: underline; }
+.login-help a{ 
+  font-family: $akzidenz-grotesk-pro-bold;
+  border-bottom: 1px dotted $color-destacado; 
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.recovery{ text-align: center; margin-bottom: 36px;}
+.recovery a{ 
+  color: #8D8D8D; 
+  border-bottom: 1px solid #C6C5C4;
+}
+
+/* submenu */
+
+@media only screen and (max-width: ($screen-xs )) {
+
+  .modal-dialog { 
+    border-left: 5px solid $color-destacado;
+    box-shadow: 0px 2px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .loginmodal-container{
+    padding: 0px 20px;
+  }
+
+}

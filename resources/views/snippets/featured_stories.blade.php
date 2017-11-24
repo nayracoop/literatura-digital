@@ -1,5 +1,7 @@
 
-  <div class="items-listado">
+<h2 class="tit-home">Favoritos</h2>
+<hr />
+<div class="row">
   <!-- BLOQUE -->
   @forelse($stories as $story) 
 	
@@ -9,5 +11,4 @@
     No hay resultados
   @endforelse
   <!-- BLOQUE -->
- </div>
-
+</div>

@@ -1,14 +1,20 @@
 .navbar-brand{ 
-	background: $color-destacado url(../img/logo/logo-lexia.svg) no-repeat 0 0;
-	width: 96px;
-	height: 43px;  
+	background: url(../img/logo/logo-lexia.svg) no-repeat 0 0;
+	width: 80px;
+	height: 34px;
 }
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand { margin: 10px 0 0 0; }
 
 .navbar-toggle .icon-bar { background: $color-destacado; }
 
-.navbar-lexia{ padding-top: 65px; margin-bottom: 45px;}
+.navbar-lexia{ padding-top: 25px; }
 
 .navbar-lexia .navbar-toggle { margin-top: 6px; margin-right: 9px; border-radius: 0; }
+
+.navbar-escrituras-collapse{ float: right; }
+
+.navbar-escrituras-collapse .login{ margin-left: 15px; }
 
 
 @media only screen and (max-width: ($screen-md - 1)) {
@@ -30,45 +36,111 @@
 .navbar-lexia li > a{
 	text-transform: uppercase;
     line-height: 1;
-    font-size: 1em;
-    letter-spacing: 1.5px;
+    font-size: 1.142857142857143em;
+    letter-spacing: .5px;
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 8px;
-    color: $color-blanco;
+    color: #000;
 	font-family: $brandon-grotesque-bold;
 	font-weight: bold;
 }
 
-.navbar-lexia li > a:hover, .navbar-lexia li > a:focus, .navbar-lexia li.active > a{
-	background: transparent;
+.navbar-lexia .dropdown > a{
+	padding-right: 20px;
+	background: url(../img/iconos/dropdown.svg) no-repeat center right; 	
+}
+
+.navbar-lexia .navbar-nav > li > a:hover, .navbar-lexia .navbar-nav >  li > a:focus{
+	background-color: transparent;
+	color: $color-destacado;
+}
+
+.navbar-lexia .navbar-nav > li.active > a{
 	color: $color-destacado;
 	border-bottom: 4px solid $color-destacado;
 }
 
+/* submenu */
+
+@media only screen and (min-width: ($screen-md )) {
+
+	.navbar-lexia .dropdown.open{
+		margin-left: 0;
+	}
+
+	.navbar-lexia .dropdown.open + li{
+		margin-left: 4px;
+	}
+
+	.navbar-lexia .navbar-nav .dropdown.open > a{
+	 	background-color: #FFF; 
+		border-bottom: 4px solid #FFF;
+		padding-left: 0;
+		border-left: 12px solid #FFF;
+		border-right: 8px solid #FFF;
+		position: relative;
+		z-index: 1001;
+		background-image: none;
+		padding-right: 6px;
+		margin-right: 14px;
+	}
+
+	.navbar-lexia .dropdown.open .dropdown-menu{
+		border-radius: 0;
+		padding: 0;
+		border-width: 0;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.125);
+	}
+
+	.navbar-lexia .dropdown li {
+		margin: 0;
+		margin-left: 0;
+	}
+
+	.navbar-lexia .dropdown li a{
+		font-family: $akzidenz-grotesk-pro-med;
+		font-weight: normal;
+		text-transform: none;
+		margin-left: 0;
+	    line-height: 1;
+	    font-size: 1.214285714285714em;
+	    letter-spacing: .2px;
+	    min-width: 250px;
+	    padding: 15px 0 15px 15px;
+		color: #5F6062;
+		background-color: #FFF;
+		border-left: 7px solid #FFF;
+		border-bottom: 1px solid #E3E3E3;
+	}
+
+	.navbar-lexia .dropdown li a:hover, .navbar-lexia .dropdown li a:focus, , .navbar-lexia .dropdown li.active a{
+		color: $color-destacado;
+		border-left: 7px solid $color-destacado;
+	}
+
+}
+
 @media only screen and (min-width: ($screen-md - 1)) {
 
-	.login li:first-child{ margin: 0; margin-right: -29px;}
+	.login li:first-child{ margin: 0; }
 
 	.login li > a{
-		width: 44px;
-		height: 44px;
-		display: block;
-		background: url(../img/iconos/login.svg) no-repeat center center; 	
+	  margin-top: 2px;
+	  font-size: 12px;
+	  font-family: $brandon-grotesque-regular;
+	  color: #666;
 	}
 
 	.navbar-lexia .login li > a:hover, .navbar-lexia .login li > a:focus{ 
-		background: url(../img/iconos/login-hover.svg) no-repeat center center; 
-		border-bottom-width: 0;
+		
 	}
-
-	.navbar-lexia .invis { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
 }
 
 @media only screen and (max-width: ($screen-md - 1)) {
 
-	.navbar-toggle{ margin-top: 4px; }
+	.navbar-toggle{ margin-top: 4px; z-index: 51;}
 
 	.navbar-lexia li > a{
 	  padding-left: 15px;
@@ -81,12 +153,15 @@
 @media only screen and (max-width: ($screen-md - 1)) {
 
 	.navbar-brand{ 
-		background: url(../img/logo/logo-lexia.svg) no-repeat 0 0;
-		margin-top: 7px;
-		width: 80px;
-		height: 36px; 
-		background-size: 100% 100%; 
-		margin-left: 3px;
+		background: url(../img/logo/logo-lexia-white.svg) no-repeat 0 0;
+		width: 60px;
+		height: 25px; 
+		background-size: 100% auto; 
+	}
+
+	.navbar > .container .navbar-brand,  .navbar > .container-fluid .navbar-brand  {
+		margin-left: 15px;
+		margin-top: 14px;
 	}
 
 	.navbar-lexia{
@@ -96,10 +171,24 @@
     	max-height: 49px;
 	}
 
+	.navbar-lexia .navbar-nav > li > a{
+		background-position: 244px 9px;
+	}
+
+	.navbar-lexia .navbar-nav > li.active > a{
+		border-bottom: 1px solid #333; 
+		background-color: $color-destacado;
+		color: #000;
+	}
+
+	.navbar-lexia .navbar-nav > li > a:hover, .navbar-lexia .navbar-nav > li > a:focus{ 
+		border-bottom: 1px solid #333; 
+	}
+
 	.navbar-lexia .padding-container{ padding: 0; }
 
 	.navbar-lexia .icon-bar{ 
-		background: $color-fondo; 
+		background: #FFF; 
 		height: 3px;
 	}
 
@@ -116,62 +205,90 @@
 		padding-bottom: 16px;
 	}
 
-	.navbar-lexia button:hover .icon-bar, .navbar-lexia button:focus .icon-bar{
+	.navbar-lexia button:hover .icon-bar, .navbar-lexia .navbar-toggle.on .icon-bar{
 		background: $color-destacado;
-		height: 2px;	
 	}
 
-	.navbar-lexia button:hover .icon-bar + .icon-bar, .navbar-lexia button:focus .icon-bar + .icon-bar {
-    	margin-top: 4px;
-	}
-
-	.navbar-lexia button:hover .icon-bar:last-child, .navbar-lexia button:focus .icon-bar:last-child{ margin-bottom: 1px;}
-
-	.navbar-lexia .navbar-toggle:hover, .navbar-lexia .navbar-toggle:focus {
-    	background-color: $color-fondo;
+	.navbar-lexia .navbar-toggle:hover, .navbar-lexia .navbar-toggle.on{
+    	background-color: #FFF;
+		color: $color-destacado;
+    	border: 1px solid #FFF;
     }
 
-	.navbar-lexia .padding-container{ position: relative; }
+    .navbar-lexia .padding-container{ padding: 0; }
 
-	.navbar-lexia .navbar-collapse{
-		position: absolute;
-		top: 49px;
-		right: 5px;
-		z-index: 50;
-		background: transparent;
-		box-shadow: -7px 8px 6px -6px rgba(0,0,0,.3);
+	.navbar-lexia .navbar-toggle{ 
+		margin: 7px 7px 0 0;
+		padding: 10px 12px 16px 12px;
 	}
 
-	.navbar-lexia .navbar-collapse, .navbar-lexia .login{ width: 269px; }
+	.navbar-escrituras-collapse{
+		position: absolute;
+		top: 50px;
+		right: 22px;
+		z-index: 50;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, .125);
+	}
 
-	.navbar-lexia .navbar-nav { margin: 0 -15px; position: relative;}
+	.navbar-collapse { border-top: 0 solid transparent;	}
 
-	.navbar-lexia .navbar-nav li{ margin-left: 0; background: $color-fondo;}
+	.navbar-lexia .navbar-nav{ margin-top: 0; margin-bottom: 0; }
+
+	.navbar-lexia .navbar-nav li{ margin: 0 7px 0 0; }
 
 	.navbar-lexia .navbar-nav li a{ 
-		padding-top: 12px; 
-		padding-bottom: 12px;
-		color: $color-blanco;
-		/*border-left: 1px solid #333;
-		border-right: 1px dotted #000;*/
-		border-bottom: 1px solid #333;
+		font-family: $akzidenz-grotesk-pro-med;
+		font-weight: normal;
+		text-transform: none;
+		margin-left: 0;
+	    line-height: 1;
+	    font-size: 1.214285714285714em;
+	    letter-spacing: .2px;
+	    min-width: 250px;
+	    padding: 15px 0 15px 15px;
+		color: #5F6062;
+		background-color: #FFF;
+		border-left: 7px solid #FFF;
+		border-bottom: 1px solid #E3E3E3;
 	}
 
 	.navbar-lexia li > a:hover, .navbar-lexia li > a:focus, .navbar-lexia li.active > a{ 
-		color: #000;
-		background: $color-destacado;
+		border-left: 7px solid $color-destacado;
 	}
 
-	.navbar-lexia .navbar-nav li:last-child a{
-		border-bottom: 1px solid #333;
+	.navbar-lexia .navbar-nav > li > a:hover, .navbar-lexia .navbar-nav > li > a:focus, .navbar-lexia .navbar-nav > li.active > a {
+		color: $color-destacado;
+		background-color: #FFF;
+		border-bottom: 1px solid #E3E3E3;
 	}
 
-	.navbar-lexia .login li:last-child a{
-		border-bottom: 0 solid #40404C;
+	.navbar-lexia .dropdown.active > a, .navbar-lexia .dropdown > a:hover{
+		background-image: url(../img/iconos/cruz-menu.svg); 	
+		background-position: right center;
 	}
 
-	.navbar-lexia .login{
-		float: left !important;
+	.navbar-lexia .dropdown.open > a, .navbar-lexia .dropdown.open > a:hover{
+		background-image: url(../img/iconos/cruz-menu-on.svg);
+		border-left: 7px solid $color-destacado; 	
 	}
+
+	.navbar-nav .open .dropdown-menu{ padding: 0; }
+
+	.navbar-lexia .navbar-nav li{
+		margin: 0;
+	}
+
+	.navbar-nav .open .dropdown-menu > li > a{ 
+		padding: 13px 0px 13px 28px;
+		color: #A3A4A5;
+	}
+
+	.navbar-nav .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-menu > li > a:focus{
+		background-color: #FAFAFA;
+		color: #333;
+		border-left-color: #FAFAFA;
+	}
+
+	.navbar-escrituras-collapse .login{ margin: 0 -15px; }
 
 }

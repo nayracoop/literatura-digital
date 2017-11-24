@@ -1,0 +1,78 @@
+.datos-usuario{
+	background: #FFF;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding-bottom: 30px;
+}
+
+.datos-usuario .data-relato{
+	margin-top: 40px;
+	width: auto;
+}
+
+.datos-usuario .data-relato .image-clip{ 
+	width: 80px; 
+	height: 80px; 
+	border-radius: 40px;
+	margin-bottom: 20px;
+}
+
+.fecha-usuario + hr{
+  width: 45px; 
+  height: 3px; 
+  margin: 20px 0 20px 0;
+  background: $color-destacado; 
+  border-width: 0;
+}
+
+.nom-usuario{
+	font-size: 20px;
+	font-family: $akzidenz-grotesk-pro-bold;
+	font-weight: bold;
+	margin-top: 13px;
+	margin-bottom: 0;
+}
+
+.fecha-usuario{
+	font-size: 16px;
+	font-family: $akzidenz-grotesk-pro-med;
+	color: #999;
+}
+
+.descripcion-usuario{
+	font-family: $akzidenz-grotesk-pro-regular;
+	font-weight: normal;
+	color: #666;
+	font-size: 19px;
+	line-height: 1.5;
+	margin-left: 90px;
+	max-width: 800px;
+}
+
+@media only screen and (max-width: $screen-xs - 30px) {
+	.descripcion-usuario{
+		margin-left: 0;
+	}
+
+	.fecha-usuario + hr{
+	  width: 15px; 
+	  height: 3px; 
+	  margin: 10px 0 30px 0;
+	}
+}
+
+.tit-usuario{
+	color: #000;
+    font-weight: 500;
+    font-size: 21px;
+    font-family: $akzidenz-grotesk-pro-med;
+}
+
+.tit-usuario + hr{
+  width: 45px; 
+  height: 3px; 
+  margin: 10px 0 30px 0;
+  background: $color-destacado; 
+  border-width: 0;
+}
+
