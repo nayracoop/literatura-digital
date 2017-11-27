@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse navbar-escrituras-collapse">
           <ul class="nav navbar-nav">
             <li><a href="#about">Escribir</a></li>
-            <li class="active dropdown"><a href="#services" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Relatos</a>
+            <li class="active dropdown"><a href="{{route('stories')}}" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Relatos</a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 @foreach( \App\Models\Genre::all() as $genre )
                 <li><a class="dropdown-item" href="#{{ $genre->slug }}">{{ $genre->name }}</a></li>

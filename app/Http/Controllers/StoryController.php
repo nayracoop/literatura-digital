@@ -333,17 +333,15 @@ class StoryController extends Controller
    * xhht function
    */
   public function genre ($genre){
-    $input = $request->all();
-    $search = $input['genre'];
+    
     $stories = [];$tags = [];
     if($request->has('genre')){
-      $stories = Story::where('genre','like',"%$search%")
+      $stories = Story::where('genre','like',"%$genre%")
        ->where('status','publish')->get();
    
      }else{
-      $stories = Story::featured();
-   }
-  
+     // $stories = Story::featured();
+   }  
    $results = View::make( 'stories.list')->with('stories', $stories)->render();
 
   return response()->json(['genre'=>$input['genre'], 'results' => $results  ]);

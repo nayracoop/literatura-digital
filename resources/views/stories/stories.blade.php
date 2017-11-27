@@ -28,7 +28,7 @@ $('stories_search').on('submit',function(e){
   e.preventDefault();
 });
 $('input[name="search"]').bind('input',function(){
-  console.log('gato');
+ 
   formElement = document.getElementById("stories_search");
 
   var xhr = new XMLHttpRequest();   

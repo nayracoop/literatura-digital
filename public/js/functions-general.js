@@ -8,12 +8,16 @@ $(document).ready(function(){
 	  }
 	});
 
-
+// abrimos cerramos el nodo basado en su id
 	$('.leer, .cerrar-nodo').click(function() {	
-	  if($('.nodo-backdrop').hasClass('esconder')){
-	  	$('.nodo-backdrop').removeClass('esconder');
+		var id = $(this).data('node');
+		//console.log(id);
+		var node = $('#ventana-nodo-'+id);
+
+	  if(node.hasClass('esconder')){
+	  	node.removeClass('esconder');
 	  }else{
-	  	$('.nodo-backdrop').addClass('esconder');
+	  	node.addClass('esconder');
 	  }
 	  return false;
 	});
