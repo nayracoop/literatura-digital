@@ -27,9 +27,9 @@
                   <label for="tipologia">@lang('Tipología') *</label>
                   <div class="styled-select">
                     <select type="text" class="form-control" id="tipologia" name="typology">
-                      <option>Episódico</option>
-                      <option>Coral</option>
-                      <option>Hipertexto</option>
+                      <option value="episodic">Episódico</option>
+                      <option value="choral" >Coral</option>
+                      <option value="rizome" >Hipertexto</option>
                     </select>
                   </div>
                 </div>
