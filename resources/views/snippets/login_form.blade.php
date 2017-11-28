@@ -8,7 +8,7 @@
           <label for="email">@lang('Email')</label>
           <input type="text" name="email" class="email">
           <label for="pass">@lang('Contraseña')</label>
-          <input type="password" name="pass">
+          <input type="password" name="password">
           <input type="submit" name="login" class="login loginmodal-submit" value="Ingresá">
           <p class="recovery"><a href="#">@lang('¿Olvidaste tu contraseña?')</a></a></p>
         </form>
