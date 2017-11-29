@@ -12,7 +12,10 @@ use Auth;
 class TestController extends Controller
 {
 
+  public function tagList(Request $request){
+     return response()->json();
 
+  }
 
   public function storeXhrStory(Request $request){
       $story = null;$s = null;

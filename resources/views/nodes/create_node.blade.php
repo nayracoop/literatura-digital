@@ -10,7 +10,7 @@
             </div>
           </div>
 
-        <form role="form" method="POST" action="{{ route('node.store',$story->slug) }}">
+        <form role="form" method="POST" action="{{ route('node.store',$story->slug) }}" >
           {{ csrf_field() }}
           <div class="row">
             <div class="col-sm-9 tit-nodo">
@@ -24,7 +24,7 @@
           <div class="row">
             <div class="col-xs-12 col-sm-9">
               <label for="texto-nodo" class="invisibilizar">Texto *</label>
-              <div id="texto-nodo"></div>
+              <div id="texto-nodo"  ></div>
             </div>
             <div class="col-xs-12 col-sm-3 contador">
               <h2 class="invisibilizar">Contador de caracteres y palabras del nodo</h2>
@@ -46,7 +46,7 @@
             </div>
           </div>
         </div>
-
+        <textarea name="text" class="invisible"></textarea>
         </form>
 
       </div>
@@ -61,5 +61,4 @@
   <link href="{{asset('js/libs/summernote/summernote.css')}}" rel="stylesheet">
   <script src="{{asset('js/libs/summernote/summernote.es.min.js')}}"></script>
   <script src="{{asset('js/functions-summernote.js')}}"></script>
-
 @endpush

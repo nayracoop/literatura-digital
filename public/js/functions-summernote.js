@@ -25,7 +25,9 @@ $(document).ready(function() {
             updateCount();
         	},
 		  onKeyup: function(e) {
-			updateCount();    
+				updateCount();    		
+				$('textarea[name="text"]').html($('.note-editable').html());	
+
 		  }
   		}
     });

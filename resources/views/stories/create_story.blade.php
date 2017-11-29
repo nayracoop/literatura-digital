@@ -55,13 +55,17 @@
             <input type="file" class="form-control portada-archivo" name="cover_drag" id="portada">
             <h2>Etiquetas</h2>
             <div class="tag-group">
-              <div class="tag-item"><p>televisión<p><button>@lang('Eliminar etiqueta')</button></div>
-              <div class="tag-item"><p>vampiros<p><button>@lang('Eliminar etiqueta')</button></div>
-              <div class="tag-item"><p>jugo<p><button>@lang('Eliminar etiqueta')</button></div>
+            @if( isset( $story ))
+            @foreach( $story->tags as $tag )
+              <div class="tag-item"><p>{{ $tag->name }}<p><button>@lang('Eliminar etiqueta')</button>
+                  <input type="hidden"  name="tags[]" value="{{ $tag->name }}" />
+              </div>
+            @endforeach
+            @endif              
             </div>         
             <label for="tag" class="more-tags-title">@lang('Agregar etiqueta'):</label>
-            <input type="text" class="form-control more-tags-input" id="tag">
-            <button class="more-tags-bot">@lang('Agregar etiqueta')</button>
+            <input type="text" class="form-control more-tags-input" id="tag" />
+            <button id="add_tag" class="more-tags-bot">@lang('Agregar etiqueta')</button>
           </div>  
         </form>
 
@@ -148,7 +152,6 @@
                         } else console.log(xhr.statusText);
                     }
                 });
-
  });
  
 
@@ -156,23 +159,23 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
 
 <script>
-$('select[name="tags[]"]').selectize({
-          delimiter: ',',
-					maxItems: null,
-					valueField: 'id',
-					labelField: 'title',
-					searchField: 'title',
-					options: [
-            @foreach( \App\Models\Tag::all() as $tag )
-						{id: '{{ $tag->id }}', title: '{{$tag->name}}',value: '{{$tag->name}}'},					
-            @endforeach
-					],
-          create: true,
-          render: {
-    option_create: function(data, escape) {
-      return '<div class="create">Agregar <strong>' + escape(data.input) + '</strong>&hellip;</div>';
-    }
-  }
-				});
+
+
+  $('#add_tag').on('click', function(e){
+    e.preventDefault();
+    var tag = $('#tag').val(); 
+   
+    $(".tag-group").append('<div class="tag-item"><p>'+tag+'<p><input type="hidden" name="tags[]" value="'+tag+'" /><button>@lang('Eliminar etiqueta')</button></div>');
+    $('#tag').val('');
+    //console.log($select);
+  });      
+
+
+  $('.tag-item').on('click', function(e){
+      $(this).remove();
+  });
+
+
+
 </script>
  @endpush

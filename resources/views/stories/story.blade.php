@@ -77,7 +77,7 @@
           <span class="acento"><span></span></span>
         </div>
 
-        <div class="container-nodo">{{$node->text}}</div>
+        <div class="container-nodo">{!!$node->text!!}</div>
 
         <a class="back-button back-button-bottom cerrar-nodo" data-node="{{$loop->iteration}}" href="#">Volver</a>
 

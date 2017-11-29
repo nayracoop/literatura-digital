@@ -55,6 +55,9 @@ Route::post('/upload-picture/{story?}', 'TestController@storeXhrPicture')->name(
 Route::post('/save-story', 'TestController@storeXhrStory')->name('save-story');
 Route::patch('/update-story/{slug}', 'TestController@updateXhrStory')->name('update-story');
 
+#etiquetas
+Route::post('/tags', 'TestController@tagAction')->name('tag-action');
+
 
 Route::get('/salir', function(){
     if(Auth::check()){
