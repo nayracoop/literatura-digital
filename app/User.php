@@ -10,6 +10,7 @@ use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 //use Jenssegers\Mongodb\Auth\PasswordResetServiceProvider as PasswordResetServiceProvider;
 use App\Models\Story;
 
+
 class User extends Authenticatable  
 {
     
@@ -63,4 +64,7 @@ class User extends Authenticatable
     {
         return $this->embedsMany('\App\Models\Comment');
     }
+
+
+    
 }
