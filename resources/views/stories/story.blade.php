@@ -7,7 +7,12 @@
         <div class="col-md-12">
             <div class="data-relato">
               <div class="image-clip">
-                <img src="img/img-2.jpg" alt="" />
+                  @if(  $story->cover != null && !empty($story->cover)  )
+                  <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">        
+                  @else
+                  <img alt="" src="{{ asset('img/img-3.jpg')}}"> 
+                  @endif
+                
               </div>  
               <p class="tit-relato">{{ $story->title }}</p>
               <p class="autor-relato">{{ $story->getAuthorName() }}</p>

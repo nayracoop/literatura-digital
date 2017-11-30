@@ -25,37 +25,30 @@
           </tr>
         </thead>
         <tbody>
+          
+          @foreach( $user->getStories() as $story )
           <tr>
-            <td class="ocultar-lg"><div class="image-clip"><img src="img/img-2.jpg" alt="" /></div></td>
-            <td class="tit-listado">Do Androids Dream of Electric Sheep?</td>
-            <td class="ocultar-sm">14.10.2017</td>
+            <td class="ocultar-lg">
+              <a href="{{route('author.story.nodes',$story->slug)}}">
+              <div class="image-clip">@if(  $story->cover != null && !empty($story->cover)  )
+                  <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">        
+                  @else
+                  <img alt="" src="{{ asset('img/img-3.jpg')}}"> 
+                  @endif</div>
+              </a>
+            </td>
+            <td class="tit-listado"><a href="{{route('author.story.nodes',$story->slug)}}">{{ $story->title }}</a></td>
+            <td class="ocultar-sm">{{ date('d.m.Y', strtotime($story->created_at) ) }}</td>
             <td class="ocultar-lg">2000</td>
-            <td class="ocultar-sm">Publicado</td>
-            <td class="ocultar-sm">20</td>
+            <td class="ocultar-sm">{{ $story->status }}</td>
+            <td class="ocultar-sm">{{ $story->likes->count() }}</td>
             <td><button>Editar</button></td>
           </tr>
-          <tr>
-            <td class="ocultar-lg"><div class="image-clip"><img src="img/img-1.jpg" alt="" /></div></td>
-            <td class="tit-listado">The Hitchhiker's Guide to the Universe</td>
-            <td class="ocultar-sm">14.10.2017</td>
-            <td class="ocultar-lg">2000</td>
-            <td class="ocultar-sm">Publicado</td>
-            <td class="ocultar-sm">20</td>
-            <td><button>Editar</button></td>
-          </tr>
-          <tr>
-            <td class="ocultar-lg"><div class="image-clip"><img src="img/img-3.jpg" alt="" /></div></td>
-            <td class="tit-listado">Something Wicked This Way</td>
-            <td class="ocultar-sm">14.10.2017</td>
-            <td class="ocultar-lg">2000</td>
-            <td class="ocultar-sm">Publicado</td>
-            <td class="ocultar-sm">20</td>
-            <td><button>Editar</button></td>
-          </tr>
+          @endforeach
         </tbody>
         </table>
 
-        <button class="btn btn-nuevo-relato"><span>Nuevo relato</span><span class="plus"></span></button>
+        <a href="{{route('story.create')}}"><button class="btn btn-nuevo-relato"><span>Nuevo relato</span><span class="plus"></span></button></a>
 
     </div>
   </div>

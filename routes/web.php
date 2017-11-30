@@ -16,8 +16,8 @@ Route::post('/relatos/busqueda', 'StoryController@search')->name('stories.search
 
 
 #Crear Relato
-Route::get('/relatos/nuevo', 'StoryController@createStory')->name('story.create');
-Route::post('/relatos/nuevo', 'StoryController@storeStory')->name('story.store');
+Route::get('/mi-perfil/relatos/nuevo', 'StoryController@createStory')->name('story.create');
+Route::post('/mi-perfil/relatos/nuevo', 'StoryController@storeStory')->name('story.store');
 
 Route::get('/relatos/{slug}', 'StoryController@show')->name('story.show');
 #editar relato
@@ -46,6 +46,8 @@ Route::post('/seguir/{username}','UserController@follow')->name('follow');
 #perfil-usuario
 Route::get('/mi-perfil', 'UserController@myProfile')->name('author.edit');
 Route::patch('/mi-perfil', 'UserController@updateProfile')->name('author.update');
+Route::get('/mi-perfil/relatos', 'UserController@stories')->name('author.stories');
+Route::get('/mi-perfil/relatos/{slug}/fragmentos', 'UserController@nodes')->name('author.story.nodes');
 #vista publica de autor
 Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
 

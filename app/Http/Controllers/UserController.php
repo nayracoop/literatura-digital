@@ -40,6 +40,17 @@ class UserController extends Controller
    }
 
   /**
+   * stories
+   * seccion "mis relatos" del perfil de autor
+   *
+   */
+  public function stories(){
+    return view('user.stories')
+      ->with('user',Auth::user() );
+
+ }
+
+  /**
    * Guardar comentario sobre el autor
    *
    */
