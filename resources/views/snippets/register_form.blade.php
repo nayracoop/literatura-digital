@@ -8,9 +8,10 @@
           <label for="email">Email <span>@lang('(chequeá que sea correcto)')</span></label>
           <input type="text" name="email" class="email">
           <label for="user">@lang('Elegí un nombre de usuario')</label>
-          <input type="text" name="user">
+          <input type="text" name="username">
           <label for="pass">@lang('Elegí una contraseña')</label>
-          <input type="password" name="pass">
+          <input type="password" name="password">
+          
           <input type="submit" name="login" class="login loginmodal-submit" value="Empezá a escribir">
         </form>
         <div class="login-help">

@@ -57,6 +57,7 @@ return array(
         'large' => 'Intervention\Image\Templates\Large',
         // filtros agregados
         'cover' => 'App\Utils\InterventionFilters\Cover',
+        'avatar' => 'App\Utils\InterventionFilters\Avatar',
     ),
 
     /*

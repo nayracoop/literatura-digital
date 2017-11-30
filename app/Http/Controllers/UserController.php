@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Flash;
 use Auth;
+use Hash;
 use App\Models\Story;
 use App\Models\TextNode;
 use App\Models\Comment;
@@ -15,6 +16,19 @@ use App\User;
 class UserController extends Controller
 {
    
+/**
+ * XhrUpdateData
+ */
+
+  public function updateProfile(Request $request){
+    $user = Auth::user();
+    $input = $request->all();    
+    $user->update($input);
+   // $user->password = Hash::make($input['password']);
+    return redirect()->back();
+  //  return response()->json('status' => 'ok', 'input', );
+  }
+
    /**
    * Perfil publico del usuario
    *
