@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 use Moloquent;
+use Carbon\Carbon;
 
 class BaseModel extends Moloquent
 {
@@ -15,5 +16,6 @@ class BaseModel extends Moloquent
         'updated_at',
         'deleted_at'
     ];
+
 
 }

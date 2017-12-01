@@ -1,13 +1,18 @@
 $font-face-caecilia-roman: 'caecilialtstd-roman-webfont';
 $font-face-caecilia-bold: 'caecilialtstd-bold-webfont';
-$font-face-caecilia-heavy: 'caecilialtstd-heavy-webfont';
+$font-face-caecilia-italic: 'caecilialtstd-italic-webfont';
 $font-face-caecilia-bold-italic: 'caecilialtstd-bolditalic-webfont';
+$font-face-caecilia-heavy: 'caecilialtstd-heavy-webfont';
 
-$font-face-meta: 'meta-normal-regular-webfont';
-$font-face-meta-bold: 'meta-bold-regular-webfont';
+$font-face-akzidenz-regular: 'AkzidenzGroteskPro-Regular';
+$font-face-akzidenz-med: 'AkzidenzGroteskPro-Md';
+$font-face-akzidenz-bold: 'AkzidenzGroteskPro-Bold';
+$font-face-akzidenz-light: 'AkzidenzGroteskPro-Light';
 
 $font-face-brandon-grotesque-regular: 'brandon_reg';
 $font-face-brandon-grotesque-bold: 'brandon_bld';
+
+/* Texto de copia */
 
 @font-face {
     font-family: 'Caecilia'; font-style: normal; font-weight: normal;
@@ -27,8 +32,17 @@ $font-face-brandon-grotesque-bold: 'brandon_bld';
         url('../fonts/caecilia/#{$font-face-caecilia-bold}.svg') format('svg');
  }
 
- @font-face {
+@font-face {
     font-family: 'Caecilia'; font-style: italic; font-weight: normal;
+    src: url('../fonts/caecilia/#{$font-face-caecilia-italic}.eot');
+    src: url('../fonts/caecilia/#{$font-face-caecilia-italic}.eot?') format('eot'),
+        url('../fonts/caecilia/#{$font-face-caecilia-italic}.woff') format('woff'),
+        url('../fonts/caecilia/#{$font-face-caecilia-italic}.ttf')  format('truetype'),
+        url('../fonts/caecilia/#{$font-face-caecilia-italic}.svg') format('svg');
+ }
+
+ @font-face {
+    font-family: 'Caecilia'; font-style: italic; font-weight: bold;
     src: url('../fonts/caecilia/#{$font-face-caecilia-bold-italic}.eot');
     src: url('../fonts/caecilia/#{$font-face-caecilia-bold-italic}.eot?') format('eot'),
         url('../fonts/caecilia/#{$font-face-caecilia-bold-italic}.woff') format('woff'),
@@ -45,23 +59,49 @@ $font-face-brandon-grotesque-bold: 'brandon_bld';
         url('../fonts/caecilia/#{$font-face-caecilia-heavy}.svg') format('svg');
  }
 
+/* Títulos, formularios */
+
  @font-face {
-    font-family: 'Meta Bold'; font-style: normal; font-weight: bold;
-    src: url('../fonts/meta/#{$font-face-meta-bold}.eot');
-    src: url('../fonts/meta/#{$font-face-meta-bold}.eot?') format('eot'),
-        url('../fonts/meta/#{$font-face-meta-bold}.woff') format('woff'),
-        url('../fonts/meta/#{$font-face-meta-bold}.ttf')  format('truetype'),
-        url('../fonts/meta/#{$font-face-meta-bold}.svg') format('svg');
+    font-family: 'Akzidenz-Grotesk Pro Light'; font-style: normal; font-weight: normal;
+    src: url('../fonts/akzidenz/#{$font-face-akzidenz-light}.eot');
+    src: url('../fonts/akzidenz/#{$font-face-akzidenz-light}.eot?') format('eot'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-light}.woff2') format('woff2'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-light}.woff') format('woff'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-light}.ttf')  format('truetype'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-light}.svg') format('svg');
  }
 
  @font-face {
-    font-family: 'Meta'; font-style: normal; font-weight: bold;
-    src: url('../fonts/meta/#{$font-face-meta}.eot');
-    src: url('../fonts/meta/#{$font-face-meta}.eot?') format('eot'),
-        url('../fonts/meta/#{$font-face-meta}.woff') format('woff'),
-        url('../fonts/meta/#{$font-face-meta}.ttf')  format('truetype'),
-        url('../fonts/meta/#{$font-face-meta}.svg') format('svg');
+    font-family: 'Akzidenz-Grotesk Pro Regular'; font-style: normal; font-weight: normal;
+    src: url('../fonts/akzidenz/#{$font-face-akzidenz-regular}.eot');
+    src: url('../fonts/akzidenz/#{$font-face-akzidenz-regular}.eot?') format('eot'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-regular}.woff2') format('woff2'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-regular}.woff') format('woff'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-regular}.ttf')  format('truetype'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-regular}.svg') format('svg');
  }
+
+ @font-face {
+    font-family: 'Akzidenz-Grotesk Pro Med'; font-style: normal; font-weight: normal;
+    src: url('../fonts/akzidenz/#{$font-face-akzidenz-med}.eot');
+    src: url('../fonts/akzidenz/#{$font-face-akzidenz-med}.eot?') format('eot'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-med}.woff2') format('woff2'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-med}.woff') format('woff'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-med}.ttf')  format('truetype'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-med}.svg') format('svg');
+ }
+
+ @font-face {
+    font-family: 'Akzidenz-Grotesk Pro Bold'; font-style: normal; font-weight: bold;
+    src: url('../fonts/akzidenz/#{$font-face-akzidenz-bold}.eot');
+    src: url('../fonts/akzidenz/#{$font-face-akzidenz-bold}.eot?') format('eot'),
+         url('../fonts/akzidenz/#{$font-face-akzidenz-bold}.woff2') format('woff2'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-bold}.woff') format('woff'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-bold}.ttf')  format('truetype'),
+        url('../fonts/akzidenz/#{$font-face-akzidenz-bold}.svg') format('svg');
+ }
+
+ /* interfaz */
 
  @font-face {
     font-family: 'Brandon Grotesque'; font-style: normal; font-weight: normal;
@@ -84,10 +124,14 @@ $font-face-brandon-grotesque-bold: 'brandon_bld';
 
 $caecilia-roman: 'Caecilia', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 $caecilia-bold: 'Caecilia', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$caecilia-italic: 'Caecilia', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$caecilia-bold-italic: 'Caecilia', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 $caecilia-heavy: 'Caecilia Heavy', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 
-$meta: 'Meta', Arial,  Helvetica, 'Liberation Sans', sans-serif;
-$meta-bold: 'Meta Bold', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$akzidenz-grotesk-pro-light: 'Akzidenz-Grotesk Pro Light', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$akzidenz-grotesk-pro-regular: 'Akzidenz-Grotesk Pro Regular', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$akzidenz-grotesk-pro-med: 'Akzidenz-Grotesk Pro Md', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$akzidenz-grotesk-pro-bold: 'Akzidenz-Grotesk Pro Bold', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 
 $brandon-grotesque-bold: 'Brandon Grotesque', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 $brandon-grotesque-regular: 'Brandon Grotesque', Arial,  Helvetica, 'Liberation Sans', sans-serif;

@@ -305,5 +305,47 @@ class StoryController extends Controller
 
   }
 
+  /**
+   * SearchByGenre
+   * 
+   * xhht function
+   */
+  public function searchByGenre (Request $request){
+    $input = $request->all();
+    $search = $input['genre'];
+    $stories = [];$tags = [];
+    if($request->has('genre')){
+      $stories = Story::where('genre','like',"%$search%")
+       ->where('status','publish')->get();
+   
+     }else{
+      $stories = Story::featured();
+   }
+  
+   $results = View::make( 'stories.list')->with('stories', $stories)->render();
+
+  return response()->json(['genre'=>$input['genre'], 'results' => $results  ]);
+  }
+
+  /**
+   * SearchByGenre
+   * 
+   * xhht function
+   */
+  public function genre ($genre){
+    
+    $stories = [];$tags = [];
+    if($request->has('genre')){
+      $stories = Story::where('genre','like',"%$genre%")
+       ->where('status','publish')->get();
+   
+     }else{
+     // $stories = Story::featured();
+   }  
+   $results = View::make( 'stories.list')->with('stories', $stories)->render();
+
+  return response()->json(['genre'=>$input['genre'], 'results' => $results  ]);
+  }
+
 
 }

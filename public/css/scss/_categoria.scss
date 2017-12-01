@@ -1,0 +1,197 @@
+.encabezado-categoria{
+    background: $color-destacado;
+    color: $color-blanco;
+    padding: 20px 15px 22px 15px;
+    position: relative;
+        h1 {
+            display: inline-block;
+            font-size: 2.142857142857143em;
+            margin: 0;
+            font-family: $akzidenz-grotesk-pro-med;
+            font-weight: bold;
+        }
+        .container-tags{
+            float: right;
+            margin: 0;
+            line-height: 28.875px;
+            p{
+                font-size: 1em;
+                font-family: $akzidenz-grotesk-pro-med;
+                margin-left: .75em;
+                display: inline-block;
+                font-weight: bold;
+                margin-top: 3px;
+                margin-bottom: 0;
+            }
+            p a{ color: #FFF; }
+        }
+}
+
+.encabezado-categoria .container .row div:after{
+    content:'';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-top: solid 10px $color-destacado;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+    z-index: 3;
+}
+
+@media only screen and (max-width: ($screen-md)) {
+   .encabezado-categoria{
+      margin-top: 15px;
+      padding-left: 0;
+      padding-right: 0;
+      color: #000;
+      background-color: #D7D5D5;
+      h1 {
+        font-family: $akzidenz-grotesk-pro-med;
+        font-size: 1.5em;
+      }
+      .container .row div:after{
+        border-top-color: transparent;
+      }
+      .container-tags{
+          p{
+            margin-top: -7px;
+          }
+          p a{color: #000;}
+      }
+   }
+}
+
+/* BUSCADOR */
+
+.buscador{ 
+    background: #F7F6F5;  
+    margin: 0 15px;
+    border-bottom: 3px solid #DBDBDD;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.buscador input{ 
+    background: transparent url(../img/iconos/search-lupa.png) no-repeat 0 12px; 
+    border: 0;
+    color: #6C6C71;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: $brandon-grotesque-bold;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 12px 0 9px 23px;
+    width: 100%;
+}
+
+@media only screen and (max-width: ($screen-md)) {
+    .buscador{ 
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+}
+
+/* Cards destacados */
+
+.card{
+  background: #F9F9F9;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  max-height: 190px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+    a{ 
+       display: block; 
+       :hover img, :focus img{
+         opacity: .5;
+       }
+    }
+    img{ 
+        max-height: 190px;
+        float: left;
+        margin-right: 15px;
+    }
+    h3{
+      color: #000;
+      font-weight: 600;
+      font-size: 15px;
+      margin: 0;
+      padding: 20px 10px 4px 0;
+    }
+    *:hover, *:focus{ 
+      text-decoration: none;
+      outline: none;
+    }
+    p{
+      margin-bottom: 0;
+      padding-right: 15px;
+    }
+    .autor-relato{
+      color: #999999;    
+      position: relative; 
+      font-size: 15px;
+      font-family: $akzidenz-grotesk-pro-regular;  
+      font-weight: normal;
+      padding-right: 15px;   
+    }
+    span{ display: block; width: 100%; }
+    span hr{ 
+      width: 45px; 
+      height: 2px; 
+      margin: 8px 0;
+      background: $color-destacado; 
+      border-width: 0;
+    } 
+    .resumen{
+        color: #666666;
+        padding-right: 15px;
+        /*overflow: hidden;
+        white-space: wrap;
+        text-overflow: ellipsis;*/
+    }
+    .ver-mas{
+      position: absolute;  
+      right: 10px;
+      bottom: 10px;                
+      height: 13px;
+      width: 13px;
+      opacity: .7;
+      display: block;
+      background: url('../img/iconos/cruz-menu.svg') no-repeat  0 0;
+      text-indent: -9999px;
+    }
+}
+
+.card:hover img, .card:focus img{ opacity: .7; }
+.card:hover h3, .card:focus h3{ color: $color-destacado; }
+.card:hover .ver-mas, .card:focus .ver-mas{ opacity: 1; }
+
+
+@media only screen and (max-width: $screen-xs - 25) {
+   .encabezado-categoria .container-tags p{ 
+    display: none;
+   }
+   .card{
+     max-height: 100%;
+     border-bottom-left-radius: 10px;
+     padding-bottom: 20px;
+   }
+   .card img{ 
+     width: 100px;
+     max-height: auto;
+     margin-top: 10px;
+     margin-left: 10px;
+   }
+   .card h3{ 
+     padding-top: 15px;
+   }
+   .card hr{ display: none; }
+   .card .resumen {
+    clear: both;
+    padding: 8px 10px 15px 10px;
+   } 
+}

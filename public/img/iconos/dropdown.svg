@@ -1,0 +1,12 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+]>
+<svg version="1.1" baseProfile="tiny"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="11px" height="13px" viewBox="-0.937 -0.884 11 13" xml:space="preserve">
+<defs>
+</defs>
+<path fill="#0CA6BE" d="M4.899,11.164c-0.175,0-0.351-0.067-0.485-0.201L0.201,6.75c-0.268-0.268-0.268-0.703,0-0.971
+	c0.268-0.268,0.702-0.268,0.97,0l3.728,3.728L8.627,5.78c0.268-0.268,0.702-0.268,0.97,0s0.268,0.702,0,0.97l-4.213,4.213
+	C5.25,11.097,5.075,11.164,4.899,11.164z"/>
+</svg>

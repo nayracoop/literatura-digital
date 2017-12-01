@@ -1,0 +1,199 @@
+.form-detalle{
+  padding-top: 42px;
+}
+
+@media only screen and (max-width: $screen-md) {
+  .form-detalle{ padding-top: 15px;}
+}
+
+.form-padding-interno{
+  padding-left: 60px;
+  padding-bottom: 0;
+}
+
+@media only screen and (max-width: $screen-lg) {
+  .form-padding-interno{ padding: 0; }
+}
+
+.form-detalle h1{
+  font-family: $akzidenz-grotesk-pro-bold;
+  font-size: 26px;
+  line-height: 1.25;
+  padding-top: 15px;
+}
+
+@media only screen and (max-width: $screen-lg) {
+  .form-detalle h1{ margin-left: -66px; }
+}
+
+@media only screen and (max-width: $screen-lg - 72) {
+  .form-detalle h1{ margin-left: 0; }
+}
+
+@media only screen and (max-width: $screen-sm) {
+  .form-detalle h1{ font-size: 20px; }
+  .form-detalle .numero{color: $color-destacado;}
+
+  .form-detalle .numero .invisibilizar{ 
+    position: static; 
+    width: auto;
+    height: auto;
+    margin: 0; 
+    overflow: visible; 
+    clip: auto;
+  }
+}
+
+
+@media only screen and (min-width: $screen-xs) {
+  .form-detalle .numero{
+    color: #FFF;
+    float: left;
+    text-align: center;
+    background: #0CA6BE;
+    display: block;
+    width: 50px;
+    padding-top: 10px;
+    height: 50px;
+    border-radius: 70px;
+    border: 2px solid #F0F0F0;
+    font-size: 20px;
+    margin-right: 16px;
+    margin-top: -9px;
+  }
+}
+
+.form-detalle form{
+  clear: both;
+  padding-top: 10px;
+}
+
+.form-detalle .portada-border{
+  border: 8px solid #EAE8E6;
+  background: #EAE8E6;
+  max-width: 216px;
+}
+
+.form-detalle .portada-border img{ width: 100%; }
+
+.formulario form h2{ 
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #272939; 
+  font-size: 1.285714285714286em;
+  font-weight: bold;
+}
+
+.formulario form .tag-group{ max-width: 220px; }
+
+.formulario form .tag-item{ 
+  background: #F7F6F5;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-family: $akzidenz-grotesk-pro-med;
+  font-weight: bold;
+  color: #666;
+  padding: 10px 22px 8px 10px;
+  margin-right: 6px;
+  margin-bottom: 10px;
+  display: inline-block;
+  position: relative;
+  box-shadow: 1px 2px 1px rgba(207,207,207,1);
+}
+
+.formulario form .tag-item p{ margin: 0; line-height: 1;}
+
+.formulario form .tag-item button{ 
+  background: transparent url(../img/iconos/cruz-tags.png) no-repeat center right; 
+  border: 0;
+  text-indent: -9999px;
+  overflow: hidden;
+  height: 30px;
+  width: 44px;
+  position: absolute;
+  right: 0;
+  top: 0;
+} 
+
+.formulario .more-tags-title{ 
+  font-size: 15px; 
+  font-family: $akzidenz-grotesk-pro-med;
+  color: #3A3E56;
+  display: block;
+  clear: both;
+}
+
+.formulario .more-tags-input{
+  width: 180px;
+  padding: 5px 10px;
+  float: left;
+}
+
+.more-tags-bot{ 
+  background: #0CA6BE url(../img/iconos/more-tag.svg) no-repeat center center;
+  border: 1px solid #F7F6F5;
+  border-radius: 30px;
+  width: 31px;
+  height: 31px;
+  text-indent: -9999px;
+  overflow: hidden;
+  float: left;
+  margin-top: 6px;
+  margin-left: 10px;
+}
+
+.more-tags-bot:hover, .more-tags-bot:focus{ background-color: #333; }
+
+/*  Botonera abajo  */
+
+.botones-nav-form{
+  clear: both;
+  padding-top: 100px;
+}
+
+@media only screen and (max-width: ($screen-lg)) {
+    .botones-nav-form{
+      padding-top: 50px;
+    }
+}
+
+.fondo-forms .bot{
+  display: block;
+  text-transform: uppercase;
+  color: #000;
+  font-family: $brandon-grotesque-bold;
+  font-weight: bold;
+  background-position: bottom left; 
+  background-repeat: no-repeat;
+  padding-left: 30px;
+  padding-bottom: 20px;
+  margin-bottom: 12px;
+  color: #ADA69E;
+  font-size: 1.142857142857143em;
+}
+
+.fondo-forms .botones-nav-form .bot:hover, .fondo-forms .botones-nav-form .bot:focus{ color: #000; text-decoration: none; }
+
+.fondo-forms .bot.ant{
+  background-image: url(../img/iconos/flecha-ant.svg);
+  float: left;
+  margin-left: 10px;
+}
+
+.fondo-forms .bot.sig{ 
+  color: $color-destacado;
+  background-image: url(../img/iconos/flecha-sig.svg); 
+  background-position: bottom right;
+  float: right;
+  padding-right: 30px;
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: $screen-xs) {
+  .fondo-forms .bot.sig{ max-width: 140px;  }
+  .fondo-forms .bot.ant{ padding-left: 15px; }
+  .fondo-forms .bot.sig{ padding-right: 15px; }
+
+}
+

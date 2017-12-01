@@ -1,0 +1,439 @@
+.data-relato{ margin-left: -3px; float: left; width: 260px;}
+.data-relato .image-clip{ margin-top: 5px; }
+
+.tit-relato{
+  font-size: 18px;
+  font-family: $akzidenz-grotesk-pro-med;
+  font-weight: bold; 
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+
+.autor-relato{
+  color: #999999;
+  font-size: 15px;
+  font-family: $akzidenz-grotesk-pro-med;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: ($screen-md)) {
+  .tit-relato{ font-size: 15px;}
+  .autor-relato{ font-size: 13px }
+}
+
+.publicar-nodo{ float: right; }
+
+.publicar-nodo a{ 
+  color: #0CA6BE;
+  font-family: $brandon-grotesque-bold;;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: right;
+  display: block;
+  background: url(../img/iconos/flecha-publicar.svg) no-repeat bottom right;
+  width: 150px;
+  height: 62px;
+  margin: 4px 15px 0 0;
+  padding-right: 2px; 
+}
+
+@media only screen and (max-width: ($screen-md)) {
+  .publicar-nodo a{ 
+    margin: 10px 15px 0 0; 
+    font-size: 14px; 
+    padding-right: 4px; 
+  }
+  .image-clip{ margin-bottom: 0; }
+}
+
+@media only screen and (max-width: ($screen-xs - 70)) {
+  .publicar-nodo{ position: absolute; top: -20px; right: 0; }
+  .publicar-nodo a{ 
+    text-align: left;  
+    width: 160px;
+    padding-top: 10px;
+    height: 40px;
+    background-position: top right;
+  }
+  .data-relato{ margin-top: 10px; }
+  .relato-data-nodo{ margin-top: 40px; }
+}
+
+.publicar-nodo a:hover, .publicar-nodo a:focus{
+  color: #000; 
+  text-decoration: none;
+  background-image: url(../img/iconos/flecha-publicar-hover.svg);
+} 
+
+.tit-nodo{
+  margin-bottom: 30px;
+}
+
+form .tit-nodo label{ 
+  color: #999; 
+  font-size: 16px;
+  padding-left: 8px;
+}
+
+form .tit-nodo label i{ 
+  font-family: $akzidenz-grotesk-pro-light; 
+  font-style: normal;} 
+
+
+form .tit-nodo input{ 
+  color: #000; 
+  font-size: 26px;
+  font-family: $akzidenz-grotesk-pro-med; 
+  font-weight: 600;
+  height: 60px;
+}
+
+@media only screen and (max-width: ($screen-lg)) {
+    form .tit-nodo input{
+      font-size: 21px;
+      height: 40px;
+    }
+}
+
+.note-frame{ overflow: hidden;}
+
+.contador{
+  margin-top: 12px;
+  padding-left: 45px;
+  background: url(../img/decor/linea-caracteres.png) no-repeat 0 8px;
+  color: #999999;
+}
+
+.contador p{ margin-bottom: 5px; }
+
+@media only screen and (max-width: ($screen-lg)) {
+    .contador{
+      margin-top: 74px;
+    }
+}
+
+@media only screen and (max-width: ($screen-md)) {
+    .contador{
+      margin-top: -5px;
+      padding-left: 20px;
+      background: none;
+    }
+
+    .contador-container{ width: 90px; float: left; }
+}
+
+.orden-nodo{ margin-top: 250px;}
+.orden-nodo .styled-select{ width: 80px; }
+.orden-nodo .styled-select select { width: 102px; }
+
+@media only screen and (max-width: ($screen-md)) {
+  .orden-nodo{ 
+    margin-top: 0; 
+    float: right; 
+    width: 140px; 
+  }
+
+  .formulario .orden-nodo label, .orden-nodo .styled-select{ 
+    margin: 0;
+    float: left; 
+  }
+
+  .formulario .orden-nodo label{ 
+    margin: 10px 10px 0 0; 
+    font-size: 14px;
+  } 
+
+  .orden-nodo .styled-select select{ 
+    font-size: 14px;
+    height: 36px;
+    min-height: auto;
+  }
+
+}
+
+/* botones cancelar y guardar del form */
+
+.container-botones{
+  position: relative;
+  min-height: 155px;
+}
+
+@media only screen and (max-width: ($screen-lg)) {
+    .container-botones{
+      min-height: 105px;
+    }
+}
+
+.container-botones .botones-nav-form{
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+}
+
+@media only screen and (max-width: ($screen-sm)) {
+    .container-botones .botones-nav-form{
+      position: relative;
+      left: 0;
+      padding-top: 105px;
+    }
+}
+
+.botones-save-form{
+  position: absolute;
+  bottom: -20px;
+  right: 15px;
+}
+
+@media only screen and (max-width: ($screen-sm)) {
+    .botones-save-form{
+      position: absolute;
+      right: 0;
+      top: 25px;
+      bottom: auto;
+      z-index: 6;
+    }
+}
+
+.botones-save-form .btn{
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: 1em;
+  letter-spacing: .5px;
+  padding: 15px 30px;
+  margin-left: 20px;
+  border-radius: 2px;
+  font-family: $brandon-grotesque-bold;
+  font-weight: bold;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+}
+
+.botones-save-form .btn-cancelar{
+  background: #FFF; 
+  color: #000;
+}
+
+@media only screen and (max-width: $screen-xs) {
+  .botones-save-form .btn{
+    padding: 10px 15px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+}
+
+.botones-save-form .btn-guardar{
+  background: $color-destacado;
+  color: #FFF;
+}
+
+.botones-save-form .btn:hover, .botones-save-form .btn:focus{
+  background: #000; 
+  color: #FFF;
+}
+
+/* summernote */
+
+.formulario .note-editor.note-frame {
+    border: 0 solid #a9a9a9;
+}
+
+.formulario .panel-default {
+    border-color: #FFF;
+}
+
+.note-statusbar{ display: none; }
+
+.note-editor.panel{ box-shadow: none; }
+
+.note-editable{ 
+  font-size: 16px;
+  font-family: $caecilia-roman; 
+  line-height: 1.7;
+}
+
+.note-editor.note-frame .note-editing-area .note-editable.panel-body{
+  /*white-space: initial;
+  overflow-x: hidden;*/
+}
+
+.note-editable.panel-body a{ 
+  text-decoration: none; 
+  border-bottom: 1px solid $color-destacado;
+  color: $color-destacado;
+  } 
+
+@media only screen and (max-width: ($screen-md)) {
+    .note-editable.panel-body{ 
+      border: 1px solid #CCC;
+    }
+}
+
+.note-editable.panel-body strong, .note-editable.panel-body b{ 
+    font-family: $caecilia-bold;
+    font-weight: bold;
+}
+
+.note-editable.panel-body em, .note-editable.panel-body i{ 
+    font-family: $caecilia-italic;
+    font-style: italic;
+}
+
+.note-editable.panel-body i b, .note-editable.panel-body b i{ 
+    font-family: $caecilia-bold-italic;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.formulario .panel-heading.note-toolbar{
+  float: left;
+  width: 60px;
+  margin-top: 22px;
+}
+
+@media only screen and (max-width: ($screen-lg)) {
+    .formulario .panel-heading.note-toolbar{
+      float: none;
+      width: 100%;
+      margin-top: 0;
+    }
+}
+
+.note-editing-area{
+  background-color: #fff;
+  border: 0 solid transparent;
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+  float: right;
+  width: 92%;
+}
+
+@media only screen and (max-width: ($screen-xl)) {
+    .note-editing-area{
+      width: 90%;
+    }
+}
+
+@media only screen and (max-width: ($screen-lg)) {
+    .note-editing-area{
+      width: 100%;
+    }
+}
+
+.panel-default > .panel-heading{
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.note-toolbar.panel-heading.note-toolbar > .btn-group, .panel-heading.note-toolbar .note-btn-group, .panel-heading.note-toolbar > .btn-group {
+    margin: 0;
+}
+
+.note-toolbar .note-btn, .popover-content .btn{
+  height: 43px;
+  width: 43px;
+  border-radius: 30px;
+  background-color: #000;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 2px solid #EBEAE9;
+  box-shadow: none;
+  margin-bottom: 10px;
+  text-indent: -9999px;
+  color: #EAE8E6;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.popover-content .btn{ text-indent: 0; margin-bottom: 0; }
+
+@media only screen and (max-width: ($screen-lg)) {
+    .note-toolbar .note-btn{
+      margin-right: 8px;
+    }
+}
+
+.note-toolbar .note-btn:hover, .note-toolbar .note-btn:focus, .popover-content .btn:hover, .popover-content .btn:focus{ 
+  background-color: #666;
+  border-color: #F4F3F2;
+   }
+
+.note-toolbar .note-btn:nth-child(1){ background-image: url(../img/wyswyg/ico-negrita.png); }
+.note-toolbar .note-btn:nth-child(2){ background-image: url(../img/wyswyg/ico-italica.png); }
+.note-toolbar .note-btn:nth-child(3), .popover-content .note-remove .btn{ background-image: url(../img/wyswyg/ico-borrar.png); text-indent: -9999px;}
+
+.note-toolbar .note-btn-group:nth-child(2) .note-btn:nth-child(1){ background-image: url(../img/wyswyg/ico-tachado.png); }
+
+.note-toolbar .note-btn-group:nth-child(3) .note-btn:nth-child(1){ background-image: url(../img/wyswyg/ico-imagen.png); }
+.note-toolbar .note-btn-group:nth-child(3) .note-btn:nth-child(2){ background-image: url(../img/wyswyg/ico-enlace.png); }
+
+.popover-content .note-float .btn:nth-child(1){ background-image: url(../img/wyswyg/ico-left.png); text-indent: -9999px;}
+.popover-content .note-float .btn:nth-child(2){ background-image: url(../img/wyswyg/ico-right.png); text-indent: -9999px;}
+.popover-content .note-float .btn:nth-child(3){ background-image: url(../img/wyswyg/ico-none.png); text-indent: -9999px;}
+
+.note-btn-group > .note-btn,
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle),
+.note-btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle),
+.note-btn-group > .btn:last-child:not(:first-child),
+.note-btn-group > .dropdown-toggle:not(:first-child) {
+    border-radius: 30px;
+}
+
+.tooltip.in{ opacity: 1; }
+.tooltip-inner{ background-color: $color-destacado; }
+.tooltip.bottom .tooltip-arrow{ border-bottom-color: $color-destacado; }
+
+
+/* modales */
+
+.formulario .modal-content {
+    box-shadow: none;
+}
+
+.formulario .modal-content {
+    background-color: #fff;
+    border: none;
+    border-radius: 6px;
+    box-shadow: none;
+    outline: 0 none;
+    position: relative;
+}
+
+h4.modal-title {
+  color: #010101;
+  font-size: 20px;
+  margin: 0;
+  padding: 10px 0 0 0;
+  font-family: $akzidenz-grotesk-pro-med;
+}
+
+.note-image-btn, .note-link-btn {
+  border-width: 0;
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-family: $brandon-grotesque-bold;
+  font-weight: bold;
+  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  background-color: $color-destacado;
+  font-size: 14px;
+  color: #FFF;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 13px 20px ;
+}
+
+.note-image-btn:hover, .note-link-btn:hover {
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #000;
+  color: #FFF;
+}
+
+.form-group.note-form-group label, .form-group.note-group-image-url label{
+  font-family: $akzidenz-grotesk-pro-light;
+  font-weight: 100;
+  letter-spacing: 1px;
+  font-size: 15px;
+}
+
+.note-form-group + .checkbox{display: none;}

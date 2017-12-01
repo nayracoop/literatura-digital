@@ -14,20 +14,18 @@ $screen-xl: 1200px;
 .col-xl- ≥1200px
 */
 
-.invisible { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+/* cambios en container para no pisra el border blanco -60px */
+@media only screen and (min-width: ($screen-md)) { .container { width: 690px; } }
+@media only screen and (min-width: ($screen-lg)) { .container { width: 910px; } }
+@media only screen and (min-width: ($screen-xl)) { .container { width: 1110px; } }
 
-$color-destacado: #C1D82F;
-$color-destacado-link: #84931C;
-$color-fondo: #40404C;
-$color-titulo: #FF0163;
-$color-blanco: #F3F3F3;
+.invisibilizar { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
-/* verde agua: #17FFE9 */
-/* verde fluo: #00B450 */
-/* celeste fluo: #0CA3C0 */
-/* celeste: #0BA3BB */
-
-/* gris fondo osucro: #252628 */ 
+$color-destacado: #0CA6BE;
+$color-destacado-link: #0CA6BE;
+$color-fondo: #EAE8E6;
+$color-titulo: #0CA6BE;
+$color-blanco: #FFF;
 
 
 

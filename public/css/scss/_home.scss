@@ -1,12 +1,21 @@
-.jumbotron{
-	background: transparent;
-	color: $color-blanco;
-	font-family: $meta;
+.destacado-home{
+	background: $color-destacado;
+	min-height: 400px;
+	margin-top: 30px;
+	margin-bottom: 75px;
 }
 
-.jumbotron h1{
-	font-family: $meta-bold;
-	font-size: 3em;
-	letter-spacing: 1px;
-	color: $color-destacado;
+.tit-home{
+	color: #000;
+    font-weight: 500;
+    font-size: 21px;
+    font-family: $akzidenz-grotesk-pro-med;
+}
+
+.tit-home + hr{
+  width: 45px; 
+  height: 2px; 
+  margin: 8px 0 20px 0;
+  background: $color-destacado; 
+  border-width: 0;
 }

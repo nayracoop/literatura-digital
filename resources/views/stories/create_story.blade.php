@@ -7,70 +7,83 @@
 @endpush
 
 @section('content')
-    <div class="row">
-      <form id="story-form" class="form-horizontal" role="form" method="POST" action="{{ route('story.store') }}" enctype="multipart/form-data">
-      <div class="col-lg-8">
-
-        <h1>@lang('Detalles del relato')</h1>        
-          {{ csrf_field() }}
-
-          <div class="form-group">
-            <label class="control-label">@lang('Título')</label>
-            <input type="text" class="form-control" placeholder="Leñador" name="title">
-          </div>
-          <div class="form-group">
-            <label for="inputPassword" class="control-label">@lang('Descripción')</label>
-            <textarea class="form-control" rows="10" name="description"></textarea>
-          </div>
-          <div class="form-group">
-            <label class="control-label">@lang('Tipología')</label>
-            <select class="form-control" name="typology">
-              <option value="temporal">@lang('Temporal')</option>              
-              <option value="lineal">@lang('Lineal')</option>
-              <option value="episodic">@lang('Episódico')</option>
-              <option value="choral">@lang('Coral')</option>
-              <option value="rizome">@lang('Rizoma')</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="control-label">@lang('Género')</label>
-            <select class="form-control" name="genre">
-              @foreach( \App\Models\Genre::all() as $genre )
-              <option  value="{{$genre->slug}}">{{$genre->name}}</option>
-              @endforeach
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="control-label">@lang('Etiquetas')</label>
-            <select  placeholder="@lang('Agregar etiquetas')" name="tags[]">
-            
-            </select>
-          </div>
+  <div class="fondo-forms">
+    <div class="container formulario form-detalle">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1><span class="numero">1<span class="invisibilizar">.</span></span>@lang('Completá algunos detalles de tu relato.')</h1>
+        </div>
           
-          <button type="submit" name="publish" class="btn btn-default">@lang('Publicar')</button>
-          <button type="submit" name="save" value="draft" class="btn btn-default">@lang('Guardar Borrador')</button>
-     
-      </div>
-
-      <div class="col-lg-4">
-      <div class="well drag-and-drop-area">
-          <h4>@lang('Portada')</h4>
-          <div class="media-item">
-                <img alt="" src="{{ asset( 'img/tapa200x200.png' )}}">
+        <form role="form" id="story-form">
+          <div class="col-md-8">
+            <div class="form-padding-interno">
+              <label for="nombre">@lang('Título') *</label>
+              <input type="text" class="form-control" id="titulo" name="title">
+              <label for="mensaje">@lang('Descripción') *</label>
+              <textarea class="form-control" id="mensaje" name="description">
+              </textarea>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="tipologia">@lang('Tipología') *</label>
+                  <div class="styled-select">
+                    <select type="text" class="form-control" id="tipologia" name="typology">
+                      <option value="episodic">Episódico</option>
+                      <option value="choral" >Coral</option>
+                      <option value="rizome" >Hipertexto</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">  
+                  <label for="genero">@lang('Género') *</label>
+                  <div class="styled-select">
+                    <select type="text" class="form-control" id="genero" name="genre">
+                     @foreach( \App\Models\Genre::all() as $genre )
+                     <option  value="{{$genre->slug}}">{{$genre->name}}</option>
+                     @endforeach
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        <label for="portada">@lang('Cargar portada'):</label>
-        <input type="file" name="cover_drag" id="portada" style="width: 90%;" value="">
+
+          <div class="col-md-4">
+            <label for="portada">@lang('Portada del relato')</label>
+            <div class="portada-border">
+              <img src="img/img-2.jpg" alt="" />
+            </div>
+            <input type="file" class="form-control portada-archivo" name="cover_drag" id="portada">
+            <h2>Etiquetas</h2>
+            <div class="tag-group">
+            @if( isset( $story ))
+            @foreach( $story->tags as $tag )
+              <div class="tag-item"><p>{{ $tag->name }}<p><button>@lang('Eliminar etiqueta')</button>
+                  <input type="hidden"  name="tags[]" value="{{ $tag->name }}" />
+              </div>
+            @endforeach
+            @endif              
+            </div>         
+            <label for="tag" class="more-tags-title">@lang('Agregar etiqueta'):</label>
+            <input type="text" class="form-control more-tags-input" id="tag" />
+            <button id="add_tag" class="more-tags-bot">@lang('Agregar etiqueta')</button>
+          </div>  
+        </form>
+
+        <div class="botones-nav-form">
+          <a href="#" class="bot ant">@lang('Cancelar')</a>
+          <a href="#" class="bot sig">@lang('Empezá a escribir')</a>
+        </div>
+
+        </div>
       </div>
     </div>
-    
-     </form>
   </div>
  @endsection
 
  @push('javascript')
  <script type="text/javascript">
- /* Autoupload */
-        $('.drag-and-drop-area input[type="file"]').change(function() {           
+ /* Upload de imagen */
+        $('input[type="file"]').change(function() {           
             var files =  this.files;
             for(var i = 0; i < files.length; i++) {                
                 var formData = new FormData();
@@ -94,8 +107,8 @@
                              newImg = newResponse.picUrl;  
                              picName = newResponse.picName;   
                             // console.log(hash+'  -  '+ newImg ); //  
-                            $('.media-item' ).find('img').remove();  
-                            $('.media-item' ).append('<img src="'+newImg+'" />'); 
+                            $('.portada-border' ).find('img').remove();  
+                            $('.portada-border' ).append('<img src="'+newImg+'" />'); 
                             $('form').append('<input type="hidden" name="cover" value="'+picName+'" />');                                                         
                              //$('#cover-'+hash).value(  newId);                      
 
@@ -105,9 +118,8 @@
         });
 
 
- /* Guardar Borrador */    
-
-  $('button[name="save"]').on('click',function(e) {      
+ /* Guardar Borrador */   
+  $('.bot.sig').on('click',function(e) {      
 
     e.preventDefault();
     var formElement = document.getElementById("story-form");
@@ -121,20 +133,25 @@
     xhr.addEventListener("readystatechange", function(e) {
                     var xhr = e.target;
                     if (xhr.readyState == 4) {
-    console.log('h');
+    
                         if(xhr.status == 200) {
                             
                             console.log('200');               
                             newResponse = JSON.parse( xhr.response);
                             var slug = newResponse.slug;                                                         
                             $('#story-form').append('<input type="hidden" name="slug" value="'+slug+'" />');     
-                           // sendData();                                                    
-                             //$('#cover-'+hash).value(  newId);                      
+                            // similar behavior as an HTTP redirect
+                            @if( isset($story) )
+                            window.location.replace("{{ route('node.create',$story->slug) }}");
+                            @else
+                            window.location.replace("{{ route('stories') }}/"+slug+"/nuevo-fragmento");
+                            @endif
+                            // similar behavior as clicking on a link
+                            // window.location.href = "http://stackoverflow.com";  
 
                         } else console.log(xhr.statusText);
                     }
                 });
-
  });
  
 
@@ -142,23 +159,23 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
 
 <script>
-$('select[name="tags[]"]').selectize({
-          delimiter: ',',
-					maxItems: null,
-					valueField: 'id',
-					labelField: 'title',
-					searchField: 'title',
-					options: [
-            @foreach( \App\Models\Tag::all() as $tag )
-						{id: '{{ $tag->id }}', title: '{{$tag->name}}',value: '{{$tag->name}}'},					
-            @endforeach
-					],
-          create: true,
-          render: {
-    option_create: function(data, escape) {
-      return '<div class="create">Agregar <strong>' + escape(data.input) + '</strong>&hellip;</div>';
-    }
-  }
-				});
+
+
+  $('#add_tag').on('click', function(e){
+    e.preventDefault();
+    var tag = $('#tag').val(); 
+   
+    $(".tag-group").append('<div class="tag-item"><p>'+tag+'<p><input type="hidden" name="tags[]" value="'+tag+'" /><button>@lang('Eliminar etiqueta')</button></div>');
+    $('#tag').val('');
+    //console.log($select);
+  });      
+
+
+  $('.tag-item').on('click', function(e){
+      $(this).remove();
+  });
+
+
+
 </script>
  @endpush

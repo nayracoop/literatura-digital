@@ -1,0 +1,59 @@
+.formulario{
+  font-family: $akzidenz-grotesk-pro-med;
+}
+
+.formulario form label{ 
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #272939; 
+  padding-left: 5px;
+  font-size: 1.285714285714286em;
+}
+
+.formulario form input, .formulario form textarea, .formulario form select{ 
+  border-radius: 4px; 
+  border-width: 0; 
+  color: #666; 
+  background-color: #F7F6F5;
+  box-shadow: 0 0 0 transparent inset;
+  min-height: 45px;
+  margin: 0;
+  font-size: 1.285714285714286em;
+}
+
+.formulario form textarea{ min-height: 230px; }
+
+.formulario form input:focus, .formulario form textarea:focus, , .formulario form textarea:select{ 
+   box-shadow: 0 0 0 transparent inset, 0 0 8px rgba(12,166,190,0.6);
+}
+
+.formulario .styled-select {
+   width: 310px;
+   overflow: hidden;
+   border-radius: 6px;
+   background: #F7F6F5 url(../img/iconos/flecha-select.svg) no-repeat center right;
+   }
+
+.formulario .styled-select select {
+   background: transparent;
+   width: 338px;
+   padding: 5px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 34px;
+   -webkit-appearance: none;
+}
+
+@media only screen and (max-width: $screen-xl) {
+  .formulario .styled-select{ width: 240px; }
+  .formulario .styled-select select{ width: 268px; }
+}
+
+.formulario .portada-archivo{
+  background: transparent;
+  max-width: 200px;
+  padding: 0 0 0 8px;
+  margin-top: 15px;
+  font-size: 1em;
+}
