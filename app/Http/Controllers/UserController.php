@@ -15,14 +15,14 @@ use App\User;
 
 class UserController extends Controller
 {
-   
+
 /**
  * XhrUpdateData
  */
 
   public function updateProfile(Request $request){
     $user = Auth::user();
-    $input = $request->all();    
+    $input = $request->all();
     $user->update($input);
    // $user->password = Hash::make($input['password']);
     return redirect()->back();
@@ -50,6 +50,18 @@ class UserController extends Controller
 
  }
 
+ /**
+  * stories
+  * seccion "mis relatos" del perfil de autor
+  *
+  */
+ public function nodes($slug){
+   return view('user.nodes')
+     ->with('user',Auth::user() )
+     ->with('story',Story::where('slug',$slug)->first());
+
+}
+
   /**
    * Guardar comentario sobre el autor
    *
@@ -60,10 +72,10 @@ class UserController extends Controller
       $input = $request->all();
       $author =  User::where('slug',$slug)->first();
       $comment = new Comment( $input );
-      
+
       $comment->user()->associate($user);
 
-      $author->comments()->save($comment) ; 
+      $author->comments()->save($comment) ;
       $author->save();
 
       return redirect()->back();
@@ -90,9 +102,9 @@ class UserController extends Controller
 
       $follow = User::where('username',$username)->first();
       $me = Auth::user();
-      
+
       $like = new Like();
-        
+
       return json( ['status' => 'ok'] );
 
    }
