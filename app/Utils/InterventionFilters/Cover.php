@@ -9,6 +9,6 @@ class Cover implements FilterInterface
 {
     public function applyFilter(Image $image)
     {
-        return $image->fit(200, 200);        
+        return $image->fit(200, 200);
     }
 }

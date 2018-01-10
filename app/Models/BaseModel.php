@@ -9,13 +9,10 @@ use Carbon\Carbon;
 class BaseModel extends Moloquent
 {
 
- //   use SoftDeletes;
-
+    // use SoftDeletes;
     protected $dates = [
         'created_at',
         'updated_at',
         'deleted_at'
     ];
-
-
 }

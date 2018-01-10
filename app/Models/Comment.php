@@ -4,9 +4,8 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 
-class Comment extends BaseModel 
+class Comment extends BaseModel
 {
-
     /**
      * The attributes that are mass assignable.
      *
@@ -21,9 +20,8 @@ class Comment extends BaseModel
     ];
 
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('\App\User');
     }
-
-
 }
