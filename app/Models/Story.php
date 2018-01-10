@@ -5,10 +5,10 @@ namespace App\Models;
 use App\Models\BaseModel;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
-class Story extends BaseModel 
+class Story extends BaseModel
 {
-        
-    use SoftDeletes;    
+
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -22,7 +22,8 @@ class Story extends BaseModel
         'published_at',
     ];
 
-    public function author() {
+    public function author()
+    {
         return $this->belongsTo('\App\User');
     }
 /*
@@ -54,20 +55,21 @@ class Story extends BaseModel
     /**
     * scopeFeatured
     *
-    * Nos da los relatos . 
-    * 
+    * Nos da los relatos.
+    *
     * @todo ordenados por valor de votacion
     * @author Jose Casanova <jose.casanova@nayra.coop>
-    * 
+    *
     * @param $count  cantidad de items a traer. Default 4
     *
-    * @return Collection Story  
+    * @return Collection Story
     **/
-    public function scopeFeatured($query, $count = 40){
-        return $query->where('status','publish')->take($count)->get();
+    public function scopeFeatured($query, $count = 40)
+    {
+        return $query->where('status', 'publish')->take($count)->get();
     }
 
-/**
+    /**
     * scopeGetFromAuthor
     *
     * Nos da los relatos pertenecientes al usuario solicitado . 

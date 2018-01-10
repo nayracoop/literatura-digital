@@ -22,6 +22,14 @@ PHP_INTERPRETER=php-fpm
 
 DATA_SAVE_PATH=~/.laradock/data
 
+### Docker compose files ###############################################################################################
+# Select which docker-compose files to include.
+# If using docker-sync. Set the value to: docker-compose.yml:docker-compose.dev.yml:docker-compose.sync.yml
+# Change the separator from : to ; on Windows
+
+COMPOSE_PATH_SEPARATOR=:
+COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml
+
 ### Docker Host IP #####################################################################################################
 # Enter your Docker Host IP (will be appended to /etc/hosts). Default is `10.0.75.1`
 
@@ -37,6 +45,11 @@ PHP_IDE_CONFIG=serverName=laradock
 
 COMPOSE_CONVERT_WINDOWS_PATHS=1
 
+### Environment ########################################################################################################
+# If you're in China, or you need to change sources, will be set CHANGE_SOURCE to true in .env.
+
+CHANGE_SOURCE=false
+
 ########################################################################################################################
 
 ###########################################################
@@ -50,6 +63,7 @@ WORKSPACE_INSTALL_LDAP=false
 WORKSPACE_INSTALL_SOAP=false
 WORKSPACE_INSTALL_IMAP=false
 WORKSPACE_INSTALL_MONGO=true
+WORKSPACE_INSTALL_AMQP=false
 WORKSPACE_INSTALL_PHPREDIS=false
 WORKSPACE_INSTALL_MSSQL=false
 WORKSPACE_INSTALL_NODE=false
@@ -72,6 +86,7 @@ WORKSPACE_INSTALL_IMAGEMAGICK=false
 WORKSPACE_INSTALL_TERRAFORM=false
 WORKSPACE_INSTALL_DUSK_DEPS=false
 WORKSPACE_INSTALL_PG_CLIENT=false
+WORKSPACE_INSTALL_SWOOLE=false
 WORKSPACE_PUID=1000
 WORKSPACE_PGID=1000
 WORKSPACE_CHROME_DRIVER_VERSION=2.32
@@ -82,14 +97,14 @@ WORKSPACE_SSH_PORT=2222
 
 ### PHP_FPM ############################################################################################################
 
-### Enabled to allow debug
 PHP_FPM_INSTALL_XDEBUG=true
-### Enabled to use our dear MongoDB
 PHP_FPM_INSTALL_MONGO=true
+PHP_FPM_INSTALL_AMQP=false
 PHP_FPM_INSTALL_MSSQL=false
 PHP_FPM_INSTALL_SOAP=false
 PHP_FPM_INSTALL_ZIP_ARCHIVE=false
 PHP_FPM_INSTALL_BCMATH=false
+PHP_FPM_INSTALL_GMP=false
 PHP_FPM_INSTALL_PHPREDIS=false
 PHP_FPM_INSTALL_MEMCACHED=false
 PHP_FPM_INSTALL_OPCACHE=false
@@ -97,7 +112,6 @@ PHP_FPM_INSTALL_EXIF=false
 PHP_FPM_INSTALL_AEROSPIKE=false
 PHP_FPM_INSTALL_MYSQLI=false
 PHP_FPM_INSTALL_PGSQL=false
-PHP_FPM_INSTALL_POSTGRES=false
 PHP_FPM_INSTALL_TOKENIZER=false
 PHP_FPM_INSTALL_INTL=false
 PHP_FPM_INSTALL_GHOSTSCRIPT=false
@@ -113,7 +127,6 @@ PHP_WORKER_INSTALL_PGSQL=false
 
 ### NGINX ##############################################################################################################
 
-### Change default port for development environments with port 80 taken
 NGINX_HOST_HTTP_PORT=8080
 NGINX_HOST_HTTPS_PORT=443
 NGINX_HOST_LOG_PATH=./logs/nginx/

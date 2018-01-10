@@ -13,7 +13,7 @@ class Genre extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'name','slug'
+        'name', 'slug'
     ];
 
     public function comments()
@@ -25,5 +25,4 @@ class Genre extends BaseModel
     {
         return $this->embedsMany('\App\Models\Label');
     }
-
 }

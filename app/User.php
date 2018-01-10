@@ -5,15 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Foundation\Auth\CanResetPassword;
-//use Moloquent\Eloquent\SoftDeletes;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
-//use Jenssegers\Mongodb\Auth\PasswordResetServiceProvider as PasswordResetServiceProvider;
 use App\Models\Story;
+use App\Models\UserType;
 
-
-class User extends Authenticatable  
+class User extends Authenticatable implements UserType
 {
-    
     use Notifiable;
     use SoftDeletes;
 
@@ -23,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username','first_name', 'last_name', 'email', 'password','role','avatar','description'
+        'username', 'first_name', 'last_name', 'email', 'password', 'role', 'avatar', 'description', 'user_type'
     ];
 
     /**
@@ -35,36 +32,33 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
-
-/**
-* getStories nos da los relatos pertenecientes al usuario instanciado
-* @return collection
-*/
-    public function getStories(){
-        return Story::getFromAuthor( $this->getIdAttribute() )->get();
+    /**
+     * getStories nos da los relatos pertenecientes al usuario instanciado
+     * @return collection
+     */
+    public function getStories()
+    {
+        return Story::getFromAuthor($this->getIdAttribute())->get();
     }
 
-/**
-* getAuthorName helper para nombre completo del autor
-* @return String
-*/
-
-     public function getName(){
+    /**
+     * getAuthorName helper para nombre completo del autor
+     * @return String
+     */
+    public function getName()
+    {
        // $author
         return $this->first_name.' '.$this->last_name;
-     }
+    }
 
-/**
-* Comentarios sobre el autor
-*
-*/
-    
+    /**
+     * Comentarios sobre el autor
+     *
+     */
     public function comments()
     {
         return $this->embedsMany('\App\Models\Comment');
     }
 
 
-    
 }
