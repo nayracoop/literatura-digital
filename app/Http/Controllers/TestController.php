@@ -17,13 +17,15 @@ class TestController extends Controller
 
   }
 
-  public function storeXhrStory(Request $request){
-      $story = null;$s = null;
-      $input = $request->all();
+    public function storeXhrStory(Request $request)
+    {
+         $story = null;
+         $s = null;
+         $input = $request->all();
       //echo 'fgd '.$input['slug'];
-      if($request->has('slug') ){
-        $s =  Story::where('_id',$request->slug)->orWhere('slug',$request->slug)->first();
-        $a = $s->update( $input );
+        if ($request->has('slug')) {      
+            $s =  Story::where('_id',$request->slug)->orWhere('slug',$request->slug)->first();
+            $a = $s->update( $input );
        // echo "g";
       }else{
         $story = new Story();
@@ -31,13 +33,13 @@ class TestController extends Controller
         $s->author()->associate( Auth::user() );
       //  echo "new";
       }
-   
-           
+
+
       if( empty($s->title)   ){
           $s->slug = $s->getIdAttribute();
       }else{
           $s->slug = str_Slug($s->title);
-      } 
+      }
     //  print_r( $request->tags);
       if( $request->has('tags') ){
          $s->unset('tags');
@@ -52,12 +54,12 @@ class TestController extends Controller
             }elseif( $s->tags->where('_id',$t->id)->first() === null ){
               $s->tags()->associate($t);
             }
-            
+
         }
       }
 
       $s->status = 'draft';
-      $s->save(); 
+      $s->save();
 
       return response()->json([
         'author' => Auth::user()->_id,
@@ -86,15 +88,15 @@ class TestController extends Controller
    */
   public function storeXhrPicture(UploadPicture $request, $story = null){
     $cover = '';
-    if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){      
-               $cover = date('Y/m/dHis').'.'.$request->cover->extension(); 
-               $path = $request->cover->storeAs('',$cover, 'nayra');         
+    if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){
+               $cover = date('Y/m/dHis').'.'.$request->cover->extension();
+               $path = $request->cover->storeAs('',$cover, 'nayra');
     }
 
-    if($story != null){   
+    if($story != null){
       $s = Story::where('_id',$story)->orWhere('slug',$story)->first();
       $s->cover = $cover;
-      $s->save(); 
+      $s->save();
     }
     return response()->json([
       'picUrl' => url('imagenes/cover/'.$cover),'picName' => $cover
@@ -102,16 +104,16 @@ class TestController extends Controller
   }
 
   /**
-   * 
+   *
    */
   public function searchXhr(Request $request){
-      
+
   }
 
 
 
   /**
-   * 
+   *
    */
    public function deleteUser(){
    	$user = User::where('email','jose@gmail.com')->first();
@@ -122,8 +124,8 @@ class TestController extends Controller
    public function listUsers(){
   	 foreach (User::all() as $user ) {
     	echo "<br> $user->email";
-   	 } 
-	
+   	 }
+
    }
 
 
@@ -132,13 +134,12 @@ class TestController extends Controller
       echo "<br> $story->title";
       // print_r($story);
        echo "<br>";
-     } 
+     }
 
 
-  
+
    }
 
 
 
 }
-

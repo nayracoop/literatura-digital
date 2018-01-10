@@ -36,4 +36,26 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+/**
+* postLogin
+*/
+    public function postLogin(Request $request)
+    {
+        $auth = false;
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $auth = true; // Success
+        }
+
+        if ($request->ajax()) {
+            return response()->json([
+                'auth' => $auth,
+                'intended' => URL::previous()
+            ]);
+        } else {
+            return redirect()->intended(URL::route('index'));
+        }
+        return redirect(URL::route('index'));
+    }
 }

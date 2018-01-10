@@ -11,7 +11,7 @@
           <input type="text" name="username">
           <label for="pass">@lang('Elegí una contraseña')</label>
           <input type="password" name="password">
-          
+
           <input type="submit" name="login" class="login loginmodal-submit" value="Empezá a escribir">
         </form>
         <div class="login-help">

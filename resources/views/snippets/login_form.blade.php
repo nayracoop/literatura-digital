@@ -9,7 +9,7 @@
           <input type="text" name="email" class="email">
           <label for="pass">@lang('Contraseña')</label>
           <input type="password" name="password">
-          <input type="submit" name="login" class="login loginmodal-submit" value="Ingresá">
+          <input id="login-button" type="submit" name="login" class="login loginmodal-submit" value="Ingresá">
           <p class="recovery"><a href="#">@lang('¿Olvidaste tu contraseña?')</a></a></p>
         </form>
         <div class="login-help">
@@ -18,3 +18,39 @@
       </div>
     </div>
   </div>
+
+@push('javascript')
+<script>
+//Login via Ajax
+
+$('#login-button').on("click", function(e){
+//  e.preventDefault();
+//  loginUser();
+//  searchByGenre(location.hash);
+});
+
+function loginUser() {
+  var formElement = document.getElementById("ingresar");
+  var formData = new FormData( formElement );
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    //  document.getElementById("demo").innerHTML = this.responseText;
+     // console.log(xhttp.statusText);
+     newResponse = JSON.parse( xhttp.response);
+     console.log(newResponse);
+    // console.log('logueado');
+    }else{
+      console.log(xhttp.statusText);
+      //console.log('ERROR');
+    }
+  };
+  xhttp.open("POST", "{{route('login')}}", true);
+  xhttp.setRequestHeader('X-CSRF-Token', "{{csrf_token()}}" );
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(formData);
+
+
+}
+</script>
+@endpush

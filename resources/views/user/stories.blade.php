@@ -5,12 +5,12 @@
 
 <div class="fondo-forms">
 <div class="container listado-relatos">
-  <div class="row">         
+  <div class="row">
     <div class="col-md-12">
 
         <h1>Listado de relatos</h1>
         <hr />
-          
+
         <table summary="Lista de relatos del usuario">
         <caption class="invisibilizar">Lista de relatos del usuario</caption>
         <thead>
@@ -25,15 +25,15 @@
           </tr>
         </thead>
         <tbody>
-          
+
           @foreach( $user->getStories() as $story )
           <tr>
             <td class="ocultar-lg">
               <a href="{{route('author.story.nodes',$story->slug)}}">
               <div class="image-clip">@if(  $story->cover != null && !empty($story->cover)  )
-                  <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">        
+                  <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">
                   @else
-                  <img alt="" src="{{ asset('img/img-3.jpg')}}"> 
+                  <img alt="" src="{{ asset('img/img-3.jpg')}}">
                   @endif</div>
               </a>
             </td>
@@ -42,7 +42,7 @@
             <td class="ocultar-lg">2000</td>
             <td class="ocultar-sm">{{ $story->status }}</td>
             <td class="ocultar-sm">{{ $story->likes->count() }}</td>
-            <td><button>Editar</button></td>
+            <td><a href="{{route('story.edit',$story->slug)}}"><button>Editar</button></a></td>
           </tr>
           @endforeach
         </tbody>
@@ -53,7 +53,7 @@
     </div>
   </div>
 </div>
-</div> 
+</div>
 @endsection
 
 @push('javascript')
@@ -66,25 +66,25 @@ $('input[name="search"]').bind('input',function(){
   console.log('gato');
   formElement = document.getElementById("stories_search");
 
-  var xhr = new XMLHttpRequest();   
-    var formData = new FormData( formElement ); 
-  
+  var xhr = new XMLHttpRequest();
+    var formData = new FormData( formElement );
+
     formData.append('_token', '{{ csrf_token() }}');
-    console.log(formData);   
-   // formData.append('_method', 'PATCH');             
+    console.log(formData);
+   // formData.append('_method', 'PATCH');
     xhr.open("POST", '{{ route( 'stories.search') }}');
     xhr.send(formData);
-    
+
     xhr.addEventListener("readystatechange", function(e) {
                     var xhr = e.target;
                     if (xhr.readyState == 4) {
   //  console.log('h');
                         if(xhr.status == 200) {
-                            
-                            console.log('200');               
+
+                            console.log('200');
                             newResponse = JSON.parse( xhr.response);
-                            var results = newResponse.results;                                                                                   
-                            $('.items-listado').empty(); 
+                            var results = newResponse.results;
+                            $('.items-listado').empty();
                             $('.items-listado').append(results);
                         } else console.log(xhr.statusText);
                     }
