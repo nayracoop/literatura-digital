@@ -22,11 +22,10 @@ class StoryController extends Controller
      */
     public function index()
     {
-        //
         $stories = Story::featured();
         return view('home')
-        ->with('stories', $stories);
-     }
+            ->with('stories', $stories);
+    }
 
 
      /**
@@ -35,18 +34,20 @@ class StoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function stories(Request $request)
-    {   $search = trim($request->search);
-        //
-      //  echo "$search";
-      if($request->has('search')){
-          $stories = Story::where('title','like',"%$search%")->orWhere('description','like',"%$search%")->get();
-      }else{
-          $stories = Story::featured();
-      }
-        //dd($stories);
+    {
+        $search = trim($request->search);
+        
+        if ($request->has('search')) {
+            $stories = Story::where('title', 'like', "%$search%")
+                            ->orWhere('description', 'like', "%$search%")
+                            ->get();
+        } else {
+            $stories = Story::featured();
+        }
+        
         return view('stories.stories')
-        ->with('stories', $stories);
-     }
+            ->with('stories', $stories);
+    }
 
      /**
      * Get the requested Story
@@ -55,22 +56,20 @@ class StoryController extends Controller
      */
     public function show($slug)
     {
-        //
-       $story = Story::where('slug', $slug)->first();
-       $story->views ++;
-       $story->save();
-       //print_r($story);
-       return view('stories.story')
-       ->with('story', $story);
-     }
+        $story = Story::where('slug', $slug)->first();
+        $story->views++;
+        $story->save();
+
+        return view('stories.story')
+            ->with('story', $story);
+    }
 
      /**
      * Muestra el formulario para metadatos de relato
      */
     public function createStory()
     {
-      return view('stories.create_story')
-       ;
+        return view('stories.create_story');
     }
 
      /**
@@ -78,85 +77,79 @@ class StoryController extends Controller
      */
     public function storeStory(Request $request)
     {
-      
-      $author = Auth::user();
-      $input = $request->all();
-      $story =  new \App\Models\Story();
-      
-      //imagen de portada
-      if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){
+        $author = Auth::user();
+        $input = $request->all();
+        $story =  new \App\Models\Story();
+        
+        //imagen de portada
+        if ($request->hasFile('cover') && $request->file('cover')->isValid()) {
+            $cover = date('Y/m/dHis').'.'.$request->cover->extension();
+            $path = $request->cover->storeAs('', $cover, 'nayra');
+            $input['cover'] = $cover;
+        }
+        
+        //titulo
+        if (empty($input['title'])) {
+            $input['title'] = 'borrador-'.date('dmYHis');
+        }
 
-         $cover = date('Y/m/dHis').'.'.$request->cover->extension(); 
-         $path = $request->cover->storeAs('',$cover, 'nayra');
-         $input['cover'] = $cover;
+        //@todo validar slug
+        $s = $story->create($input);
+        
+        // publicar o borrador
+        if ($request->has('draft')) {
+            $s->status = 'draft';
+        } else {
+            $s->status = 'publish';
+        }
 
-      }
-      //titulo
-      if( empty($input['title']) ){
-        $input['title'] = 'borrador-'.date('dmYHis');
-      }
-      // print_r($input);
+        $s->slug = str_slug($s->title);
+        $s->author()->associate($author);
+        $s->save();
 
-      //@todo validar slug   
-      $s = $story->create($input);    
-      
-      // publicar o borrador
-      if( $request->has('draft') ) {
-        $s->status = 'draft';
-      }else{
-        $s->status = 'publish';
-      }
-
-      $s->slug = str_slug( $s->title );
-      $s->author()->associate($author);
-      $s->save();
-
-      return redirect()->back();
-    
+        return redirect()->back();
     }
 
-
-
-    public function editStory($slug){
-       return view('stories.edit_story')->with('story', Story::where('slug',$slug)->first())
-       ;
+    public function editStory($slug)
+    {
+        return view('stories.edit_story')->with('story', Story::where('slug', $slug)->first());
     }
 
-    public function updateStory(Request $request,$slug ){
-   //    $author = Auth::user();
-      $input = $request->all();
-      $story = Story::where('slug',$slug)->first();
-      print_r($story);
-      //imagen de portada
-      if(  $request->hasFile('cover') && $request->file('cover')->isValid() ){
+    public function updateStory(Request $request, $slug)
+    {
+        $input = $request->all();
+        $story = Story::where('slug', $slug)->first();
+        print_r($story);
 
-         $cover = date('Y/m/dHis').'.'.$request->cover->extension(); 
-         $path = $request->cover->storeAs('',$cover, 'nayra');
-         $input['cover'] = $cover;
+        //imagen de portada
+        if ($request->hasFile('cover') && $request->file('cover')->isValid()) {
 
-      }
-      //titulo
-      if( empty($input['title']) ){
-        $input['title'] = 'borrador-'.date('dmYHis');
-      }
-      // print_r($input);
+            $cover = date('Y/m/dHis').'.'.$request->cover->extension();
+            $path = $request->cover->storeAs('', $cover, 'nayra');
+            $input['cover'] = $cover;
+        }
 
-      //@todo validar slug   
-      $s = $story->update($input);    
-      
-      // publicar o borrador
-      if( $request->has('draft') ) {
-        $story->status = 'draft';
-      }else{
-        $story->status = 'publish';
-      }
+        //titulo
+        if (empty($input['title'])) {
+            $input['title'] = 'borrador-'.date('dmYHis');
+        }
+        // print_r($input);
 
-      $story->slug = str_slug( $story->title );
-   //  $s->author()->associate($author);
-      $story->save();
+        // @todo validar slug
+        $s = $story->update($input);
+        
+        // publicar o borrador
+        if( $request->has('draft') ) {
+            $story->status = 'draft';
+        }else{
+            $story->status = 'publish';
+        }
 
-      return redirect()->back();
-    
+        $story->slug = str_slug( $story->title );
+    //  $s->author()->associate($author);
+        $story->save();
+
+        return redirect()->back();    
     }
 
     /**

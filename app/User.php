@@ -7,9 +7,8 @@ use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Foundation\Auth\CanResetPassword;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 use App\Models\Story;
-use App\Models\UserType;
 
-class User extends Authenticatable implements UserType
+class User extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
@@ -20,7 +19,7 @@ class User extends Authenticatable implements UserType
      * @var array
      */
     protected $fillable = [
-        'username', 'first_name', 'last_name', 'email', 'password', 'role', 'avatar', 'description', 'user_type'
+        'username', 'first_name', 'last_name', 'email', 'password', 'role', 'avatar', 'description'
     ];
 
     /**
@@ -59,6 +58,4 @@ class User extends Authenticatable implements UserType
     {
         return $this->embedsMany('\App\Models\Comment');
     }
-
-
 }

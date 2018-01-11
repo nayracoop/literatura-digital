@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\UserType;
 
 class RegisterController extends Controller
 {
@@ -19,7 +20,6 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
     use RegistersUsers;
 
     /**
@@ -48,9 +48,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-           // 'last_name' => 'required|max:255',
-           // 'first_name' => 'required|max:255',
-
+            // 'last_name' => 'required|max:255',
+            // 'first_name' => 'required|max:255',
             'username' => 'required|max:255',
             'email' => 'required|email|max:255',
             'password' => 'required|min:6',
@@ -65,14 +64,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $role = isset($data['role']) && $data['role'] != null ? $data['role'] : UserType::AUTHOR;
 
-           // 'first_name' => $data['first_name'],
-           // 'last_name' => $data['last_name'],
+        return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'role' => 'author'
+            'role' => $role
         ]);
     }
 }

@@ -31,7 +31,7 @@ abstract class Enum
     {
         if (!static::constants()->contains($value)) {
             throw new UnexpectedValueException(sprintf(
-                'Value `%s` is not part of the enum %s',
+                '`%s` no es un valor del enum %s',
                 $value,
                 static::class
             ));
@@ -125,7 +125,7 @@ abstract class Enum
         }
 
         throw new BadMethodCallException(sprintf(
-            'No static method or enum constant `%s` in class %s',
+            'No existe la constante `%s` en la clase %s',
             $name,
             static::class
         ));
