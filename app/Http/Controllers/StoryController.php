@@ -123,7 +123,6 @@ class StoryController extends Controller
 
         //imagen de portada
         if ($request->hasFile('cover') && $request->file('cover')->isValid()) {
-
             $cover = date('Y/m/dHis').'.'.$request->cover->extension();
             $path = $request->cover->storeAs('', $cover, 'nayra');
             $input['cover'] = $cover;
@@ -139,17 +138,16 @@ class StoryController extends Controller
         $s = $story->update($input);
         
         // publicar o borrador
-        if( $request->has('draft') ) {
+        if ($request->has('draft')) {
             $story->status = 'draft';
-        }else{
+        } else {
             $story->status = 'publish';
         }
 
-        $story->slug = str_slug( $story->title );
-    //  $s->author()->associate($author);
+        $story->slug = str_slug($story->title);
+        // $s->author()->associate($author);
         $story->save();
-
-        return redirect()->back();    
+        return redirect()->back();
     }
 
     /**
@@ -159,20 +157,19 @@ class StoryController extends Controller
      */
     public function showNode($slug, $slugNode)
     {
-       $story = Story::where('slug', $slug)->first();       
-       return view('nodes.node')
-       ->with('story', $story)
-       ->with('textNode', $story->textNodes->where('slug', $slugNode)->first()  );
-     }
+        $story = Story::where('slug', $slug)->first();
+        return view('nodes.node')
+            ->with('story', $story)
+            ->with('textNode', $story->textNodes->where('slug', $slugNode)->first());    
+    }
 
-  /**
+    /**
      * Muestra el formulario para nuevos fragmentos (Node)
      */
     public function createNode($slug)
     {
-      return view('nodes.create_node')
-        ->with('story',Story::where('slug', $slug)->first())
-       ;
+        return view('nodes.create_node')
+            ->with('story', Story::where('slug', $slug)->first());
     }
 
      /**

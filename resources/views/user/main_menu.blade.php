@@ -1,15 +1,15 @@
 @auth
-    @php
-        $user = auth()->user();
-    @endphp
-    @if($user->role == \App\Models\UserType::AUTHOR)
-        <li><a href="{{  route('author.stories') }}">@lang('Mis Relatos')</a></li>
-        <li><a href="{{  route('story.create') }}">@lang('Crear Relato')</a></li>
-    @elseif($user->role == \App\Models\UserType::MOD)
-        <li><a href="{{  route('story.create') }}">MODERAR</a></li>
-    @elseif($user->role == \App\Models\UserType::ADMIN)
-        <li><a href="{{  route('admin.list-users') }}">USUARIOS</a></li>
-    @endif
+        @php
+            $user = auth()->user();
+        @endphp
+        @if($user->role == \App\Models\UserType::AUTHOR)
+            <li><a href="{{  route('author.stories') }}">@lang('Mis Relatos')</a></li>
+            <li><a href="{{  route('story.create') }}">@lang('Crear Relato')</a></li>
+        @elseif($user->role == \App\Models\UserType::MOD)
+            <li><a href="{{  route('story.create') }}">MODERAR</a></li>
+        @elseif($user->role == \App\Models\UserType::ADMIN)
+            <li><a href="{{  route('admin.list-users') }}">USUARIOS</a></li>
+        @endif
     </ul>
 
     <ul class="nav navbar-nav login">

@@ -31,11 +31,12 @@
                 <li>
                     <a href="#contact">Contacto</a>
                 </li>
-            {{--  
-                Menú que arma los accesos para el tipo de usuario logueado
-                ojo que cierra el </ul> de arriba
-            --}}
-            @include('user.main_menu')
+                {{--  
+                    Menú que arma los accesos para el tipo de usuario logueado
+                    ojo que cierra el </ul> de arriba
+                --}}
+                @include('user.main_menu')
+                
         </div>
     </div>
 </nav>
