@@ -55,7 +55,7 @@ class UserController extends Controller
     {
         return view('user.nodes')
             ->with('user', Auth::user())
-            ->with('story', Story::where('slug', $slug)->first());
+            ->with('story', Story::where('slug', $slug)->orWhere('_id', $slug)->first());
     }
 
     /**
