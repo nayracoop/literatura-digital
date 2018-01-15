@@ -9,6 +9,7 @@
 @section('content')
   <div class="fondo-forms">
     <div class="container formulario form-detalle">
+
       <div class="row">
         <div class="col-lg-12">
           <h1><span class="numero">1<span class="invisibilizar">.</span></span>@lang('Completá algunos detalles de tu relato.')</h1>
@@ -20,16 +21,15 @@
               <label for="nombre">@lang('Título') *</label>
               <input type="text" class="form-control" id="titulo" name="title" value="{{$story->title or ''}}">
               <label for="mensaje">@lang('Descripción') *</label>
-              <textarea class="form-control" id="mensaje" name="description" {{$story->description or ''}}>
-              </textarea>
+              <textarea class="form-control" id="mensaje" name="description" >{{$story->description or ''}}</textarea>
               <div class="row">
                 <div class="col-md-6">
                   <label for="tipologia">@lang('Tipología') *</label>
                   <div class="styled-select">
                     <select type="text" class="form-control" id="tipologia" name="typology">
-                      <option value="episodic">Episódico</option>
-                      <option value="choral" >Coral</option>
-                      <option value="rizome" >Hipertexto</option>
+                      <option value="episodic" @if(isset( $story ) && $story->typology === 'episodic') selected @endif   >Episódico</option>
+                      <option value="choral" @if(isset( $story ) && $story->typology === 'choral') selected @endif >Coral</option>
+                      <option value="rizome" @if(isset( $story ) && $story->typology === 'rizome') selected @endif >Hipertexto</option>
                     </select>
                   </div>
                 </div>
@@ -38,7 +38,7 @@
                   <div class="styled-select">
                     <select type="text" class="form-control" id="genero" name="genre">
                      @foreach( \App\Models\Genre::all() as $genre )
-                     <option  value="{{$genre->slug}}" @if(isset( $story ) && $story->genre == $genre) selected @endif>{{$genre->name}}</option>
+                     <option  value="{{$genre->slug}}" @if(isset( $story ) && !empty($story->genre) && $story->genre === $genre->slug ) selected @endif >{{$genre->name}}</option>
                      @endforeach
                     </select>
                   </div>
@@ -50,7 +50,12 @@
           <div class="col-md-4">
             <label for="portada">@lang('Portada del relato')</label>
             <div class="portada-border">
-              <img src="img/img-2.jpg" alt="" />
+              @if( isset($story) && $story->cover != null && !empty($story->cover)  )
+              <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">
+              @else
+              <img alt="" src="{{ asset('img/img-2.jpg')}}">
+              @endif
+
             </div>
             <input type="file" class="form-control portada-archivo" name="cover_drag" id="portada">
             <h2>Etiquetas</h2>
@@ -62,7 +67,8 @@
               </div>
             @endforeach
 
-              <input type="hidden"  name="slug" value="{{ $story->slug }}" />
+
+              <input type="hidden"  name="id" value="{{ $story->_id }}" />
             @endif
             </div>
             <label for="tag" class="more-tags-title">@lang('Agregar etiqueta'):</label>
@@ -128,10 +134,11 @@
   $('.bot.sig').on('click',function(e) {
 
     e.preventDefault();
+    $('.alert').remove();
     var formElement = document.getElementById("story-form");
     var xhr = new XMLHttpRequest();
     var formData = new FormData( formElement );
-    formData.append('status', 'draft');
+    //formData.append('status', 'draft');
     formData.append('_token', '{{ csrf_token() }}');
     xhr.open("POST", '{{ route( 'save-story' ) }}');
     xhr.send(formData);
@@ -144,15 +151,10 @@
 
                             console.log('200');
                             newResponse = JSON.parse( xhr.response);
-
+                        //    var alert = "include('snippets.flash.saved_changes')";
+                            var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>'
+                            $('.container.formulario').prepend(alert);
                             // similar behavior as an HTTP redirect
-                            @if( isset($story) )
-                          //  window.location.replace("{{ route('node.create',$story->slug) }}");
-                            @else
-                            var slug = newResponse.slug;
-                            $('#story-form').append('<input type="hidden" name="slug" value="'+slug+'" />');
-                          //  window.location.replace("{{ route('stories') }}/"+slug+"/nuevo-fragmento");
-                            @endif
                             // similar behavior as clicking on a link
                             // window.location.href = "http://stackoverflow.com";
 

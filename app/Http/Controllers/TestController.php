@@ -23,50 +23,50 @@ class TestController extends Controller
          $s = null;
          $input = $request->all();
       //echo 'fgd '.$input['slug'];
-        if ($request->has('slug')) {      
-            $s =  Story::where('_id',$request->slug)->orWhere('slug',$request->slug)->first();
-            $a = $s->update( $input );
+        if ($request->has('id')) {
+            $s =  Story::where('_id', $request->id)->orWhere('slug', $request->slug)->first();
+            $a = $s->update($input);
        // echo "g";
-      }else{
-        $story = new Story();
-        $s = $story->create( $input );
-        $s->author()->associate( Auth::user() );
+        } else {
+            $story = new Story();
+            $s = $story->create($input);
+            $s->author()->associate(Auth::user());
       //  echo "new";
-      }
+        }
 
-
+      /*
       if( empty($s->title)   ){
           $s->slug = $s->getIdAttribute();
       }else{
           $s->slug = str_Slug($s->title);
       }
+      */
     //  print_r( $request->tags);
-      if( $request->has('tags') ){
-         $s->unset('tags');
-         foreach( $request->tags as $tag ){
-            $tag = trim($tag);
-            $t = Tag::where('_id',$tag)->orWhere('name',$tag)->first();
+        if ($request->has('tags')) {
+            $s->unset('tags');
+            foreach ($request->tags as $tag) {
+                $tag = trim($tag);
+                $t = Tag::where('_id', $tag)->orWhere('name', $tag)->first();
 
-            if($t  === null ){
-               $newTag =  Tag::create( ['name' => $tag] );
+                if ($t  === null) {
+                    $newTag =  Tag::create(['name' => $tag]);
                //$newTag->name = trim($tag);
-               $s->tags()->associate($newTag);
-            }elseif( $s->tags->where('_id',$t->id)->first() === null ){
-              $s->tags()->associate($t);
+                    $s->tags()->associate($newTag);
+                } elseif ($s->tags->where('_id', $t->id)->first() === null) {
+                    $s->tags()->associate($t);
+                }
             }
-
         }
-      }
 
-      $s->status = 'draft';
-      $s->save();
+        $s->status = 'draft';
+        $s->save();
 
-      return response()->json([
+        return response()->json([
         'author' => Auth::user()->_id,
         'slug' => $s->slug,
          'input' => $input
-      ]);
-  }
+        ]);
+    }
 
 
   public function updateXhrStory(Request $request, $slug){
