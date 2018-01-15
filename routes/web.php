@@ -1,11 +1,12 @@
 <?php
+
 use Illuminate\Http\Request;
+
 /*
 * Web Routes
 */
 #home
 Route::get('/', 'StoryController@index')->name('index');
-
 
 #relatos y nodos 
 Route::get('/relatos', 'StoryController@stories')->name('stories');
@@ -13,7 +14,6 @@ Route::post('/relatos/genero', 'StoryController@searchByGenre')->name('searchByG
 Route::get('/relatos/genero/{genre?}', 'StoryController@searchByGenre')->name('stories.genre');
 
 Route::post('/relatos/busqueda', 'StoryController@search')->name('stories.search');
-
 
 #Crear Relato
 Route::get('/mi-perfil/relatos/nuevo', 'StoryController@createStory')->name('story.create');
@@ -24,24 +24,19 @@ Route::get('/relatos/{slug}', 'StoryController@show')->name('story.show');
 Route::get('/relatos/{slug}/editar', 'StoryController@editStory')->name('story.edit');
 Route::patch('/relatos/{slug}/editar', 'StoryController@updateStory')->name('story.update');
 
-
-
 #dejar comentario
-Route::post('/relatos/{slug}/comentar','StoryController@storeComment')->name('comment.store');
-Route::post('/autor/{slug}/comentar','UserController@storeComment')->name('comment.author.store');
+Route::post('/relatos/{slug}/comentar', 'StoryController@storeComment')->name('comment.store');
+Route::post('/autor/{slug}/comentar', 'UserController@storeComment')->name('comment.author.store');
 //crear nodos de un relato
-Route::get('/relatos/{slug}/nuevo-fragmento','StoryController@createNode')->name('node.create');
-Route::post('/relatos/{slug}/nuevo-fragmento','StoryController@storeNode')->name('node.store');
-
-
+Route::get('/relatos/{slug}/nuevo-fragmento', 'StoryController@createNode')->name('node.create');
+Route::post('/relatos/{slug}/nuevo-fragmento', 'StoryController@storeNode')->name('node.store');
 
 Route::get('/relatos/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')->name('node.show');
 
 #Like - relato - fragmento  
-Route::post('/favoritos/{stroy}/{node?}','StoryController@like')->name('like');
+Route::post('/favoritos/{stroy}/{node?}', 'StoryController@like')->name('like');
 #Like pero para users
-Route::post('/seguir/{username}','UserController@follow')->name('follow');
-
+Route::post('/seguir/{username}', 'UserController@follow')->name('follow');
 
 #perfil-usuario
 Route::get('/mi-perfil', 'UserController@myProfile')->name('author.edit');
@@ -60,23 +55,20 @@ Route::patch('/update-story/{slug}', 'TestController@updateXhrStory')->name('upd
 #etiquetas
 Route::post('/tags', 'TestController@tagAction')->name('tag-action');
 
-
-Route::get('/salir', function(){
-    if(Auth::check()){
+Route::get('/salir', function () {
+    if (Auth::check()) {
         Auth::logout();
     }
     return redirect()->back();
 })->name('salir');
 
-
 #ADMIN
-Route::get('/admin/usuarios','AdminController@listUsers')->name('admin.list-users');
-
+Route::get('/admin/usuarios', 'AdminController@listUsers')->name('admin.list-users');
 
 # Controlador de pruebas
-Route::get('/delete-user','TestController@deleteUser');
-Route::get('/list-users','TestController@listUsers');
-Route::get('/list-user-stories','TestController@listUserStories');
+Route::get('/delete-user', 'TestController@deleteUser');
+Route::get('/list-users', 'TestController@listUsers');
+Route::get('/list-user-stories', 'TestController@listUserStories');
 
 #rutas temporales para pruebas
 /*
@@ -90,8 +82,10 @@ Route::get('/save-nodes', function(){
     $a =  \App\Models\Story::where('slug', 'macri-gato')->first();
 
     //---
-    $tn1 = new \App\Models\TextNode(['title' => 'A','text' => 'hfuiwjgk gyugu ghugdf', 'image'=> 'default.jpg','title' => 'published_at' ]);
-    $tn2 = new \App\Models\TextNode(['title' => 'A','text' => 'hfuiwjgk gyugu ghugdf', 'image'=> 'default.jpg','title' => 'published_at' ]);
+    $tn1 = new \App\Models\TextNode(['title' => 'A','text' => 'hfuiwjgk gyugu ghugdf', 'image'=> 
+    'default.jpg','title' => 'published_at' ]);
+    $tn2 = new \App\Models\TextNode(['title' => 'A','text' => 'hfuiwjgk gyugu ghugdf', 'image'=> 
+    'default.jpg','title' => 'published_at' ]);
 
     //---
     $a->textNodes()->save($tn1) ;
