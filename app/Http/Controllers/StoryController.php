@@ -35,7 +35,7 @@ class StoryController extends Controller
     public function stories(Request $request)
     {
         $search = trim($request->search);
-        
+
         if ($request->has('search')) {
             $stories = Story::where('title', 'like', "%$search%")
                             ->orWhere('description', 'like', "%$search%")
@@ -43,7 +43,7 @@ class StoryController extends Controller
         } else {
             $stories = Story::featured();
         }
-        
+
         return view('stories.stories')
             ->with('stories', $stories);
     }
@@ -79,14 +79,14 @@ class StoryController extends Controller
         $author = Auth::user();
         $input = $request->all();
         $story =  new \App\Models\Story();
-        
+
         //imagen de portada
         if ($request->hasFile('cover') && $request->file('cover')->isValid()) {
             $cover = date('Y/m/dHis').'.'.$request->cover->extension();
             $path = $request->cover->storeAs('', $cover, 'nayra');
             $input['cover'] = $cover;
         }
-        
+
         //titulo
         if (empty($input['title'])) {
             $input['title'] = 'borrador-'.date('dmYHis');
@@ -94,7 +94,7 @@ class StoryController extends Controller
 
         //@todo validar slug
         $s = $story->create($input);
-        
+
         // publicar o borrador
         if ($request->has('draft')) {
             $s->status = 'draft';
@@ -111,7 +111,7 @@ class StoryController extends Controller
 
     public function editStory($slug)
     {
-        return view('stories.edit_story')->with('story', Story::where('slug', $slug)->first());
+        return view('stories.create_story')->with('story', Story::where('_id', $slug)->orWhere('slug', $slug)->first());
     }
 
     public function updateStory(Request $request, $slug)
@@ -135,7 +135,7 @@ class StoryController extends Controller
 
         // @todo validar slug
         $s = $story->update($input);
-        
+
         // publicar o borrador
         if ($request->has('draft')) {
             $story->status = 'draft';
@@ -187,14 +187,14 @@ class StoryController extends Controller
         } else {
             $node->slug = str_slug(date('amdHIs'));
         }
-        
+
         if (!isset($input['published_at'])) {
             $node->published_at = Carbon::now();
         } else {
             $date = str_replace('/', '-', $input['published_at']);
             $node->published_at = date('Y-m-d H:i:s', strtotime($date));
         }
-        
+
         //coral
         if ($request->has('new_voice') && $request->new_voice != '') {
             $node->voice = $request->new_voice;
@@ -258,7 +258,7 @@ class StoryController extends Controller
 
         return response()->json(['status' => 'ok']);
     }
-    
+
     public function search(Request $request)
     {
         $input = $request->all();

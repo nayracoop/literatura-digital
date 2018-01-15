@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 #home
 Route::get('/', 'StoryController@index')->name('index');
 
-#relatos y nodos 
+#relatos y nodos
 Route::get('/relatos', 'StoryController@stories')->name('stories');
 Route::post('/relatos/genero', 'StoryController@searchByGenre')->name('searchByGenre');
 Route::get('/relatos/genero/{genre?}', 'StoryController@searchByGenre')->name('stories.genre');
@@ -33,7 +33,7 @@ Route::post('/relatos/{slug}/nuevo-fragmento', 'StoryController@storeNode')->nam
 
 Route::get('/relatos/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')->name('node.show');
 
-#Like - relato - fragmento  
+#Like - relato - fragmento
 Route::post('/favoritos/{stroy}/{node?}', 'StoryController@like')->name('like');
 #Like pero para users
 Route::post('/seguir/{username}', 'UserController@follow')->name('follow');
@@ -82,9 +82,9 @@ Route::get('/save-nodes', function(){
     $a =  \App\Models\Story::where('slug', 'macri-gato')->first();
 
     //---
-    $tn1 = new \App\Models\TextNode(['title' => 'A','text' => 'hfuiwjgk gyugu ghugdf', 'image'=> 
+    $tn1 = new \App\Models\TextNode(['title' => 'A','text' => 'hfuiwjgk gyugu ghugdf', 'image'=>
     'default.jpg','title' => 'published_at' ]);
-    $tn2 = new \App\Models\TextNode(['title' => 'A','text' => 'hfuiwjgk gyugu ghugdf', 'image'=> 
+    $tn2 = new \App\Models\TextNode(['title' => 'A','text' => 'hfuiwjgk gyugu ghugdf', 'image'=>
     'default.jpg','title' => 'published_at' ]);
 
     //---
@@ -101,7 +101,7 @@ Route::get('/stories', function(){
     }
 })->name('stories');
 
-Route::get('/new-story', function(){    
+Route::get('/new-story', function(){
     return view('nodes.create_story');
 })->name('story.create');
 
@@ -110,7 +110,7 @@ Route::post('/new-story', function(Request $request){
     $input = $request->all();
     $story =  new \App\Models\Story();
     $story->create($input);
-    
+
     return redirect()->route('stories');
 })->name('story.store');
 */

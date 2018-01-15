@@ -29,7 +29,7 @@
           @foreach( $user->getStories() as $story )
           <tr>
             <td class="ocultar-lg">
-              <a href="{{route('author.story.nodes',$story->slug)}}">
+              <a href="{{route('author.story.nodes',$story->_id)}}">
               <div class="image-clip">@if(  $story->cover != null && !empty($story->cover)  )
                   <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">
                   @else
@@ -37,12 +37,12 @@
                   @endif</div>
               </a>
             </td>
-            <td class="tit-listado"><a href="{{route('author.story.nodes',$story->slug)}}">{{ $story->title }}</a></td>
+            <td class="tit-listado"><a href="{{route('author.story.nodes',$story->_id)}}">{{ $story->title }}</a></td>
             <td class="ocultar-sm">{{ date('d.m.Y', strtotime($story->created_at) ) }}</td>
             <td class="ocultar-lg">2000</td>
             <td class="ocultar-sm">{{ $story->status }}</td>
             <td class="ocultar-sm">{{ $story->likes->count() }}</td>
-            <td><a href="{{route('story.edit',$story->slug)}}"><button>Editar</button></a></td>
+            <td><a href="{{route('story.edit',$story->_id)}}"><button>Editar</button></a></td>
           </tr>
           @endforeach
         </tbody>
