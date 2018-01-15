@@ -4,7 +4,7 @@
         <div class="loginmodal-container">
             <h2 id="modalLabel">@lang('Registrate')</h2>
             <hr />
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" id="register-form">
                 {{ csrf_field() }}
                 <label for="email">Email
                     <span>@lang('(chequeá que sea correcto)')</span>
@@ -25,3 +25,8 @@
         </div>
     </div>
 </div>
+
+@push('javascript')
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    {!! JsValidator::formRequest('App\Http\Requests\RegisterUser', '#register-form'); !!}
+@endpush

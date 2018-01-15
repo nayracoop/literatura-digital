@@ -36,9 +36,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
-/**
-* postLogin
-*/
+    
+    /**
+    * postLogin
+    */
     public function postLogin(Request $request)
     {
         $auth = false;

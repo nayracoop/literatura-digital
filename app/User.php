@@ -32,6 +32,17 @@ class User extends Authenticatable
     ];
 
     /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        'username' => 'required|max:255',
+        'email' => 'required|email|max:255|unique:users',
+        'password' => 'required|min:6',
+    ];
+
+    /**
      * getStories nos da los relatos pertenecientes al usuario instanciado
      * @return collection
      */

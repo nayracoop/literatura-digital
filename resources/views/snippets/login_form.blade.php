@@ -12,7 +12,7 @@
                 <input type="password" name="password">
                 <input id="login-button" type="submit" name="login" class="login loginmodal-submit" value="Ingresá">
                 <p class="recovery">
-                    <a href="#">@lang('¿Olvidaste tu contraseña?')</a>                    
+                    <a href="#">@lang('¿Olvidaste tu contraseña?')</a>
                 </p>
             </form>
             <div class="login-help">
@@ -29,9 +29,7 @@
 
 // Login via Ajax
 $('#login-button').on("click", function(e) {
-//  e.preventDefault();
-//  loginUser();
-//  searchByGenre(location.hash);
+    
 });
 
 function loginUser() {
@@ -45,7 +43,7 @@ function loginUser() {
         newResponse = JSON.parse( xhttp.response);
         console.log(newResponse);
         // console.log('logueado');
-        }else{
+        } else {
         console.log(xhttp.statusText);
         // console.log('ERROR');
         }

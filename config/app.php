@@ -185,6 +185,8 @@ return [
 
         Intervention\Image\ImageServiceProvider::class,
 
+        Proengsoft\JsValidation\JsValidationServiceProvider::class,
+
     ],
 
     /*
@@ -234,8 +236,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Moloquent' => Jenssegers\Mongodb\Eloquent\Model::class,
-        'Image' => Intervention\Image\Facades\Image::class
-
+        'Image' => Intervention\Image\Facades\Image::class,
+        'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
     ],
 
 ];
