@@ -168,7 +168,7 @@ class StoryController extends Controller
     public function createNode($slug)
     {
         return view('nodes.create_node')
-            ->with('story', Story::where('slug', $slug)->first());
+            ->with('story', Story::where('_id', $slug)->orWhere('slug', $slug)->first());
     }
 
      /**

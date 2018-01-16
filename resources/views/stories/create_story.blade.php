@@ -79,10 +79,10 @@
 
         <div class="botones-nav-form">
           <a href="#" class="bot ant">@lang('Cancelar')</a>
-          @if( isset( $story ) && $story->textNodes->count() === 0 )
-          <a href="#" class="bot sig">@lang('Empezá a escribir')</a>
+          @if( isset( $story ) && $story->textNodes->count() > 0 )
+            <a href="#" class="bot sig">@lang('Ir a nodos del relato')</a>
           @else
-          <a href="#" class="bot sig">@lang('Ir a nodos del relato')</a>
+            <a href="#" class="bot sig">@lang('Empezá a escribir')</a>
           @endif
         </div>
 
@@ -151,12 +151,11 @@
 
                             console.log('200');
                             newResponse = JSON.parse( xhr.response);
+                            var id = newResponse.id;
                         //    var alert = "include('snippets.flash.saved_changes')";
-                            var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>'
+                            var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
+                            window.location.replace(newResponse.redirect);
                             $('.container.formulario').prepend(alert);
-                            // similar behavior as an HTTP redirect
-                            // similar behavior as clicking on a link
-                            // window.location.href = "http://stackoverflow.com";
 
                         } else console.log(xhr.statusText);
                     }

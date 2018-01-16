@@ -20,16 +20,11 @@ Route::get('/mi-perfil/relatos/nuevo', 'StoryController@createStory')->name('sto
 Route::post('/mi-perfil/relatos/nuevo', 'StoryController@storeStory')->name('story.store');
 
 Route::get('/relatos/{slug}', 'StoryController@show')->name('story.show');
-#editar relato
-Route::get('/relatos/{slug}/editar', 'StoryController@editStory')->name('story.edit');
-Route::patch('/relatos/{slug}/editar', 'StoryController@updateStory')->name('story.update');
+
 
 #dejar comentario
 Route::post('/relatos/{slug}/comentar', 'StoryController@storeComment')->name('comment.store');
 Route::post('/autor/{slug}/comentar', 'UserController@storeComment')->name('comment.author.store');
-//crear nodos de un relato
-Route::get('/relatos/{slug}/nuevo-fragmento', 'StoryController@createNode')->name('node.create');
-Route::post('/relatos/{slug}/nuevo-fragmento', 'StoryController@storeNode')->name('node.store');
 
 Route::get('/relatos/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')->name('node.show');
 
@@ -39,10 +34,21 @@ Route::post('/favoritos/{stroy}/{node?}', 'StoryController@like')->name('like');
 Route::post('/seguir/{username}', 'UserController@follow')->name('follow');
 
 #perfil-usuario
-Route::get('/mi-perfil', 'UserController@myProfile')->name('author.edit');
-Route::patch('/mi-perfil', 'UserController@updateProfile')->name('author.update');
-Route::get('/mi-perfil/relatos', 'UserController@stories')->name('author.stories');
-Route::get('/mi-perfil/relatos/{slug}/fragmentos', 'UserController@nodes')->name('author.story.nodes');
+Route::group(['prefix' => 'mi-perfil'], function () {
+    Route::get('/', 'UserController@myProfile')->name('author.edit');
+    Route::patch('/', 'UserController@updateProfile')->name('author.update');
+#editar relato
+    Route::get('/relatos/{slug}/editar', 'StoryController@editStory')->name('story.edit');
+    Route::patch('/relatos/{slug}/editar', 'StoryController@updateStory')->name('story.update');
+//crear nodos de un relato
+    Route::get('/relatos/{slug}/nuevo-fragmento', 'StoryController@createNode')->name('node.create');
+    Route::post('/relatos/{slug}/nuevo-fragmento', 'StoryController@storeNode')->name('node.store');
+
+    Route::get('/relatos', 'UserController@stories')->name('author.stories');
+    Route::get('/relatos/{slug}/fragmentos', 'UserController@nodes')->name('author.story.nodes');
+   //Route::get('/mi-perfil/relatos/{slug}/fragmentos/{node}', 'UserController@showNode')->name('author.story.nodes.show');
+    Route::get('/relatos/{slug}/fragmentos/{node}/editar', 'UserController@editNode')->name('author.story.nodes.edit');
+});
 #vista publica de autor
 Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
 
@@ -50,7 +56,8 @@ Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
 Route::post('/upload-picture/{story?}', 'TestController@storeXhrPicture')->name('upload-picture');
 #Guardar relato
 Route::post('/save-story', 'TestController@storeXhrStory')->name('save-story');
-Route::patch('/update-story/{slug}', 'TestController@updateXhrStory')->name('update-story');
+Route::post('/save-node', 'TestController@saveNodeXhr')->name('save-node');
+//Route::patch('/update-story/{slug}', 'TestController@updateXhrStory')->name('update-story');
 
 #etiquetas
 Route::post('/tags', 'TestController@tagAction')->name('tag-action');

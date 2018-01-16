@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UploadPicture;
 use App\Models\Story;
+use App\Models\TextNode;
 use App\Models\Tag;
 use App\User;
 use Auth;
@@ -22,26 +23,18 @@ class TestController extends Controller
          $story = null;
          $s = null;
          $input = $request->all();
-      //echo 'fgd '.$input['slug'];
+         $redirect = '';
+
         if ($request->has('id')) {
             $s =  Story::where('_id', $request->id)->orWhere('slug', $request->slug)->first();
             $a = $s->update($input);
-       // echo "g";
+
         } else {
             $story = new Story();
             $s = $story->create($input);
             $s->author()->associate(Auth::user());
-      //  echo "new";
         }
 
-      /*
-      if( empty($s->title)   ){
-          $s->slug = $s->getIdAttribute();
-      }else{
-          $s->slug = str_Slug($s->title);
-      }
-      */
-    //  print_r( $request->tags);
         if ($request->has('tags')) {
             $s->unset('tags');
             foreach ($request->tags as $tag) {
@@ -63,11 +56,34 @@ class TestController extends Controller
 
         return response()->json([
         'author' => Auth::user()->_id,
-        'slug' => $s->slug,
-         'input' => $input
+        'slug' => $s->slug,'id' => $s->_id,
+        'input' => $input,
+        'redirect' => route('node.create', $s->_id)
         ]);
     }
 
+    public function saveNodeXhr(Request $request)
+    {
+        $input = $request->all();
+        $redirect = '';
+        $story = Story::where('_id', $request->story)->first();
+        $node = null;
+        if ($request->has('id')) {
+             $node = $story->textNodes->where('_id', $request->id);
+             $n = $node->update($input);
+             //$story->update();
+        } else {
+             $node = new TextNode($input);
+            // $n = $newNode->create($input);
+             $story->textNodes()->save($node);
+            $story->save();
+        }
+
+        return response()->json([
+          'actualizado' => 'Si',
+          'id' => $node->_id
+        ]);
+    }
 
   public function updateXhrStory(Request $request, $slug){
     $input = $request->all();
