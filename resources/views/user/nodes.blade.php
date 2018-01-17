@@ -39,7 +39,7 @@
             <tr>
               <td>{{$loop->iteration}}</td>
               <td class="tit-listado">{{$node->title or '--'}}</td>
-              <td class="ocultar-sm">{{ date('d.m.Y', strtotime($node->published_at) ) }}</td>
+              <td class="ocultar-sm">{{ date('d.m.Y', strtotime($node->created_at) ) }}</td>
               <td class="ocultar-lg">{{ $node->charCount }}</td>
               <td class="ocultar-sm">Activado</td>
               <td><a href="{{route('author.story.nodes.edit',[$story->id,$node->id])}}"><button>Editar</button></td>

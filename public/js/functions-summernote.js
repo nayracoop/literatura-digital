@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
     $('#texto-nodo').summernote({
         tabsize: 2,
         height: 430,
@@ -24,21 +25,29 @@ $(document).ready(function() {
             document.execCommand('insertText', false, bufferText);
             updateCount();
         	},
-		  onKeyup: function(e) {
-				updateCount();    		
-				$('textarea[name="text"]').html($('.note-editable').html());	
+		      onKeyup: function(e) {
+				     updateCount();
+				     $('textarea[name="text"]').html($('.note-editable').html());
 
-		  }
+		      },
+          onInit: function(e){
+          //  console.log('summernote iniciado');
+        //    updateCount();
+          //  $('textarea[name="text"]').html($('.note-editable').html());
+          }
   		}
     });
 
 
 	function updateCount() {
 	  var palabras = $('.note-editable').text().split(' ');
-	  $('.contador-palabras').text(palabras.length - 1); 
+    var wordCount = palabras.length - 1;
+	  $('.contador-palabras').text(wordCount);
+    $('input[name="wordCount"]').val(wordCount);
 	  //-1 para que cuente cdo aprieta espaciadora
 	  var caracteres = $('.note-editable').text().length;
 	  $('.contador-caracteres').text(caracteres);
+    $('input[name="charCount"]').val(caracteres);
 	}
 
 });

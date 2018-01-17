@@ -66,22 +66,28 @@ class TestController extends Controller
     {
         $input = $request->all();
         $redirect = '';
+        $action = '';
         $story = Story::where('_id', $request->story)->first();
         $node = null;
         if ($request->has('id')) {
-             $node = $story->textNodes->where('_id', $request->id);
+             $node = $story->textNodes->where('_id', $request->id)->first();
              $n = $node->update($input);
+             $story->textNodes()->save($node);
+             $story->save();
+             $action = 'updated';
              //$story->update();
         } else {
              $node = new TextNode($input);
             // $n = $newNode->create($input);
              $story->textNodes()->save($node);
-            $story->save();
+             $story->save();
+             $action = 'created';
         }
 
         return response()->json([
-          'actualizado' => 'Si',
-          'id' => $node->_id
+          'action' => $action,
+          'id' => $node->_id,
+          'input' => print_r($input)
         ]);
     }
 

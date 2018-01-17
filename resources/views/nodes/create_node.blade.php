@@ -25,12 +25,14 @@
           <div class="row">
             <div class="col-xs-12 col-sm-9">
               <label for="texto-nodo" class="invisibilizar">Texto *</label>
-              <div id="texto-nodo"  ></div>
+              <div id="texto-nodo"  >@if(isset($node)){!!$node->text!!}@endif</div>
             </div>
             <div class="col-xs-12 col-sm-3 contador">
               <h2 class="invisibilizar">Contador de caracteres y palabras del nodo</h2>
-              <p><strong class="contador-palabras">0</strong> palabras</p>
-              <p><strong class="contador-caracteres">0</strong> caracteres</p>
+              <p><strong class="contador-palabras">@if(isset($node)){{$node->wordCount}}@else 0 @endif</strong> palabras</p>
+              <input name="wordCount"  type="hidden" />
+              <p><strong class="contador-caracteres">@if(isset($node)){{$node->charCount}}@else 0 @endif</strong> caracteres</p>
+              <input name="charCount" type="hidden" />
             </div>
           </div>
 
@@ -49,6 +51,9 @@
         </div>
         <textarea name="text" class="invisible"></textarea>
         <input name="story" value="{{$story->_id}}" type="hidden" />
+        @if(isset($node))
+        <input name="id" type="hidden"  value="{{$node->id}}" />
+        @endif
         </form>
 
       </div>
@@ -63,13 +68,18 @@
   <link href="{{asset('js/libs/summernote/summernote.css')}}" rel="stylesheet">
   <script src="{{asset('js/libs/summernote/summernote.es.min.js')}}"></script>
   <script src="{{asset('js/functions-summernote.js')}}"></script>
-
+  <script>
+  @if(isset($node))
+//  $('textarea[name="text"]').html($('.note-editable').html());
+//  updateCount();
+  @endif
+  </script>
   <script>
   /* Guardar Borrador */
    $('.btn.btn-guardar').on('click',function(e) {
 
      e.preventDefault();
-     $('.alert').remove();
+  //   $('.alert').remove();
      var formElement = document.getElementById("node-form");
      var xhr = new XMLHttpRequest();
      var formData = new FormData( formElement );
@@ -86,10 +96,12 @@
                              newResponse = JSON.parse( xhr.response);
                              var id = newResponse.id;
                          //    var alert = "include('snippets.flash.saved_changes')";
-                             var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
+                          //   var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
                             // window.location.replace(newResponse.redirect);
-                             $('.container.formulario').prepend(alert);
-                             formElement.append('<input name="id" type="hidden"  value="'+id+'" />');
+                          //   $('.container.formulario').prepend(alert);
+                              @if(!isset($node))
+                              $("#node-form").append('<input name="id" type="hidden"  value="'+id+'" />');
+                              @endif
                          } else console.log(xhr.statusText);
                      }
                  });
