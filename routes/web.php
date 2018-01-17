@@ -54,8 +54,8 @@ Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
 #Subir imagen temporal
 Route::post('/upload-picture/{story?}', 'TestController@storeXhrPicture')->name('upload-picture');
 #Guardar relato
-Route::post('/save-story', 'TestController@storeXhrStory')->name('save-story');
-Route::post('/save-node', 'TestController@saveNodeXhr')->name('save-node');
+Route::post('/save-story', 'StoryController@saveStoryXhr')->name('save-story');
+Route::post('/save-node', 'StoryController@saveNodeXhr')->name('save-node');
 //Route::patch('/update-story/{slug}', 'TestController@updateXhrStory')->name('update-story');
 
 #etiquetas
