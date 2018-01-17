@@ -9,6 +9,7 @@ use App\Models\TextNode;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Tag;
+use App\Models\StoryStatus;
 use Carbon\Carbon;
 use View;
 
@@ -97,9 +98,9 @@ class StoryController extends Controller
 
         // publicar o borrador
         if ($request->has('draft')) {
-            $s->status = 'draft';
+            $s->status = StoryStatus::DRAFT;
         } else {
-            $s->status = 'publish';
+            $s->status = StoryStatus::PUBLISHED;
         }
 
         $s->slug = str_slug($s->title);
@@ -138,9 +139,9 @@ class StoryController extends Controller
 
         // publicar o borrador
         if ($request->has('draft')) {
-            $story->status = 'draft';
+            $story->status = StoryStatus::DRAFT;
         } else {
-            $story->status = 'publish';
+            $story->status = StoryStatus::PUBLISHED;
         }
 
         $story->slug = str_slug($story->title);
@@ -204,9 +205,9 @@ class StoryController extends Controller
 
         // publicar o borrador
         if ($request->has('draft')) {
-            $node->status = 'draft';
+            $node->status = StoryStatus::DRAFT;
         } else {
-            $node->status = 'publish';
+            $node->status = StoryStatus::PUBLISHED;
         }
 
         $story->textNodes()->save($node);
@@ -286,17 +287,35 @@ class StoryController extends Controller
     /**
      * SearchByGenre
      *
-     * xhht function
+     * xhttp function
      */
     public function searchByGenre(Request $request)
     {
         $input = $request->all();
         $search = $input['genre'];
         $stories = [];
-        $tags = [];
+        $results = '';
+        $isAdminOrMod = false;
+
+        if (Auth::check()) {
+            $isAdminOrMod = Auth::user()->isAdminOrMod();
+        }
+        
         if ($request->has('genre')) {
-            $stories = Story::where('genre', 'like', "%$search%")
-                            ->where('status', 'publish')->get();
+            if ($search == 'all') {
+                $stories = Story::where('status', 'publish')
+                                ->orWhere($isAdminOrMod)
+                                ->orderBy('created_at')
+                                ->get();
+            } else {
+                $stories = Story::where('genre', 'like', "%$search%")
+                                ->where(function ($query) use ($isAdminOrMod) {
+                                    $query->where('status', 'publish')
+                                          ->orWhere($isAdminOrMod);
+                                })
+                                ->orderBy('created_at')
+                                ->get();
+            }
         } else {
             $stories = Story::featured();
         }
@@ -305,13 +324,46 @@ class StoryController extends Controller
                         ->with('stories', $stories)
                         ->render();
 
-        return response()->json(['genre'=>$input['genre'], 'results' => $results]);
+        return response()->json(['genre'=>$search, 'results' => $results]);
     }
 
     /**
-     * SearchByGenre
+     * changeStatus
      *
-     * xhht function
+     * xhttp function
+     */
+    public function changeStatus(Request $request)
+    {
+        $input = $request->all();
+        $id = $input['id'];
+        $results = '';
+        $story = null;
+        $isAdminOrMod = false;
+
+        if (Auth::check()) {
+            $isAdminOrMod = Auth::user()->isAdminOrMod();
+        }
+        
+        if ($isAdminOrMod) {
+            $story = Story::find($id);
+            if ($story->status == StoryStatus::PUBLISHED) {
+                $story->status = StoryStatus::DRAFT;
+            } else {
+                $story->status = StoryStatus::PUBLISHED;
+            }
+            $story->save();
+            $results = 'Success';
+        } else {
+            $results = 'Access denied';
+        }
+
+        return response()->json(['id'=>$id, 'results' => $results]);
+    }
+
+    /**
+     * genre
+     *
+     * xhttp function
      */
     public function genre($genre)
     {

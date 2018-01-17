@@ -12,8 +12,8 @@ Route::get('/', 'StoryController@index')->name('index');
 Route::get('/relatos', 'StoryController@stories')->name('stories');
 Route::post('/relatos/genero', 'StoryController@searchByGenre')->name('searchByGenre');
 Route::get('/relatos/genero/{genre?}', 'StoryController@searchByGenre')->name('stories.genre');
-
 Route::post('/relatos/busqueda', 'StoryController@search')->name('stories.search');
+Route::post('/relatos/publicar', 'StoryController@changeStatus')->name('changeStatus');
 
 #Crear Relato
 Route::get('/mi-perfil/relatos/nuevo', 'StoryController@createStory')->name('story.create');
@@ -30,7 +30,6 @@ Route::post('/autor/{slug}/comentar', 'UserController@storeComment')->name('comm
 //crear nodos de un relato
 Route::get('/relatos/{slug}/nuevo-fragmento', 'StoryController@createNode')->name('node.create');
 Route::post('/relatos/{slug}/nuevo-fragmento', 'StoryController@storeNode')->name('node.store');
-
 Route::get('/relatos/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')->name('node.show');
 
 #Like - relato - fragmento
@@ -64,6 +63,11 @@ Route::get('/salir', function () {
 
 #ADMIN
 Route::get('/admin/usuarios', 'AdminController@listUsers')->name('admin.list-users');
+Route::get('/admin/labels', 'AdminController@listLabels')->name('admin.labels');
+Route::get('/admin/categories', 'AdminController@listCategories')->name('admin.categories');
+
+#Formulario de contacto
+Route::get('/contacto', 'AdminController@listCategories')->name('contact');
 
 # Controlador de pruebas
 Route::get('/delete-user', 'TestController@deleteUser');

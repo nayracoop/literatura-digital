@@ -7,6 +7,7 @@ use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Foundation\Auth\CanResetPassword;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 use App\Models\Story;
+use App\Models\UserType;
 
 class User extends Authenticatable
 {
@@ -68,5 +69,14 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->embedsMany('\App\Models\Comment');
+    }
+
+    /**
+     * isAdminOrMod devuelve si es administrador o moderador
+     * @return String
+     */
+    public function isAdminOrMod()
+    {
+        return $this->role == UserType::ADMIN || $this->role == UserType::MOD;
     }
 }

@@ -1,17 +1,40 @@
- <article class="col-sm-12 col-md-6">
-              <div class="card"> 
-                <a href="{{ route('story.show', $story->slug ) }}">
-                  
-                  @if(  $story->cover != null && !empty($story->cover)  )
-                  <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">        
-                  @else
-                  <img alt="" src="{{ asset('img/img-3.jpg')}}"> 
-                  @endif
-                  <h3>{{$story->title}}</h3>
-                  <p class="autor-relato"><a href="{{ route('author.show', $story->author->slug) }}">{{ $story->getAuthorName() }}</a></p>
-                  <span><hr /></span>
-                  <p class="resumen">{{$story->description}}</p>
-                  <span class="ver-mas"></span>
-                </a>
-              </div>  
+<article class="col-sm-12 col-md-6">
+    <div class="card"> 
+        <a href="{{ route('story.show', $story->slug ) }}">
+
+            @if ($story->cover != null && !empty($story->cover))
+                <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">        
+            @else
+                <img alt="" src="{{ asset('img/img-3.jpg')}}"> 
+            @endif
+            
+            <h3>{{ $story->title or __('messages.no_title') }}</h3>
+
+            @if (isset($story->author))
+                <p class="autor-relato"><a href="{{ route('author.show', $story->author->username) }}">{{ $story->getAuthorName() }}</a></p>
+            @else
+                <p class="autor-relato"><a>@lang('messages.deleted_user')</a></p>
+            @endif
+
+            <span><hr /></span>
+
+            <p class="resumen">{{ $story->description or __('messages.no_description') }}</p>
+
+            @auth
+                @php
+                    $user = auth()->user();
+                    $checked = '';
+                    if ($story->status == \App\Models\StoryStatus::PUBLISHED) {
+                        $checked = 'checked=\"checked\"';
+                    }
+                @endphp
+                
+                @if ($user->isAdminOrMod())
+                    <input type="checkbox" name="publish_status" {{ $checked }} class="status_switch" id="{{ $story->id }}">
+                @endif
+            @endauth
+
+            <span class="ver-mas"></span>
+        </a>
+    </div>  
 </article>

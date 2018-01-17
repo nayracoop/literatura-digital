@@ -61,6 +61,10 @@ class RegisterController extends Controller
     {
         $role = isset($data['role']) && $data['role'] != null ? $data['role'] : UserType::AUTHOR;
 
+        // acá no va a caer porque valida antes lo mismo el JS
+        // pero igual habría que atrapar los errores
+        $this::validator($data)->validate();
+
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],

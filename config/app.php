@@ -187,6 +187,7 @@ return [
 
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
 
+        /* Collective\Html\HtmlServiceProvider::class, */
     ],
 
     /*
@@ -238,6 +239,8 @@ return [
         'Moloquent' => Jenssegers\Mongodb\Eloquent\Model::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
+        /* 'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class, */
     ],
 
 ];

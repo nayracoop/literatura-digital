@@ -9,5 +9,8 @@ return [
     'news' => 'Novedades',
     'forge' => 'Forge',
     'github' => 'GitHub',
-    'about_menu' => 'Sobre Escrituras digitales'
+    'about_menu' => 'Sobre Escrituras digitales',
+    'deleted_user' => 'El usuario no existe',
+    'no_title' => 'Sin título',
+    'no_description' => 'Sin descripción',
 ];
