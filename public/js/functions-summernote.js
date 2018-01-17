@@ -29,12 +29,7 @@ $(document).ready(function() {
 				     updateCount();
 				     $('textarea[name="text"]').html($('.note-editable').html());
 
-		      },
-          onInit: function(e){
-          //  console.log('summernote iniciado');
-        //    updateCount();
-          //  $('textarea[name="text"]').html($('.note-editable').html());
-          }
+		      }
   		}
     });
 

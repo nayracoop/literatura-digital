@@ -152,10 +152,13 @@
                             console.log('200');
                             newResponse = JSON.parse( xhr.response);
                             var id = newResponse.id;
-                        //    var alert = "include('snippets.flash.saved_changes')";
-                            var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
-                            window.location.replace(newResponse.redirect);
-                            $('.container.formulario').prepend(alert);
+                            var redirect = newResponse.redirect;
+                            //    var alert = "include('snippets.flash.saved_changes')";
+                            //  var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
+                            if(redirect !== null){
+                                window.location.replace(redirect);
+                            }
+                          //  $('.container.formulario').prepend(alert);
 
                         } else console.log(xhr.statusText);
                     }

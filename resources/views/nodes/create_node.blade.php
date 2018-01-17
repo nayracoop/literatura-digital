@@ -5,9 +5,26 @@
     <div class="container formulario form-detalle">
 
           <div class="row">
+            @if( $story->textNodes->count() > 0 )
+            <div class="data-relato relato-data-nodo">
+              <div class="image-clip">
+                @if(  $story->cover != null && !empty($story->cover)  )
+                    <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">
+                    @else
+                    <img alt="" src="{{ asset('img/img-2.jpg')}}">
+                    @endif
+              </div>
+              <p class="tit-relato">{{$story->title}}</p>
+              <p class="autor-relato">{{$story->getAuthorName()}}</p>
+            </div>
+            <div class="publicar-nodo btn btn-guardar">
+              <a href="#">Publicar nodo</a>
+            </div>
+            @else
             <div class="col-lg-12">
               <h1><span class="numero">2<span class="invisibilizar">.</span></span>@if(isset($node)) Editar fragmento @else Escribí tu primer nodo.@endif</h1>
             </div>
+            @endif
           </div>
 
         <form id="node-form" role="form" method="POST" action="" >
@@ -49,7 +66,7 @@
             </div>
           </div>
         </div>
-        <textarea name="text" class="invisible"></textarea>
+        <textarea name="text" class="hidden"></textarea>
         <input name="story" value="{{$story->_id}}" type="hidden" />
         @if(isset($node))
         <input name="id" type="hidden"  value="{{$node->id}}" />
@@ -97,7 +114,12 @@
                              var id = newResponse.id;
                          //    var alert = "include('snippets.flash.saved_changes')";
                           //   var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
-                            // window.location.replace(newResponse.redirect);
+
+                              var redirect = newResponse.redirect;
+                          
+                              if(redirect != null){
+                                  window.location.replace(redirect);
+                              }
                           //   $('.container.formulario').prepend(alert);
                               @if(!isset($node))
                               $("#node-form").append('<input name="id" type="hidden"  value="'+id+'" />');

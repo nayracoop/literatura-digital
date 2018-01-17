@@ -21,7 +21,6 @@ Route::post('/mi-perfil/relatos/nuevo', 'StoryController@storeStory')->name('sto
 
 Route::get('/relatos/{slug}', 'StoryController@show')->name('story.show');
 
-
 #dejar comentario
 Route::post('/relatos/{slug}/comentar', 'StoryController@storeComment')->name('comment.store');
 Route::post('/autor/{slug}/comentar', 'UserController@storeComment')->name('comment.author.store');

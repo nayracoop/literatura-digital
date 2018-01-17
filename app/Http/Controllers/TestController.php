@@ -24,15 +24,17 @@ class TestController extends Controller
          $s = null;
          $input = $request->all();
          $redirect = '';
+         $action = '';
 
         if ($request->has('id')) {
-            $s =  Story::where('_id', $request->id)->orWhere('slug', $request->slug)->first();
+            $s =  Story::where('_id', $request->id)->first();
             $a = $s->update($input);
-
+            $action = 'updated';
         } else {
             $story = new Story();
             $s = $story->create($input);
             $s->author()->associate(Auth::user());
+            $action = 'created';
         }
 
         if ($request->has('tags')) {
@@ -51,21 +53,22 @@ class TestController extends Controller
             }
         }
 
-        $s->status = 'draft';
+    //    $s->status = 'draft';
         $s->save();
 
         return response()->json([
         'author' => Auth::user()->_id,
-        'slug' => $s->slug,'id' => $s->_id,
+        'id' => $s->getIdAttribute(),
         'input' => $input,
-        'redirect' => route('node.create', $s->_id)
+        'redirect' => route('node.create', $s->getIdAttribute()),
+        'action' => $action
         ]);
     }
 
     public function saveNodeXhr(Request $request)
     {
         $input = $request->all();
-        $redirect = '';
+        $redirect = null;
         $action = '';
         $story = Story::where('_id', $request->story)->first();
         $node = null;
@@ -82,12 +85,13 @@ class TestController extends Controller
              $story->textNodes()->save($node);
              $story->save();
              $action = 'created';
+             $redirect = route('author.story.nodes', $story->_id);
         }
 
         return response()->json([
           'action' => $action,
-          'id' => $node->_id,
-          'input' => print_r($input)
+          'id' => $node->_id,        
+          'redirect' => $redirect
         ]);
     }
 
