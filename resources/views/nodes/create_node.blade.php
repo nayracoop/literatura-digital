@@ -47,7 +47,9 @@
           <div class="col-md-9">
             <div class="container-botones">
               <div class="botones-save-form">
+
                 <button class="btn btn-cancelar">Cancelar</button>
+
                 <button type="submit" class="btn btn-guardar">Guardar</button>
               </div>
               <div class="botones-nav-form">
@@ -118,5 +120,12 @@
                      }
                  });
   });
+
+$('.btn-cancelar').on('click',function(e) {
+  e.preventDefault();
+  window.location.replace("{{route('author.story.nodes',$story->_id)}}");
+});
+
+
   </script>
 @endpush
