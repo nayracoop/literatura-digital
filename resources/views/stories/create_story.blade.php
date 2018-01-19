@@ -12,7 +12,11 @@
 
       <div class="row">
         <div class="col-lg-12">
+          @if( isset($story) )
+          @include('snippets.story_data')
+          @else
           <h1><span class="numero">1<span class="invisibilizar">.</span></span>@lang('Completá algunos detalles de tu relato.')</h1>
+          @endif
         </div>
 
         <form role="form" id="story-form">

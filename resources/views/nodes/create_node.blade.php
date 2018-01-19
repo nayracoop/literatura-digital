@@ -5,23 +5,13 @@
     <div class="container formulario form-detalle">
 
           <div class="row">
-            @if( $story->textNodes->count() > 0 )
-            <div class="data-relato relato-data-nodo">
-              <div class="image-clip">
-                @if(  $story->cover != null && !empty($story->cover)  )
-                    <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">
-                    @else
-                    <img alt="" src="{{ asset('img/img-2.jpg')}}">
-                    @endif
-              </div>
-              <p class="tit-relato">{{$story->title}}</p>
-              <p class="autor-relato">{{$story->getAuthorName()}}</p>
-            </div>
-            <div class="publicar-nodo btn btn-guardar">
-              <a href="#">Publicar nodo</a>
-            </div>
-            @else
             <div class="col-lg-12">
+              @if( $story->textNodes->count() > 0 )
+              @include('snippets.story_data')
+              <div class="publicar-nodo btn btn-guardar">
+                <a href="#">Publicar nodo</a>
+              </div>
+              @else
               <h1><span class="numero">2<span class="invisibilizar">.</span></span>@if(isset($node)) Editar fragmento @else Escribí tu primer nodo.@endif</h1>
             </div>
             @endif
@@ -116,7 +106,7 @@
                           //   var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
 
                               var redirect = newResponse.redirect;
-                          
+
                               if(redirect != null){
                                   window.location.replace(redirect);
                               }
