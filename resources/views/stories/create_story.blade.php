@@ -81,8 +81,14 @@
           </div>
         </form>
 
-        <div class="botones-nav-form">
+        <div class="botones-nav-form container-botones">
           <a href="{{route('author.stories')}}" class="bot ant">@lang('Cancelar')</a>
+          <div class="botones-save-form">
+
+
+
+            <button type="submit" class="btn btn-guardar">Guardar</button>
+          </div>
           @if( isset( $story ) && $story->textNodes->count() > 0 )
             <a href="#" class="bot sig">@lang('Ir a nodos del relato')</a>
           @else
@@ -201,7 +207,7 @@
 $('html').bind('keypress', function(e)
 {
    if (e.keyCode == 13) {
-     if($("#tag").is(':focus')){    
+     if($("#tag").is(':focus')){
        addTag();
        return false;
      }
