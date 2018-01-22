@@ -30,10 +30,10 @@ class UserController extends Controller
     * Perfil publico del usuario
     *
     */
-    public function author($slug)
+    public function author($autor)
     {
         return view('user.user')
-            ->with('author', User::where('slug', $slug)->first());
+            ->with('author', User::where('username', $autor)->first());
     }
 
     /**
