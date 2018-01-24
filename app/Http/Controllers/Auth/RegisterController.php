@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use JsValidator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Models\UserType;
+use App\Models\Enums\UserType;
 
 class RegisterController extends Controller
 {

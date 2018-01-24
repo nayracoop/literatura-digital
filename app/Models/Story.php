@@ -7,15 +7,15 @@ use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class Story extends BaseModel
 {
-
     use SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'title', 'slug','description', 'typology', 'genre', 'cover', 'type', 'attachment','published_at'
+        'title', 'slug', 'description', 'typology', 'genre', 'cover', 'type', 'attachment', 'published_at'
     ];
 
     protected $dates = [
@@ -26,16 +26,11 @@ class Story extends BaseModel
     {
         return $this->belongsTo('\App\User');
     }
-/*
-    public function genre() {
-        return $this->belongsTo('\App\Models\Genre');
-    }
-*/
+    
     public function textNodes()
     {
         return $this->embedsMany('\App\Models\TextNode');
     }
-
   
     public function comments()
     {
@@ -72,20 +67,20 @@ class Story extends BaseModel
     /**
     * scopeGetFromAuthor
     *
-    * Nos da los relatos pertenecientes al usuario solicitado . 
+    * Nos da los relatos pertenecientes al usuario solicitado.
     * @author Jose Casanova <jose.casanova@nayra.coop>
-    * 
-    * @param $id 
     *
-    * @return Collection Story  
+    * @param $id
+    *
+    * @return Collection Story
     **/
-
-    public function scopeGetFromAuthor( $query, $id ){
+    public function scopeGetFromAuthor($query, $id)
+    {
         return $query->where('author_id', $id);
-     }
+    }
 
 
-/**
+    /**
     * scopeChoralVoices
     *
     * Si es relato coral devuelve las voces existentes.
@@ -95,54 +90,45 @@ class Story extends BaseModel
     *
     * @return Array
     **/
-
-    public  function choralVoices( ){
+    public function choralVoices()
+    {
         return $this->textNodes->unique('voice');
-     }     
+    }
 
      /**
      * getAuthorName helper para nombre completo del autor
      * @return String
      */
-
-     public function getAuthorName(){
-       // $author
+    public function getAuthorName() {
         return $this->author->getName();
-     }
+    }
 
-     /**
+    /**
      *  Reader
-     * 
+     *
      * Envia el proceso de la histortia de acuerdo al tipo de relato
      */
-
-     public function reader(){
+    public function reader()
+    {
         switch ($this->typology) {
             case 'lineal':
                 # code...
-                break;
+            break;
             case 'temporal':
                 # code...
-                break;
+            break;
             case 'cyowa':
                 # code...
-                break;
-
+            break;
             case 'coral':
                 # code...
-                break;
+            break;
             case 'episode':
-                # code...
-                break;                
-            
+            # code...
+            break;
             default:
-                # code...
-                break;
+            # code...
+            break;
         }
-
-
-     }
-
-
-
+    }
 }

@@ -9,7 +9,7 @@ use App\Models\TextNode;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Tag;
-use App\Models\StoryStatus;
+use App\Models\Enums\StoryStatus;
 use Carbon\Carbon;
 use View;
 

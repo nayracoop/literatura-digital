@@ -4,9 +4,8 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 
-class Tag extends BaseModel 
+class Tag extends BaseModel
 {
-    
     /**
      * The attributes that are mass assignable.
      *
@@ -15,5 +14,4 @@ class Tag extends BaseModel
     protected $fillable = [
         'name',
     ];
-
 }

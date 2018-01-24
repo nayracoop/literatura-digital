@@ -24,7 +24,7 @@
                 @php
                     $user = auth()->user();
                     $checked = '';
-                    if ($story->status == \App\Models\StoryStatus::PUBLISHED) {
+                    if ($story->status == \App\Models\Enums\StoryStatus::PUBLISHED) {
                         $checked = 'checked=\"checked\"';
                     }
                 @endphp

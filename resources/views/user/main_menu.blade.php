@@ -2,13 +2,13 @@
         @php
             $user = auth()->user();
         @endphp
-        @if($user->role == \App\Models\UserType::AUTHOR)
+        @if($user->role == \App\Models\Enums\UserType::AUTHOR)
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('contact') }}"><a href="{{ route('contact') }}">@lang('menu.contact')</a></li>
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('author.stories') }}"><a href="{{ route('author.stories') }}">@lang('menu.my_stories')</a></li>
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('story.create') }}"><a href="{{ route('story.create') }}">@lang('menu.create_story')</a></li>
-        @elseif($user->role == \App\Models\UserType::MOD)
+        @elseif($user->role == \App\Models\Enums\UserType::MOD)
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('admin.labels') }}"><a href="{{ route('admin.labels') }}">@lang('menu.labels')</a></li>
-        @elseif($user->role == \App\Models\UserType::ADMIN)
+        @elseif($user->role == \App\Models\Enums\UserType::ADMIN)
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('admin.labels') }}"><a href="{{ route('admin.labels') }}">@lang('menu.labels')</a></li>
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('admin.list-users') }}"><a href="{{ route('admin.list-users') }}">@lang('menu.users')</a></li>
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('admin.categories') }}"><a href="{{ route('admin.categories') }}">@lang('menu.categories')</a></li>

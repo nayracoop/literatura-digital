@@ -7,7 +7,7 @@ use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Foundation\Auth\CanResetPassword;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 use App\Models\Story;
-use App\Models\UserType;
+use App\Models\Enums\UserType;
 
 class User extends Authenticatable
 {

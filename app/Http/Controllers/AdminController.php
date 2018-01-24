@@ -16,13 +16,11 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-      //  $this->middleware('auth');
     }
 
-	public function listUsers($filter = null){
-		return view('admin.users')
-			->with('users', User::where('*')->orderBy('role')->get()  )
-		;
-	}
-
+    public function listUsers($filter = null)
+    {
+        return view('admin.users')
+            ->with('users', User::orderBy('role')->orderBy('created_at', 'desc')->get());
+    }
 }

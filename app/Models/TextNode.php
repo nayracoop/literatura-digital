@@ -7,6 +7,7 @@ use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 class TextNode extends BaseModel
 {
     use SoftDeletes;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -39,12 +40,4 @@ class TextNode extends BaseModel
     {
         return $this->embedsMany('\App\Models\Like');
     }
-
-/*
-    public function nodes()
-    {
-     //   return $this->hasMany('\App\Models\TextNode');
-    }
-*/
-
 }
