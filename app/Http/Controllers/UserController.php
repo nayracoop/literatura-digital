@@ -30,10 +30,10 @@ class UserController extends Controller
     * Perfil publico del usuario
     *
     */
-    public function author($slug)
+    public function author($autor)
     {
         return view('user.user')
-            ->with('author', User::where('slug', $slug)->first());
+            ->with('author', User::where('username', $autor)->first());
     }
 
     /**
@@ -47,15 +47,31 @@ class UserController extends Controller
     }
 
     /**
-     * stories
-     * seccion "mis relatos" del perfil de autor
+     * nodes
+     *  perfil de autor muestra los nodos del relato
      *
      */
     public function nodes($slug)
     {
         return view('user.nodes')
             ->with('user', Auth::user())
-            ->with('story', Story::where('slug', $slug)->orWhere('_id', $slug)->first());
+            ->with('story', Story::where('_id', $slug)->orWhere('slug', $slug)->first());
+    }
+/**
+*
+*/
+    public function editNode($story, $node)
+    {
+        $story = Story::where('_id', $story)->orWhere('slug', $story)->first();
+        $node = $story->textNodes->where('_id', $node)->first();
+        if ($node === null) {
+            $node = $story->textNodes->where('slug', $node)->first();
+        }
+
+        return view('nodes.create_node')
+            ->with('user', Auth::user())
+            ->with('story', $story)
+            ->with('node', $node);
     }
 
     /**

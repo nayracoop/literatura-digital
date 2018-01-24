@@ -12,7 +12,11 @@
 
       <div class="row">
         <div class="col-lg-12">
+          @if( isset($story) )
+          @include('snippets.story_data')
+          @else
           <h1><span class="numero">1<span class="invisibilizar">.</span></span>@lang('Completá algunos detalles de tu relato.')</h1>
+          @endif
         </div>
 
         <form role="form" id="story-form">
@@ -77,12 +81,18 @@
           </div>
         </form>
 
-        <div class="botones-nav-form">
-          <a href="#" class="bot ant">@lang('Cancelar')</a>
-          @if( isset( $story ) && $story->textNodes->count() === 0 )
-          <a href="#" class="bot sig">@lang('Empezá a escribir')</a>
+        <div class="botones-nav-form container-botones">
+          <a href="{{route('author.stories')}}" class="bot ant">@lang('Cancelar')</a>
+          <div class="botones-save-form">
+
+
+
+            <button type="submit" class="btn btn-guardar">Guardar</button>
+          </div>
+          @if( isset( $story ) && $story->textNodes->count() > 0 )
+            <a href="#" class="bot sig">@lang('Ir a nodos del relato')</a>
           @else
-          <a href="#" class="bot sig">@lang('Ir a nodos del relato')</a>
+            <a href="#" class="bot sig">@lang('Empezá a escribir')</a>
           @endif
         </div>
 
@@ -151,39 +161,58 @@
 
                             console.log('200');
                             newResponse = JSON.parse( xhr.response);
-                        //    var alert = "include('snippets.flash.saved_changes')";
-                            var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>'
-                            $('.container.formulario').prepend(alert);
-                            // similar behavior as an HTTP redirect
-                            // similar behavior as clicking on a link
-                            // window.location.href = "http://stackoverflow.com";
+                            var id = newResponse.id;
+                            var redirect = newResponse.redirect;
+                            //    var alert = "include('snippets.flash.saved_changes')";
+                            //  var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
+                            if(redirect !== null){
+                                window.location.replace(redirect);
+                            }
+                          //  $('.container.formulario').prepend(alert);
 
                         } else console.log(xhr.statusText);
                     }
                 });
  });
 
-
+ //on submit
+ $("#story-form").on("submit",function(e){
+   console.log('Submitting');
+   e.preventDefault();
+ });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
 
 <script>
-
-
+//funcionalidades tags
   $('#add_tag').on('click', function(e){
     e.preventDefault();
-    var tag = $('#tag').val();
-
-    $(".tag-group").append('<div class="tag-item"><p>'+tag+'<p><input type="hidden" name="tags[]" value="'+tag+'" /><button>@lang('Eliminar etiqueta')</button></div>');
-    $('#tag').val('');
+    addTag();
     //console.log($select);
   });
-
 
   $('.tag-item').on('click', function(e){
       $(this).remove();
   });
 
+ function addTag(){
+   var tag = $('#tag').val();
+   //no agrega tags vacios
+   if (tag.trim() != '') {
+     $(".tag-group").append('<div class="tag-item"><p>'+tag+'<p><input type="hidden" name="tags[]" value="'+tag+'" /><button>@lang('Eliminar etiqueta')</button></div>');
+     $('#tag').val('');
+   }
+ }
+// permite agregar etiquetas con enter sin afectar al resto del form
+$('html').bind('keypress', function(e)
+{
+   if (e.keyCode == 13) {
+     if($("#tag").is(':focus')){
+       addTag();
+       return false;
+     }
+   }
+});
 
 
 </script>

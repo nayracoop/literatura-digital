@@ -169,7 +169,7 @@ class StoryController extends Controller
     public function createNode($slug)
     {
         return view('nodes.create_node')
-            ->with('story', Story::where('slug', $slug)->first());
+            ->with('story', Story::where('_id', $slug)->orWhere('slug', $slug)->first());
     }
 
      /**
@@ -381,5 +381,94 @@ class StoryController extends Controller
                         ->render();
 
         return response()->json(['genre'=>$input['genre'], 'results' => $results]);
+    }
+
+    /**
+    * saveStoryXhr
+    *
+    * Crea nuevo relato o actualiza los datos del relato indicado.
+    * @param Request $request
+    * @return Response  json
+    */
+    public function saveStoryXhr(Request $request)
+    {
+           $story = null;
+           $s = null;
+           $input = $request->all();
+           $redirect = '';
+           $action = '';
+
+        if ($request->has('id')) {
+              $s =  Story::where('_id', $request->id)->first();
+              $a = $s->update($input);
+              $action = 'updated';
+        } else {
+              $story = new Story();
+              $s = $story->create($input);
+              $s->author()->associate(Auth::user());
+              $action = 'created';
+        }
+
+        if ($request->has('tags')) {
+              $s->unset('tags');
+            foreach ($request->tags as $tag) {
+                  $tag = trim($tag);
+                  $t = Tag::where('_id', $tag)->orWhere('name', $tag)->first();
+
+                if ($t  === null) {
+                      $newTag =  Tag::create(['name' => $tag]);
+                 //$newTag->name = trim($tag);
+                      $s->tags()->associate($newTag);
+                } elseif ($s->tags->where('_id', $t->id)->first() === null) {
+                      $s->tags()->associate($t);
+                }
+            }
+        }
+
+        $s->save();
+
+        return response()->json([
+            'author' => Auth::user()->_id,
+            'id' => $s->getIdAttribute(),
+            'input' => $input,
+            'redirect' => route('node.create', $s->getIdAttribute()),
+            'action' => $action
+            ]);
+    }
+    /**
+    * saveStoryXhr
+    *
+    * Crea nuevo relato o actualiza los datos del relato indicado.
+    * @param Request $request
+    * @return Response  json
+    */
+    public function saveNodeXhr(Request $request)
+    {
+            $input = $request->all();
+            $redirect = null;
+            $action = '';
+            $story = Story::where('_id', $request->story)->first();
+            $node = null;
+        if ($request->has('id')) {
+                 $node = $story->textNodes->where('_id', $request->id)->first();
+                 $n = $node->update($input);
+                 $story->textNodes()->save($node);
+                 $story->save();
+                 $action = 'updated';
+                 //$story->update();
+        } else {
+                 $node = new TextNode($input);
+                // $n = $newNode->create($input);
+                 $story->textNodes()->save($node);
+                 $story->save();
+                 $action = 'created';
+                 $redirect = route('author.story.nodes', $story->_id);
+        }
+
+        return response()->json([
+              'action' => $action,
+              'id' => $node->_id,
+              'redirect' => $redirect
+            ]);
     }
 }
