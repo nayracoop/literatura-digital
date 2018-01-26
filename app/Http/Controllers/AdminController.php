@@ -20,7 +20,7 @@ class AdminController extends Controller
 
     public function listUsers($filter = null)
     {
-        return view('admin.users')
+        return view('admin.users_list')
             ->with('users', User::orderBy('role')->orderBy('created_at', 'desc')->get());
     }
 }

@@ -30,16 +30,14 @@
                         <th scope="col" class="ocultar-sm">
                             <a href="#">@lang('messages.first_name')</a>
                         </th>
-                        <th scope="col" class="ocultar-sm">
-                            <a href="#">@lang('messages.last_name')</a>
-                        </th>
                         <th scope="col">
                             <span class="invisibilizar">Editar</span>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($user->getStories() as $story)
+                    @foreach($users as $user)
+                        @include('admin.users_detail')
                     @endforeach
                 </tbody>
             </table>
