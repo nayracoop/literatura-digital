@@ -74,6 +74,11 @@
   margin-bottom: 12px;
 }
 
+/* TABS  */
+
+.tabpanel{ display: none; }
+.tabpanel.active{ display: block; }
+
 /* VISUALIZACION */
 
 .editor-relato .tit-editor-visual h1{
@@ -90,8 +95,14 @@
 
 /* FORM VISUALIZACION */
 
+.opciones-visual{ float: right; }
+
+@media only screen and (max-width: $screen-md) {
+  .opciones-visual{ float: none; }
+}
+
 .editor-relato .formulario .styled-select {
-     width: 250px;
+     width: 210px;
      overflow: hidden;
      border-radius: 6px;
      background: #F7F6F5 url(../img/iconos/flecha-select.svg) no-repeat center right;
@@ -99,7 +110,7 @@
 
 .editor-relato  .formulario .styled-select select {
      background: transparent;
-     width: 278px;
+     width: 238px;
      padding: 5px;
      line-height: 1;
      border: 0;

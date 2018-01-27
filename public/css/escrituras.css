@@ -97,34 +97,33 @@
   font-weight: bold;
   src: url("../fonts/brandon-grotesque/brandon_bld.eot");
   src: url("../fonts/brandon-grotesque/brandon_bld.eot?") format("eot"), url("../fonts/brandon-grotesque/brandon_bld.woff") format("woff"), url("../fonts/brandon-grotesque/brandon_bld.ttf") format("truetype"), url("../fonts/brandon-grotesque/brandon_bld.svg") format("svg"); }
+html {
+  height: 100%; }
+
 body {
   background: #EAE8E6;
-  border-top: 30px solid #FFF; }
+  border-top: 30px solid #FFF;
+  position: relative;
+  padding-bottom: 166px;
+  min-height: 100%; }
 
-.reborde-right, .reborde-bottom, .reborde-left {
+@media only screen and (max-width: 768px) {
+  body {
+    min-height: auto;
+    padding-bottom: 0; } }
+.reborde-right, .reborde-left {
   position: fixed;
   z-index: -1;
   background: #FFF; }
 
-.reborde-bottom {
-  background: red;
-  position: absolute;
-  z-index: 5; }
-
 @media only screen and (max-width: 768px) {
-  .reborde-right, .reborde-left, .reborde-bottom {
+  .reborde-right, .reborde-left {
     display: none; } }
 .reborde-right {
   top: 0;
   right: 0;
   height: 100%;
   width: 30px; }
-
-.reborde-bottom {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 30px; }
 
 .reborde-left {
   top: 0;
@@ -161,7 +160,7 @@ body {
 
 @media only screen and (max-width: 768px) {
   .fondo-forms {
-    margin-bottom: 40px; } }
+    margin-bottom: 20px; } }
 @media only screen and (max-width: 767px) {
   body {
     border-width: 0; }
@@ -596,7 +595,13 @@ body {
   .navbar-escrituras-collapse .login {
     margin: 0 -15px; } }
 .footer-fluid {
-  border-bottom: 30px solid #FFF; }
+  padding: 0;
+  border-bottom: 30px solid #FFF;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5; }
 
 footer {
   overflow: hidden;
@@ -607,7 +612,8 @@ footer {
     padding-bottom: 20px; }
 
   .footer-fluid {
-    border-bottom: none; } }
+    border-bottom: none;
+    position: static; } }
 footer a {
   margin-top: 30px;
   float: left;
@@ -633,7 +639,6 @@ footer a:last-child {
     float: none; }
 
   footer {
-    margin-top: -20px;
     padding-bottom: 0; }
 
   footer a:last-child {
@@ -1997,6 +2002,13 @@ h4.modal-title {
   margin-top: -5px;
   margin-bottom: 12px; }
 
+/* TABS  */
+.tabpanel {
+  display: none; }
+
+.tabpanel.active {
+  display: block; }
+
 /* VISUALIZACION */
 .editor-relato .tit-editor-visual h1 {
   text-align: center;
@@ -2008,15 +2020,21 @@ h4.modal-title {
   float: none; }
 
 /* FORM VISUALIZACION */
+.opciones-visual {
+  float: right; }
+
+@media only screen and (max-width: 768px) {
+  .opciones-visual {
+    float: none; } }
 .editor-relato .formulario .styled-select {
-  width: 250px;
+  width: 210px;
   overflow: hidden;
   border-radius: 6px;
   background: #F7F6F5 url(../img/iconos/flecha-select.svg) no-repeat center right; }
 
 .editor-relato .formulario .styled-select select {
   background: transparent;
-  width: 278px;
+  width: 238px;
   padding: 5px;
   line-height: 1;
   border: 0;

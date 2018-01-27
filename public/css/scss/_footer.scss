@@ -1,16 +1,21 @@
 .footer-fluid{
+  padding: 0;
   border-bottom: 30px solid #FFF;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
 }
 
 footer{
   overflow: hidden;
   padding-bottom: 40px;
 }
-
     
 @media only screen and (max-width: ($screen-md)) {
   footer{ padding-bottom: 20px; }
-  .footer-fluid{ border-bottom: none; }
+  .footer-fluid{ border-bottom: none; position: static;}
 }
 
 footer a{
@@ -38,7 +43,7 @@ footer a:last-child{
 @media only screen and (max-width: $screen-sm - 190) {
 
   footer a{ float: none;}
-  footer{ margin-top: -20px; padding-bottom: 0; }
+  footer{ padding-bottom: 0; }
   footer a:last-child{
     float: none;
     text-align: left;

@@ -1,26 +1,35 @@
-body {
+html{
+  height: 100%;
+}
+
+body{
     background: $color-fondo;
     border-top: 30px solid #FFF;
+    position: relative;
+    padding-bottom: 166px;
+    min-height: 100%;
 } 
 
-.reborde-right, .reborde-bottom, .reborde-left{
+@media only screen and (max-width: ($screen-md)) {
+  body{ 
+    min-height: auto; 
+    padding-bottom: 0;
+  }
+}
+
+
+.reborde-right, .reborde-left{
   position: fixed;
   z-index: -1;
   background: #FFF;
 }
 
-.reborde-bottom{ 
-  background: red;
-  position: absolute;
-  z-index: 5;
-}
 
 @media only screen and (max-width: ($screen-md)) {
-  .reborde-right, .reborde-left, .reborde-bottom{ display: none; }
+  .reborde-right, .reborde-left{ display: none; }
 }
 
 .reborde-right{ top: 0; right: 0; height: 100%; width: 30px;}
-.reborde-bottom{ bottom: 0; left: 0; width: 100%; height: 30px;}
 .reborde-left{ top: 0; left: 0; height: 100%; width: 30px;}
 
 .fondo-forms{ background-color: $color-blanco;}
@@ -54,7 +63,7 @@ body {
 .image-clip img{ width: 100%; } 
 
 @media only screen and (max-width: ($screen-md)) {
-   .fondo-forms{ margin-bottom: 40px;}
+   .fondo-forms{ margin-bottom: 20px;}
 }
 
 @media only screen and (max-width: ($screen-md - 1)) {
