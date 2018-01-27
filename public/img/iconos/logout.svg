@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+]>
+<svg version="1.1" baseProfile="tiny"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="45px" height="31px" viewBox="0 0 45 31" xml:space="preserve">
+<defs>
+</defs>
+<path fill-rule="evenodd" fill="none" stroke="#0CA6BE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M6,15.5C6,8.04,12.04,2,19.5,2S33,8.04,33,15.5S26.96,29,19.5,29S6,22.96,6,15.5z"/>
+<rect y="13" x="18" fill-rule="evenodd" fill="#0CA6BE" width="20" height="5"/>
+<polygon fill-rule="evenodd" fill="#0CA6BE" points="38,9 38,22 45,15.29 "/>
+</svg>

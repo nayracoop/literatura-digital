@@ -15,7 +15,7 @@
         @endif
     </ul>
 
-    <ul class="nav navbar-nav login">
+    <ul class="nav navbar-nav login logged">
         <li class="{{ \App\Utils\MenuHelper::isActiveRoute('author.edit') }}">
             <a data-toggle="modal" href="{{ route('author.edit') }}">{{ $user->getName() }}</a>
         </li>

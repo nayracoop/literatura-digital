@@ -436,6 +436,9 @@ body {
   .login li:first-child > a {
     background-image: url(../img/iconos/login.svg); }
 
+  .logged li:first-child > a {
+    background-image: url(../img/iconos/user.png); }
+
   .login li > a {
     width: 44px;
     height: 44px;
@@ -443,11 +446,22 @@ body {
     text-indent: -9999px;
     background: url(../img/iconos/register.svg) no-repeat center center; }
 
+  .logged li > a {
+    background-image: url(../img/iconos/logout.svg);
+    width: 45px; }
+
   .navbar-lexia .login li:first-child > a:hover, .navbar-lexia .login li:first-child > a:focus {
     background-image: url(../img/iconos/login-hover.svg); }
 
+  .navbar-lexia .logged li:first-child > a:hover, .navbar-lexia .logged li:first-child > a:focus {
+    background-image: url(../img/iconos/user-hover.png); }
+
   .navbar-lexia .login li > a:hover, .navbar-lexia .login li > a:focus {
     background: url(../img/iconos/register-hover.svg) no-repeat center center;
+    border-bottom-width: 0; }
+
+  .navbar-lexia .logged li > a:hover, .navbar-lexia .logged li > a:focus {
+    background: url(../img/iconos/logout-hover.svg) no-repeat center center;
     border-bottom-width: 0; }
 
   .navbar-lexia .invis {
