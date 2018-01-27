@@ -53,7 +53,7 @@
                 <a href="#">Leer nodo</a>
                 <a href="#">Editor nodo</a>
               </div>
-              <script src="d3/d3.v3.min.js" charset="utf-8"></script>
+              <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
               <script>
                   var data = [4, 8, 15, 16, 23, 42];
                   var x = d3.scale.linear()
