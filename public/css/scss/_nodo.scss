@@ -58,6 +58,10 @@
 	margin-bottom: 50px;
 }
 
+.nodo-data-relato a{
+	outline: 1px solid red;
+}
+
 .nodo-data-relato a:hover, .nodo-data-relato a:focus{
 	text-decoration: none;
 	display: block;

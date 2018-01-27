@@ -28,5 +28,33 @@ $color-titulo: #0CA6BE;
 $color-blanco: #FFF;
 
 
+/* mixin for multiline */
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
+  overflow: hidden;
+  position: relative;
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount; 
+  text-align: left;
+  margin-right: -1em;
+  padding-right: 1em;
+  &:before {
+    /*content: '[...]';
+    outline: 1px solid red;
+    background: $bgColor;*/
+    width: 22px;
+    position: absolute;
+    right: 17px;
+    bottom: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: $bgColor;
+  }
+}
 
 

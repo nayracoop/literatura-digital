@@ -1,0 +1,47 @@
+.footer-fluid{
+  border-bottom: 30px solid #FFF;
+}
+
+footer{
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+    
+@media only screen and (max-width: ($screen-md)) {
+  footer{ padding-bottom: 20px; }
+  .footer-fluid{ border-bottom: none; }
+}
+
+footer a{
+  margin-top: 30px;
+  float: left;
+  display: block;
+}
+
+footer a:last-child{
+  width: 185px;
+  font-size: 16px;
+  float: right;
+  text-align: right;
+  text-decoration: none;
+  font-family: $akzidenz-grotesk-pro-regular;
+  color: #000;
+  line-height: 130%;
+  letter-spacing: 1px;
+}
+
+@media only screen and (max-width: $screen-md) {
+  footer a{ margin-top: 0; margin-bottom: 20px;}
+}
+
+@media only screen and (max-width: $screen-sm - 190) {
+
+  footer a{ float: none;}
+  footer{ margin-top: -20px; padding-bottom: 0; }
+  footer a:last-child{
+    float: none;
+    text-align: left;
+  }
+
+}

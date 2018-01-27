@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 13.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 14948)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd">
-<svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 x="0px" y="0px" width="30px" height="27px" viewBox="0 0 30 27" xml:space="preserve">
-<circle fill="none" stroke="#0CA6BE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" cx="16.5" cy="13.5" r="11.5"/>
-<rect y="11" fill="#0CA6BE" width="13" height="5"/>
-<polygon fill="#0CA6BE" points="12.92,7.68 12.92,19.4 18.73,13.36 "/>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+]>
+<svg version="1.1" baseProfile="tiny"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="35px" height="31px" viewBox="0 0 35 31" xml:space="preserve">
+<defs>
+</defs>
+<path fill-rule="evenodd" fill="none" stroke="#0CA6BE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="
+	M6,15.5C6,8.04,12.04,2,19.5,2S33,8.04,33,15.5S26.96,29,19.5,29S6,22.96,6,15.5z"/>
+<rect y="13" fill-rule="evenodd" fill="#0CA6BE" width="17" height="5"/>
+<polygon fill-rule="evenodd" fill="#0CA6BE" points="16,9 16,22 23,15.29 "/>
 </svg>

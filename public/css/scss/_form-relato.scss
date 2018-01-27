@@ -191,9 +191,9 @@
 }
 
 @media only screen and (max-width: $screen-xs) {
-  .fondo-forms .bot.sig{ max-width: 140px;  }
+  .fondo-forms .bot.sig, .fondo-forms .bot.ant{ max-width: 110px;  }
   .fondo-forms .bot.ant{ padding-left: 15px; }
-  .fondo-forms .bot.sig{ padding-right: 15px; }
+  .fondo-forms .bot.sig{ padding-right: 15px; padding-left: 0; }
 
 }
 

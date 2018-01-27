@@ -36,8 +36,8 @@
         </li>
         <li>
             <a data-toggle="modal" href="#registrarse">
-                <span>@lang('menu.register')</a>
-            </span>
+                <span>@lang('menu.register')</span>
+            </a>
         </li>
     </ul>
 @endguest

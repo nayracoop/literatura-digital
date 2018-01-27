@@ -27,6 +27,7 @@
   clip: rect(0, 0, 0, 0);
   border: 0; }
 
+/* mixin for multiline */
 /* Texto de copia */
 @font-face {
   font-family: 'Caecilia';
@@ -98,16 +99,17 @@
   src: url("../fonts/brandon-grotesque/brandon_bld.eot?") format("eot"), url("../fonts/brandon-grotesque/brandon_bld.woff") format("woff"), url("../fonts/brandon-grotesque/brandon_bld.ttf") format("truetype"), url("../fonts/brandon-grotesque/brandon_bld.svg") format("svg"); }
 body {
   background: #EAE8E6;
-  padding-bottom: 85px;
   border-top: 30px solid #FFF; }
 
-@media only screen and (max-width: 818px) {
-  body {
-    padding-bottom: 0; } }
 .reborde-right, .reborde-bottom, .reborde-left {
   position: fixed;
   z-index: -1;
   background: #FFF; }
+
+.reborde-bottom {
+  background: red;
+  position: absolute;
+  z-index: 5; }
 
 @media only screen and (max-width: 768px) {
   .reborde-right, .reborde-left, .reborde-bottom {
@@ -426,14 +428,38 @@ body {
     color: #0CA6BE;
     border-left: 7px solid #0CA6BE; } }
 @media only screen and (min-width: 767px) {
+  .login li {
+    margin-left: 0; }
+
   .login li:first-child {
     margin: 0; }
 
+  .login li:first-child > a {
+    background-image: url(../img/iconos/login.svg); }
+
   .login li > a {
-    margin-top: 2px;
-    font-size: 12px;
-    font-family: "Brandon Grotesque", Arial, Helvetica, "Liberation Sans", sans-serif;
-    color: #666; } }
+    width: 44px;
+    height: 44px;
+    display: block;
+    text-indent: -9999px;
+    background: url(../img/iconos/register.svg) no-repeat center center; }
+
+  .navbar-lexia .login li:first-child > a:hover, .navbar-lexia .login li:first-child > a:focus {
+    background-image: url(../img/iconos/login-hover.svg); }
+
+  .navbar-lexia .login li > a:hover, .navbar-lexia .login li > a:focus {
+    background: url(../img/iconos/register-hover.svg) no-repeat center center;
+    border-bottom-width: 0; }
+
+  .navbar-lexia .invis {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0; } }
 @media only screen and (max-width: 767px) {
   .navbar-toggle {
     margin-top: 4px;
@@ -569,6 +595,50 @@ body {
 
   .navbar-escrituras-collapse .login {
     margin: 0 -15px; } }
+.footer-fluid {
+  border-bottom: 30px solid #FFF; }
+
+footer {
+  overflow: hidden;
+  padding-bottom: 40px; }
+
+@media only screen and (max-width: 768px) {
+  footer {
+    padding-bottom: 20px; }
+
+  .footer-fluid {
+    border-bottom: none; } }
+footer a {
+  margin-top: 30px;
+  float: left;
+  display: block; }
+
+footer a:last-child {
+  width: 185px;
+  font-size: 16px;
+  float: right;
+  text-align: right;
+  text-decoration: none;
+  font-family: "Akzidenz-Grotesk Pro Regular", Arial, Helvetica, "Liberation Sans", sans-serif;
+  color: #000;
+  line-height: 130%;
+  letter-spacing: 1px; }
+
+@media only screen and (max-width: 768px) {
+  footer a {
+    margin-top: 0;
+    margin-bottom: 20px; } }
+@media only screen and (max-width: 386px) {
+  footer a {
+    float: none; }
+
+  footer {
+    margin-top: -20px;
+    padding-bottom: 0; }
+
+  footer a:last-child {
+    float: none;
+    text-align: left; } }
 .destacado-home {
   background: #0CA6BE;
   min-height: 400px;
@@ -598,7 +668,7 @@ body {
   padding-left: 5px;
   font-size: 1.285714285714286em; }
 
-.formulario form input, .formulario form textarea, .formulario form select {
+.formulario form input[type=text], .formulario form textarea, .formulario form select {
   border-radius: 4px;
   border-width: 0;
   color: #666;
@@ -607,6 +677,10 @@ body {
   min-height: 45px;
   margin: 0;
   font-size: 1.285714285714286em; }
+
+.formulario form input[type=file] {
+  border-width: 0;
+  box-shadow: none; }
 
 .formulario form textarea {
   min-height: 230px; }
@@ -816,14 +890,15 @@ body {
   margin-right: 10px; }
 
 @media only screen and (max-width: 576px) {
-  .fondo-forms .bot.sig {
-    max-width: 140px; }
+  .fondo-forms .bot.sig, .fondo-forms .bot.ant {
+    max-width: 110px; }
 
   .fondo-forms .bot.ant {
     padding-left: 15px; }
 
   .fondo-forms .bot.sig {
-    padding-right: 15px; } }
+    padding-right: 15px;
+    padding-left: 0; } }
 .data-relato {
   margin-left: -3px;
   float: left;
@@ -1543,13 +1618,12 @@ h4.modal-title {
     text-overflow: ellipsis;*/ }
   .card .ver-mas {
     position: absolute;
-    right: 10px;
-    bottom: 10px;
-    height: 13px;
-    width: 13px;
-    opacity: .7;
+    right: 2px;
+    bottom: 4px;
+    height: 26px;
+    width: 26px;
     display: block;
-    background: url("../img/iconos/cruz-menu.svg") no-repeat 0 0;
+    background: #F9F9F9 url("../img/iconos/cruz-cards.svg") no-repeat center center;
     text-indent: -9999px; }
 
 .card:hover img, .card:focus img {
@@ -1561,26 +1635,87 @@ h4.modal-title {
 .card:hover .ver-mas, .card:focus .ver-mas {
   opacity: 1; }
 
-@media only screen and (max-width: 551px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .card .bloque-elipsis {
+    overflow: hidden;
+    position: relative;
+    line-height: 1.42857em;
+    max-height: 5.71428em;
+    text-align: left;
+    margin-right: -1em;
+    padding-right: 1em; }
+    .card .bloque-elipsis:before {
+      /*content: '[...]';
+      outline: 1px solid red;
+      background: $bgColor;*/
+      width: 22px;
+      position: absolute;
+      right: 17px;
+      bottom: 0; }
+    .card .bloque-elipsis:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      width: 1em;
+      height: 1em;
+      margin-top: 0.2em;
+      background: #F9F9F9; } }
+@media only screen and (min-width: 426px) and (max-width: 576px) {
+  .card .bloque-elipsis {
+    overflow: hidden;
+    position: relative;
+    line-height: 1.42857em;
+    max-height: 5.71428em;
+    text-align: left;
+    margin-right: -1em;
+    padding-right: 1em; }
+    .card .bloque-elipsis:before {
+      /*content: '[...]';
+      outline: 1px solid red;
+      background: $bgColor;*/
+      width: 22px;
+      position: absolute;
+      right: 17px;
+      bottom: 0; }
+    .card .bloque-elipsis:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      width: 1em;
+      height: 1em;
+      margin-top: 0.2em;
+      background: #F9F9F9; } }
+@media only screen and (max-width: 426px) {
   .encabezado-categoria .container-tags p {
     display: none; }
 
   .card {
     max-height: 100%;
-    border-bottom-left-radius: 10px;
+    border-top-right-radius: 0;
     padding-bottom: 20px; }
 
   .card img {
-    width: 100px;
-    max-height: auto;
-    margin-top: 10px;
-    margin-left: 10px; }
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    float: none; }
 
   .card h3 {
-    padding-top: 15px; }
+    padding-top: 15px;
+    margin-top: -2em;
+    background-color: #F9F9F9;
+    padding: 13px 10px 5px 10px;
+    line-height: 1.25;
+    position: relative;
+    z-index: 5; }
 
-  .card hr {
-    display: none; }
+  .card .autor-relato {
+    padding: 0 10px; }
+
+  .card span hr {
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 35px; }
 
   .card .resumen {
     clear: both;
@@ -1701,6 +1836,9 @@ h4.modal-title {
   margin-top: 70px;
   margin-bottom: 50px; }
 
+.nodo-data-relato a {
+  outline: 1px solid red; }
+
 .nodo-data-relato a:hover, .nodo-data-relato a:focus {
   text-decoration: none;
   display: block;
@@ -1792,5 +1930,215 @@ h4.modal-title {
 .container-nodo strong i,
 .container-nodo strong em {
   font-family: "Caecilia", Arial, Helvetica, "Liberation Sans", sans-serif; }
+
+.editor-relato .listado-relatos {
+  padding-top: 25px; }
+
+.editor-relato .data-relato {
+  text-align: left;
+  margin: 0;
+  margin-left: -3px;
+  float: left;
+  width: 260px; }
+
+/* NAVEGACION */
+.editor-relato .data-relato .image-clip {
+  float: left;
+  margin-left: -5px; }
+
+.modos {
+  list-style: none;
+  float: right;
+  padding: 10px 0 0 0; }
+
+@media only screen and (max-width: 413px) {
+  .modos {
+    margin-top: 20px;
+    float: left;
+    margin-bottom: -10px; } }
+.modos li {
+  float: left;
+  margin-right: 10px; }
+
+.modos a {
+  height: 43px;
+  width: 43px;
+  display: block;
+  border-radius: 30px;
+  background-color: #000;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 2px solid #EBEAE9;
+  box-shadow: none;
+  margin-bottom: 10px;
+  text-indent: -9999px;
+  color: #EAE8E6;
+  font-weight: bold;
+  overflow: hidden;
+  background-image: url(../img/iconos/relato-visualizacion.png); }
+
+.modos li:last-child a {
+  background-image: url(../img/iconos/relato-listado.png); }
+
+.modos a:hover, .modos a:focus, .modos li.active a {
+  background-color: #666;
+  border-color: #F4F3F2; }
+
+.editor-relato h1 {
+  clear: both;
+  font-size: 20px;
+  padding: 40px 0 18px 0;
+  border-bottom: 1px solid #EAE8E6; }
+
+@media only screen and (max-width: 413px) {
+  .editor-relato h1 {
+    margin-top: 0; } }
+.editor-relato hr {
+  margin-top: -5px;
+  margin-bottom: 12px; }
+
+/* VISUALIZACION */
+.editor-relato .tit-editor-visual h1 {
+  text-align: center;
+  border-bottom: none; }
+
+.editor-relato .tit-editor-visual hr {
+  margin: 0 auto 30px auto;
+  margin-top: -5px;
+  float: none; }
+
+/* FORM VISUALIZACION */
+.editor-relato .formulario .styled-select {
+  width: 250px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #F7F6F5 url(../img/iconos/flecha-select.svg) no-repeat center right; }
+
+.editor-relato .formulario .styled-select select {
+  background: transparent;
+  width: 278px;
+  padding: 5px;
+  line-height: 1;
+  border: 0;
+  border-radius: 0;
+  height: 34px;
+  -webkit-appearance: none; }
+
+.editor-relato .container-checkbox {
+  margin-top: 15px;
+  margin-left: 20px;
+  padding-left: 15px; }
+
+.editor-relato .formulario .container-checkbox input[type=checkbox] {
+  visibility: hidden; }
+
+.tick {
+  cursor: pointer;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  top: -2px;
+  left: -35px;
+  background: #EEE; }
+
+.editor-relato .formulario .container-checkbox .tick:after {
+  opacity: 0.1;
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 10px;
+  background: transparent;
+  top: 8px;
+  left: 7px;
+  border: 4px solid #666;
+  border-top: none;
+  border-right: none;
+  transform: rotate(-45deg); }
+
+.editor-relato .formulario .container-checkbox input[type=checkbox]:checked + .tick:after {
+  opacity: 1; }
+
+/* Modalcito VISUALIZACION */
+.modal-opciones-nodo {
+  /*display: none;*/
+  position: absolute;
+  max-width: 200px;
+  padding: 10px 10px 5px 10px;
+  top: 10px;
+  left: 40px;
+  background: #FFF;
+  border-radius: 8px;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.15); }
+
+.modal-opciones-nodo:before {
+  content: '';
+  position: absolute;
+  bottom: 50%;
+  bottom: calc(50% - 5px);
+  left: -8px;
+  margin-left: -8px;
+  width: 0;
+  height: 0;
+  border-top: solid 8px transparent;
+  border-left: solid 8px transparent;
+  border-right: solid 8px #FFF;
+  border-bottom: solid 8px transparent;
+  z-index: 3; }
+
+.modal-opciones-nodo h2 {
+  font-size: 17px;
+  font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif;
+  font-weight: bold;
+  color: #272939;
+  margin-top: 0; }
+
+.modal-opciones-nodo hr {
+  height: 2px;
+  background: #EAE8E6;
+  width: 20px; }
+
+.modal-opciones-nodo a {
+  color: #272939;
+  font-family: "Akzidenz-Grotesk Pro Regular", Arial, Helvetica, "Liberation Sans", sans-serif;
+  text-transform: lowercase;
+  font-size: 16px;
+  display: block;
+  background: url("../img/iconos/flecha-ver-nodo.png") no-repeat center left;
+  margin: 0;
+  padding: 4px 10px 4px 29px; }
+
+.modal-opciones-nodo a:last-child {
+  background-image: url("../img/iconos/cruz-editar-nodo.png"); }
+
+.modal-opciones-nodo a:hover, .modal-opciones-nodo a:focus {
+  color: #0CA6BE;
+  text-decoration: none; }
+
+.leer-relato {
+  width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center; }
+
+.leer-relato .titulo-relato {
+  font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif;
+  font-size: 2.25em;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-bottom: 5px; }
+
+.leer-relato .autor-relato {
+  font-family: "Akzidenz-Grotesk Pro Regular", Arial, Helvetica, "Liberation Sans", sans-serif;
+  font-weight: normal;
+  font-size: 1.65em;
+  color: #999999; }
+
+@media only screen and (max-width: 576px) {
+  .leer-relato .titulo-relato {
+    font-size: 1.65em; }
+
+  .leer-relato .autor-relato {
+    font-size: 1.15em; } }
 
 /*# sourceMappingURL=escrituras.css.map */

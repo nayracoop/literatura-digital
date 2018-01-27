@@ -58,7 +58,7 @@
                   <h3>Do androids Dream of Electric Sheep?</h3>
                   <p class="autor-relato">Philip K. Dick</p>
                   <span><hr /></span>
-                  <p class="resumen">Chica hermosa su vida llena de misterios. la manera en la que piensa es diferente, Ella no cree en la muerte ni en el amor la muerte ni en el amor la muerte ni en el amor</p>
+                  <p class="resumen bloque-elipsis">Chica hermosa su vida llena de misterios. la manera en la que piensa es diferente, Ella no cree en la muerte ni en el amor la muerte ni en el amor la muerte ni en el amor</p>
                   <span class="ver-mas"></span>
                 </a>
               </div>  
@@ -71,7 +71,7 @@
                   <h3>The Hitchhiker's Guide to the Universe</h3>
                   <p class="autor-relato">Philip K. Dick</p>
                   <span><hr /></span>
-                  <p class="resumen">El gobierno decía que había creado al ser humano perfecto, al soldado invencible invencible  invencible</p>
+                  <p class="resumen bloque-elipsis">El gobierno decía que había creado al ser humano perfecto, al soldado invencible invencible  invencible</p>
                   <span class="ver-mas"></span>
                 </a>
               </div>  
@@ -84,7 +84,7 @@
                   <h3>Do androids Dream of Electric Sheep?</h3>
                   <p class="autor-relato">Philip K. Dick</p>
                   <span><hr /></span>
-                  <p class="resumen">Chica hermosa su vida llena de misterios. la manera en la que piensa es diferente, Ella no cree en la muerte ni en el amor la muerte ni en el amor la muerte ni en el amor</p>
+                  <p class="resumen bloque-elipsis">Chica hermosa su vida llena de misterios. la manera en la que piensa es diferente, Ella no cree en la muerte ni en el amor la muerte ni en el amor la muerte ni en el amor</p>
                   <span class="ver-mas"></span>
                 </a>
               </div>  
@@ -97,7 +97,7 @@
                   <h3>The Hitchhiker's Guide to the Universe</h3>
                   <p class="autor-relato">Philip K. Dick</p>
                   <span><hr /></span>
-                  <p class="resumen">El gobierno decía que había creado al ser humano perfecto, al soldado invencible invencible  invencible</p>
+                  <p class="resumen bloque-elipsis">El gobierno decía que había creado al ser humano perfecto, al soldado invencible invencible  invencible</p>
                   <span class="ver-mas"></span>
                 </a>
               </div>  

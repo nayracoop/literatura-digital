@@ -3,7 +3,7 @@
 @section('body_class')@endsection
 @section('content')
 
-<div class="fondo-forms">
+<div class="fondo-forms editor-relato">
   <div class="container listado-relatos">
     <div class="row">
       <div class="col-md-12">
@@ -19,11 +19,16 @@
             <p class="autor-relato">{{ $story->getAuthorName() }}</p>
           </div>
 
-          <h1>Listado de Fragmentos</h1>
+          <ul class="modos">
+              <li><a href="#">Modo visualización</a></li>
+              <li class="active"><a href="#">Modo listado de nodos</a></li>
+          </ul>
+
+          <h1>Listado de nodos</h1>
           <hr />
 
           <table summary="Lista de nodos del relato">
-          <caption class="invisibilizar">Lista de fragmentos del relato</caption>
+          <caption class="invisibilizar">Lista de nodos del relato</caption>
           <thead>
             <tr>
               <th scope="col" class="ordenar"><a href="#">Orden</a></th>
@@ -51,7 +56,8 @@
           <a href="{{route('node.create',$story->_id)}}" ><button class="btn btn-nuevo-relato"><span>Agregar nodo</span><span class="plus"></span></button></a>
 
           <div class="botones-nav-form">
-            <a href="#" class="bot ant">Volver a detalles del relato</a>
+              <a href="#" class="bot ant">Volver a mis relatos</a>
+              <a href="#" class="bot sig">Ir a detalles del relato</a>
           </div>
 
       </div>

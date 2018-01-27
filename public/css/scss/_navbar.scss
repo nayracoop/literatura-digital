@@ -123,18 +123,28 @@
 
 @media only screen and (min-width: ($screen-md - 1)) {
 
+	.login li{ margin-left: 0; }
 	.login li:first-child{ margin: 0; }
+	.login li:first-child > a{ background-image: url(../img/iconos/login.svg); }
 
 	.login li > a{
-	  margin-top: 2px;
-	  font-size: 12px;
-	  font-family: $brandon-grotesque-regular;
-	  color: #666;
+	  width: 44px;
+	  height: 44px;
+	  display: block;
+	  text-indent: -9999px;
+	  background: url(../img/iconos/register.svg) no-repeat center center; 	
+	}
+
+	.navbar-lexia .login li:first-child > a:hover, .navbar-lexia .login li:first-child > a:focus{ 
+		background-image: url(../img/iconos/login-hover.svg); 
 	}
 
 	.navbar-lexia .login li > a:hover, .navbar-lexia .login li > a:focus{ 
-		
+		background: url(../img/iconos/register-hover.svg) no-repeat center center; 
+		border-bottom-width: 0;
 	}
+
+	.navbar-lexia .invis { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
 }
 

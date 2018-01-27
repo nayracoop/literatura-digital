@@ -1,17 +1,18 @@
 body {
     background: $color-fondo;
-    padding-bottom: 85px;
     border-top: 30px solid #FFF;
 } 
-
-@media only screen and (max-width: ($screen-md + 50)) {
-   body { padding-bottom: 0; }
-}
 
 .reborde-right, .reborde-bottom, .reborde-left{
   position: fixed;
   z-index: -1;
   background: #FFF;
+}
+
+.reborde-bottom{ 
+  background: red;
+  position: absolute;
+  z-index: 5;
 }
 
 @media only screen and (max-width: ($screen-md)) {
