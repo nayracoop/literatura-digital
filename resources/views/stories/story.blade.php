@@ -1,51 +1,17 @@
 @extends('layouts.main')
-@section('title') {{ $story->title }} @lang('de') {{ $story->getAuthorName() }}  @endsection  
+@section('title') {{ $story->title }} @lang('de') {{ $story->getAuthorName() }}  @endsection
 @section('content')
 <div class="fondo-forms">
     <div class="container">
-      <div class="row">         
+      <div class="row">
         <div class="col-md-12">
-        
+
           <div class="leer-relato">
             <h1 class="titulo-relato">{{ $story->title }}</h1>
             <p class="autor-relato">{{ $story->getAuthorName() }}</p>
           </div>
-
-           <style>
-
-              .ejemplo{ 
-                max-width: 500px;
-                width: 90%;
-                margin: 80px auto 80px auto;
-               }
-
-              .ejemplo a {
-                display: block;
-                cursor: pointer;
-                font: 10px sans-serif;
-                background-color: steelblue;
-                text-align: right;
-                padding: 3px;
-                margin: 1px;
-                color: white;
-              }
-            </style>
-            <div class="ejemplo"></div>
-            <script src="https://d3js.org/d3.v4.min.js"></script>
-              <script>
-                var data = [4, 8, 15, 16, 23, 42];
-                var x = d3.scale.linear()
-                    .domain([0, d3.max(data)])
-                    .range([0, 100]);
-                d3.select(".ejemplo")
-                  .selectAll("div")
-                    .data(data)
-                  .enter().append("a")
-                    .style("width", function(d) { return x(d)  + "%"; })
-                    .text(function(d) { return d; });
-              </script>
-
-<!--     
+          @include('typologies.node_presentation.'.$story->typology)
+<!--
             <table summary="Lista">
             <caption class="invisibilizar">Lista</caption>
             <thead>
@@ -60,22 +26,22 @@
             <tbody>
               @forelse($story->textNodes as $node)
               <tr>
-                <td>{{ $loop->iteration }}</td>
+                <td>{{ $node->_id }}</td>
                 <td class="tit-listado">{{ $node->title }}</td>
                 <td class="ocultar-sm">{{ date('d.m.Y', strtotime($node->published_at) ) }}</td>
                 <td class="ocultar-lg">2000</td>
-                <td><button class="leer" data-node="{{$loop->iteration}}">Leer</button></td>
+                <td><button class="leer" data-node="{{$node->_id}}">Leer</button></td>
               </tr>
               @empty
               <tr>
-                <td colspan="5">No hay fragmentos</td>               
+                <td colspan="5">No hay fragmentos</td>
               </tr>
               @endforelse
-              
+
             </tbody>
             </table>
--->
 
+-->
             <div class="botones-nav-form">
 
             </div>
@@ -85,22 +51,22 @@
     </div>
   </div>
   @foreach($story->textNodes as $node)
-  <div class="nodo-backdrop esconder" id="ventana-nodo-{{ $loop->iteration }}" tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">
+  <div class="nodo-backdrop esconder" id="ventana-nodo-{{ $node->_id }}" tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">
 
-        <a class="back-button cerrar-nodo" data-node="{{$loop->iteration}}" href="#">Volver</a>
+        <a class="back-button cerrar-nodo" data-node="{{$node->_id}}" href="#">Volver</a>
 
         <div class="nodo-data-relato">
           <a href="#" class="cerrar-nodo">
             <div class="image-clip">
               @if(  $story->cover != null && !empty($story->cover)  )
-                  <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">        
+                  <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">
                   @else
-                  <img alt="" src="{{ asset('img/tapa200x200.png')}}"> 
+                  <img alt="" src="{{ asset('img/tapa200x200.png')}}">
               @endif
-            </div>  
+            </div>
             <p class="tit-relato">{{ $story->title }}</p>
             <p class="autor-relato">{{ $story->getAuthorName() }}</p>
-          </a>  
+          </a>
         </div>
 
         <div class="titulo-nodo">
@@ -109,8 +75,7 @@
         </div>
 
         <div class="container-nodo">{!!$node->text!!}</div>
-
-        <a class="back-button back-button-bottom cerrar-nodo" data-node="{{$loop->iteration}}" href="#">Volver</a>
+        <a class="back-button back-button-bottom cerrar-nodo" data-node="{{$node->_id}}" href="#">Volver</a>
 
   </div>
   @endforeach
@@ -121,37 +86,37 @@
 @push('javascript')
 <script >
 
-/* Guardar Borrador */    
+/* Guardar Borrador */
 
-$('.editable button').on('click',function(e) {      
+$('.editable button').on('click',function(e) {
 
-    e.preventDefault();  
-    var formElement = $(this).parent();    
+    e.preventDefault();
+    var formElement = $(this).parent();
     formElement = document.getElementById(formElement.attr('id') );
-    var xhr = new XMLHttpRequest();   
-    var formData = new FormData( formElement ); 
-     
-    formData.append('_token', '{{ csrf_token() }}');   
-    formData.append('_method', 'PATCH');             
-    xhr.open("POST", '{{ route( 'update-story', $story->slug ) }}');
+    var xhr = new XMLHttpRequest();
+    var formData = new FormData( formElement );
+
+    formData.append('_token', '{{ csrf_token() }}');
+    formData.append('_method', 'PATCH');
+    xhr.open("POST", '{{ route( 'save-story', $story->slug ) }}');
     xhr.send(formData);
-    
+
     xhr.addEventListener("readystatechange", function(e) {
                     var xhr = e.target;
                     if (xhr.readyState == 4) {
   //  console.log('h');
                         if(xhr.status == 200) {
-                            
-                            console.log('200');               
+
+                            console.log('200');
                             newResponse = JSON.parse( xhr.response);
-                            var input = newResponse.input;                                                                                   
-                            $('h1').text(input); 
+                            var input = newResponse.input;
+                            $('h1').text(input);
                         } else console.log(xhr.statusText);
                     }
                 });
 
  });
- 
+
 
 </script>
 @endpush

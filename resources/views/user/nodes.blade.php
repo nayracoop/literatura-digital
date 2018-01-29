@@ -24,7 +24,7 @@
             <li><a href="#modo-listado">Modo listado de nodos</a></li>
           </ul>
 
-          @include('typologies.node_presentation.'.$story->typology)
+          @include('typologies.user.node_presentation.'.$story->typology)
 
           <div id="modo-listado" class="tabpanel">
             <h1>Listado de nodos</h1>
