@@ -40,7 +40,6 @@
 
             </tbody>
             </table>
-
 -->
             <div class="botones-nav-form">
 
@@ -51,7 +50,7 @@
     </div>
   </div>
   @foreach($story->textNodes as $node)
-  <div class="nodo-backdrop esconder" id="ventana-nodo-{{ $node->_id }}" tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">
+  <div class="nodo-backdrop esconder" id="ventana-nodo-{{ $node->_id }}"  tabindex="-1" role="dialog" aria-labelledby="tit-nodo-{{ $node->_id}}" aria-hidden="true">
 
         <a class="back-button cerrar-nodo" data-node="{{$node->_id}}" href="#">Volver</a>
 
@@ -70,7 +69,7 @@
         </div>
 
         <div class="titulo-nodo">
-          <h1 id="tit-nodo">{{ $node->title }}</h1>
+          <h1 id="tit-nodo-{{ $node->_id}}">{{ $node->title }}</h1>
           <span class="acento"><span></span></span>
         </div>
 
@@ -84,39 +83,5 @@
 @endsection
 
 @push('javascript')
-<script >
 
-/* Guardar Borrador */
-
-$('.editable button').on('click',function(e) {
-
-    e.preventDefault();
-    var formElement = $(this).parent();
-    formElement = document.getElementById(formElement.attr('id') );
-    var xhr = new XMLHttpRequest();
-    var formData = new FormData( formElement );
-
-    formData.append('_token', '{{ csrf_token() }}');
-    formData.append('_method', 'PATCH');
-    xhr.open("POST", '{{ route( 'save-story', $story->slug ) }}');
-    xhr.send(formData);
-
-    xhr.addEventListener("readystatechange", function(e) {
-                    var xhr = e.target;
-                    if (xhr.readyState == 4) {
-  //  console.log('h');
-                        if(xhr.status == 200) {
-
-                            console.log('200');
-                            newResponse = JSON.parse( xhr.response);
-                            var input = newResponse.input;
-                            $('h1').text(input);
-                        } else console.log(xhr.statusText);
-                    }
-                });
-
- });
-
-
-</script>
 @endpush

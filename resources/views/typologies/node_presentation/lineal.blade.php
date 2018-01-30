@@ -30,7 +30,6 @@ foreach ( $story->textNodes->sortBy('order') as $textNode ) {
 $nodes = json_encode($nodes);
 $charCount = json_encode( $charCount);
 @endphp
-
      var data = {!!$nodes!!};
      var x = d3.scaleLinear()
          .domain([0, d3.max({!! $charCount !!})])
@@ -40,9 +39,9 @@ $charCount = json_encode( $charCount);
          .data(data)
        .enter().append("a")
          .style("width", function(d) { return x(d.charCount) + "%"; })
-         .text(function(d) { return d.title; })
-         .attr('id',function(d) { return 'ventana-nodo-'+d._id; })
-         .attr('data-node',function(d) { return d._id; })
+         .text(function(d) { return d.charCount; })
+         .attr('id',function(d) { return d._id; })
+         .attr('href',function(d) { return '#ventana-nodo-'+d._id; })
          .attr('class','leer');
 </script>
 @endpush
