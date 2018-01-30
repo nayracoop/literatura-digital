@@ -53,7 +53,7 @@
                 <button type="submit" class="btn btn-guardar">Guardar</button>
               </div>
               <div class="botones-nav-form">
-                <a href="{{route('author.story.nodes',$story->_id)}}" class="bot ant">Volver a detalles</a>
+                <a href="{{route('story.update',$story->_id)}}" class="bot ant">Volver a detalles</a>
               </div>
             </div>
           </div>
