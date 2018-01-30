@@ -123,7 +123,7 @@
 
 $('.btn-cancelar').on('click',function(e) {
   e.preventDefault();
-  window.location.replace("{{route('author.story.nodes',$story->_id)}}");
+  window.location.replace("{{ route('story.nodes', $story->_id) }}");
 });
 
 

@@ -4,7 +4,7 @@
         @endphp
         @if($user->role == \App\Models\Enums\UserType::AUTHOR)
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('contact') }}"><a href="{{ route('contact') }}">@lang('menu.contact')</a></li>
-            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('author.stories') }}"><a href="{{ route('author.stories') }}">@lang('menu.my_stories')</a></li>
+            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('my-stories') }}"><a href="{{ route('my-stories') }}">@lang('menu.my_stories')</a></li>
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('story.create') }}"><a href="{{ route('story.create') }}">@lang('menu.create_story')</a></li>
         @elseif($user->role == \App\Models\Enums\UserType::MOD)
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('admin.labels') }}"><a href="{{ route('admin.labels') }}">@lang('menu.labels')</a></li>

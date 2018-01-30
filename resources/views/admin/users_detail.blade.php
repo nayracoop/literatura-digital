@@ -1,6 +1,6 @@
 <tr>
     <td class="ocultar-lg">
-        <a href="#{{--  {{route('author.story.nodes',$story->_id)}}  --}}">
+        <a href="#{{--  {{route('story.nodes',$story->_id)}}  --}}">
             <div class="image-clip">
                 @if($user->avatar != null && !empty($user->avatar))
                     <img alt="@lang('messages.avatar_of') {{ $user->username }}" src="{{ asset('imagenes/avatar/' . $user->avatar)}}">

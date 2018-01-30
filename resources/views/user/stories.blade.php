@@ -46,7 +46,7 @@
                         @foreach($user->getStories() as $story)
                         <tr>
                             <td class="ocultar-lg">
-                                <a href="{{route('author.story.nodes',$story->_id)}}">
+                                <a href="{{route('story.nodes',$story->_id)}}">
                                     <div class="image-clip">
                                         @if($story->cover != null && !empty($story->cover))
                                             <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}"> 
@@ -57,7 +57,7 @@
                                 </a>
                             </td>
                             <td class="tit-listado">
-                                <a href="{{route('author.story.nodes',$story->_id)}}">{{ $story->title }}</a>
+                                <a href="{{route('story.nodes',$story->_id)}}">{{ $story->title }}</a>
                             </td>
                             <td class="ocultar-sm">{{ date('d.m.Y', strtotime($story->created_at) ) }}</td>
                             <td class="ocultar-lg">2000</td>

@@ -1,6 +1,11 @@
-@extends('layouts.main') @section('title') @lang('Buscar Relatos') @endsection @section('body_class') class="white" @endsection
+@extends('layouts.main') 
+@section('title') 
+    @lang('Buscar Relatos') 
+@endsection 
+@section('body_class') 
+    class="white" 
+@endsection
 @section('content')
-
 <div class="container listado-container">
     <div class="row">
         <div class="col-md-12 listado">
@@ -34,9 +39,7 @@
 
         formData.append('_token', '{{ csrf_token() }}');
         console.log(formData);
-        // formData.append('_method', 'PATCH');             
-        xhr.open("POST", '{{ route( '
-            stories.search ') }}');
+        xhr.open("POST", "{{ route('stories.search') }}");
         xhr.send(formData);
 
         xhr.addEventListener("readystatechange", function (e) {

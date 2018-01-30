@@ -32,7 +32,7 @@
                         //console.log(xhttp.statusText);
                     }
                 };
-                xhttp.open("POST", "{{ route('changeStatus') }}", true);
+                xhttp.open("POST", "{{ route('story.change-status') }}", true);
                 xhttp.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send("id=" + event.target.id);

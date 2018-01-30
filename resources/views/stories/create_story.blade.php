@@ -82,7 +82,7 @@
         </form>
 
         <div class="botones-nav-form container-botones">
-          <a href="{{route('author.stories')}}" class="bot ant">@lang('Cancelar')</a>
+          <a href="{{ route('my-stories') }}" class="bot ant">@lang('Cancelar')</a>
 
           @if( isset( $story ) && $story->textNodes->count() > 0 )
             <a href="#" class="bot sig">@lang('Ir a nodos del relato')</a>
@@ -99,7 +99,7 @@
 
  @push('javascript')
  <script type="text/javascript">
- /* Upload de imagen */
+        /* Upload de imagen */
         $('input[type="file"]').change(function() {
             var files =  this.files;
             for(var i = 0; i < files.length; i++) {
@@ -107,7 +107,7 @@
                 var xhr = new XMLHttpRequest();
                 formData.append('cover', files[i]);
                 formData.append('_token', '{{ csrf_token() }}');
-                xhr.open("POST", '{{ route( 'upload-picture' ) }}');
+                xhr.open("POST", "{{ route('store-picture') }}");
                 xhr.send(formData);
             }
 

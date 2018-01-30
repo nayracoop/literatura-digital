@@ -5,130 +5,85 @@ use Illuminate\Http\Request;
 /*
 * Web Routes
 */
+
 #home
 Route::get('/', 'StoryController@index')->name('index');
 
-#relatos y nodos
-Route::get('/relatos', 'StoryController@stories')->name('stories');
-Route::post('/relatos/genero', 'StoryController@searchByGenre')->name('searchByGenre');
-Route::get('/relatos/genero/{genre?}', 'StoryController@searchByGenre')->name('stories.genre');
-Route::post('/relatos/busqueda', 'StoryController@search')->name('stories.search');
-Route::post('/relatos/publicar', 'StoryController@changeStatus')->name('changeStatus');
+#vista pública de autor
+Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
+#formulario público de contacto
+Route::get('/contacto', 'AdminController@listCategories')->name('contact');
 
-Route::get('/relatos/{slug}', 'StoryController@show')->name('story.show');
+#relatos y nodos de acceso público
+Route::group(['prefix' => 'relatos'], function () {
+    #lista general de relatos. Con búsqueda, en desuso
+    Route::get('/', 'StoryController@stories')->name('stories');
 
-#dejar comentario
-Route::post('/relatos/{slug}/comentar', 'StoryController@storeComment')->name('comment.store');
-Route::post('/autor/{slug}/comentar', 'UserController@storeComment')->name('comment.author.store');
+    Route::get('/genero/{genre?}', 'StoryController@searchByGenre')->name('stories.genre');
+    Route::post('/genero', 'StoryController@searchByGenre')->name('stories.search-by-genre');
 
-Route::get('/relatos/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')->name('node.show');
+    Route::post('/busqueda', 'StoryController@search')->name('stories.search');
+    Route::get('/{slug}', 'StoryController@show')->name('story.show');
+    Route::get('/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')->name('node.show');
+});
 
-#Like - relato - fragmento
-Route::post('/favoritos/{stroy}/{node?}', 'StoryController@like')->name('like');
-#Like pero para users
-Route::post('/seguir/{username}', 'UserController@follow')->name('follow');
+#acciones exclusivas de usuarios
+Route::group(['middleware' => 'auth'], function () {
+    #like para relato ó fragmento
+    Route::post('/favoritos/{story}/{node?}', 'StoryController@like')->name('like');
+    #like pero para users
+    Route::post('/seguir/{username}', 'UserController@follow')->name('follow');
+    #dejar comentario en relato
+    Route::post('/relatos/{slug}/comentar', 'StoryController@storeComment')->name('comment.store');
+    #dejar comentario en autor
+    Route::post('/autor/{slug}/comentar', 'UserController@storeComment')->name('comment.author.store');
+});
 
-#perfil-usuario
+# perfil de usuario
 Route::group(['middleware' => 'auth', 'prefix' => 'mi-perfil'], function () {
     Route::get('/', 'UserController@myProfile')->name('author.edit');
     Route::patch('/', 'UserController@updateProfile')->name('author.update');
-    # editar relato
-    Route::get('/relatos/{slug}/editar', 'StoryController@editStory')->name('story.edit');
-    Route::patch('/relatos/{slug}/editar', 'StoryController@updateStory')->name('story.update');
-    // crear nodos de un relato
-    Route::get('/relatos/{slug}/nuevo-fragmento', 'StoryController@createNode')->name('node.create');
-    Route::post('/relatos/{slug}/nuevo-fragmento', 'StoryController@storeNode')->name('node.store');
-
-    Route::get('/relatos', 'UserController@stories')->name('author.stories');
-    Route::get('/relatos/{slug}/fragmentos', 'UserController@nodes')->name('author.story.nodes');
-    //Route::get('/mi-perfil/relatos/{slug}/fragmentos/{node}',
-    //'UserController@showNode')->name('author.story.nodes.show');
-    Route::get('/relatos/{slug}/fragmentos/{node}/editar', 'UserController@editNode')->name('author.story.nodes.edit');
-
-    #Crear Relato
-    Route::get('/relatos/nuevo', 'StoryController@createStory')->name('story.create');
-    Route::post('/relatos/nuevo', 'StoryController@storeStory')->name('story.store');
 });
 
-#vista publica de autor
-Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
+Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
+    # lista de relatos
+    Route::get('/', 'StoryController@myStories')->name('my-stories');
+    
+    # crear relato
+    Route::get('/nuevo', 'StoryController@createStory')->name('story.create');
+    Route::post('/nuevo', 'StoryController@storeStory')->name('story.store');
 
-#Subir imagen temporal
-Route::post('/upload-picture/{story?}', 'TestController@storeXhrPicture')->name('upload-picture');
-#Guardar relato
-Route::post('/save-story', 'StoryController@saveStoryXhr')->name('save-story');
-Route::post('/save-node', 'StoryController@saveNodeXhr')->name('save-node');
-//Route::patch('/update-story/{slug}', 'TestController@updateXhrStory')->name('update-story');
+    # editar relato
+    Route::get('/{slug}/editar', 'StoryController@editStory')->name('story.edit');
+    Route::patch('/{slug}/editar', 'StoryController@updateStory')->name('story.update');
 
-#etiquetas
-Route::post('/tags', 'TestController@tagAction')->name('tag-action');
+    # crear nodos de un relato
+    Route::get('/{slug}/nuevo-fragmento', 'StoryController@createNode')->name('node.create');
+    Route::post('/{slug}/nuevo-fragmento', 'StoryController@storeNode')->name('node.store');
+    Route::get('/{slug}/fragmentos', 'StoryController@nodes')->name('story.nodes');
+    Route::get('/{slug}/fragmentos/{slugNode}/editar', 'StoryController@editNode')->name('node.edit');
+
+    # guardar relato
+    Route::post('/save-story', 'StoryController@saveStoryXhr')->name('save-story');
+    Route::post('/save-node', 'StoryController@saveNodeXhr')->name('save-node');
+
+    # guardar imagen
+    Route::post('/store-picture', 'StoryController@storePictureXhr')->name('store-picture');
+});
+
+#acciones exclusivas de admin
+Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin'], function () {
+    Route::get('/usuarios', 'AdminController@listUsers')->name('admin.users');
+    Route::get('/labels', 'AdminController@listLabels')->name('admin.labels');
+    Route::get('/categories', 'AdminController@listCategories')->name('admin.categories');
+    Route::post('/relatos/publicar', 'StoryController@changeStatus')->name('story.change-status');
+});
 
 Route::get('/salir', function () {
     if (Auth::check()) {
         Auth::logout();
     }
-    return redirect()->back();
+    return redirect()->route('index');
 })->name('salir');
 
-#ADMIN
-Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin'], function () {
-    Route::get('/usuarios', 'AdminController@listUsers')->name('admin.list-users');
-    Route::get('/labels', 'AdminController@listLabels')->name('admin.labels');
-    Route::get('/categories', 'AdminController@listCategories')->name('admin.categories');
-});
-
-#Formulario de contacto
-Route::get('/contacto', 'AdminController@listCategories')->name('contact');
-
-# Controlador de pruebas
-Route::get('/delete-user', 'TestController@deleteUser');
-Route::get('/list-users', 'TestController@listUsers');
-Route::get('/list-user-stories', 'TestController@listUserStories');
-
-#rutas temporales para pruebas
-/*
-Route::get('/save', function(){
-    $a = new \App\Models\Story();
-    $a->title = 'hola Mongo';
-    $a->save();
-});
-
-Route::get('/save-nodes', function(){
-    $a =  \App\Models\Story::where('slug', 'macri-gato')->first();
-
-    //---
-    $tn1 = new \App\Models\TextNode(['title' => 'A','text' => 'hfuiwjgk gyugu ghugdf', 'image'=>
-    'default.jpg','title' => 'published_at' ]);
-    $tn2 = new \App\Models\TextNode(['title' => 'A','text' => 'hfuiwjgk gyugu ghugdf', 'image'=>
-    'default.jpg','title' => 'published_at' ]);
-
-    //---
-    $a->textNodes()->save($tn1) ;
-    $a->textNodes()->save($tn2) ;
-    $a->save();
-});
-
-Route::get('/stories', function(){
-    $stories =  \App\Models\Story::all();
-    foreach ($stories as $s) {
-        echo "<br>$s->title - $s->description";
-        # code...
-    }
-})->name('stories');
-
-Route::get('/new-story', function(){
-    return view('nodes.create_story');
-})->name('story.create');
-
-
-Route::post('/new-story', function(Request $request){
-    $input = $request->all();
-    $story =  new \App\Models\Story();
-    $story->create($input);
-
-    return redirect()->route('stories');
-})->name('story.store');
-*/
 Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');

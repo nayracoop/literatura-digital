@@ -11,6 +11,7 @@ use App\Models\Like;
 use App\Models\Tag;
 use App\Models\Enums\StoryStatus;
 use Carbon\Carbon;
+use App\Http\Requests\UploadPicture;
 use View;
 
 class StoryController extends Controller
@@ -62,6 +63,47 @@ class StoryController extends Controller
 
         return view('stories.story')
             ->with('story', $story);
+    }
+
+    /**
+     * stories
+     * seccion "mis relatos" del perfil de autor
+     *
+     */
+    public function myStories()
+    {
+        return view('user.stories')->with('user', Auth::user());
+    }
+
+    /**
+     * nodes
+     *  perfil de autor muestra los nodos del relato
+     *
+     */
+    public function nodes($slug)
+    {
+        return view('user.nodes')
+            ->with('user', Auth::user())
+            ->with('story', Story::where('_id', $slug)->orWhere('slug', $slug)->first());
+    }
+
+
+    
+    /**
+    *
+    */
+    public function editNode($story, $node)
+    {
+        $story = Story::where('_id', $story)->orWhere('slug', $story)->first();
+        $node = $story->textNodes->where('_id', $node)->first();
+        if ($node === null) {
+            $node = $story->textNodes->where('slug', $node)->first();
+        }
+
+        return view('nodes.create_node')
+            ->with('user', Auth::user())
+            ->with('story', $story)
+            ->with('node', $node);
     }
 
      /**
@@ -405,7 +447,7 @@ class StoryController extends Controller
               $s =  Story::where('_id', $request->id)->first();
               $a = $s->update($input);
               $action = 'updated';
-              $redirect = route('author.story.nodes', $s->getIdAttribute());
+              $redirect = route('story.nodes', $s->getIdAttribute());
         } else {
               $story = new Story();
               $s = $story->create($input);
@@ -467,7 +509,7 @@ class StoryController extends Controller
                  $story->textNodes()->save($node);
                  $story->save();
                  $action = 'created';
-                 $redirect = route('author.story.nodes', $story->_id);
+                 $redirect = route('story.nodes', $story->_id);
         }
 
         return response()->json([
@@ -475,5 +517,28 @@ class StoryController extends Controller
               'id' => $node->_id,
               'redirect' => $redirect
             ]);
+    }
+
+    /**
+    * storePictureXhr
+    * Guarda foto y si existe la asocia al relato
+    */
+    public function storePictureXhr(UploadPicture $request, $story = null)
+    {
+        $cover = '';
+        if ($request->hasFile('cover') && $request->file('cover')->isValid()) {
+            $cover = date('Y/m/dHis') . '.' . $request->cover->extension();
+            $path = $request->cover->storeAs('', $cover, 'nayra');
+        }
+        if ($story != null) {
+            $s = Story::where('_id', $story)->orWhere('slug', $story)->first();
+            $s->cover = $cover;
+            $s->save();
+        }
+
+        return response()->json([
+            'picUrl' => url('imagenes/cover/' . $cover),
+            'picName' => $cover
+        ]);
     }
 }

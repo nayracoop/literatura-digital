@@ -77,7 +77,7 @@
                 var xhr = new XMLHttpRequest();
                 formData.append('cover', files[i]);              
                 formData.append('_token', '{{ csrf_token() }}');                
-                xhr.open("POST", '{{ route( 'upload-picture' ) }}');
+                xhr.open("POST", "{{ route( 'store-picture' ) }}");
                 xhr.send(formData);
             }
 

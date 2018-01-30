@@ -12,8 +12,9 @@
                             {{ $story->title }}
                         </a>
                         @lang('De') 
-                        <a href="{{ route('author.show', $story->author->slug) }}" class="nodo-meta-autor">
-                            {{ $story->getAuthorName() }}
+                        @php $authorName = $story->getAuthorName(); @endphp
+                        <a href="{{ route('author.show', $story->author->username) }}" class="nodo-meta-autor">
+                            {{ $authorName or __('messages.user_no_name') }}
                         </a>
                     </p>
                     <p class="nodo-fecha-relato">

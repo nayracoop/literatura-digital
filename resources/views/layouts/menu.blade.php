@@ -79,7 +79,7 @@
                     // console.log(xhttp.statusText);
                 }
             };
-            xhttp.open("POST", "{{ route('searchByGenre') }}", true);
+            xhttp.open("POST", "{{ route('stories.search-by-genre') }}", true);
             xhttp.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("genre=" + genre);
