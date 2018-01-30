@@ -18,6 +18,9 @@
                 <caption class="invisibilizar">@lang('messages.users_list')</caption>
                 <thead>
                     <tr>
+                        <th class="ocultar-lg" scope="col">
+                            <span class="invisibilizar">Imagen</span>
+                        </th>
                         <th scope="col">
                             <a href="#">@lang('messages.user')</a>
                         </th>
@@ -41,6 +44,13 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <a href="{{ route('story.create') }}">
+                <button class="btn btn-nuevo-relato">
+                    <span>@lang('messages.new_user')</span>
+                    <span class="plus"></span>
+                </button>
+            </a>
         </div>
     </div>
 @endsection

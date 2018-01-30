@@ -11,7 +11,8 @@
             <h3>{{ $story->title or __('messages.no_title') }}</h3>
 
             @if (isset($story->author))
-                <p class="autor-relato"><a href="{{ route('author.show', $story->author->username) }}">{{ $story->getAuthorName() }}</a></p>
+                @php $authorName = $story->getAuthorName(); @endphp
+                <p class="autor-relato"><a href="{{ route('author.show', $story->author->username) }}">{{ $authorName or __('messages.user_no_name') }}</a></p>
             @else
                 <p class="autor-relato"><a>@lang('messages.deleted_user')</a></p>
             @endif

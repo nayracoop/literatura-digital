@@ -58,8 +58,12 @@ class User extends Authenticatable
      */
     public function getName()
     {
-       // $author
-        return $this->first_name.' '.$this->last_name;
+        // $author
+        if (isset($this->first_name) || isset($this->last_name)) {
+            return $this->first_name . ' ' . $this->last_name;
+        } else {
+            return null;
+        }
     }
 
     /**

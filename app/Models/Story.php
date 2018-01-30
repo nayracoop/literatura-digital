@@ -85,8 +85,8 @@ class Story extends BaseModel
     *
     * Si es relato coral devuelve las voces existentes.
     * @author Jose Casanova <jose.casanova@nayra.coop>
-    * 
-    * @param $id 
+    *
+    * @param $id
     *
     * @return Array
     **/
@@ -99,7 +99,8 @@ class Story extends BaseModel
      * getAuthorName helper para nombre completo del autor
      * @return String
      */
-    public function getAuthorName() {
+    public function getAuthorName()
+    {
         return $this->author->getName();
     }
 

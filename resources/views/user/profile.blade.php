@@ -7,14 +7,14 @@
         <div class="col-lg-12">
           <div class="data-relato">
                 <div class="image-clip">
-                @if(  $user->avatar != null && !empty($user->avatar)  )
-                  <img alt="@lang('Avatar de') {{$user->getName()}}" src="{{ url('imagenes/avatar/'.$user->avatar )}}">        
-                  @else
+                @if ($user->avatar != null && !empty($user->avatar))
+                  <img alt="@lang('messages.avatar_of') {{$user->getName()}}" src="{{ url('imagenes/avatar/' . $user->avatar )}}">
+                @else
                   <img src="{{asset('img/img-usuario.jpg')}}" alt="" /> 
-                  @endif
+                 @endif
                 </div>  
-                <p class="tit-relato">{{  $user->username  }}</p>
-                <p class="autor-relato">{{$user->getName()}}</p>
+                <p class="tit-relato">{{ $user->username }}</p>
+                <p class="autor-relato">{{ $user->getName() }}</p>
               </div>
           </div>
           

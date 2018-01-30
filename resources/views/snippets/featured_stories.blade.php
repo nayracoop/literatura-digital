@@ -1,4 +1,4 @@
 
-<h2 class="tit-home">Favoritos</h2>
+<h2 class="tit-home" id="list_title">Favoritos</h2>
 <hr />
 @include('stories.list')

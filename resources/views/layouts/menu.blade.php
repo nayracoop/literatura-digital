@@ -18,16 +18,16 @@
         <div class="collapse navbar-collapse navbar-escrituras-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="{{route('stories')}}" 
+                    <a href="{{ route('stories') }}"
                         class="dropdown-toggle" type="button" 
-                        id="dropdownMenuButton" data-toggle="dropdown" 
+                        id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                             @lang('menu.stories')
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="/#all">@lang('menu.genres_all')</a></li>
+                        <li><a class="dropdown-item" href="{{ route('index') . '#todos' }}">@lang('menu.genres_all')</a></li>
                         @foreach(\App\Models\Genre::all() as $genre)
-                            <li><a class="dropdown-item" href="/#{{ $genre->slug }}">{{ $genre->name }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('index') . '#' . $genre->slug }}">{{ $genre->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -35,8 +35,7 @@
                     Menú que arma los accesos para el tipo de usuario logueado
                     ojo que cierra el </ul> de arriba
                 --}}
-                @include('user.main_menu')
-                
+                @include('layouts.menu_user')                
         </div>
     </div>
 </nav>
@@ -53,8 +52,15 @@
         }, false);
 
         window.onload = function (e) {
-            if (location.hash != '') {
-                searchByGenre(location.hash)
+            let hash = location.hash;
+            if (hash != '') {
+                // usamos el hash ingresar en Middlewares
+                // para abrir el modal de login
+                if (hash == '#ingresar') {
+                    $('#link_login').click();
+                } else {
+                    searchByGenre(hash);
+                }
             }
         }
 
@@ -66,6 +72,8 @@
                     var storiesList = JSON.parse(xhttp.response);
                     var el = document.getElementById("stories_list");
                     el.innerHTML= storiesList.results;
+                    var title = document.getElementById("list_title");
+                    title.textContent = genre.charAt(0).toUpperCase() + genre.slice(1);;
                     hashChangedUpdate();
                 } else {
                     // console.log(xhttp.statusText);

@@ -29,25 +29,27 @@ Route::post('/favoritos/{stroy}/{node?}', 'StoryController@like')->name('like');
 Route::post('/seguir/{username}', 'UserController@follow')->name('follow');
 
 #perfil-usuario
-Route::group(['prefix' => 'mi-perfil'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'mi-perfil'], function () {
     Route::get('/', 'UserController@myProfile')->name('author.edit');
     Route::patch('/', 'UserController@updateProfile')->name('author.update');
-#editar relato
+    # editar relato
     Route::get('/relatos/{slug}/editar', 'StoryController@editStory')->name('story.edit');
     Route::patch('/relatos/{slug}/editar', 'StoryController@updateStory')->name('story.update');
-//crear nodos de un relato
+    // crear nodos de un relato
     Route::get('/relatos/{slug}/nuevo-fragmento', 'StoryController@createNode')->name('node.create');
     Route::post('/relatos/{slug}/nuevo-fragmento', 'StoryController@storeNode')->name('node.store');
 
     Route::get('/relatos', 'UserController@stories')->name('author.stories');
     Route::get('/relatos/{slug}/fragmentos', 'UserController@nodes')->name('author.story.nodes');
-   //Route::get('/mi-perfil/relatos/{slug}/fragmentos/{node}', 'UserController@showNode')->name('author.story.nodes.show');
+    //Route::get('/mi-perfil/relatos/{slug}/fragmentos/{node}',
+    //'UserController@showNode')->name('author.story.nodes.show');
     Route::get('/relatos/{slug}/fragmentos/{node}/editar', 'UserController@editNode')->name('author.story.nodes.edit');
 
     #Crear Relato
     Route::get('/relatos/nuevo', 'StoryController@createStory')->name('story.create');
     Route::post('/relatos/nuevo', 'StoryController@storeStory')->name('story.store');
 });
+
 #vista publica de autor
 Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
 
@@ -69,9 +71,11 @@ Route::get('/salir', function () {
 })->name('salir');
 
 #ADMIN
-Route::get('/admin/usuarios', 'AdminController@listUsers')->name('admin.list-users');
-Route::get('/admin/labels', 'AdminController@listLabels')->name('admin.labels');
-Route::get('/admin/categories', 'AdminController@listCategories')->name('admin.categories');
+Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin'], function () {
+    Route::get('/usuarios', 'AdminController@listUsers')->name('admin.list-users');
+    Route::get('/labels', 'AdminController@listLabels')->name('admin.labels');
+    Route::get('/categories', 'AdminController@listCategories')->name('admin.categories');
+});
 
 #Formulario de contacto
 Route::get('/contacto', 'AdminController@listCategories')->name('contact');

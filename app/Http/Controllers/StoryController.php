@@ -270,7 +270,7 @@ class StoryController extends Controller
         if ($request->has('search')) {
             $stories = Story::where('title', 'like', "%$search%")
                 ->orWhere('description', 'like', "%$search%")
-                ->orWhere('tags.name', 'like', "%$search%")->where('status', 'publish')->get();
+                ->orWhere('tags.name', 'like', "%$search%")->where('status', StoryStatus::PUBLISHED)->get();
 
             $tags = Tag::where('name', 'like', "%$search%")->get();
         } else {
@@ -292,25 +292,28 @@ class StoryController extends Controller
     public function searchByGenre(Request $request)
     {
         $input = $request->all();
-        $search = $input['genre'];
+        $search = null;
+        if ($request->has('genre')) {
+            $search = $input['genre'];
+        }
         $stories = [];
         $results = '';
-        $isAdminOrMod = false;
+        $isAdminOrMod = 'false';
 
         if (Auth::check()) {
-            $isAdminOrMod = Auth::user()->isAdminOrMod();
+            $isAdminOrMod = Auth::user()->isAdminOrMod() ? 'true' : 'false';
         }
         
-        if ($request->has('genre')) {
-            if ($search == 'all') {
-                $stories = Story::where('status', 'publish')
+        if (isset($search)) {
+            if ($search == 'todos') {
+                $stories = Story::where('status', StoryStatus::PUBLISHED)
                                 ->orWhere($isAdminOrMod)
                                 ->orderBy('created_at')
                                 ->get();
             } else {
                 $stories = Story::where('genre', 'like', "%$search%")
                                 ->where(function ($query) use ($isAdminOrMod) {
-                                    $query->where('status', 'publish')
+                                    $query->where('status', StoryStatus::PUBLISHED)
                                           ->orWhere($isAdminOrMod);
                                 })
                                 ->orderBy('created_at')
