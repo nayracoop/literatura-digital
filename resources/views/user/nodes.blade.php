@@ -24,7 +24,7 @@
             <li><a href="#modo-listado">Modo listado de nodos</a></li>
           </ul>
 
-          @include('typologies.user.node_presentation.'.$story->typology)
+          @include('typologies.node_presentation.user.'.$story->typology)
 
           <div id="modo-listado" class="tabpanel">
             <h1>Listado de nodos</h1>
@@ -60,8 +60,8 @@
             <a href="{{route('node.create',$story->_id)}}" ><button class="btn btn-nuevo-relato"><span>Agregar nodo</span><span class="plus"></span></button></a>
 
           <div class="botones-nav-form">
-              <a href="#" class="bot ant">Volver a mis relatos</a>
-              <a href="#" class="bot sig">Ir a detalles del relato</a>
+              <a href="{{route('author.stories')}}" class="bot ant">Volver a mis relatos</a>
+              <a href="{{route('story.update',$story->id)}}" class="bot sig">Ir a detalles del relato</a>
           </div>
 
       </div>

@@ -303,7 +303,7 @@ class StoryController extends Controller
         if (Auth::check()) {
             $isAdminOrMod = Auth::user()->isAdminOrMod() ? 'true' : 'false';
         }
-        
+
         if (isset($search)) {
             if ($search == 'todos') {
                 $stories = Story::where('status', StoryStatus::PUBLISHED)
@@ -346,7 +346,7 @@ class StoryController extends Controller
         if (Auth::check()) {
             $isAdminOrMod = Auth::user()->isAdminOrMod();
         }
-        
+
         if ($isAdminOrMod) {
             $story = Story::find($id);
             if ($story->status == StoryStatus::PUBLISHED) {
@@ -405,11 +405,13 @@ class StoryController extends Controller
               $s =  Story::where('_id', $request->id)->first();
               $a = $s->update($input);
               $action = 'updated';
+              $redirect = route('author.story.nodes', $s->getIdAttribute());
         } else {
               $story = new Story();
               $s = $story->create($input);
               $s->author()->associate(Auth::user());
               $action = 'created';
+              $redirect = route('node.create', $s->getIdAttribute());
         }
 
         if ($request->has('tags')) {
@@ -434,14 +436,14 @@ class StoryController extends Controller
             'author' => Auth::user()->_id,
             'id' => $s->getIdAttribute(),
             'input' => $input,
-            'redirect' => route('node.create', $s->getIdAttribute()),
+            'redirect' => $redirect,
             'action' => $action
             ]);
     }
     /**
-    * saveStoryXhr
+    * saveNodeXhr
     *
-    * Crea nuevo relato o actualiza los datos del relato indicado.
+    * Crea nuevo fragmento (TextNode) o actualiza los datos del fragmento (TextNode) indicado.
     * @param Request $request
     * @return Response  json
     */
