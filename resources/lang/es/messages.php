@@ -20,6 +20,8 @@ return [
     'first_name' => 'Nombre',
     'last_name' => 'Apellido',
     'avatar_of' => 'Avatar de',
+    'stories_of' => 'Relatos de',
     'new_user' => 'Nuevo usuario',
     'user_no_name' => 'Usuario sin nombre',
+    'favorites' => 'Favoritos'
 ];

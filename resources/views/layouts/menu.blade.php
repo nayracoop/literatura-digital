@@ -41,8 +41,8 @@
 </nav>
 
 @guest
-    @include('snippets.register_form')
-    @include('snippets.login_form')
+    @include('auth.register')
+    @include('auth.login')
 @endguest
 
 @push('javascript')
@@ -70,10 +70,8 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {                    
                     var storiesList = JSON.parse(xhttp.response);
-                    var el = document.getElementById("stories_list");
+                    var el = document.getElementById("stories_block_list");
                     el.innerHTML= storiesList.results;
-                    var title = document.getElementById("list_title");
-                    title.textContent = genre.charAt(0).toUpperCase() + genre.slice(1);;
                     hashChangedUpdate();
                 } else {
                     // console.log(xhttp.statusText);

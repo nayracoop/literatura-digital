@@ -61,7 +61,7 @@ class StoryController extends Controller
         $story->views++;
         $story->save();
 
-        return view('stories.story')
+        return view('stories.show')
             ->with('story', $story);
     }
 
@@ -70,48 +70,17 @@ class StoryController extends Controller
      * seccion "mis relatos" del perfil de autor
      *
      */
-    public function myStories()
+    public function list()
     {
-        return view('user.stories')->with('user', Auth::user());
-    }
-
-    /**
-     * nodes
-     *  perfil de autor muestra los nodos del relato
-     *
-     */
-    public function nodes($slug)
-    {
-        return view('user.nodes')
-            ->with('user', Auth::user())
-            ->with('story', Story::where('_id', $slug)->orWhere('slug', $slug)->first());
-    }
-
-
-    
-    /**
-    *
-    */
-    public function editNode($story, $node)
-    {
-        $story = Story::where('_id', $story)->orWhere('slug', $story)->first();
-        $node = $story->textNodes->where('_id', $node)->first();
-        if ($node === null) {
-            $node = $story->textNodes->where('slug', $node)->first();
-        }
-
-        return view('nodes.create_node')
-            ->with('user', Auth::user())
-            ->with('story', $story)
-            ->with('node', $node);
+        return view('stories.list')->with('user', Auth::user());
     }
 
      /**
      * Muestra el formulario para metadatos de relato
      */
-    public function createStory()
+    public function create()
     {
-        return view('stories.create_story');
+        return view('stories.create');
     }
 
      /**
@@ -152,9 +121,9 @@ class StoryController extends Controller
         return redirect()->back();
     }
 
-    public function editStory($slug)
+    public function edit($story)
     {
-        return view('stories.create_story')->with('story', Story::where('_id', $slug)->orWhere('slug', $slug)->first());
+        return view('stories.edit')->with('story', Story::where('_id', $story)->orWhere('slug', $story)->first());
     }
 
     public function updateStory(Request $request, $slug)
@@ -190,28 +159,6 @@ class StoryController extends Controller
         // $s->author()->associate($author);
         $story->save();
         return redirect()->back();
-    }
-
-    /**
-     * Get the requested Story
-     *
-     * @return Story
-     */
-    public function showNode($slug, $slugNode)
-    {
-        $story = Story::where('slug', $slug)->first();
-        return view('nodes.node')
-            ->with('story', $story)
-            ->with('textNode', $story->textNodes->where('slug', $slugNode)->first());
-    }
-
-    /**
-     * Muestra el formulario para nuevos fragmentos (Node)
-     */
-    public function createNode($slug)
-    {
-        return view('nodes.create_node')
-            ->with('story', Story::where('_id', $slug)->orWhere('slug', $slug)->first());
     }
 
      /**
@@ -362,11 +309,14 @@ class StoryController extends Controller
                                 ->get();
             }
         } else {
+            // le paso favoritos porque lo uso como título de la lista
+            $search = 'favoritos';
             $stories = Story::featured();
         }
 
-        $results = View::make('stories.list')
+        $results = View::make('stories.block_list')
                         ->with('stories', $stories)
+                        ->with('title', ucfirst($search))
                         ->render();
 
         return response()->json(['genre'=>$search, 'results' => $results]);
@@ -437,23 +387,23 @@ class StoryController extends Controller
     */
     public function saveStoryXhr(Request $request)
     {
-           $story = null;
-           $s = null;
-           $input = $request->all();
-           $redirect = '';
-           $action = '';
+        $story = null;
+        $s = null;
+        $input = $request->all();
+        $redirect = '';
+        $action = '';
 
         if ($request->has('id')) {
-              $s =  Story::where('_id', $request->id)->first();
-              $a = $s->update($input);
-              $action = 'updated';
-              $redirect = route('story.nodes', $s->getIdAttribute());
+            $s = Story::where('_id', $request->id)->first();
+            $a = $s->update($input);
+            $action = 'updated';
+            $redirect = route('story.nodes', $s->getIdAttribute());
         } else {
-              $story = new Story();
-              $s = $story->create($input);
-              $s->author()->associate(Auth::user());
-              $action = 'created';
-              $redirect = route('node.create', $s->getIdAttribute());
+            $story = new Story();
+            $s = $story->create($input);
+            $s->author()->associate(Auth::user());
+            $action = 'created';
+            $redirect = route('node.create', $s->getIdAttribute());
         }
 
         if ($request->has('tags')) {
@@ -480,42 +430,6 @@ class StoryController extends Controller
             'input' => $input,
             'redirect' => $redirect,
             'action' => $action
-            ]);
-    }
-    /**
-    * saveNodeXhr
-    *
-    * Crea nuevo fragmento (TextNode) o actualiza los datos del fragmento (TextNode) indicado.
-    * @param Request $request
-    * @return Response  json
-    */
-    public function saveNodeXhr(Request $request)
-    {
-            $input = $request->all();
-            $redirect = null;
-            $action = '';
-            $story = Story::where('_id', $request->story)->first();
-            $node = null;
-        if ($request->has('id')) {
-                 $node = $story->textNodes->where('_id', $request->id)->first();
-                 $n = $node->update($input);
-                 $story->textNodes()->save($node);
-                 $story->save();
-                 $action = 'updated';
-                 //$story->update();
-        } else {
-                 $node = new TextNode($input);
-                // $n = $newNode->create($input);
-                 $story->textNodes()->save($node);
-                 $story->save();
-                 $action = 'created';
-                 $redirect = route('story.nodes', $story->_id);
-        }
-
-        return response()->json([
-              'action' => $action,
-              'id' => $node->_id,
-              'redirect' => $redirect
             ]);
     }
 

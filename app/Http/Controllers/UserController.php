@@ -18,7 +18,7 @@ class UserController extends Controller
     /**
      * XhrUpdateData
      */
-    public function updateProfile(Request $request)
+    public function update(Request $request)
     {
         $user = Auth::user();
         $input = $request->all();
@@ -30,10 +30,10 @@ class UserController extends Controller
     * Perfil publico del usuario
     *
     */
-    public function author($autor)
+    public function show($user)
     {
-        return view('user.user')
-            ->with('author', User::where('username', $autor)->first());
+        return view('users.show')
+            ->with('user', User::where('username', $user)->first());
     }
 
     /**
@@ -78,5 +78,27 @@ class UserController extends Controller
         $like = new Like();
 
         return json(['status' => 'ok']);
+    }
+
+    public function listUsers($filter = null)
+    {
+        return view('admin.users_list')
+            ->with('users', User::orderBy('role')->orderBy('created_at', 'desc')->get());
+    }
+
+    /**
+     * Perfil del usuario a modificar
+     *
+     */
+    public function edit($userId = null)
+    {
+        if (isset($userId)) {
+            $user = User::find($userId);
+        } else {
+            $user = Auth::user();
+        }
+
+        return view('users.edit')
+            ->with('user', $user);
     }
 }

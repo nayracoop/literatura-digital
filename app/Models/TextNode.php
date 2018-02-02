@@ -14,7 +14,7 @@ class TextNode extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'title','slug','text', 'image', 'published_at','nodes','order','wordCount','charCount'
+        'title', 'slug', 'text', 'image', 'published_at', 'nodes', 'order', 'wordCount', 'charCount'
     ];
 
     protected $dates = [

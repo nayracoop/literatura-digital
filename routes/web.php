@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 Route::get('/', 'StoryController@index')->name('index');
 
 #vista pública de autor
-Route::get('/autor/{slug}', 'UserController@author')->name('author.show');
+Route::get('/autor/{user}', 'UserController@show')->name('user.show');
 #formulario público de contacto
 Route::get('/contacto', 'AdminController@listCategories')->name('contact');
 
@@ -23,59 +23,64 @@ Route::group(['prefix' => 'relatos'], function () {
     Route::post('/genero', 'StoryController@searchByGenre')->name('stories.search-by-genre');
 
     Route::post('/busqueda', 'StoryController@search')->name('stories.search');
-    Route::get('/{slug}', 'StoryController@show')->name('story.show');
-    Route::get('/{slug}/fragmentos/{slugNode}', 'StoryController@showNode')->name('node.show');
+    Route::get('/{story}', 'StoryController@show')->name('story.show');
+    Route::get('/{story}/fragmentos/{textNode}', 'TextNodeController@show')->name('node.show');
 });
 
-#acciones exclusivas de usuarios
+#acciones exclusivas de usuarios hacia otros relatos
 Route::group(['middleware' => 'auth'], function () {
     #like para relato ó fragmento
-    Route::post('/favoritos/{story}/{node?}', 'StoryController@like')->name('like');
+    Route::post('/favoritos/{story}/{textNode?}', 'StoryController@like')->name('like');
     #like pero para users
     Route::post('/seguir/{username}', 'UserController@follow')->name('follow');
     #dejar comentario en relato
-    Route::post('/relatos/{slug}/comentar', 'StoryController@storeComment')->name('comment.store');
+    Route::post('/relatos/{story}/comentar', 'StoryController@storeComment')->name('comment.store');
     #dejar comentario en autor
-    Route::post('/autor/{slug}/comentar', 'UserController@storeComment')->name('comment.author.store');
+    Route::post('/autor/{story}/comentar', 'UserController@storeComment')->name('comment.user.store');
 });
 
 # perfil de usuario
 Route::group(['middleware' => 'auth', 'prefix' => 'mi-perfil'], function () {
-    Route::get('/', 'UserController@myProfile')->name('author.edit');
-    Route::patch('/', 'UserController@updateProfile')->name('author.update');
+    Route::get('/', 'UserController@edit')->name('user.edit');
+    Route::patch('/', 'UserController@update')->name('user.update');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     # lista de relatos
-    Route::get('/', 'StoryController@myStories')->name('my-stories');
+    Route::get('/', 'StoryController@list')->name('stories.list');
     
     # crear relato
-    Route::get('/nuevo', 'StoryController@createStory')->name('story.create');
-    Route::post('/nuevo', 'StoryController@storeStory')->name('story.store');
+    Route::get('/nuevo', 'StoryController@create')->name('story.create');
+    Route::post('/nuevo', 'StoryController@store')->name('story.store');
 
     # editar relato
-    Route::get('/{slug}/editar', 'StoryController@editStory')->name('story.edit');
-    Route::patch('/{slug}/editar', 'StoryController@updateStory')->name('story.update');
+    Route::get('/{story}/editar', 'StoryController@edit')->name('story.edit');
+    Route::patch('/{story}/editar', 'StoryController@update')->name('story.update');
 
     # crear nodos de un relato
-    Route::get('/{slug}/nuevo-fragmento', 'StoryController@createNode')->name('node.create');
-    Route::post('/{slug}/nuevo-fragmento', 'StoryController@storeNode')->name('node.store');
-    Route::get('/{slug}/fragmentos', 'StoryController@nodes')->name('story.nodes');
-    Route::get('/{slug}/fragmentos/{slugNode}/editar', 'StoryController@editNode')->name('node.edit');
+    Route::get('/{story}/nuevo-fragmento', 'TextNodeController@create')->name('node.create');
+    Route::post('/{story}/nuevo-fragmento', 'TextNodeController@store')->name('node.store');
 
-    # guardar relato
-    Route::post('/save-story', 'StoryController@saveStoryXhr')->name('save-story');
-    Route::post('/save-node', 'StoryController@saveNodeXhr')->name('save-node');
+    Route::get('/{story}/fragmentos', 'TextNodeController@index')->name('nodes.index');
+    Route::get('/{story}/fragmentos/{textNode}/editar', 'TextNodeController@edit')->name('node.edit');
+    Route::patch('/{story}/fragmentos/{textNode}/editar', 'TextNodeController@update')->name('node.update');
 
+    # guardar relato nuevo o editar por Xhr
+    Route::post('/save-story', 'StoryController@saveStoryXhr')->name('story.saveXhr');
+    # guardar nodo nuevo o editar por Xhr
+    Route::post('/save-textNode', 'TextNodeController@saveNodeXhr')->name('node.saveXhr');
     # guardar imagen
-    Route::post('/store-picture', 'StoryController@storePictureXhr')->name('store-picture');
+    Route::post('/store-picture', 'StoryController@storePictureXhr')->name('picture.storeXhr');
 });
 
 #acciones exclusivas de admin
 Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin'], function () {
-    Route::get('/usuarios', 'AdminController@listUsers')->name('admin.users');
-    Route::get('/labels', 'AdminController@listLabels')->name('admin.labels');
-    Route::get('/categories', 'AdminController@listCategories')->name('admin.categories');
+    Route::get('/usuarios', 'UserController@index')->name('users.index');
+    Route::get('/usuarios/{user}/editar', 'UserController@edit')->name('admin.user.edit');
+    Route::patch('/usuarios/{user}/editar', 'UserController@update')->name('admin.user.update');
+
+    Route::get('/etiquetas', 'LabelController@index')->name('admin.labels');
+    Route::get('/categories', 'CategoryController@index')->name('admin.categories');
     Route::post('/relatos/publicar', 'StoryController@changeStatus')->name('story.change-status');
 });
 
