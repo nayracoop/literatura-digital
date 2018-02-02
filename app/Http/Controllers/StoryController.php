@@ -13,6 +13,8 @@ use App\Models\Enums\StoryStatus;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
 use View;
+use Illuminate\Cookie\CookieJar;
+use App\Utils\UserHistory;
 
 class StoryController extends Controller
 {
@@ -55,11 +57,18 @@ class StoryController extends Controller
      *
      * @return Story
      */
-    public function show($slug)
+    public function show(Request $request, CookieJar $cookieJar, $slug)
     {
         $story = Story::where('slug', $slug)->first();
         $story->views++;
         $story->save();
+
+        if (Auth::check()) {
+             UserHistory::addStory('user', $story, Auth::user());
+        } else {
+             UserHistory::addStory('cookie', $story, $request, $cookieJar);
+          //var_dump(json_encode($request->cookie('history'), JSON_PRETTY_PRINT));
+        }
 
         return view('stories.show')
             ->with('story', $story);
