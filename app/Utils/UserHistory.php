@@ -45,30 +45,43 @@ class UserHistory
         return $history;
     }
 
+    /**
+    *
+    */
+    public static function addNode($target, $textNode, $source, $cookieJar = null)
+    {
+        $history = null;
+        //print_r($textNode);
+        if ($target == 'user') {
+            $source->history = self::addNodeProcess($textNode, $source->history);
+            $source->save();
+        } elseif ($target == 'cookie') {
+            $history = self::addNodeProcess($textNode, $source->cookie('history'));
+            $cookieJar->queue(cookie('history', $history, 45000));
+        }
+    }
 
     /**
     *
     */
-    public function addNode($textNode)
+    public static function addNodeProcess($textNode, $history)
     {
 
         $story = $textNode->story;
       //  var_dump($textNode);
-        if (!isset($this->history['stories'][$story->id])) {
-            $this->addStory($story);
+        if (!isset($history['stories'][$story->id])) {
+            $history = self::addStoryProcess($story, $history);
         }
 
-        if (isset($this->history['stories'][$story->_id]['textNodes'][$textNode->id])) {
-            $this->history['stories'][$story->_id]['textNodes'][$textNode->id]['views'] ++;
+        if (isset($history['stories'][$story->_id]['textNodes'][$textNode->id])) {
+            $history['stories'][$story->_id]['textNodes'][$textNode->id]['views'] ++;
         } else { //nuevo relato
-            $this->history['stories'][$story->_id]['textNodes'][$textNode->id]['views'] =   1;
+            $history['stories'][$story->_id]['textNodes'][$textNode->id]['views'] =   1;
         }
+
+        return $history;
     }
 
-    public function getHistory()
-    {
-        return $this->history;
-    }
 
     /**
     *  Busca si la historia fue leida

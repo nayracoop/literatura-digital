@@ -13,6 +13,8 @@ use App\Models\Enums\StoryStatus;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
 use View;
+use Illuminate\Cookie\CookieJar;
+use App\Utils\UserHistory;
 
 class TextNodeController extends Controller
 {
@@ -33,15 +35,21 @@ class TextNodeController extends Controller
     *
     * @return Story
     */
-    public function show($story, $showStory)
+    public function show(Request $request, CookieJar $cookieJar, $story, $showStory)
     {
-        $showStory = Story::where('slug', $story)->first();
-
+        $story = Story::where('slug', $story)->first();
+        $textNode = $story->textNodes->where('slug', $showStory)->first();
+        if (Auth::check()) {
+             UserHistory::addNode('user', $textNode, Auth::user());
+              // var_dump(json_encode(Auth::user()->history, JSON_PRETTY_PRINT));
+        } else {
+             UserHistory::addNode('cookie', $textNode, $request, $cookieJar);
+        }
         return view('textNodes.show')
-            ->with('story', $showStory)
-            ->with('textNode', $showStory->textNodes->where('slug', $showStory)->first());
+            ->with('story', $story)
+            ->with('textNode', $textNode);
     }
-    
+
     /**
      * Muestra el formulario para nuevos fragmentos (Node)
      */
@@ -87,7 +95,7 @@ class TextNodeController extends Controller
             'redirect' => $redirect
         ]);
     }
-    
+
     /**
     *
     */
