@@ -406,7 +406,7 @@ class StoryController extends Controller
             $s = Story::where('_id', $request->id)->first();
             $a = $s->update($input);
             $action = 'updated';
-            $redirect = route('story.nodes', $s->getIdAttribute());
+            $redirect = route('nodes.index', $s->getIdAttribute());
         } else {
             $story = new Story();
             $s = $story->create($input);

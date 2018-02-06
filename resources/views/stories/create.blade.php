@@ -1,7 +1,7 @@
-@extends('layouts.main') 
-@section('title') 
-@lang('Nuevo relato') 
-@endsection 
+@extends('layouts.main')
+@section('title')
+@lang('Nuevo relato')
+@endsection
 @push('stylesheets')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.bootstrap3.min.css.map" /> @endpush @section('content')
@@ -9,8 +9,8 @@
     <div class="container formulario form-detalle">
         <div class="row">
             <div class="col-lg-12">
-                @if (isset($story)) 
-                @include ('snippets.stories.data') 
+                @if (isset($story))
+                @include ('snippets.stories.data')
                 @else
                     <h1>
                         <span class="numero">1<span class="invisibilizar">.</span></span>
@@ -96,113 +96,7 @@
 </div>
 @endsection
 
- @push('javascript')
- <script type="text/javascript">
-    /* Upload de imagen */
-    $('input[type="file"]').change(function () {
-        
-        var files = this.files;
-        for (var i = 0; i < files.length; i++) {
-            var formData = new FormData();
-            var xhr = new XMLHttpRequest();
-            formData.append('cover', files[i]);
-            formData.append('_token', '{{ csrf_token() }}');
-            xhr.open("POST", "{{ route('picture.storeXhr') }}");
-            xhr.send(formData);
-        }
-
-        xhr.addEventListener("readystatechange", function (e) {
-            var xhr = e.target;
-            if (xhr.readyState == 4) {
-
-                if (xhr.status == 200) {
-                    // Acá actualizo la imagen
-                    console.log(xhr.response);
-
-                    newResponse = JSON.parse(xhr.response);
-                    // console.log(JSON.parse( xhr.response).fileName  );
-                    newImg = newResponse.picUrl;
-                    picName = newResponse.picName;
-                    // console.log(hash+'  -  '+ newImg ); //
-                    $('.portada-border').find('img').remove();
-                    $('.portada-border').append('<img src="' + newImg + '" />');
-                    $('form').append('<input type="hidden" name="cover" value="' + picName + '" />');
-                    //$('#cover-'+hash).value(  newId);
-
-                } else console.log(xhr.statusText);
-            }
-        });
-    });
-
-
-    /* Guardar Borrador */
-    $('.bot.sig').on('click', function (e) {
-        e.preventDefault();
-        $('.alert').remove();
-        var formElement = document.getElementById("story-form");
-        var xhr = new XMLHttpRequest();
-        var formData = new FormData(formElement);
-        //formData.append('status', 'draft');
-        formData.append('_token', '{{ csrf_token() }}');
-        xhr.open("POST", '{{ route("story.saveXhr") }}');
-        xhr.send(formData);
-
-        xhr.addEventListener("readystatechange", function (e) {
-            var xhr = e.target;
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    console.log('200');
-                    newResponse = JSON.parse(xhr.response);
-                    var id = newResponse.id;
-                    var redirect = newResponse.redirect;
-                    // var alert = "include('snippets.flash.saved_changes')";
-                    // var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
-                    if (redirect !== null) {
-                        window.location.replace(redirect);
-                    }
-                    // $('.container.formulario').prepend(alert);
-
-                } else console.log(xhr.statusText);
-            }
-        });
-    });
-    //on submit
-    $("#story-form").on("submit", function (e) {
-        console.log('Submitting');
-        e.preventDefault();
-    });
-</script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
-
-<script>
-    //funcionalidades tags
-    $('#add_tag').on('click', function (e) {
-        e.preventDefault();
-        addTag();
-        //console.log($select);
-    });
-
-    $('.tag-item').on('click', function (e) {
-        $(this).remove();
-    });
-
-    function addTag() {
-        var tag = $('#tag').val();
-        //no agrega tags vacios
-        if (tag.trim() != '') {
-            $(".tag-group").append('<div class="tag-item"><p>' + tag + '<p><input type="hidden" name="tags[]" value="' + tag + '" /><button>@lang('
-                Eliminar etiqueta ')</button></div>');
-            $('#tag').val('');
-        }
-    }
-    // permite agregar etiquetas con enter sin afectar al resto del form
-    $('html').bind('keypress', function (e) {
-        if (e.keyCode == 13) {
-            if ($("#tag").is(':focus')) {
-                addTag();
-                return false;
-            }
-        }
-    });
-</script>
- @endpush
+@push('javascript')
+@include('stories.scripts.save-update')
+@include('stories.scripts.tags')
+@endpush

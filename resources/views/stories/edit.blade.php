@@ -1,7 +1,7 @@
-@extends('layouts.main') 
-@section('title') 
-@lang('Nuevo relato') 
-@endsection 
+@extends('layouts.main')
+@section('title')
+@lang('Nuevo relato')
+@endsection
 @push('stylesheets')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.bootstrap3.min.css.map" /> @endpush @section('content')
@@ -9,8 +9,8 @@
     <div class="container formulario form-detalle">
         <div class="row">
             <div class="col-lg-12">
-                @if (isset($story)) 
-                @include ('snippets.stories.data') 
+                @if (isset($story))
+                @include ('snippets.stories.data')
                 @else
                     <h1>
                         <span class="numero">1<span class="invisibilizar">.</span></span>
@@ -100,7 +100,7 @@
  <script type="text/javascript">
     /* Upload de imagen */
     $('input[type="file"]').change(function () {
-        
+
         var files = this.files;
         for (var i = 0; i < files.length; i++) {
             var formData = new FormData();
@@ -173,36 +173,5 @@
     });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
-
-<script>
-    //funcionalidades tags
-    $('#add_tag').on('click', function (e) {
-        e.preventDefault();
-        addTag();
-        //console.log($select);
-    });
-
-    $('.tag-item').on('click', function (e) {
-        $(this).remove();
-    });
-
-    function addTag() {
-        var tag = $('#tag').val();
-        //no agrega tags vacios
-        if (tag.trim() != '') {
-            $(".tag-group").append('<div class="tag-item"><p>' + tag + '<p><input type="hidden" name="tags[]" value="' + tag + '" /><button>@lang('
-                Eliminar etiqueta ')</button></div>');
-            $('#tag').val('');
-        }
-    }
-    // permite agregar etiquetas con enter sin afectar al resto del form
-    $('html').bind('keypress', function (e) {
-        if (e.keyCode == 13) {
-            if ($("#tag").is(':focus')) {
-                addTag();
-                return false;
-            }
-        }
-    });
-</script>
- @endpush
+@include('stories.scripts.tags')
+@endpush
