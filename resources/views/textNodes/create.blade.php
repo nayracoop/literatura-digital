@@ -1,13 +1,13 @@
-@extends('layouts.main') 
-@section('title') 
-@lang('Nuevo relato') 
-@endsection 
+@extends('layouts.main')
+@section('title')
+@lang('Nuevo relato')
+@endsection
 @section('content')
 <div class="fondo-forms">
     <div class="container formulario form-detalle">
         <div class="row">
             <div class="col-lg-12">
-                @if ($story->textNodes->count() > 0) 
+                @if ($story->textNodes->count() > 0)
                     @include('snippets.stories.data')
                     <div class="publicar-nodo btn btn-guardar">
                         <a href="#">Publicar nodo</a>
@@ -17,14 +17,14 @@
                         <span class="numero">2
                             <span class="invisibilizar">.</span>
                         </span>
-                        @if (isset($node)) 
-                            Editar fragmento 
-                        @else 
-                            Escribí tu primer nodo. 
+                        @if (isset($node))
+                            Editar fragmento
+                        @else
+                            Escribí tu primer nodo.
                         @endif
                     </h1>
                 @endif
-            </div>            
+            </div>
         </div>
 
         <form id="node-form" role="form" method="POST" action="">
@@ -79,7 +79,7 @@
     </div>
 </div>
 
-@endsection 
+@endsection
 @push('javascript')
 <link rel="stylesheet" href="{{asset('js/libs/simplebar/simplebar.css')}}">
 <script src="{{asset('js/libs/simplebar/simplebar.js')}}"></script>
@@ -93,47 +93,5 @@
     //  updateCount();
     @endif
 </script>
-<script>
-    /* Guardar Borrador */
-    $('.btn.btn-guardar').on('click', function (e) {
-
-        e.preventDefault();
-        //   $('.alert').remove();
-        var formElement = document.getElementById("node-form");
-        var xhr = new XMLHttpRequest();
-        var formData = new FormData(formElement);
-        //formData.append('status', 'draft');
-        formData.append('_token', '{{ csrf_token() }}');
-        xhr.open("POST", '{{ route("node.saveXhr") }}');
-        xhr.send(formData);
-
-        xhr.addEventListener("readystatechange", function (e) {
-            var xhr = e.target;
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    console.log('200');
-                    newResponse = JSON.parse(xhr.response);
-                    var id = newResponse.id;
-                    // var alert = "include('snippets.flash.saved_changes')";
-                    // var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
-
-                    var redirect = newResponse.redirect;
-
-                    if (redirect != null) {
-                        window.location.replace(redirect);
-                    }
-                    //   $('.container.formulario').prepend(alert);
-                    @if(!isset($node))
-                        $("#node-form").append('<input name="id" type="hidden"  value="' + id + '" />');
-                    @endif
-                } else console.log(xhr.statusText);
-            }
-        });
-    });
-
-    $('.btn-cancelar').on('click', function (e) {
-        e.preventDefault();
-        window.location.replace("{{ route('nodes.index', $story->_id) }}");
-    });
-</script>
+@include('textNodes.scripts.save-update')
 @endpush
