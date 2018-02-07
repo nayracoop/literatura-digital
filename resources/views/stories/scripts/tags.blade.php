@@ -11,7 +11,7 @@
     });
 
     function addTag() {
-        var tag = $('#tag').val();
+        var tag = camelize($('#tag').val());
         //no agrega tags vacios
         if (tag.trim() != '') {
             $(".tag-group").append('<div class="tag-item"><p>' + tag +
@@ -28,4 +28,12 @@
             }
         }
     });
+
+
+    camelize = function camelize(str) {
+      return str.replace(/\W+(.)/g, function(match, chr)
+       {
+            return chr.toUpperCase();
+        });
+    }
 </script>

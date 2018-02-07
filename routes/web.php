@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mi-perfil'], function () {
 Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     # lista de relatos
     Route::get('/', 'StoryController@list')->name('stories.list');
-    
+
     # crear relato
     Route::get('/nuevo', 'StoryController@create')->name('story.create');
     Route::post('/nuevo', 'StoryController@store')->name('story.store');
@@ -92,3 +92,5 @@ Route::get('/salir', function () {
 })->name('salir');
 
 Auth::routes();
+
+Route::get('/etiqueta/{tag}', 'StoryController@storiesByTag')->name('tag.stories');

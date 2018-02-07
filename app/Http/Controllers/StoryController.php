@@ -52,6 +52,19 @@ class StoryController extends Controller
             ->with('stories', $stories);
     }
 
+    /**
+    * Obtenemos la historia correspondiente
+    *
+    */
+    public function storiesByTag(Request $request, $tag)
+    {
+
+        $stories = Story::getFromTag($tag)->get();
+        return view('home')
+          ->with('stories', $stories);
+    }
+
+
      /**
      * Get the requested Story
      *
@@ -414,23 +427,16 @@ class StoryController extends Controller
             $action = 'created';
             $redirect = route('node.create', $s->getIdAttribute());
         }
-
+        //guarda etiquetas como camelcase
         if ($request->has('tags')) {
-              $s->unset('tags');
+            $s->unset('tags');
             foreach ($request->tags as $tag) {
-                  $tag = trim($tag);
-                  $t = Tag::where('_id', $tag)->orWhere('name', $tag)->first();
-
-                if ($t  === null) {
-                      $newTag =  Tag::create(['name' => $tag]);
-                 //$newTag->name = trim($tag);
-                      $s->tags()->associate($newTag);
-                } elseif ($s->tags->where('_id', $t->id)->first() === null) {
-                      $s->tags()->associate($t);
+                $tag = camel_case($tag);
+                if ($s->tags->where('name', $tag)->first() === null) {
+                     $s->tags()->create(['name' => $tag]);
                 }
             }
         }
-
         $s->save();
 
         return response()->json([
