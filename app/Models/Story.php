@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
+use Lang;
 
 class Story extends BaseModel
 {
@@ -21,6 +22,30 @@ class Story extends BaseModel
     protected $dates = [
         'published_at',
     ];
+
+    public static $rulesPublish = [
+        'title' => 'required|max:128',
+        'description' => 'required|max:512',
+        'typology' => 'required',
+        'genre' => 'required'
+    ];
+
+    public static $rules = [
+        'title' => 'max:128',
+        'description' => 'max:512',
+        'typology' => 'required',
+        'genre' => 'required'
+    ];
+
+    public static function getMessages()
+    {
+        return $messages = [
+          'title.max' => Lang::get('messages.title.max', ['cant' => 128]),
+          'description.max' => Lang::get('messages.description.max', ['cant' => 512]),
+          'typology' => 'Este campo es obligatorio',
+          'genre' => 'Este campo es obligatorio'
+        ];
+    }
 
     public function author()
     {

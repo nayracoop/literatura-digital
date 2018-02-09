@@ -28,4 +28,8 @@ return [
     'select_option' => 'Elegí una opción',
     'cancel' => 'Cancelar',
     'create' => 'Crear',
+    //mensages
+    'title.max' => 'El título no puede ser mayor a :cant caracteres',
+    'title.required' => 'El título es necesario para publicar',
+    'description.max' => 'La descripción no puede ser mayor a :cant caracteres',
 ];

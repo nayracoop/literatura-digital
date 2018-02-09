@@ -79,7 +79,6 @@
                     <button id="add_tag" class="more-tags-bot">@lang('Agregar etiqueta')</button>
                 </div>
             </form>
-
             <div class="botones-nav-form container-botones">
                 <a href="{{ route('stories.list') }}" class="bot ant">@lang('Cancelar')</a>
 
@@ -99,4 +98,6 @@
 @push('javascript')
 @include('stories.scripts.save-update')
 @include('stories.scripts.tags')
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\CreateStory') !!}
 @endpush
