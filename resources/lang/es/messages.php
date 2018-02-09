@@ -26,5 +26,6 @@ return [
     'favorites' => 'Favoritos',
     //mensages
     'title.max' => 'El título no puede ser mayor a :cant caracteres',
+    'title.required' => 'El título es necesario para publicar',
     'description.max' => 'La descripción no puede ser mayor a :cant caracteres',
 ];

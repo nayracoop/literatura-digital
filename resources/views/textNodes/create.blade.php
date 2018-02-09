@@ -94,4 +94,6 @@
     @endif
 </script>
 @include('textNodes.scripts.save-update')
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\CreateTextNode') !!}
 @endpush

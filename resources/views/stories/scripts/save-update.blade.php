@@ -9,9 +9,6 @@ $('.bot.sig').on('click', function (e) {
     } else {
       console.log('NO paso!!!');
     }
-
-
-
 });
 //on submit
 $("#story-form").on("submit", function (e) {
