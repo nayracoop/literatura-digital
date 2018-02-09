@@ -26,12 +26,12 @@ class Story extends BaseModel
     {
         return $this->belongsTo('\App\User');
     }
-    
+
     public function textNodes()
     {
         return $this->embedsMany('\App\Models\TextNode');
     }
-  
+
     public function comments()
     {
         return $this->embedsMany('\App\Models\Comment');
@@ -41,7 +41,7 @@ class Story extends BaseModel
     {
         return $this->embedsMany('\App\Models\Tag');
     }
-    
+
     public function likes()
     {
         return $this->embedsMany('\App\Models\Like');
@@ -93,6 +93,21 @@ class Story extends BaseModel
     public function choralVoices()
     {
         return $this->textNodes->unique('voice');
+    }
+
+    /**
+    * scopeGetFromAuthor
+    *
+    * Nos da los relatos pertenecientes al tag solicitado.
+    * @author Jose Casanova <jose.casanova@nayra.coop>
+    *
+    * @param $id
+    *
+    * @return Collection Story
+    **/
+    public function scopeGetFromTag($query, $tag)
+    {
+        return $query->where('tags.name', $tag);
     }
 
      /**

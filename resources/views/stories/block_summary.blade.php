@@ -1,13 +1,13 @@
 <article class="col-sm-12 col-md-6">
-    <div class="card"> 
+    <div class="card">
         <a href="{{ route('story.show', $story->slug ) }}">
 
             @if ($story->cover != null && !empty($story->cover))
-                <img alt="@lang('tapa de') {{ $story->title }}" src="{{ asset('imagenes/cover/'.$story->cover )}}">        
+                <img alt="@lang('tapa de') {{ $story->title }}" src="{{ asset('imagenes/cover/'.$story->cover )}}">
             @else
-                <img alt="" src="{{ asset('img/img-3.jpg')}}"> 
+                <img alt="" src="{{ asset('img/img-3.jpg')}}">
             @endif
-            
+
             <h3>{{ $story->title or __('messages.no_title') }}</h3>
 
             @if (isset($story->author))
@@ -29,13 +29,13 @@
                         $checked = 'checked=\"checked\"';
                     }
                 @endphp
-                
+
                 @if ($user->isAdminOrMod())
                     <input type="checkbox" name="publish_status" {{ $checked }} class="status_switch" id="{{ $story->id }}">
                 @endif
             @endauth
 
-            <span class="ver-mas"></span>
+            <a href="{{ route('story.show', $story->slug ) }}"><span class="ver-mas"></span></a>
         </a>
-    </div>  
+    </div>
 </article>
