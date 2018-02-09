@@ -5,7 +5,7 @@ $('.bot.sig').on('click', function (e) {
     $('.alert').remove();
     if ( $("#story-form").valid() ) {
       console.log('paso!!!');
-      //save();
+      save();
     } else {
       console.log('NO paso!!!');
     }
