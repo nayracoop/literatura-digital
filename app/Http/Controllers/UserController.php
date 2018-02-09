@@ -11,6 +11,8 @@ use App\Models\TextNode;
 use App\Models\Comment;
 use App\Models\Like;
 use App\User;
+use App\Http\Requests\CreateUser;
+use App\Http\Requests\EditUser;
 
 class UserController extends Controller
 {
@@ -18,9 +20,14 @@ class UserController extends Controller
     /**
      * XhrUpdateData
      */
-    public function update(Request $request)
+    public function update(EditUser $request, $userId = null)
     {
-        $user = Auth::user();
+        if (isset($userId)) {
+            $user = User::find($userId);
+        } else {
+            $user = Auth::user();
+        }
+        
         $input = $request->all();
         $user->update($input);
         return redirect()->back();
@@ -80,9 +87,9 @@ class UserController extends Controller
         return json(['status' => 'ok']);
     }
 
-    public function listUsers($filter = null)
+    public function index($filter = null)
     {
-        return view('admin.users_list')
+        return view('users.index')
             ->with('users', User::orderBy('role')->orderBy('created_at', 'desc')->get());
     }
 
@@ -100,5 +107,16 @@ class UserController extends Controller
 
         return view('users.edit')
             ->with('user', $user);
+    }
+
+    public function create()
+    {
+        return view('users.create');
+    }
+
+    public function store(CreateUser $request)
+    {
+        User::create($request->all());
+        return redirect()->back();
     }
 }

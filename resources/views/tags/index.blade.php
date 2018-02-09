@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title') 
-    @lang('page_titles.users')
+    @lang('page_titles.tags')
 @endsection
 
 @section('body_class') 
@@ -8,13 +8,23 @@
 @endsection
 
 @section('content')
-<div class="fondo-forms">
+
+@php
+    {{--  print_r($tags);  --}}
+@endphp
+
+@foreach($tags as $tag)
+
+    {{ $tag->name }}
+    
+@endforeach
+{{--  <div class="fondo-forms">
 <div class="container listado-relatos">
     <div class="row">
         <div class="col-md-12">
-            <h1>@lang('messages.users_list')</h1>
+            <h1>@lang('messages.tags_list')</h1>
             <hr />
-            <table summary="@lang('messages.users_list')">
+            <table summary="@lang('messages.tags_list')">
                 <caption class="invisibilizar">@lang('messages.users_list')</caption>
                 <thead>
                     <tr>
@@ -52,6 +62,6 @@
                 </button>
             </a>
         </div>
-    </div>
+    </div>  --}}
 @endsection
     

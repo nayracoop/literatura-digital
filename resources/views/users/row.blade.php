@@ -1,6 +1,6 @@
 <tr>
     <td class="ocultar-lg">
-        <a href="#{{--  {{route('story.nodes',$story->_id)}}  --}}">
+        <a href="{{ route("admin.user.edit", $user->_id) }}">
             <div class="image-clip">
                 @if($user->avatar != null && !empty($user->avatar))
                     <img alt="@lang('messages.avatar_of') {{ $user->username }}" src="{{ asset('imagenes/avatar/' . $user->avatar)}}">
@@ -15,7 +15,7 @@
     <td class="ocultar-sm">{{ $user->role }}</td>
     <td class="">{{ $user->getName() }}</td>
     <td>
-        <a href="#">
+        <a href="{{ route("admin.user.edit", $user->_id) }}">
             <button>Editar</button>
         </a>
     </td>

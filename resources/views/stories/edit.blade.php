@@ -71,8 +71,8 @@
                         </div>
                         @endforeach
 
-
-                        <input type="hidden" name="id" value="{{ $story->_id }}" /> @endif
+                        <input type="hidden" name="id" value="{{ $story->_id }}" /> 
+                        @endif
                     </div>
                     <label for="tag" class="more-tags-title">@lang('Agregar etiqueta'):</label>
                     <input type="text" class="form-control more-tags-input" id="tag" />

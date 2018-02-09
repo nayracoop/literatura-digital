@@ -2,4 +2,5 @@
 
 return [
     'users' => 'Usuarios',
+    'tags' => 'Etiquetas'
 ];

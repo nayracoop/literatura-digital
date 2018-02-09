@@ -190,8 +190,11 @@
         var tag = $('#tag').val();
         //no agrega tags vacios
         if (tag.trim() != '') {
-            $(".tag-group").append('<div class="tag-item"><p>' + tag + '<p><input type="hidden" name="tags[]" value="' + tag + '" /><button>@lang('
-                Eliminar etiqueta ')</button></div>');
+            $(".tag-group").append('<div class="tag-item"><p>' + 
+                tag + 
+                '<p><input type="hidden" name="tags[]" value="' + tag + 
+                '"/><button>@lang("Eliminar etiqueta")</button></div>'
+            );
             $('#tag').val('');
         }
     }

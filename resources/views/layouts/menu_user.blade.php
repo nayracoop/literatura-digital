@@ -7,10 +7,10 @@
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('stories.list') }}"><a href="{{ route('stories.list') }}">@lang('menu.my_stories')</a></li>
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('story.create') }}"><a href="{{ route('story.create') }}">@lang('menu.create_story')</a></li>
         @elseif($user->role == \App\Models\Enums\UserType::MOD)
-            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('admin.labels') }}"><a href="{{ route('admin.labels') }}">@lang('menu.labels')</a></li>
+            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('tags.index') }}"><a href="{{ route('tags.index') }}">@lang('menu.labels')</a></li>
         @elseif($user->role == \App\Models\Enums\UserType::ADMIN)
-            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('admin.labels') }}"><a href="{{ route('admin.labels') }}">@lang('menu.labels')</a></li>
-            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('admin.users') }}"><a href="{{ route('admin.users') }}">@lang('menu.users')</a></li>
+            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('tags.index') }}"><a href="{{ route('tags.index') }}">@lang('menu.labels')</a></li>
+            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('users.index') }}"><a href="{{ route('users.index') }}">@lang('menu.users')</a></li>
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('admin.categories') }}"><a href="{{ route('admin.categories') }}">@lang('menu.categories')</a></li>
         @endif
     </ul>

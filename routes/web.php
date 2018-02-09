@@ -79,7 +79,10 @@ Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin'], function () {
     Route::get('/usuarios/{user}/editar', 'UserController@edit')->name('admin.user.edit');
     Route::patch('/usuarios/{user}/editar', 'UserController@update')->name('admin.user.update');
 
-    Route::get('/etiquetas', 'LabelController@index')->name('admin.labels');
+    Route::get('/usuarios/nuevo', 'UserController@create')->name('admin.user.create');
+    Route::post('/usuarios/nuevo', 'UserController@store')->name('admin.user.store');
+
+    Route::get('/etiquetas', 'TagController@index')->name('tags.index');
     Route::get('/categories', 'CategoryController@index')->name('admin.categories');
     Route::post('/relatos/publicar', 'StoryController@changeStatus')->name('story.change-status');
 });

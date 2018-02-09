@@ -16,6 +16,7 @@ return [
     'users_list' => 'Listado de usuarios',
     'user' => 'Usuario',
     'created_at' => 'Fecha de alta',
+    'user_name' => 'Nombre de usuario',
     'role' => 'Tipo de usuario',
     'first_name' => 'Nombre',
     'last_name' => 'Apellido',
@@ -23,5 +24,8 @@ return [
     'stories_of' => 'Relatos de',
     'new_user' => 'Nuevo usuario',
     'user_no_name' => 'Usuario sin nombre',
-    'favorites' => 'Favoritos'
+    'favorites' => 'Favoritos',
+    'select_option' => 'Elegí una opción',
+    'cancel' => 'Cancelar',
+    'create' => 'Crear',
 ];

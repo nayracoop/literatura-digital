@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\User;
 
-class UploadPicture extends FormRequest
+class CreateUser extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +24,6 @@ class UploadPicture extends FormRequest
      */
     public function rules()
     {
-        return [
-            'cover' => 'image|max:2048'
-        ];
+        return User::$rules;
     }
 }
