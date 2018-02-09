@@ -23,5 +23,8 @@ return [
     'stories_of' => 'Relatos de',
     'new_user' => 'Nuevo usuario',
     'user_no_name' => 'Usuario sin nombre',
-    'favorites' => 'Favoritos'
+    'favorites' => 'Favoritos',
+    //mensages
+    'title.max' => 'El título no puede ser mayor a :cant caracteres',
+    'description.max' => 'La descripción no puede ser mayor a :cant caracteres',
 ];
