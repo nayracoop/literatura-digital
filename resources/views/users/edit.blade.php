@@ -12,16 +12,16 @@
                 <div class="data-relato">
                     <div class="image-clip">
                         @if ($user->avatar != null && !empty($user->avatar))
-                        <img alt="@lang('messages.avatar_of') {{$user->getName()}}" src="{{ url('imagenes/avatar/' . $user->avatar )}}"> 
+                        <img alt="@lang('messages.avatar_of') {{$user->getName()}}" src="{{ url('imagenes/avatar/' . $user->avatar )}}">
                         @else
-                        <img src="{{asset('img/img-usuario.jpg')}}" alt="" /> 
+                        <img src="{{asset('img/img-usuario.jpg')}}" alt="" />
                         @endif
                     </div>
                     <p class="tit-relato">{{ $user->username }}</p>
                     <p class="autor-relato">{{ $user->getName() }}</p>
                 </div>
             </div>
-            
+
             @php
                 $current_user = auth()->user();
                 $userAdmin = $current_user->role == \App\Models\Enums\UserType::ADMIN;
@@ -33,7 +33,7 @@
                     "{{ route('user.update') }}"
                 @endif
                 id="edit-user-form">
-                {{ csrf_field() }} 
+                {{ csrf_field() }}
                 {{ method_field('PATCH') }}
                 <div class="col-md-8">
                     <div class="form-padding-interno">
@@ -50,18 +50,18 @@
                         @if($userAdmin)
                             <label for="role">@lang('messages.role') *</label>
                             <div class="styled-select">
-                                <select type="text" class="form-control" id="role" name="role">                                
-                                    <option value="{{ App\Models\Enums\UserType::ADMIN }}" 
+                                <select type="text" class="form-control" id="role" name="role">
+                                    <option value="{{ App\Models\Enums\UserType::ADMIN }}"
                                         @if ($user->role == App\Models\Enums\UserType::ADMIN)
                                             selected
                                         @endif>{{ ucfirst(App\Models\Enums\UserType::ADMIN) }}
                                     </option>
-                                    <option value="{{ App\Models\Enums\UserType::MOD }}" 
+                                    <option value="{{ App\Models\Enums\UserType::MOD }}"
                                         @if ($user->role == App\Models\Enums\UserType::MOD)
                                             selected
                                         @endif>{{ ucfirst(App\Models\Enums\UserType::MOD) }}
                                     </option>
-                                    <option value="{{ App\Models\Enums\UserType::AUTHOR }}" 
+                                    <option value="{{ App\Models\Enums\UserType::AUTHOR }}"
                                         @if ($user->role == App\Models\Enums\UserType::AUTHOR)
                                             selected
                                         @endif>{{ ucfirst(App\Models\Enums\UserType::AUTHOR) }}
@@ -69,7 +69,7 @@
                                 </select>
                             </div>
                         @endif
-                        
+
                         {{--  <label for="contrasena">Contraseña *</label>
                         <input type="password" class="form-control" id="contarsena">  --}}
                     </div>
@@ -119,25 +119,25 @@
             if (xhr.readyState == 4) {
 
                 if (xhr.status == 200) {
-                    // Acá actualizo la imagen   
+                    // Acá actualizo la imagen
                     console.log(xhr.response);
 
                     newResponse = JSON.parse(xhr.response);
-                    // console.log(JSON.parse( xhr.response).fileName  ); 
+                    // console.log(JSON.parse( xhr.response).fileName  );
                     newImg = newResponse.picUrl;
                     picName = newResponse.picName;
-                    // console.log(hash+'  -  '+ newImg ); //  
+                    // console.log(hash+'  -  '+ newImg ); //
                     $('.portada-border').find('img').remove();
                     $('.portada-border').append('<img src="' + newImg + '" />');
                     $('form').append('<input type="hidden" name="avatar" value="' + picName + '" />');
-                    //$('#cover-'+hash).value(  newId);                      
+                    //$('#cover-'+hash).value(  newId);
 
                 } else console.log(xhr.statusText);
             }
         });
     });
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
+
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\EditUser', '#edit-user-form'); !!}

@@ -13,7 +13,7 @@
                 <hr />
             </div>
             <form role="form" method="post" action="{{ route('admin.user.store') }}" id="create-user-form">
-                {{ csrf_field() }} 
+                {{ csrf_field() }}
                 {{ method_field('POST') }}
                 <div class="col-md-8">
                     <div class="form-padding-interno">
@@ -29,7 +29,7 @@
                         <input type="text" class="form-control" id="email" value="" name="email">
                         <label for="role">@lang('messages.role') *</label>
                         <div class="styled-select">
-                            <select type="text" class="form-control" id="role" name="role">                                
+                            <select type="text" class="form-control" id="role" name="role">
                                 <option value="" disabled selected></option>
                                     @lang("messages.select_option")
                                 </option>
@@ -86,26 +86,24 @@
             if (xhr.readyState == 4) {
 
                 if (xhr.status == 200) {
-                    // Acá actualizo la imagen   
+                    // Acá actualizo la imagen
                     console.log(xhr.response);
 
                     newResponse = JSON.parse(xhr.response);
-                    // console.log(JSON.parse( xhr.response).fileName  ); 
+                    // console.log(JSON.parse( xhr.response).fileName  );
                     newImg = newResponse.picUrl;
                     picName = newResponse.picName;
-                    // console.log(hash+'  -  '+ newImg ); //  
+                    // console.log(hash+'  -  '+ newImg ); //
                     $('.portada-border').find('img').remove();
                     $('.portada-border').append('<img src="' + newImg + '" />');
                     $('form').append('<input type="hidden" name="avatar" value="' + picName + '" />');
-                    //$('#cover-'+hash).value(  newId);                      
+                    //$('#cover-'+hash).value(  newId);
 
                 } else console.log(xhr.statusText);
             }
         });
     });
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
-
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\CreateUser', '#create-user-form'); !!}
 
