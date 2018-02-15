@@ -32,7 +32,7 @@ class EditUser extends FormRequest
         return [
             'username' => 'required|max:255|unique:users,username,'.$userId.',_id',
             'email' => 'required|email|max:255|unique:users,email,' .$userId . ',_id',
-            'password' => 'required|min:6',
+            //'password' => 'required|min:6',
             'description' => 'max:512',
         ];
     }

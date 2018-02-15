@@ -27,9 +27,10 @@ class UserController extends Controller
         } else {
             $user = Auth::user();
         }
-        
+
         $input = $request->all();
         $user->update($input);
+        
         return redirect()->back();
     }
 

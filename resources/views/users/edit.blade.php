@@ -26,11 +26,11 @@
                 $current_user = auth()->user();
                 $userAdmin = $current_user->role == \App\Models\Enums\UserType::ADMIN;
             @endphp
-            <form role="form" method="post" action=
+            <form role="form" method="post"
                 @if ($userAdmin)
-                    "{{ route('admin.user.update', $user->_id) }}"
+                    action="{{ route('admin.user.update', $user->_id) }}"
                 @else
-                    "{{ route('user.update') }}"
+                    action="{{ route('user.update') }}"
                 @endif
                 id="edit-user-form">
                 {{ csrf_field() }}
