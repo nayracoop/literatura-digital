@@ -72,7 +72,9 @@
 
                         {{--  <label for="contrasena">Contraseña *</label>
                         <input type="password" class="form-control" id="contarsena">  --}}
+                        <a href="{{route('user.password.edit')}}">Cambiar contraseña</a>
                     </div>
+
                 </div>
 
                 <div class="col-md-4">

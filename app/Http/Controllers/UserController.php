@@ -13,6 +13,7 @@ use App\Models\Like;
 use App\User;
 use App\Http\Requests\CreateUser;
 use App\Http\Requests\EditUser;
+use App\Http\Requests\EditPassword;
 
 class UserController extends Controller
 {
@@ -30,7 +31,7 @@ class UserController extends Controller
 
         $input = $request->all();
         $user->update($input);
-        
+
         return redirect()->back();
     }
 
@@ -119,5 +120,40 @@ class UserController extends Controller
     {
         User::create($request->all());
         return redirect()->back();
+    }
+
+    /**
+    * passwordEdit vista para cambiar pass
+    *
+    */
+    public function passwordEdit($userId = null)
+    {
+        if (isset($userId)) {
+            $user = User::find($userId);
+        } else {
+            $user = Auth::user();
+        }
+
+        return view('users.password-edit')
+            ->with('user', $user);
+    }
+
+
+    /**
+    * passwordUpdate actualiza nuevo password con pedido de confirmacion
+    *
+    */
+    public function passwordUpdate(EditPassword $request, $userId = null)
+    {
+        $input = $request->all();
+        if (isset($userId)) {
+            $user = User::find($userId);
+        } else {
+            $user = Auth::user();
+        }
+        $input['password'] = \Hash::make($input['password']);
+        $user->update($input);
+
+        return redirect()->route('user.edit');
     }
 }

@@ -37,6 +37,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/relatos/{story}/comentar', 'StoryController@storeComment')->name('comment.store');
     #dejar comentario en autor
     Route::post('/autor/{story}/comentar', 'UserController@storeComment')->name('comment.user.store');
+    #
+    Route::get('/cambiar-password', 'UserController@passwordEdit')->name('user.password.edit');
+    #
+    Route::patch('/cambiar-password', 'UserController@passwordUpdate')->name('user.password.update');
 });
 
 # perfil de usuario

@@ -32,4 +32,6 @@ return [
     'title.max' => 'El título no puede ser mayor a :cant caracteres',
     'title.required' => 'El título es necesario para publicar',
     'description.max' => 'La descripción no puede ser mayor a :cant caracteres',
+    'password' => 'Contraseña',
+    'confirm_password' => 'Confirmar Contraseña'
 ];
