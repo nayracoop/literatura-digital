@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\BaseModel;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 use Lang;
+use Auth;
+use App\Models\Enums\StoryStatus;
 
 class Story extends BaseModel
 {
@@ -86,7 +88,12 @@ class Story extends BaseModel
     **/
     public function scopeFeatured($query, $count = 40)
     {
-        return $query->where('status', 'publish')->take($count)->get();
+        if (Auth::check() && Auth::user()->isAdminOrMod()) {
+            $stories = $query->get();
+        } else {
+            $stories = $query->where('status', StoryStatus::PUBLISHED)->take($count)->get();
+        }
+        return $stories;
     }
 
     /**
@@ -142,6 +149,19 @@ class Story extends BaseModel
     public function getAuthorName()
     {
         return $this->author->getName();
+    }
+
+    /**
+    * countChars contamos el total de caracteres del relato
+    * @return String
+    */
+    public function countChars()
+    {
+        $count = 0;
+        foreach ($this->textNodes as $node) {
+            $count += $node->charCount;
+        }
+        return $count;
     }
 
     /**

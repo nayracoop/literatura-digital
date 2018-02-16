@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
-@section('title') 
+@section('title')
     @lang('Buscar Relatos')
 @endsection
 
-@section('body_class') 
-    class="white" 
+@section('body_class')
+    class="white"
 @endsection
 
 @section('content')
@@ -49,9 +49,9 @@
                                 <a href="{{ route('nodes.index', $story->_id) }}">
                                     <div class="image-clip">
                                         @if($story->cover != null && !empty($story->cover))
-                                            <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}"> 
+                                            <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">
                                         @else
-                                            <img alt="" src="{{ asset('img/img-3.jpg')}}"> 
+                                            <img alt="" src="{{ asset('img/img-3.jpg')}}">
                                         @endif
                                     </div>
                                 </a>
@@ -60,7 +60,7 @@
                                 <a href="{{ route('nodes.index',$story->_id) }}">{{ $story->title }}</a>
                             </td>
                             <td class="ocultar-sm">{{ date('d.m.Y', strtotime($story->created_at) ) }}</td>
-                            <td class="ocultar-lg">2000</td>
+                            <td class="ocultar-lg">{{ $story->countChars() }}</td>
                             <td class="ocultar-sm">{{ $story->status }}</td>
                             <td class="ocultar-sm">{{ $story->likes->count() }}</td>
                             <td>
@@ -84,7 +84,7 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection
 
 @push('javascript')
 <script>
