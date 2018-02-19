@@ -121,6 +121,17 @@ $font-face-brandon-grotesque-bold: 'brandon_bld';
         url('../fonts/brandon-grotesque/#{$font-face-brandon-grotesque-bold}.svg') format('svg');
  }
 
+ @font-face {
+    font-family: 'Maax'; font-style: normal; font-weight: bold;
+    src: url('../fonts/maax/maax-bold.eot');
+    src: url('../fonts/maax/maax-bold.eot?') format('eot'),
+        url('../fonts/maax/maax-bold.woff2') format('woff2'),
+        url('../fonts/maax/maax-bold.woff') format('woff'),
+        url('../fonts/maax/maax-bold.ttf')  format('truetype'),
+        url('../fonts/maax/maax-bold.svg') format('svg');
+ }
+
+$maax: 'Maax', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 
 $caecilia-roman: 'Caecilia', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 $caecilia-bold: 'Caecilia', Arial,  Helvetica, 'Liberation Sans', sans-serif;
