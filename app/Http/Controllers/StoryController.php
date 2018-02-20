@@ -260,7 +260,7 @@ class StoryController extends Controller
         $currentLike = $likeable->likes->where('user_id', $me->getIdAttribute())->first();
 
         if ($currentLike !== null) {
-            $likeable->likes()->destroy($currentLike) ;
+            $likeable->likes()->destroy($currentLike);
         } else {
             $like = new Like();
             $like->user()->associate($me);

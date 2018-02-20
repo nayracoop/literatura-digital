@@ -11,7 +11,7 @@
         @elseif($user->role == \App\Models\Enums\UserType::ADMIN)
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('tags.index') }}"><a href="{{ route('tags.index') }}">@lang('menu.labels')</a></li>
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('users.index') }}"><a href="{{ route('users.index') }}">@lang('menu.users')</a></li>
-            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('admin.categories') }}"><a href="{{ route('admin.categories') }}">@lang('menu.categories')</a></li>
+            {{--  <li class="{{ \App\Utils\MenuHelper::isActiveRoute('admin.categories') }}"><a href="{{ route('admin.categories') }}">@lang('menu.categories')</a></li>  --}}
         @endif
     </ul>
 

@@ -3,17 +3,18 @@
 namespace App\Models;
 
 use App\Models\BaseModel;
+use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class Tag extends BaseModel
 {
+    use SoftDeletes;
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-    ];
+    protected $fillable = [ 'name' ];
 
     // en realidad devuelve Stories
     // pero contienen

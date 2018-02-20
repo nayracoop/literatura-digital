@@ -1461,6 +1461,16 @@ h4.modal-title {
   padding: 10px 45px 10px 0;
   border: none; }
 
+.listado-relatos tbody td a.tag_delete button.active {
+  background: url("../img/iconos/switch_on.png") no-repeat center right;
+  background-size: 60%;
+}
+
+.listado-relatos tbody td a.tag_delete button {
+  background: url("../img/iconos/switch_off.png") no-repeat center right;
+  background-size: 60%;
+}
+
 @media only screen and (max-width: 576px) {
   .listado-relatos tbody td button {
     background: none;

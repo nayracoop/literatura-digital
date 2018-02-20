@@ -28,7 +28,11 @@ return [
     'select_option' => 'Elegí una opción',
     'cancel' => 'Cancelar',
     'create' => 'Crear',
-    //mensages
+    'tags_list' => 'Listado de etiquetas',
+    'tag' => 'Etiqueta',
+    'delete' => 'Eliminar',
+    //mensajes
+    //estos están en validation.php!
     'title.max' => 'El título no puede ser mayor a :cant caracteres',
     'title.required' => 'El título es necesario para publicar',
     'description.max' => 'La descripción no puede ser mayor a :cant caracteres',

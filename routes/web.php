@@ -87,6 +87,8 @@ Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin'], function () {
     Route::post('/usuarios/nuevo', 'UserController@store')->name('admin.user.store');
 
     Route::get('/etiquetas', 'TagController@index')->name('tags.index');
+    Route::patch('/etiquetas/{id}', 'TagController@toggleDeleted')->name('tag.toggleDeleted');
+
     Route::get('/categories', 'CategoryController@index')->name('admin.categories');
     Route::post('/relatos/publicar', 'StoryController@changeStatus')->name('story.change-status');
 });
