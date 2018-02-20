@@ -1,0 +1,232 @@
+/****** LOGIN MODAL ******/
+
+.nodo-ergodico-backdrop-fondo{
+    background: rgba(255,255,255,0.7);
+    /*background: url("../img/nodo/fondo-nodo.png") repeat 0 0;*/
+	position: fixed;
+	top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1029;
+} 
+
+.nodo-ergodico-backdrop{  
+	background: #FFF;
+	color: #000;
+	position: fixed;
+	top: 80px;
+    right: 80px;
+    bottom: 80px;
+    left: 80px;
+    z-index: 1030;
+    overflow-y: auto;
+    box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.15);
+    padding: 45px;
+    border-radius: 20px;
+}
+
+@media only screen and (max-width: $screen-lg + 20) {
+  .nodo-ergodico-backdrop{   
+	top: 20px;
+    right: 10px;
+    bottom: 20px;
+    left: 10px;
+    padding: 25px 20px;
+  }
+}
+
+.nodo-ergodico-backdrop h2{
+	font-size: 24px;
+	font-family: $akzidenz-grotesk-pro-bold;
+}
+
+.nodo-ergodico-backdrop .row div:last-child h2{
+	text-align: right;
+	margin-right: 20px;
+	margin-bottom: 0;
+}
+
+.nodo-ergodico-backdrop .row div:last-child hr{
+	float: right;
+	margin-right: 20px;
+}
+
+@media only screen and (max-width: $screen-lg) {
+    .nodo-ergodico-backdrop .row div:last-child h2{
+		text-align: left;
+		margin-right: 0;
+		margin-bottom: 0;
+		padding-top: 30px;
+		clear: both;
+	}
+
+    .nodo-ergodico-backdrop .row div:last-child hr{
+	  float: none;
+	  margin-right: 0;
+	}
+}
+
+
+.nodo-ergodico-backdrop .formulario form label{
+	margin-top: -5px;
+}
+
+.nodo-ergodico-backdrop .note-editing-area{
+	width: 100%;
+}
+
+.nodo-ergodico-backdrop .formulario .panel-heading.note-toolbar{
+  float: none;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.nodo-ergodico-backdrop .formulario .panel-heading.note-toolbar .btn-sm{
+  margin-right: 10px; 
+}
+
+.nodo-ergodico-backdrop .container-botones{
+	min-height: auto;
+	margin-top: 5px;
+	overflow: hidden;
+	padding-bottom: 5px;
+}
+
+.nodo-ergodico-backdrop .container-botones .btn{
+	box-shadow: none;
+}
+
+.nodo-ergodico-backdrop .container-botones .btn{
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.nodo-ergodico-backdrop .botones-save-form{
+	position: static;
+	float: right;
+}
+
+@media only screen and (max-width: $screen-sm) {
+	.nodo-ergodico-backdrop .botones-save-form{
+	  position: static;
+	  float: none;
+	}
+	.nodo-ergodico-backdrop .container-botones{
+		padding: 0;
+	}
+
+	.nodo-ergodico-backdrop .container-botones .btn{
+		margin-left: 0;
+	}
+		.nodo-ergodico-backdrop .container-botones .btn:first-child{
+		margin-right: 10px;
+	}
+}
+
+/* LISTADO DE NODOS A ASOCIAR */
+
+.listado-nodos-ergodicos{
+	padding: 0;
+	list-style: none;
+	clear: both;
+	height: 480px;
+	overflow-y: scroll;
+}
+
+@media only screen and (max-width: $screen-lg) {
+	.listado-nodos-ergodicos{
+		height: auto;
+		overflow: visible;
+	}
+}
+
+.listado-nodos-ergodicos li{
+  width: 94%;
+  margin: 20px 3%;
+  padding: 15px 10px 5px 15px;
+  background: #FFF;
+  border-radius: 6px;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, .15);
+}
+
+@media only screen and (max-width: $screen-lg) {
+
+}
+
+.listado-nodos-ergodicos li:first-child{
+	margin-top: 8px;
+}
+
+.listado-nodos-ergodicos li h3{
+  font-size: 17px;
+  font-family: $akzidenz-grotesk-pro-med;
+  font-weight: bold;
+  color: #272939;
+  margin-top: 0;
+  margin-bottom: 9px;
+}
+
+.nodo-ergodico-backdrop .row div ul.listado-nodos-ergodicos li hr{ 
+  height: 2px; 
+  background: #EAE8E6; 
+  width: 20px;
+  float: none;
+  margin: 0 0 5px 0;
+}
+
+.listado-nodos-ergodicos .container-checkbox{
+	margin-left: 35px;
+}
+
+.listado-nodos-ergodicos .container-checkbox label{
+	font-weight: normal;
+	text-transform: lowercase;
+}
+
+.listado-nodos-ergodicos .container-checkbox .tick{
+	width: 26px;
+	height: 24px;
+}
+
+.listado-nodos-ergodicos .container-checkbox .tick:after{
+  opacity: 0.1;
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 7px;
+  background: transparent;
+  top: 7px;
+  left: 8px;
+  border: 3px solid #666;
+  border-top: none;
+  border-right: none;
+  transform: rotate(-45deg);
+}
+
+.listado-nodos-ergodicos .container-checkbox  .checkbox input[type="checkbox"]{
+	margin-left: -25px;
+}
+
+.listado-nodos-ergodicos .container-checkbox  .checkbox input[type="checkbox"]:checked + .tick:after{
+	opacity: 1;
+}
+
+.listado-nodos-ergodicos li a{
+  color: #272939;
+  font-family: $akzidenz-grotesk-pro-regular;
+  text-transform: lowercase;
+  font-size: 16px;
+  display: block;
+  background: url("../img/iconos/flecha-ver-nodo.png") no-repeat center left;
+  margin: 0;
+  padding: 4px 10px 4px 29px;
+}
+
+.listado-nodos-ergodicos li a:last-child{
+  background-image: url("../img/iconos/cruz-editar-nodo.png");
+}
+
+.listado-nodos-ergodicos li a:hover, .listado-nodos-ergodicos li a:focus{
+  color: $color-destacado;
+  text-decoration: none;
+}

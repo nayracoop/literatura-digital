@@ -1,0 +1,113 @@
+
+.palabras{ 
+	position: relative; 
+  padding: 0;
+	width: 100%;
+  max-width: 880px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+/*#modo-visualizacion*/
+
+.palabras ul{ list-style: none;  padding: 0;}
+
+.palabras h1{
+  font-family: $maax;
+  font-weight: bold;
+  font-size: 130px;
+  text-transform: lowercase;
+  text-align: center;
+  color: #000;
+  clear: none;
+  padding: 0;
+  margin: 120px 30px 0 30px;
+  border-bottom: none;
+}
+
+.palabras .autor{
+  color: #999999;
+  font-family: $maax;
+  font-weight: bold;
+  font-size: 21px;
+  text-align: center;
+  padding-top: 10px;
+  margin-bottom: 80px;
+}
+
+.palabras li{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.palabras li a{   
+  background: #FEF200; 
+  padding: 8px 11px 9px 11px;
+  font-family: $akzidenz-grotesk-pro-med;
+  font-weight: bold;
+  color: #000;
+  font-size: 18px;
+  text-transform: lowercase;
+}
+
+.container-nodo.palabras{ cursor: move; }
+
+.amarillo li a{ background: #FEF200; }
+.celeste li a{ background: #33F1FF; }
+.naranja li a{ background: #FF8500; color: #FFF; }
+.verde li a{ background: #83FF49; }
+.rosa li a{ background: #FC59A3;  color: #FFF; }
+
+.row .palabras li.visited a{ background: #F6F6F6;  color: #333; }
+
+.leer-palabras .palabras li a:hover{ background: #FFF; color: #000;}
+
+.palabras li a:hover, .palabras li a:focus{
+  text-decoration: none;
+}
+
+.palabras li.visited a{
+  background: #F6F6F6;
+  color: #000;
+}
+
+@media only screen and (max-width: $screen-lg) {
+  .palabras{ 
+    max-width: 660px; 
+    padding: 0; 
+  }
+  .palabras h1{ font-size: 90px; margin: 78px 42px 0 38px;  }
+
+  .palabras .autor{ font-size: 17px; margin-bottom: 48px;}
+
+  .palabras li a{   
+    font-size: 13px;
+    padding: 5px 9px 5px 9px;
+  }
+
+}
+
+@media only screen and (max-width: ($screen-md)) {
+  .palabras{ 
+    width: 100%;
+    margin: 0;
+    padding: 40px 0 30px 0;
+  }
+  .palabras h1{ font-size: 84px; width: 80%; margin: 0 auto;}
+
+  .palabras ul{ padding-top: 30px; text-align: center; }
+  .palabras li{
+    position: static;
+    display: inline-block;
+    margin: 10px 10px 10px 0;
+  }
+  .palabras li a{ font-size: 16px; }
+
+}
+
+@media only screen and (max-width: ($screen-xs)) {
+	.palabras h1{ font-size: 34px; width: 80%; margin: 0 auto;}	
+}
+

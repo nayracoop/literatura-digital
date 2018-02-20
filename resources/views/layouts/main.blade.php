@@ -17,7 +17,7 @@
 
         @include('layouts.menu')
         @yield('content')
-
+        @include('layouts.footer')
         <script src="{{ asset('js/jquery.min.js')}}"></script>
         <script src="{{ asset('js/bootstrap.min.js')}}"></script>
         <script src="{{ asset('js/functions-general.js')}}"></script>

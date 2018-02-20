@@ -163,29 +163,30 @@
 /* Modalcito VISUALIZACION */
 
 .modal-opciones-nodo{
-  /*display: none;*/
+  display: none;
   position: absolute;
   max-width: 200px;
   padding: 10px 10px 5px 10px;
   top: 10px;
   left: 40px;
+  z-index: 13;
   background: #FFF;
   border-radius: 8px;
   box-shadow: 0 1px 12px rgba(0, 0, 0, .15);
 }
 
-.modal-opciones-nodo:before{
+.modal-left:after{
   content:'';
   position: absolute;
   bottom: 50%;
   bottom: calc(50% - 5px);
-  left: -8px;
-  margin-left: -8px;
+  right: -8px;
+  margin-right: -8px;
   width: 0;
   height: 0;
   border-top: solid 8px transparent;
-  border-left: solid 8px transparent;
-  border-right: solid 8px #FFF;
+  border-left: solid 8px #FFF;
+  border-right: solid 8px transparent;
   border-bottom: solid 8px transparent;
   z-index: 3;
 }
@@ -223,3 +224,126 @@
   color: $color-destacado;
   text-decoration: none;
 }
+
+/* Listado preguntas - Ergodico */
+
+.preguntas-ergodico, .invitacion-preguntas-ergodico{ 
+  padding: 0; 
+  list-style: none;
+  width: 90%;
+  float: right;
+ }
+
+.invitacion-preguntas-ergodico{
+   margin-top: 20px;
+   padding-bottom: 10px;
+}
+
+.preguntas-ergodico li{ 
+  overflow: hidden;
+  padding: 15px 0 6px 0;
+  border-top: 2px dotted #CCCCCC;
+}
+
+.preguntas-ergodico li:last-child{
+  border-bottom: 2px dotted #CCCCCC;
+} 
+
+.delete-pregunta-ergodico{
+  width: 5%;
+  float: left;
+  background: url("../img/nodo/delete-pregunta.png") no-repeat center left;
+  border: none;
+  text-indent: -9999px;
+  height: 42px;
+}
+
+.delete-pregunta-ergodico:hover{
+  background-image: url("../img/nodo/delete-pregunta-hover.png");
+}
+
+.input-pregunta-ergodico{
+  width: 50%;
+  float: left;
+}
+
+.opciones-preguntas-ergodico{
+  width: 40%;
+  float: right;
+}
+
+.tit-preguntas-ergodico{
+  float: left;
+  width: 45%;
+}
+
+.botones-preguntas-ergodico{
+  float: right;
+  width: 50%;
+  margin-top: -5px;
+}
+
+@media only screen and (max-width: $screen-lg) {
+
+  .delete-pregunta-ergodico{
+    width: 34px;
+     float: left;
+  }
+  .input-pregunta-ergodico{
+    width: 85%;
+    float: left;
+  }
+  .preguntas-ergodico, .invitacion-preguntas-ergodico{ 
+    width: 100%;
+  }
+  .opciones-preguntas-ergodico{
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+    margin-left: 35px;
+  }
+  .tit-preguntas-ergodico {
+    width: 35%;
+  }
+  .botones-preguntas-ergodico{
+    width: 60%;
+  }
+}
+
+.opciones-preguntas-ergodico .tit-preguntas-ergodico h2{
+  font-size: 17px;
+  font-family: $akzidenz-grotesk-pro-med;
+  font-weight: bold;
+  color: #272939;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.opciones-preguntas-ergodico hr{ 
+  height: 2px; 
+  background: #EAE8E6; 
+  width: 20px;
+  float: left;
+  margin: 0;
+}
+
+.opciones-preguntas-ergodico a{
+  color: #272939;
+  font-family: $akzidenz-grotesk-pro-regular;
+  text-transform: lowercase;
+  font-size: 16px;
+  display: block;
+  background: url("../img/iconos/flecha-ver-nodo.png") no-repeat center left;
+  margin: 0;
+  padding: 4px 10px 4px 29px;
+}
+
+.opciones-preguntas-ergodico a:last-child{
+  background-image: url("../img/iconos/cruz-editar-nodo.png");
+}
+
+.opciones-preguntas-ergodico a:hover, .opciones-preguntas-ergodico a:focus{
+  color: $color-destacado;
+  text-decoration: none;
+}
+

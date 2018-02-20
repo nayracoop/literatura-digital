@@ -9,9 +9,11 @@ $(document).ready(function(){
 	});
 
 	/* BOTONES MODAL */
-	$('.leer').click(function() {
+	$('.leer').click(function(e) {
+		  e.preventDefault();
 		  var id = $(this).attr('id');
 			var node = $('#ventana-nodo-'+id);
+			console.log( 'idss');
 		  if(node.hasClass('esconder')){
 		      node.removeClass('esconder');
 	    }else{
@@ -24,11 +26,12 @@ $(document).ready(function(){
 	  	$('.nodo-backdrop').addClass('esconder');
 	  }
 		*/
-	  return false;
+	    return false;
 	});
 
 	$('.cerrar-nodo').click(function() {
 		      $('.nodo-backdrop').addClass('esconder');
+					$('.nodo-backdrop-fondo').addClass('esconder');
 
 		/*
 	  if($('.nodo-backdrop').hasClass('esconder')){
