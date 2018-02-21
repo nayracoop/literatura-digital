@@ -32,14 +32,12 @@ una tabla debería guardar estas relaciones y permitirles un orden de relacion p
 
 Acá cada nodo pertenecería a una "voz" o "personaje", entonces es parecida a los episodios, pueden reordenarse, pero a su vez cada nodo va a tener un color particular de acuerdo al personaje que lo contenga.
 
-
-
 ## La visión de José
 
 > Considero oportuno crear una carpeta de vistas con snippets propios de las tipologias dentro de la carpeta *tipologies*. A su vez divididos en tres carpetas:
-> * node_fields : campos de formulario en la creación de fragmento
-> * node_links : Enlaces a otros nodos del mismo relato. vista de nodo
-> * node_presentation : presentación de los fragmentos en la vista de Relato 
+> * node_fields: campos de formulario en la creación de fragmento
+> * node_links: enlaces a otros nodos del mismo relato en la vista de nodo
+> * node_presentation: presentación de los fragmentos en la vista de relato
 >
 >
 > Después podemos debatir si realizamos mejoras en la lógica de presentación dentro de los modelos (Story & TextNode)
