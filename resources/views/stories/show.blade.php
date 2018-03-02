@@ -1,6 +1,13 @@
 @extends('layouts.main')
+
+@if (isset($story->author))
+  @php $authorName = $story->getAuthorName(); @endphp
+@else
+  @php $authorName = __('messages.deleted_user'); @endphp
+@endif
+
 @section('title')
-  {{ $story->title }} @lang('de') {{ $story->getAuthorName() }}
+  {{ $story->title }} @lang('de') {{ $authorName }}
 @endsection
 
 @section('content')
@@ -12,7 +19,7 @@
             <div class="palabras">
 
               <h1>{{$story->title}}</h1>
-              <p class="autor">{{$story->getAuthorName()}}</p>
+              <p class="autor">{{ $authorName }}</p>
 
              <ul>
                @foreach($story->textNodes as $node)
@@ -46,7 +53,7 @@
                 @endif
               </div>
               <p class="tit-relato">{{ $story->title }}</p>
-              <p class="autor-relato">{{ $story->getAuthorName() }}</p>
+              <p class="autor-relato">{{ $authorName }}</p>
             </a>
           </div>
 

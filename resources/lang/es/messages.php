@@ -40,4 +40,6 @@ return [
     'confirm_password' => 'Confirmar Contraseña',
     'comments' => 'Comentarios',
     'no_comments' => 'No hay comentarios',
+    'no_results' => 'No hay resultados',
+    'search_stories' => 'Buscar relatos',
 ];

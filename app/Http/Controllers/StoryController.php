@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as R;
 use Flash;
 use Auth;
 use App\Models\Story;
@@ -58,10 +59,9 @@ class StoryController extends Controller
     */
     public function storiesByTag(Request $request, $tag)
     {
-
         $stories = Story::getFromTag($tag)->get();
         return view('home')
-          ->with('stories', $stories);
+            ->with('stories', $stories);
     }
 
 
@@ -274,25 +274,77 @@ class StoryController extends Controller
     public function search(Request $request)
     {
         $input = $request->all();
-        $search = trim($input['search']);
-        $stories = [];
-        $tags = [];
+        $search = '';
 
         if ($request->has('search')) {
-            $stories = Story::where('title', 'like', "%$search%")
-                ->orWhere('description', 'like', "%$search%")
-                ->orWhere('tags.name', 'like', "%$search%")->where('status', StoryStatus::PUBLISHED)->get();
+            $search = trim($input['search']);
+        }
+        if ($request->has('tag')) {
+            $filter_tag = trim($input['tag']);
+        }
+        if ($request->has('genre')) {
+            $genre = $input['genre'];
+        }
+        $stories = [];
+        $tags = [];
+        $results = '';
 
-            $tags = Tag::where('name', 'like', "%$search%")->get();
-        } else {
-            $stories = Story::featured();
+        $isAdminOrMod = false;
+
+        if (Auth::check()) {
+            $isAdminOrMod = Auth::user()->isAdminOrMod() ? true : false;
+        }
+        
+        $query = Story::query();
+
+        if (!$isAdminOrMod) {
+            $query->where('status', StoryStatus::PUBLISHED);
         }
 
-        $results = View::make('snippets.featured_stories')->with('stories', $stories)->render();
+        if (isset($genre) && $genre != 'todos') {
+            $query->where('genre', $genre);
+        }
 
-        return response()->json(['search' => $search,
-                                'results' => $results,
-                                'tags' => $tags]);
+        if (isset($search) && $search != '') {
+            $query = $query->where(function ($query) use ($search) {
+                $query->where('title', 'like', "%$search%")
+                    ->orWhere('description', 'like', "%$search%");
+                    //al nombre de los tags no le tiramos search
+                    //porque se puede buscar por tag y porque los tags
+                    //no están en el summary de la historia
+                    //->orWhere('tags.name', 'like', "%$search%");
+            });
+        }
+
+        if (isset($filter_tag) && $filter_tag != '') {
+            $query = $query->where(function ($query) use ($filter_tag) {
+                $query->where('tags.name', 'like', "%$filter_tag%");
+            });
+        }
+
+        $stories = $query->orderBy('created_at')->get();
+
+        foreach ($stories as $story) {
+            $story_tags = $story->tags->all();
+
+            foreach ($story_tags as $tag) {
+                $tags[$tag->name] = $tag;
+            }
+        }
+
+        if (R::ajax()) {
+            $storiesRender = View::make('stories.block_list')
+                ->with('stories', $stories)
+                ->with('title', $search)
+                ->render();
+
+            return response()->json(['stories' => $storiesRender,
+                                    'search' => $search,
+                                    'tags' => $tags]);
+        }
+
+        //por ahora no se llama esta función sin ajax
+        return false;
     }
 
     /**
@@ -300,48 +352,55 @@ class StoryController extends Controller
      *
      * xhttp function
      */
-    public function searchByGenre(Request $request)
+    public function searchByGenre($genre = null)
     {
-        $input = $request->all();
-        $search = null;
-        if ($request->has('genre')) {
-            $search = $input['genre'];
-        }
         $stories = [];
+        $tags = [];
         $results = '';
-        $isAdminOrMod = 'false';
-
+        $isAdminOrMod = false;
+        
         if (Auth::check()) {
-            $isAdminOrMod = Auth::user()->isAdminOrMod() ? 'true' : 'false';
+            $isAdminOrMod = Auth::user()->isAdminOrMod() ? true : false;
+        }
+        
+        $query = Story::query();
+
+        if (!$isAdminOrMod) {
+            $query->where('status', StoryStatus::PUBLISHED);
         }
 
-        if (isset($search)) {
-            if ($search == 'todos') {
-                $stories = Story::where('status', StoryStatus::PUBLISHED)
-                                ->orWhere($isAdminOrMod)
-                                ->orderBy('created_at')
-                                ->get();
-            } else {
-                $stories = Story::where('genre', 'like', "%$search%")
-                                ->where(function ($query) use ($isAdminOrMod) {
-                                    $query->where('status', StoryStatus::PUBLISHED)
-                                          ->orWhere($isAdminOrMod);
-                                })
-                                ->orderBy('created_at')
-                                ->get();
-            }
+        if (isset($genre)) {
+            // le meto título dependiendo de que esté definido el género o no
+            $query->where('genre', $genre);
+            $title = $genre;
         } else {
-            // le paso favoritos porque lo uso como título de la lista
-            $search = 'favoritos';
-            $stories = Story::featured();
+            $title = 'Todos';
+        }
+        
+        $stories = $query->orderBy('created_at')->get();
+
+        foreach ($stories as $story) {
+            $story_tags = $story->tags->all();
+
+            foreach ($story_tags as $tag) {
+                $tags[$tag->name] = $tag;
+            }
         }
 
-        $results = View::make('stories.block_list')
-                        ->with('stories', $stories)
-                        ->with('title', ucfirst($search))
-                        ->render();
+        if (R::ajax()) {
+            $results = View::make('stories.block_list')
+                ->with('stories', $stories)
+                ->with('title', $genre)
+                ->render();
 
-        return response()->json(['genre'=>$search, 'results' => $results]);
+            return response()->json(['genre'=>$search, 'results' => $results]);
+        }
+            
+        return view('stories.genre')
+            ->with('stories', $stories)
+            ->with('tags', $tags)
+            ->with('title', $title)
+            ->with('genre', $genre);
     }
 
     /**

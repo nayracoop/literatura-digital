@@ -6,6 +6,6 @@
             <img alt="" src="{{ asset('img/img-2.jpg')}}"> 
         @endif
     </div>
-    <p class="tit-relato">{{ empty($story->title)?'-':$story->title }}</p>
+    <p class="tit-relato">{{ empty($story->title) ? '-' : $story->title }}</p>
     <p class="autor-relato">{{ $story->getAuthorName() }}</p>
 </div>

@@ -10,15 +10,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    @include('stories.block_list', ['title' => __('messages.favorites')])
+                    <h2 class="tit-home" id="list_title">@lang('messages.favorites')</h2>
+                    <hr />
+                    @include('stories.block_list')
                 </div>
             </div>
         </div>
-    </div>
-  
+    </div>  
 @endsection
 
-@push('javascript')
+
+{{--  @push('javascript')
+esto pasa a estar en la lista de historias
     <script>
         function hashChangedUpdate() {
             $(".status_switch:checkbox").on("click", changeStatus);
@@ -40,4 +43,4 @@
             }
         }
     </script>
-@endpush
+@endpush  --}}

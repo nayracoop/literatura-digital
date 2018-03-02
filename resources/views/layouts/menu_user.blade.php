@@ -31,13 +31,14 @@
     <ul class="nav navbar-nav login">
         <li>
             <a data-toggle="modal" href="#ingresar" id='link_login'>
-                <span>@lang('menu.login')</a>
-            </span>
+                <span>@lang('menu.login')</span>
+            </a>            
         </li>
         <li>
             <a data-toggle="modal" href="#registrarse">
-                <span>@lang('menu.register')</a>
-            </span>
+                <span>@lang('menu.register')</span>
+            </a>
+            
         </li>
     </ul>
 @endguest

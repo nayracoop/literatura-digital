@@ -2,11 +2,11 @@
 
 Literatura digital es una web que permitirá escribir relatos con diferentes estructuras a partir de nodos de texto.
 
-## Tipologias
+## Tipologías
 
 Las tipologías (Typology/ies) definen los tipos de relatos:
 
-* Temporal
+* Temporal / Calendario
 
 Orden cronológico de los text nodes (es un orden que eventualmnte dejaríamos alterar al usuario, pero cambiando la fecha de publicación o algo así)
 
