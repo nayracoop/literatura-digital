@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Tag;
 use App\Models\Enums\StoryStatus;
+use App\Models\Enums\Typology;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
 use View;
@@ -145,7 +146,9 @@ class StoryController extends Controller
 
     public function edit($story)
     {
-        return view('stories.edit')->with('story', Story::where('_id', $story)->orWhere('slug', $story)->first());
+        return view('stories.edit')
+            ->with('story', Story::where('_id', $story)->orWhere('slug', $story)->first())
+            ->with('typologies', Typology::values());
     }
 
     public function updateStory(Request $request, $slug)

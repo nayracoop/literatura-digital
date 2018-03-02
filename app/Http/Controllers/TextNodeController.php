@@ -113,4 +113,14 @@ class TextNodeController extends Controller
             ->with('story', $myStory)
             ->with('node', $myTextNode);
     }
+
+
+    /**
+    *
+    *
+    */
+    public function savePosition($story)
+    {
+        $story = Story::where('_id', $story)->first();
+    }
 }

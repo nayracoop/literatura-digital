@@ -29,11 +29,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="tipologia">@lang('Tipología') *</label>
+                                
                                 <div class="styled-select">
                                     <select type="text" class="form-control" id="tipologia" name="typology">
-                                        <option value="episodic" @if(isset( $story ) && $story->typology === 'episodic') selected @endif >Episódico</option>
-                                        <option value="choral" @if(isset( $story ) && $story->typology === 'choral') selected @endif >Coral</option>
-                                        <option value="rizome" @if(isset( $story ) && $story->typology === 'rizome') selected @endif >Hipertexto</option>
+                                    @foreach($typologies as $key => $typology)
+                                        <option value="episodic" @if(isset( $story ) && $story->typology === $typology) selected @endif >{{$typology}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -71,7 +72,7 @@
                         </div>
                         @endforeach
 
-                        <input type="hidden" name="id" value="{{ $story->_id }}" /> 
+                        <input type="hidden" name="id" value="{{ $story->_id }}" />
                         @endif
                     </div>
                     <label for="tag" class="more-tags-title">@lang('Agregar etiqueta'):</label>
