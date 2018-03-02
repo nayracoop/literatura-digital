@@ -12,7 +12,7 @@
 <div class="fondo-forms editor-relato">
     <div class="container listado-relatos">
         <div class="row">
-            @include('stories.typologies.node_presentation.user.' . $story->visualization)
+            @include('textNodes.visualizations.' . $story->visualization)
             <div id="modo-listado" class="tabpanel">
               <h1>Listado de nodos</h1>
               <hr />
@@ -46,13 +46,11 @@
               </tbody>
               </table>
 
-              <button class="btn btn-nuevo-relato"><span>Agregar nodo</span><span class="plus"></span></button>
+              <button class="btn btn-nuevo-relato"><span>{{__('messages.add_node')}}</span><span class="plus"></span></button>
             </div>
-
-
                 <div class="botones-nav-form">
-                    <a href="{{ route('stories.list') }}" class="bot ant">Volver a mis relatos</a>
-                    <a href="{{ route('story.update', $story->id) }}" class="bot sig">Ir a detalles del relato</a>
+                    <a href="{{ route('stories.list') }}" class="bot ant">{{__('messages.back_my_stories')}}</a>
+                    <a href="{{ route('story.update', $story->id) }}" class="bot sig">{{__('messages.go_story_details')}}</a>
                 </div>
 
             </div>

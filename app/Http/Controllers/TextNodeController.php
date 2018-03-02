@@ -119,8 +119,21 @@ class TextNodeController extends Controller
     *
     *
     */
-    public function savePosition($story)
+    public function savePosition(Request $request, $story)
     {
+        $status = 'failed';
         $story = Story::where('_id', $story)->first();
+        $node = $story->textNodes->where('_id', $request->nodeId)->first();
+        if ($node !== null) {
+            $node->positionX = $request->x;
+            $node->positionY = $request->y;            
+            $node->save();
+            $status = 'updated';
+        }
+        return response()->json([
+          'status' => $status,
+          'node' => $request->nodeId,
+
+        ]);
     }
 }

@@ -28,6 +28,9 @@ return [
     'select_option' => 'Elegí una opción',
     'cancel' => 'Cancelar',
     'create' => 'Crear',
+    'add_node' => 'Agregar nodo',
+    'back_my_stories' => 'Volver a mis relatos',
+    'go_story_details' => 'Ir a detalles del relato',
     //mensages
     'title.max' => 'El título no puede ser mayor a :cant caracteres',
     'title.required' => 'El título es necesario para publicar',
