@@ -57,4 +57,5 @@
         </div>
     </div>
 </div>
+@include('textNodes.backdrop')
 @endsection

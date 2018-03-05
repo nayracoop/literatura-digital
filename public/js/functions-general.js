@@ -16,16 +16,20 @@ $(document).ready(function(){
 
       console.log( 'id '+ id);
 			console.log( 'modadl id '+ node.attr('id'));
+			console.log( 'NODO-- '+ node);
 
 			if($('.nodo-backdrop-fondo').hasClass('esconder')){
 				 $('.nodo-backdrop-fondo').removeClass('esconder');
-				 $('body').addClass('overflow');
 			}
-
+      //node.removeClass('esconder');
 		  if(node.hasClass('esconder')){
-				  node.removeClass('esconder');
+			//	  console.log( node.removeClass('esconder'));
+					node.removeClass('esconder');
+					//node.attr('class','ssss');
+				//	$('body').addClass('overflow');
 	    }else{
 		      node.addClass('esconder');
+			//		$('body').removeClass('overflow');
 	    }
 
 /*

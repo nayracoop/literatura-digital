@@ -18,24 +18,21 @@
     <div class="col-md-12">
 
    <div class="container-nodo palabras">
-
         <h1>{{$story->title}}</h1>
         <p class="autor">{{$story->getAuthorName()}}</p>
 
        <ul>
          @foreach($story->textNodes as $node)
-         <li id="{{$node->id}}"><a >{{$node->title}}</a></li>
-
+         <li data-node="{{$node->id}}"><a >{{$node->title}}</a></li>
          @endforeach
        </ul>
-
    </div>
 
 
     <div class="modal-opciones-nodo modal-left">
       <h2>---</h2>
       <hr />
-      <a href="#">Leer nodo</a>
+      <a href="#" class="leer">Leer nodo</a>
       <a href="#">Editar nodo</a>
     </div>
 
@@ -69,7 +66,7 @@
 <script src="{{asset('js/libs/jquery.min.js')}}"></script>
   <script src="{{asset('js/libs/jquery-ui.min.js')}}"></script>
   <script src="{{asset('js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('js/functions-general.js')}}"></script>
+
 
   <script>
 
@@ -107,8 +104,11 @@
             }
 
             $(".modal-opciones-nodo").css({ 'top': top , 'left': left });
+            $(".leer").attr('id',$(this).data('node'));
+            $(".modal-opciones-nodo h2").text($(this).text());
             $(".modal-opciones-nodo").show();
 
+            console.log('NODO : '+$(this).data('node'));
             console.log($(this).attr('id'));
             saveWordPosition($(this).attr('id'), left, top);
           }
