@@ -46,7 +46,7 @@
               </tbody>
               </table>
 
-              <button class="btn btn-nuevo-relato"><span>{{__('messages.add_node')}}</span><span class="plus"></span></button>
+              <a href="{{route('node.create', $story->_id)}}"><button class="btn btn-nuevo-relato"><span>{{__('messages.add_node')}}</span><span class="plus"></span></button></a>
             </div>
                 <div class="botones-nav-form">
                     <a href="{{ route('stories.list') }}" class="bot ant">{{__('messages.back_my_stories')}}</a>

@@ -1,7 +1,7 @@
 <div class="fondo-forms">
     <div class="container">
       <div class="row leer-palabras">
-        <div class="col-md-12">
+        <div class="col-md-12 {{$story->color}}">
 
             <div class="palabras">
 
@@ -26,7 +26,7 @@
   <div class="nodo-backdrop-fondo esconder">
   @foreach($story->textNodes as $node)
 
-    <div class="nodo-backdrop" id="ventana-nodo-{{ $node->_id }}" tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">
+    <div class="nodo-backdrop esconder" id="ventana-nodo-{{ $node->_id }}" tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">
 
           <a class="back-button cerrar-nodo close-arrow" data-node="{{$node->_id}}" href="#">Volver</a>
 
@@ -79,11 +79,11 @@
     });
 
     $('.palabras a').click(function() {
-      if($('.nodo-backdrop-fondo').hasClass('esconder')){
-        $('.nodo-backdrop-fondo').removeClass('esconder');
-        //$('body').addClass('overflow');
-      }
-      return false;
+    //  if($('.nodo-backdrop-fondo').hasClass('esconder')){
+    //     $('.nodo-backdrop-fondo').removeClass('esconder');
+    //     //$('body').addClass('overflow');
+  //    }
+      //return false;
     });
   </script>
 @endpush

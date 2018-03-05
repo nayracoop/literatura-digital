@@ -70,6 +70,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     Route::patch('/{story}/fragmentos/{textNode}/editar', 'TextNodeController@update')->name('node.update');
 
     Route::post('/{story}/fragmento/guardar-posicion', 'TextNodeController@savePosition')->name('node.savePosition');
+    Route::patch('/{story}/guardar-color', 'StoryController@saveColor')->name('story.saveColor');
 
     # guardar relato nuevo o editar por Xhr
     Route::post('/save-story', 'StoryController@saveStoryXhr')->name('story.saveXhr');

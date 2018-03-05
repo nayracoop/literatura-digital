@@ -13,13 +13,22 @@ $(document).ready(function(){
 		  e.preventDefault();
 		  var id = $(this).attr('id');
 			var node = $('#ventana-nodo-'+id);
-			console.log( 'idss');
+
+      console.log( 'id '+ id);
+			console.log( 'modadl id '+ node.attr('id'));
+
+			if($('.nodo-backdrop-fondo').hasClass('esconder')){
+				 $('.nodo-backdrop-fondo').removeClass('esconder');
+				 $('body').addClass('overflow');
+			}
+
 		  if(node.hasClass('esconder')){
-		      node.removeClass('esconder');
+				  node.removeClass('esconder');
 	    }else{
 		      node.addClass('esconder');
 	    }
-		/*
+
+/*
 	  if($('.nodo-backdrop').hasClass('esconder')){
 	  	$('.nodo-backdrop').removeClass('esconder');
 	  }else{

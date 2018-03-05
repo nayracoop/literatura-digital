@@ -473,4 +473,24 @@ class StoryController extends Controller
             'picName' => $cover
         ]);
     }
+
+    /**
+    *  saveColor
+    *
+    */
+    public function saveColor(Request $request, $id)
+    {
+        $status = 'failed';
+        $story = Story::where('_id', $id)->orWhere('slug', $id)->first();
+        if ($story !== null) {
+            $story->color = $request->color;
+            $story->save();
+            $status = 'updated';
+        }
+
+        return response()->json([
+              'status' => $status,
+              'color' => $request->color
+          ]);
+    }
 }
