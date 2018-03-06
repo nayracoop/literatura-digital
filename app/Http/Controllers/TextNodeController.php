@@ -116,7 +116,7 @@ class TextNodeController extends Controller
 
 
     /**
-    *
+    *  savePosition en visualizacion de 'palabras' guarda la posicion de un nodo
     *
     */
     public function savePosition(Request $request, $story)
@@ -126,7 +126,7 @@ class TextNodeController extends Controller
         $node = $story->textNodes->where('_id', $request->nodeId)->first();
         if ($node !== null) {
             $node->positionX = $request->x;
-            $node->positionY = $request->y;            
+            $node->positionY = $request->y;
             $node->save();
             $status = 'updated';
         }
@@ -134,6 +134,21 @@ class TextNodeController extends Controller
           'status' => $status,
           'node' => $request->nodeId,
 
+        ]);
+    }
+
+    /**
+    * get buscamos un nodo y obtenemos un json
+    * @return Response json
+    */
+    public function getJson(Request $request, $story)
+    {
+        $input = $request->all();
+        $story = Story::find($story);
+        $node = $story->textNodes->find($input->id);
+
+        return response()->json([
+          'node' => print_r($node)
         ]);
     }
 }

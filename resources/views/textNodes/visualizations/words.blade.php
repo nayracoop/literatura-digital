@@ -23,7 +23,7 @@
 
        <ul>
          @foreach($story->textNodes as $node)
-         <li data-node="{{$node->id}}"><a >{{$node->title}}</a></li>
+         <li  data-node="{{$node->id}}"><a >{{$node->title}}</a></li>
          @endforeach
        </ul>
    </div>
@@ -33,7 +33,7 @@
       <h2>---</h2>
       <hr />
       <a href="#" class="leer">Leer nodo</a>
-      <a href="#">Editar nodo</a>
+      <a href="#" class="edit" data-edit-node="">Editar nodo</a>
     </div>
 
     </div>
@@ -64,12 +64,11 @@
 
 @push('javascript')
 <script src="{{asset('js/libs/jquery.min.js')}}"></script>
-  <script src="{{asset('js/libs/jquery-ui.min.js')}}"></script>
-  <script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/libs/jquery-ui.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
 
 
-  <script>
-
+<script>
   //  var posiciones = [ ['Animales', '20', '30'], ['Descanso', '10', '70'], ['Supersticiones','33','84'], ['Festejos', '5', '30'], ['Ventana', '4.23', '50'], ['Lluvia', '20', '80'], ['Leña', '50', '90'], ['Tradiciones', '50', '65'], ['Cielo', '80', '88'], [ 'Familia', '40', '66'], ['Interiores', '20', '40'], ['Reuniones', '56', '70'], ['Compañerismo', '28', '38'], ['Albañilería', '56', '45'], ['Cerveza', '88', '80'], ['Árboles', '26', '20'] ];
     var posiciones = {!! json_encode($story->textNodes) !!}
     posiciones.color = '{{strtolower($story->color)}}';
@@ -105,12 +104,13 @@
 
             $(".modal-opciones-nodo").css({ 'top': top , 'left': left });
             $(".leer").attr('id',$(this).data('node'));
+            $(".edit").attr('data-edit-node',$(this).data('node'));
             $(".modal-opciones-nodo h2").text($(this).text());
             $(".modal-opciones-nodo").show();
 
-            console.log('NODO : '+$(this).data('node'));
-            console.log($(this).attr('id'));
-            saveWordPosition($(this).attr('id'), left, top);
+            //  console.log('NODO : '+$(this).data('node'));
+          //  console.log('li id '+$(this).attr('id'));
+            saveWordPosition($(this).data('node'), left, top);
           }
         });
     }
@@ -152,7 +152,7 @@
     {
         var xhr = new XMLHttpRequest();
         var formData = new FormData();
-
+        console.log('nod prev guardar '+id);
         formData.append('_token', '{{ csrf_token() }}');
         formData.append('nodeId', id);
         formData.append('x', x);

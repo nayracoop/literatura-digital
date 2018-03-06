@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     Route::post('/{story}/nuevo-fragmento', 'TextNodeController@store')->name('node.store');
 
     Route::get('/{story}/fragmentos', 'TextNodeController@index')->name('nodes.index');
+    Route::get('/{story}/fragmentos/json', 'TextNodeController@getJson')->name('node.json');
     Route::get('/{story}/fragmentos/{textNode}/editar', 'TextNodeController@edit')->name('node.edit');
     Route::patch('/{story}/fragmentos/{textNode}/editar', 'TextNodeController@update')->name('node.update');
 

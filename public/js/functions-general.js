@@ -41,18 +41,13 @@ $(document).ready(function(){
 		*/
 	    return false;
 	});
+//--
+/* BOTONES MODAL */
 
+//--
 	$('.cerrar-nodo').click(function() {
 		      $('.nodo-backdrop').addClass('esconder');
 					$('.nodo-backdrop-fondo').addClass('esconder');
-
-		/*
-	  if($('.nodo-backdrop').hasClass('esconder')){
-	  	$('.nodo-backdrop').removeClass('esconder');
-	  }else{
-	  	$('.nodo-backdrop').addClass('esconder');
-	  }
-		*/
 	  return false;
 	});
 
