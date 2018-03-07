@@ -63,39 +63,9 @@
 
 @push('javascript')
 <script>
-$('.edit').click(function(e) {
-		e.preventDefault();
-		var nodeId = $(this).data('edit-node');
-		//var node = $('#ventana-nodo-'+id);
+//$(document).ready(function(){
+  
 
-		//console.log( 'id '+ id);
-		//console.log( 'modadl id '+ node.attr('id'));
-		console.log( 'NODO-- '+ nodeId);
-		var formData = new FormData();
-		formData.append('id', nodeId);
-		var xhttp = new XMLHttpRequest();
-    xhttp.open('GET','{{route('node.json',$story->_id)}}');
-    xhttp.setRequestHeader('X-XSRF-TOKEN', '{{csrf_token()}}');
-		xhttp.send(formData);
-
-		xhttp.addEventListener("readystatechange", function (e) {
-			var xhr = e.target;
-			if (xhr.readyState == 4) {
-				//  console.log('h');
-					if (xhr.status == 200) {
-
-							console.log('200');
-							newResponse = JSON.parse(xhr.response);
-							//var results = newResponse.results;
-
-              console.log(newResponse.node);
-
-						//  $('.items-listado').empty();
-						//  $('.items-listado').append(results);
-					} else console.log(xhr.statusText);
-			}
-		});
-
-  });
-</script>
+//});
+//</script>
 @endpush

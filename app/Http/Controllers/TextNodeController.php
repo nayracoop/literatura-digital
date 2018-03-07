@@ -144,11 +144,13 @@ class TextNodeController extends Controller
     public function getJson(Request $request, $story)
     {
         $input = $request->all();
-        $story = Story::find($story);
-        $node = $story->textNodes->find($input->id);
+        $s = Story::where('_id', $story)->first();
+        $node = $s->textNodes()->where('_id', $request->id)->first();
 
         return response()->json([
-          'node' => print_r($node)
+         'node' => $node,
+      //    'id' => var_dump($input)
+    //  //    'st' => ($s->textNodes()->first())
         ]);
     }
 }

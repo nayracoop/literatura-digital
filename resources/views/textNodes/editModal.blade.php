@@ -1,5 +1,5 @@
-<div class=" esconder edit-node-modal ">
-  <div class=" esconder" id="edit-nodo" tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">
+<div class=" esconder" id="edit-node-modal">
+  <div class="nodo-backdrop"  tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">
     <div class="container formulario form-detalle">
         <div class="row">
             <div class="col-lg-12">

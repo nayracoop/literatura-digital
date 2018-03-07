@@ -104,16 +104,17 @@
 
             $(".modal-opciones-nodo").css({ 'top': top , 'left': left });
             $(".leer").attr('id',$(this).data('node'));
-            $(".edit").attr('data-edit-node',$(this).data('node'));
+            $(".edit").data('edit-node',$(this).data('node'));
             $(".modal-opciones-nodo h2").text($(this).text());
             $(".modal-opciones-nodo").show();
 
-            //  console.log('NODO : '+$(this).data('node'));
+              //console.log('+++NODO : '+$(this).data('edit-node'));
           //  console.log('li id '+$(this).attr('id'));
             saveWordPosition($(this).data('node'), left, top);
           }
         });
     }
+    ///---
 
      //guardar color
      $("#colores").change(function(e) {
@@ -146,6 +147,56 @@
       });
       console.log(posicionesNuevo);
     });
+
+
+
+    $('.edit').click(function(e) {
+    		e.preventDefault();
+    		var nodeId = $(this).data('edit-node');
+    		//var node = $('#ventana-nodo-'+id);
+
+    		//console.log( 'id '+ id);
+    		//console.log( 'modadl id '+ node.attr('id'));
+    		console.log( 'NODO-- '+ nodeId);
+    		//var formData = new FormData();
+    		//formData.append('nodeId', nodeId);
+
+    		var xhttp = new XMLHttpRequest();
+        xhttp.open('GET','{{route('node.json',$story->_id)}}?id='+nodeId);
+        xhttp.setRequestHeader('X-XSRF-TOKEN', '{{csrf_token()}}');
+    		xhttp.send();
+
+    		xhttp.addEventListener("readystatechange", function (e) {
+    			var xhr = e.target;
+    			if (xhr.readyState == 4) {
+    				//  console.log('h');
+    					if (xhr.status == 200) {
+
+    							console.log('200');
+    							var response = JSON.parse(xhr.response);
+    							//var results = newResponse.results;
+                  var node = response.node;
+                  console.log(node);
+                  $('input[name="title"]').val(node.title);
+                  $('input[name="text"]').val(node.text);
+                  $('#texto-nodo').html(node.text);
+                  $('.note-editable').html(node.text);
+
+                  $('input[name="charCount"]').val(node.charCount);
+                  $('.contador-caracteres').text(node.charCount);
+                  $('input[name="wordCount"]').val(node.wordCount);
+                  $('.contador-palabras').text(node.wordCount);
+
+                  $('#edit-node-modal').removeClass('esconder');
+                  $('#edit-node-modal').addClass('nodo-backdrop-fondo');
+
+    						//  $('.items-listado').empty();
+    						//  $('.items-listado').append(results);
+    					} else console.log(xhr.statusText);
+    			}
+    		});
+
+      });
 
     //guardar posicion de palabra
     function saveWordPosition(id, x, y)
