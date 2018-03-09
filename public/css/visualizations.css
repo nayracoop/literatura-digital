@@ -1,0 +1,584 @@
+body {
+  background: #f0f0f0;
+}
+
+* { box-sizing: border-box; }
+
+.grindex-wrapper {
+  position: relative;
+  width: 600px;
+  min-width: 320px;
+  max-width: 90%;
+  /* border: 1px solid #ddd; */
+  margin:1em auto;
+}
+
+.grindex-wrapper.strict-limits {
+  overflow: hidden;
+}
+.grindex-wrapper::before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: 100%;
+  z-index: 0;
+}
+
+.grindex {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* position: absolute;
+  top:0; */
+}
+
+/* Bubbles */
+
+.grindex.bubbles {
+
+}
+
+.grindex.bubbles::before,
+.grindex.bubbles::after {
+  content:"";
+  display: block;
+  width: 100%;
+  padding-top: 100%;
+  position: absolute;
+  border-radius:50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background: rgba(0,63,191,.35);
+  box-shadow:0 0 40px rgba(0,63,191,.1) inset;
+  opacity:0.05;
+  z-index: 0;
+}
+
+.grindex.bubbles::after {
+  width: 85%;
+  padding-top: 85%;
+  top: 7.5%;
+  opacity:0.15;
+}
+
+.grindex.bubbles li {
+  display: block;
+  position: absolute;
+  /* background: rgba(0,63,191,.7);
+  box-shadow: 0 0 16px rgba(0,63,191,.5); */
+  width: 1%;
+  height: 1%;
+  border-radius:50%;
+  top:50%;
+  left:50%;
+  z-index:2;
+  text-indent: -9999px;
+  animation: orbit 40s linear infinite;
+}
+
+.grindex.bubbles li:hover {
+  animation-play-state: paused;
+  z-index: 10;
+  /* z-index:1; */
+}
+
+.grindex.bubbles li a {
+  display: block;
+  min-width: 12px;
+  min-height: 12px;
+  position: relative;
+  border-radius:50%;
+}
+
+.grindex.bubbles li a::after,
+.grindex.bubbles li a::before,
+.grindex.bubbles li a span::after {
+  content: "";
+  display: block;
+  background: rgba(0,63,191,.7);
+  box-shadow: 0 0 16px rgba(0,63,191,.65);
+  border-radius:50%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  /* animation: bubbles 2s ease-in-out infinite alternate; */
+  animation-delay: inherit;
+  transition: background 300ms ease-in-out;
+  box-sizing: border-box;
+}
+
+.grindex.bubbles li a::after,
+.grindex.bubbles li a::before {
+  background: none;
+  border:4px solid #fff;
+  box-shadow: none;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  width: auto;
+  height: auto;
+  transition: opacity 500ms ease-in-out;
+  opacity: 0;
+}
+
+.grindex.bubbles li a::before {
+  border:2px dashed #fff;
+
+}
+
+.grindex.bubbles li a:focus::after,
+.grindex.bubbles li a:hover::after { opacity: 1; }
+/* .grindex.bubbles li a:focus::before, */
+.grindex.bubbles li a:hover::before { animation: sonar 1s ease-out infinite; }
+
+@keyframes sonar {
+  0% {
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    opacity: 1;
+  }
+  40% { opacity: 1; }
+  90% {
+    top:-20px;
+    right:-20px;
+    bottom:-20px;
+    left:-20px;
+    opacity: 0;
+  }
+  100% {
+    top:-20px;
+    right:-20px;
+    bottom:-20px;
+    left:-20px;
+    opacity: 0;
+  }
+}
+
+.grindex.bubbles li a:focus span::after,
+.grindex.bubbles li a:hover span::after {
+  background: rgba(255,255,255,.7);
+  box-shadow: 0 0 16px rgba(0,0,0,.25);
+  opacity: 1 !important;
+}
+
+@keyframes bubbles {
+  /* 0% { transform: scale(0,0); }
+  90% { transform: scale(1.05,1.05); }
+  100% { transform: scale(1,1); } */
+  0% { transform: translateY(-30px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Grid */
+
+.grindex.grid {
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  width: auto;
+  height: auto;
+  background-size: 100px auto;
+  /* background-image: url(../img/visualizaciones/diagonal-lines-pattern.png); */
+  background-color: #111;
+  overflow: visible;
+  /* padding:20px; */
+}
+
+.grindex.grid li {
+  display: block;
+  float:left;
+  width: 1%;
+  height: 1%;
+  z-index:2;
+  position: relative;
+  text-indent: -9999px;
+}
+
+.grindex.grid li:not(.bump-left):not(.bump-right) {
+  margin:0 !important;
+}
+.grindex.grid li.bump-left { margin-right: 0 !important; }
+.grindex.grid li.bump-right { margin-left: 0 !important; }
+
+.grindex.grid li:hover {
+  /* animation-play-state: paused; */
+  z-index: 10;
+  /* z-index:1; */
+}
+
+.grindex.grid li a {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* border-top:thin solid rgba(255,255,255,.05);
+  border-right:thin solid rgba(255,255,255,.15);
+  border-bottom:thin solid rgba(255,255,255,.25);
+  border-left:thin solid rgba(255,255,255,.1); */
+  border:thin solid rgba(255,255,255,.1);
+}
+
+.grindex.grid li.variant-0 a { background-color:#bfd8d1; }
+.grindex.grid li.variant-1 a { background-color:#1eb4bf; }
+.grindex.grid li.variant-2 a { background-color:#178a94; }
+.grindex.grid li.variant-3 a { background-color:#2b374b; }
+
+.grindex.grid li a::after,
+.grindex.grid li a::before/*,
+.grindex.grid li a span::after*/ {
+  content: "";
+  display: block;
+  background: rgba(0,63,191,.7);
+  box-shadow: 0 0 16px rgba(0,63,191,.65);
+  /* border-radius:50%; */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  /* animation: bubbles 2s ease-in-out infinite alternate; */
+  animation-delay: inherit;
+  transition: background 300ms ease-in-out;
+  box-sizing: border-box;
+}
+
+.grindex.grid li a::after,
+.grindex.grid li a::before {
+  background: none;
+  border:4px solid #fff;
+  box-shadow: none;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  width: auto;
+  height: auto;
+  transition: opacity 500ms ease-in-out;
+  opacity: 0;
+}
+
+.grindex.grid li a::before {
+  border:2px dashed #fff;
+
+}
+
+.grindex.grid li a:focus::after,
+.grindex.grid li a:hover::after { opacity: 1; }
+/* .grindex.grid li a:focus::before, */
+.grindex.grid li a:hover::before { animation: sonar 1s ease-out infinite; }
+
+
+/* Circles */
+
+.grindex.circles {
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  width: auto;
+  height: auto;
+  background-size: 100px auto;
+  /* background-image: url(../img/visualizaciones/diagonal-lines-pattern.png); */
+  background-color: #111;
+  overflow: visible;
+  /* padding:20px; */
+}
+
+.grindex.circles .frame {
+  position: absolute;
+  display: block;
+}
+.grindex.circles .frame:nth-child(1),
+.grindex.circles .frame:nth-child(3) {
+  right: auto !important;
+  bottom: auto !important;
+  height: 100%;
+}
+.grindex.circles .frame:nth-child(2) {
+  left: auto !important;
+  bottom: auto !important;
+  height: 100%;
+}
+.grindex.circles .frame:nth-child(3),
+.grindex.circles .frame:nth-child(4) {
+  transform: rotate(-90deg);
+}
+.grindex.circles .frame:nth-child(4) {
+  right: auto !important;
+  top: auto !important;
+  height: 100%;
+}
+
+.grindex.circles .frame span {
+  padding: 6px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+
+.grindex.circles .frame span::after {
+  content: "";
+  background-color: #f0f0f0;
+}
+
+.grindex.circles li {
+  display: block;
+  float:left;
+  width: 1%;
+  height: 1%;
+  z-index:2;
+  position: relative;
+  text-indent: -9999px;
+  padding: 6px;
+}
+
+.grindex.circles li:hover {
+  /* animation-play-state: paused; */
+  z-index: 10;
+  /* z-index:1; */
+}
+
+.grindex.circles li a,
+.grindex.circles .frame span::after {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.grindex.circles li.variant-0 a { background-color:#bfd8d1; }
+.grindex.circles li.variant-1 a { background-color:#1eb4bf; }
+.grindex.circles li.variant-2 a { background-color:#178a94; }
+.grindex.circles li.variant-3 a { background-color:#2b374b; }
+
+.grindex.circles li a::after,
+.grindex.circles li a::before/*,
+.grindex.circles li a span::after*/ {
+  content: "";
+  display: block;
+  background: rgba(0,63,191,.7);
+  box-shadow: 0 0 16px rgba(0,63,191,.65);
+  /* border-radius:50%; */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  /* animation: bubbles 2s ease-in-out infinite alternate; */
+  animation-delay: inherit;
+  transition: background 300ms ease-in-out;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+.grindex.circles li a::after,
+.grindex.circles li a::before {
+  background: none;
+  border:4px solid #fff;
+  box-shadow: none;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  width: auto;
+  height: auto;
+  transition: opacity 500ms ease-in-out;
+  opacity: 0;
+}
+
+.grindex.circles li a::before {
+  border:2px dashed #fff;
+
+}
+
+.grindex.circles li a:focus::after,
+.grindex.circles li a:hover::after { opacity: 1; }
+/* .grindex.circles li a:focus::before, */
+.grindex.circles li a:hover::before { animation: sonar 1s ease-out infinite; }
+
+
+/* Kaleidoscope */
+
+.grindex.kaleidoscope svg {
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  width: auto;
+  height: auto;
+  background-size: 100px auto;
+  /* background-image: url(../img/visualizaciones/diagonal-lines-pattern.png); */
+  background-color: #ddd;
+  overflow: visible;
+  border-radius: 50%;
+  overflow: hidden;
+  /* animation: orbit 120s linear infinite reverse; */
+}
+
+.grindex.kaleidoscope svg:hover {
+  animation-play-state: paused;
+}
+
+/* .grindex.kaleidoscope li {
+  display: block;
+  float:left;
+  width: 1%;
+  height: 1%;
+  z-index:2;
+  position: relative;
+} */
+
+.grindex.kaleidoscope a {
+  display: block;
+}
+
+.grindex.kaleidoscope path {
+  width: 100%;
+  fill:#fff;
+  display: block;
+  transition: fill 200ms ease-in-out;
+  /* opacity:0.5; */
+}
+
+.grindex.kaleidoscope a:nth-child(2n+1) path {
+  fill:#ccc;
+}
+
+.grindex.kaleidoscope a path {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.grindex.kaleidoscope a:hover path {
+  fill:#fff !important;
+}
+
+.grindex.kaleidoscope li:not(.bump-left):not(.bump-right) {
+  margin:0 !important;
+}
+.grindex.kaleidoscope li.bump-left { margin-right: 0 !important; }
+.grindex.kaleidoscope li.bump-right { margin-left: 0 !important; }
+
+.grindex.kaleidoscope li:hover {
+  /* animation-play-state: paused; */
+  z-index: 10;
+  /* z-index:1; */
+}
+
+.grindex.kaleidoscope li a {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.grindex.kaleidoscope a:nth-child(5n+0) path { fill:#98ddca; }
+.grindex.kaleidoscope a:nth-child(5n+1) path { fill:#d7a753; }
+.grindex.kaleidoscope a:nth-child(5n+2) path { fill:#eb4873; }
+.grindex.kaleidoscope a:nth-child(5n+3) path { fill:#fd873d; }
+.grindex.kaleidoscope a:nth-child(5n+4) path { fill:#64404c; }
+.grindex.kaleidoscope path:nth-child(2n+0) { fill:#ddd; }
+.grindex.kaleidoscope path:nth-child(2n+1) { fill:#e6e6e6; }
+
+.grindex.kaleidoscope li a::after,
+.grindex.kaleidoscope li a::before/*,
+.grindex.kaleidoscope li a span::after*/ {
+  content: "";
+  display: block;
+  background: rgba(0,63,191,.7);
+  box-shadow: 0 0 16px rgba(0,63,191,.65);
+  /* border-radius:50%; */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  /* animation: bubbles 2s ease-in-out infinite alternate; */
+  animation-delay: inherit;
+  transition: background 300ms ease-in-out;
+  box-sizing: border-box;
+}
+
+.grindex.kaleidoscope li a::after,
+.grindex.kaleidoscope li a::before {
+  background: none;
+  border:4px solid #fff;
+  box-shadow: none;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  width: auto;
+  height: auto;
+  transition: opacity 500ms ease-in-out;
+  opacity: 0;
+}
+
+.grindex.kaleidoscope li a::before {
+  border:2px dashed #fff;
+
+}
+
+.grindex.kaleidoscope li a:focus::after,
+.grindex.kaleidoscope li a:hover::after { opacity: 1; }
+/* .grindex.kaleidoscope li a:focus::before, */
+.grindex.kaleidoscope li a:hover::before { animation: sonar 1s ease-out infinite; }
+
+
+/* Points */
+
+.grindex.points {
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  width: auto;
+  height: auto;
+  background-size: 100px auto;
+  /* background-image: url(../img/visualizaciones/diagonal-lines-pattern.png); */
+  /* background-color: #111; */
+  overflow: visible;
+  /* padding:20px; */
+  border-radius: 50%;
+}
+/*
+.grindex.points svg {
+  animation: orbit 120s linear infinite;
+}
+
+.grindex.points svg:hover {
+  animation-play-state: paused;
+} */
+
+.grindex.points a {
+  cursor: pointer;
+}
+
+.grindex.points .group-0 { fill:#bfd8d1; }
+.grindex.points .group-1 { fill:#1eb4bf; }
+.grindex.points .group-2 { fill:#178a94; }
+.grindex.points .group-3 { fill:#2b374b; }
+.grindex.points .group-4 { fill:#2b374b; }
+
+.grindex.points a circle {
+  transition: fill 200ms ease-in-out;
+}
+
+.grindex.points a:hover circle {
+  fill:#fff;
+}

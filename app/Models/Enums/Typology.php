@@ -6,7 +6,7 @@ use App\Utils\Enum;
 
 class Typology extends Enum
 {
-    const WORDS = 'Episódico';
+    const EPISODIC = 'Episódico';
     const RIZOME = 'Ergódico';
     const CHORAL = 'Choral';
 }

@@ -10,7 +10,7 @@
 
              <ul>
                @foreach($story->textNodes as $node)
-               <li><a class="leer" id="{{ $node->_id }}"  href="#">{{$node->title}}</a></li>
+               <li ><a class="leer" data-node="{{ $node->_id }}" id="{{ $node->_id }}"  href="#">{{$node->title}}</a></li>
                @endforeach
              </ul>
 

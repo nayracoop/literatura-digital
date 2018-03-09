@@ -1,10 +1,7 @@
 <div class="col-md-12">
     @include('snippets.stories.data')
+    @include('snippets.textNodes.modes_tabs')
 
-    <ul class="modos tabs" role="tablist">
-          <li class="active"><a href="#modo-visualizacion">Modo visualización</a></li>
-          <li><a href="#modo-listado">Modo listado de nodos</a></li>
-    </ul>
 
     <div id="modo-visualizacion" class="tabpanel active">
         <div class="row" style="clear: both;">

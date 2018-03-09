@@ -12,6 +12,7 @@ $(document).ready(function(){
 	$('.leer').click(function(e) {
 		  e.preventDefault();
 		  var id = $(this).attr('id');
+			 id = $(this).data('node');
 			var node = $('#ventana-nodo-'+id);
 
       console.log( 'id '+ id);

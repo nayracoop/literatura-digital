@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  @include('stories.typologies.node_presentation.'. $story->typology )
+  @include('stories.typologies.node_presentation.'. $story->visualization )
   @include('snippets.comments.story')
 
 @endsection
