@@ -93,13 +93,16 @@
         $('.palabras li').draggable({
           containment: ".palabras",
           stop: function() {
-            var top = parseInt($(this).css('top')) - 29;
-            var left = parseInt($(this).css('left')) - 21;
-
+          //  var top = parseInt($(this).css('top')) - 29;
+          //  var left = parseInt($(this).css('left')) - 21;
+             var top = parseInt($(this).css('top')) ;
+             var left = parseInt($(this).css('left'));
 
             if(($(window).width() < 992) && ($(window).width() > 768)){
-              var top = parseInt($(this).css('top')) - 35;
-              var left = parseInt($(this).css('left')) - 125;
+              //var top = parseInt($(this).css('top')) - 35;
+              //var left = parseInt($(this).css('left')) - 125;
+              var top = parseInt($(this).css('top'));
+              var left = parseInt($(this).css('left'));
             }
 
             $(".modal-opciones-nodo").css({ 'top': top , 'left': left });
@@ -176,7 +179,8 @@
     							var response = JSON.parse(xhr.response);
     							//var results = newResponse.results;
                   var node = response.node;
-                  console.log(node);
+                  //  console.log(node);
+                  $('input[name="id"]').val(nodeId);
                   $('input[name="title"]').val(node.title);
                   $('input[name="text"]').val(node.text);
                   $('#texto-nodo').html(node.text);
@@ -188,6 +192,7 @@
                   $('.contador-palabras').text(node.wordCount);
 
                   $('#edit-node-modal').removeClass('esconder');
+                  $('#edit-node-modal .nodo-backdrop').removeClass('esconder');
                   $('#edit-node-modal').addClass('nodo-backdrop-fondo');
 
     						//  $('.items-listado').empty();
@@ -257,6 +262,14 @@
             }
         });
     }
+
+
+    /*actualizar etiqueta palabra*/
+    $('.btn-guardar').click(function(e){
+        //console.log('actualizar etiqueta title');
+        var val = $('input[name="id"]').val();
+        $('li[data-node="'+val+'"]').text('chinga');
+    });
 
   </script>
 <script>
