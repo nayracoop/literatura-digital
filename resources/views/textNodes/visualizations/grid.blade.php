@@ -1,9 +1,34 @@
-@include('snippets.stories.data')
-@include('snippets.textNodes.modes_tabs')
-<div class="grindex-wrapper">
-		<ul class="grindex grid">
+<div class="col-md-12">
+    @include('snippets.stories.data')
+    @include('snippets.textNodes.modes_tabs')
 
-		</ul>
+
+    <div id="modo-visualizacion" class="tabpanel active">
+        <div class="row" style="clear: both;">
+              <div class="col-sm-7 col-md-6 tit-editor-visual">
+                    <h1>Visualización</h1>
+                    <hr />
+              </div>
+    </div>
+
+    <div class="row formulario" style="clear: both;">
+    <div class="col-md-12">
+
+    <div class="grindex-wrapper">
+		    <ul class="grindex grid">
+
+		    </ul>
+    </div>
+		
+		<div class="modal-opciones-nodo modal-left">
+      <h2>---</h2>
+      <hr />
+      <a href="#" class="leer">Leer nodo</a>
+      <a href="#" class="edit" data-edit-node="">Editar nodo</a>
+    </div>
+
+</div>
+</div>
 </div>
 @push('stylesheets')
 <link href="{{asset('css/visualizations.css')}}" rel="stylesheet">
@@ -16,10 +41,14 @@
 	<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
 	<script type="text/javascript">
 
-	var data = [ ];//30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28 ];
-	for(var i = 0; i < d3.randomUniform(5, 64)(); i++) {
-		data.push(d3.randomUniform(16, 12512)());
-	}
+	@php
+    $data =  [];
+		foreach ($story->textNodes as $node) {
+			$data[] = $node->charCount;
+	  }
+	@endphp
+  var data = {!!json_encode($data)!!};
+	var nodes = {!!json_encode($story->textNodes)!!};
 
 	var boardRow = Math.ceil(Math.sqrt(data.length));
 	var boardSize = boardRow*boardRow;
