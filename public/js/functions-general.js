@@ -16,7 +16,7 @@ $(document).ready(function(){
 			var node = $('#ventana-nodo-'+id);
 
       console.log( 'id '+ id);
-			console.log( 'modadl id '+ node.attr('id'));
+			console.log( 'modadl id '+ node.data('node'));
 			console.log( 'NODO-- '+ node);
 
 			if($('.nodo-backdrop-fondo').hasClass('esconder')){

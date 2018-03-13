@@ -19,7 +19,7 @@
 
 		    </ul>
     </div>
-		
+
 		<div class="modal-opciones-nodo modal-left">
       <h2>---</h2>
       <hr />
@@ -57,7 +57,7 @@
 
 	d3.select(".grindex")
   	.selectAll("a")
-  	.data(data)
+  	.data(nodes)
   	.enter()
 		.append("li")
 		.styles({
@@ -74,7 +74,8 @@
 			var isBumpRight = (isBump && Math.random()>0.5);
 			console.log(i + ", " + bumpsCount + " - " + (i+bumpsCount)%boardRow);
 			d3.select(this)
-			.classed("variant-" + Math.round(d%3), true)
+      .attr("data-node", d._id)
+			.classed("variant-" + Math.round(d.wordCount%3), true)
 			.classed("bump-left", (isBump && !isBumpRight))
 			.classed("bump-right", isBumpRight);
 			if(isBump) bumpsCount++;
@@ -91,7 +92,9 @@
 		.styles({
 			// "opacity":function(d) { return 0.2 + 1-(d/d3.max(d3.values(data))); },
 		})
-  	.text(function(d) { return d; });
+  	.text(function(d) {
+      return d.title;
+    });
 
 		function getTileSize(d) {
 			var size = 100/boardRow;
@@ -117,5 +120,26 @@
 			return "translateY(" + position + "%)";
 		}
 
+  //---
+  $('.grindex li').click( function(e) {
+       e.preventDefault();
+
+    //  var top = parseInt($(this).css('top')) - 29;
+    //  var left = parseInt($(this).css('left')) - 21;
+       var top = parseInt(e.clientY) ;
+       var left = parseInt(e.clientX);
+       console.log('grindex li '+top+' - '+left+ ' nodo:'+$(this).data('node'));
+
+      $(".modal-opciones-nodo").css({ 'top': top , 'left': left });
+      $(".leer").data('node',$(this).data('node'));
+      $(".edit").data('edit-node',$(this).data('node'));
+      $(".modal-opciones-nodo h2").text($(this).text());
+      $(".modal-opciones-nodo").show();
+
+        //console.log('+++NODO : '+$(this).data('edit-node'));
+    //  console.log('li id '+$(this).attr('id'));
+    //  saveWordPosition($(this).data('node'), left, top);
+
+  });
 	</script>
   @endpush
