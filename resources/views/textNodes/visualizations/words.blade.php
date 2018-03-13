@@ -150,55 +150,7 @@
 
 
 
-    $('.edit').click(function(e) {
-    		e.preventDefault();
-    		var nodeId = $(this).data('edit-node');
-    		//var node = $('#ventana-nodo-'+id);
 
-    		//console.log( 'id '+ id);
-    		//console.log( 'modadl id '+ node.attr('id'));
-    		console.log( 'NODO-- '+ nodeId);
-    		//var formData = new FormData();
-    		//formData.append('nodeId', nodeId);
-
-    		var xhttp = new XMLHttpRequest();
-        xhttp.open('GET','{{route('node.json',$story->_id)}}?id='+nodeId);
-        xhttp.setRequestHeader('X-XSRF-TOKEN', '{{csrf_token()}}');
-    		xhttp.send();
-
-    		xhttp.addEventListener("readystatechange", function (e) {
-    			var xhr = e.target;
-    			if (xhr.readyState == 4) {
-    				//  console.log('h');
-    					if (xhr.status == 200) {
-
-    							console.log('200');
-    							var response = JSON.parse(xhr.response);
-    							//var results = newResponse.results;
-                  var node = response.node;
-                  //  console.log(node);
-                  $('input[name="id"]').val(nodeId);
-                  $('input[name="title"]').val(node.title);
-                  $('input[name="text"]').val(node.text);
-                  $('#texto-nodo').html(node.text);
-                  $('.note-editable').html(node.text);
-
-                  $('input[name="charCount"]').val(node.charCount);
-                  $('.contador-caracteres').text(node.charCount);
-                  $('input[name="wordCount"]').val(node.wordCount);
-                  $('.contador-palabras').text(node.wordCount);
-
-                  $('#edit-node-modal').removeClass('esconder');
-                  $('#edit-node-modal .nodo-backdrop').removeClass('esconder');
-                  $('#edit-node-modal').addClass('nodo-backdrop-fondo');
-
-    						//  $('.items-listado').empty();
-    						//  $('.items-listado').append(results);
-    					} else console.log(xhr.statusText);
-    			}
-    		});
-
-      });
 
     //guardar posicion de palabra
     function saveWordPosition(id, x, y)
@@ -259,16 +211,7 @@
             }
         });
     }
-
-
-    /*actualizar etiqueta palabra*/
-    $('.btn-guardar').click(function(e){
-        //console.log('actualizar etiqueta title');
-        var val = $('input[name="id"]').val();
-        $('li[data-node="'+val+'"]').text('chinga');
-    });
-
-  </script>
+</script>
 <script>
     //formElement = document.getElementById("stories_search");
     $('stories_search').on('submit', function (e) {
@@ -304,4 +247,6 @@
 
     });
 </script>
+
+@include('stories.scripts.node-options')
 @endpush

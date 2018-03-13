@@ -128,9 +128,13 @@
     //  var left = parseInt($(this).css('left')) - 21;
        var top = parseInt(e.clientY) ;
        var left = parseInt(e.clientX);
+       var offset = $(this).offset();
+       var height = $(this).height();
+       var width = $(this).width();
+
        console.log('grindex li '+top+' - '+left+ ' nodo:'+$(this).data('node'));
 
-      $(".modal-opciones-nodo").css({ 'top': top , 'left': left });
+      $(".modal-opciones-nodo").css({ 'top':offset.top - height - 100 , 'left': offset.left - width - 100 });
       $(".leer").data('node',$(this).data('node'));
       $(".edit").data('edit-node',$(this).data('node'));
       $(".modal-opciones-nodo h2").text($(this).text());
@@ -142,4 +146,5 @@
 
   });
 	</script>
+  @include('stories.scripts.node-options')
   @endpush
