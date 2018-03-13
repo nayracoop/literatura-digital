@@ -130,11 +130,11 @@
        var left = parseInt(e.clientX);
        var offset = $(this).offset();
        var height = $(this).height();
-       var width = $(this).width();
+       var width = $('.variant-0').width();
 
        console.log('grindex li '+top+' - '+left+ ' nodo:'+$(this).data('node'));
 
-      $(".modal-opciones-nodo").css({ 'top':offset.top - height - 100 , 'left': offset.left - width - 100 });
+      $(".modal-opciones-nodo").css({ 'top':offset.top - height - 100 , 'left': offset.left - width  });
       $(".leer").data('node',$(this).data('node'));
       $(".edit").data('edit-node',$(this).data('node'));
       $(".modal-opciones-nodo h2").text($(this).text());
