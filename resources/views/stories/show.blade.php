@@ -9,3 +9,6 @@
   @include('snippets.comments.story')
 
 @endsection
+@push('javascript')
+      @include('stories.scripts.node-options')
+@endpush
