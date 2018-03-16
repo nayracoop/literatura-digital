@@ -100,9 +100,10 @@ class StoryController extends Controller
      /**
      * Muestra el formulario para metadatos de relato
      */
-    public function create()
+    public function create($step = null)
     {
-        return view('stories.create');
+        return view('stories.create')
+            ->with('step', $step);
     }
 
      /**

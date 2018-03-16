@@ -10,7 +10,7 @@
   font-size: 1.285714285714286em;
 }
 
-.formulario form input[type=text], .formulario form textarea, .formulario form select{ 
+.formulario form input[type=text], .formulario form input[type=password], .formulario form textarea, .formulario form select{ 
   border-radius: 4px; 
   border-width: 0; 
   color: #666; 
@@ -55,6 +55,19 @@
   .formulario .styled-select select{ width: 268px; }
 }
 
+.container-select-fecha{ padding-top: 15px; overflow: hidden; margin-bottom: 20px;}
+div.container-select-fecha label{ float: left; margin: 10px 10px 0 0;}
+
+@media only screen and (max-width: $screen-xl) {
+  div.container-select-fecha label{ float: none; clear: both; display: block; margin-bottom: 10px;}
+}
+
+.formulario .select-fecha{ width: 80px; float: left; margin-right: 10px; margin-bottom: 10px;}
+.formulario .select-fecha select { width: 108px; }
+
+.formulario .select-fecha-largo { width: 140px; float: left; margin-right: 10px; margin-bottom: 10px;}
+.formulario .select-fecha-largo select { width: 168px; }    
+
 .formulario .portada-archivo{
   background: transparent;
   max-width: 200px;
@@ -62,3 +75,6 @@
   margin-top: 15px;
   font-size: 1em;
 }
+
+
+

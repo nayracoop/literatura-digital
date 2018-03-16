@@ -131,7 +131,29 @@ $font-face-brandon-grotesque-bold: 'brandon_bld';
         url('../fonts/maax/maax-bold.svg') format('svg');
  }
 
+  @font-face {
+    font-family: 'Maax Rounded'; font-style: normal; font-weight: bold;
+    src: url('../fonts/maax/maax-rounded-webfont.eot');
+    src: url('../fonts/maax/maax-rounded-rounded-webfont.eot?') format('eot'),
+        url('../fonts/maax/maax-rounded-webfont.woff2') format('woff2'),
+        url('../fonts/maax/maax-rounded-webfont.woff') format('woff'),
+        url('../fonts/maax/maax-rounded-webfont.ttf')  format('truetype'),
+        url('../fonts/maax/maax-rounded-webfont.svg') format('svg');
+ }
+
+@font-face {
+    font-family: 'Playlist'; font-style: normal; font-weight: bold;
+    src: url('../fonts/playlist/playlist-script.eot');
+    src: url('../fonts/playlist/playlist-script.eot?') format('eot'),
+        url('../fonts/playlist/playlist-script.woff2') format('woff2'),
+        url('../fonts/playlist/playlist-script.woff') format('woff'),
+        url('../fonts/playlist/playlist-script.ttf')  format('truetype'),
+        url('../fonts/playlist/playlist-script.svg') format('svg');
+ }
+
 $maax: 'Maax', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$maax-rounded: 'Maax Rounded', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$playlist-script: 'Playlist', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 
 $caecilia-roman: 'Caecilia', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 $caecilia-bold: 'Caecilia', Arial,  Helvetica, 'Liberation Sans', sans-serif;

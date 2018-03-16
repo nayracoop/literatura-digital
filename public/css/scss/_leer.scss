@@ -29,3 +29,125 @@
     font-size: 1.15em;
   }
 }
+
+
+.btn-social{
+  float: right;
+  width: 41px;
+  height: 41px;
+  text-indent: -9999px;
+  margin-left: 15px;
+  box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  position: relative;
+  border-radius: 24px;
+  bottom: -20px;
+  background: #FFF url("../img/nodo/share.png") no-repeat center center;
+}
+
+.btn-social:last-child{
+  background: #FFF url("../img/nodo/like.png") no-repeat 9px 12px;  
+}
+
+.btn-social:last-child:hover, .btn-social:last-child:focus{
+  background-image: url("../img/nodo/like-hover.png");  
+}
+
+.btn-social:hover, .btn-social:focus{
+  background-image: url("../img/nodo/share-hover.png"); 
+}
+
+.comentarios{
+  width: 60%;
+  margin: 30px auto 80px auto;
+}
+
+.comentarios.ergodico{
+  width: 72%;
+}
+
+.comentarios ul{
+  padding-left: 0;
+  list-style: none;
+}
+
+.comentarios ul li{
+  margin-bottom: 30px;
+}
+
+.comentarios li .image-clip{
+  width: 44px;
+  height: 44px;
+  float: left;
+}
+
+.comentarios li h2, div.comentario-editor label{
+  font-size: 15px;
+  font-family: $akzidenz-grotesk-pro-med;
+  font-weight: bold;
+  padding-top: 7px;
+}
+
+@media only screen and (max-width: $screen-md) {
+  .comentarios, .comentarios.ergodico{
+    width: 100%;
+    margin: 0 auto 60px auto;
+  }
+}
+
+
+/* FORM COMENTARIOS*/
+
+.comentario-editor{
+  margin-left: 48px;
+}
+
+div.comentario-editor label{
+  margin-top: 0;
+}
+
+div.comentario-editor .btn{
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: 14px;
+  letter-spacing: .5px;
+  padding: 10px 12px 9px 15px;
+  margin-top: 10px;
+  float: right;
+  border-radius: 2px;
+  font-family: $brandon-grotesque-bold;
+  font-weight: bold;
+  background: $color-destacado;
+  color: #FFF;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+}
+
+div.comentario-editor .btn:hover, div.comentario-editor .btn:focus{
+  background-color: #FFF;
+  color: #000;
+}
+
+.success, .error, .aviso{
+  clear: both;
+  color: #2C7635;
+  background-color: #DFF0D4;
+  border: 2px solid #D6E9C4;
+  padding: 13px;
+  margin: 5px 0;
+}
+
+.comentarios .success, .comentarios .error, .comentarios .aviso{
+  margin-left: 48px;
+}
+
+.error{
+  color: #AC260D;
+  background-color: #F2DEDC;
+  border: 2px solid #EBCCCF;
+}
+
+.aviso{
+  color: #000;
+  background-color: #FFF;
+  border: 1px dotted #666;
+}

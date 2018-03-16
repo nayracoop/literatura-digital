@@ -1,0 +1,129 @@
+ .explicacion .row .back-button{
+  margin: 0 0 0 0;
+  padding-top: 50px;
+  padding-left: 0;
+ }
+
+ .explicacion{
+  font-family: $caecilia-roman;
+  font-size: 16px;
+  line-height: 1.70;
+  padding-bottom: 70px;
+}
+
+ .explicacion h1{
+  font-family: $playlist-script;
+  font-size: 80px;
+  color: $color-destacado;
+  margin-bottom: 50px;
+ }
+
+.explicacion p{
+  margin-bottom: 2em;
+}
+
+.explicacion img{
+  width: 100%;
+}
+
+.explicacion .epigrafe{
+  margin: 10px 0 1.70em 0;
+  font-size: 14px;
+  text-align: right;
+}
+
+.explicacion .podra h2{
+  margin: 0 auto 0 auto;
+  margin-top: -110px;
+  width: 80%;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.70;
+}
+
+.explicacion .podra hr{
+  height: 2px; 
+  background: $color-destacado; 
+  width: 40px;
+  margin: 15px auto 30px auto;
+}
+
+@media only screen and (max-width: $screen-md) {
+  .explicacion h1{
+    font-size: 76px;
+  }
+ .explicacion .podra h2{ 
+   margin: 0;
+   text-align: left;
+   font-weight: bold;
+   font-size: 18px;
+   color: $color-destacado;
+ }
+ .explicacion .podra hr{
+   margin: 15px 0 30px 0;
+ } 
+ .explicacion .modelos .figure{
+    float: left;
+    margin: 0;
+
+ } 
+}
+
+.explicacion .modelos .epigrafe{
+  text-align: center;
+}
+
+.explicacion .modelos img{
+  width: 232px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* botones */
+
+.empeza{
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.empeza .btn{
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: 14px;
+  letter-spacing: .5px;
+  padding: 12px 15px 12px 15px;
+  margin-top: 10px;
+  border-radius: 2px;
+  font-family: $brandon-grotesque-bold;
+  font-weight: bold;
+  background: $color-destacado;
+  color: #FFF;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+}
+
+.empeza .btn:hover, .empeza .btn:focus{
+  background-color: #FFF;
+  color: #000;
+}
+
+/* CREDITOS */
+
+.puestos h2{
+  font-family: $akzidenz-grotesk-pro-med;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.puestos hr{
+  height: 2px; 
+  background: $color-destacado; 
+  width: 40px;
+  margin: 0 0 20px 0;
+}
+
+.puestos p{
+  margin-bottom: 0;
+}
+

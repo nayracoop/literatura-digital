@@ -15,7 +15,8 @@
         <div class="row">
             @forelse($stories as $story)
                 @include('stories.block_summary')
-                @empty @lang('messages.no_results')
+                @empty 
+                    <div class="aviso">No se produjeron resultados</div>
             @endforelse
         </div>
     </div>

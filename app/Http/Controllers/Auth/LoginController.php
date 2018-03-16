@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -23,9 +24,15 @@ class LoginController extends Controller
     /**
      * Where to redirect users after login.
      *
-     * @var string
      */
-    protected $redirectTo = '/';
+    protected function redirectTo()
+    {
+        if (Auth::user()->isAdminOrMod()) {
+            return route('index');
+        } else {
+            return route('stories.list');
+        }
+    }
 
     /**
      * Create a new controller instance.

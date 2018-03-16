@@ -347,3 +347,35 @@
   text-decoration: none;
 }
 
+
+/* ALERT SUCCESS GUARDADO */
+
+.guardado{ 
+  position: fixed;
+  width: 250px;
+  height: 40px;
+  top: 50%;
+  left: 50%;
+  margin-left: -125px;
+  margin-top: -120px;
+  z-index: 1031;
+  visibility: hidden;
+  opacity: 0;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+  transition: opacity .25s ease-in-out;
+ }
+
+.guardado.active{
+  visibility: visible;
+  opacity: 1;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+  transition: opacity .25s ease-in-out;
+} 
+
+ .guardado .success{ 
+  text-align: center;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+}
+

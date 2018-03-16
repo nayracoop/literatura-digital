@@ -4,8 +4,8 @@
         @endphp
         @if($user->role == \App\Models\Enums\UserType::AUTHOR)
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('contact') }}"><a href="{{ route('contact') }}">@lang('menu.contact')</a></li>
-            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('stories.list') }}"><a href="{{ route('stories.list') }}">@lang('menu.my_stories')</a></li>
-            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('story.create') }}"><a href="{{ route('story.create') }}">@lang('menu.create_story')</a></li>
+            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('stories.list') }}"><a href="{{ route('stories.list') }}">@lang('menu.write')</a></li>
+            {{--  <li class="{{ \App\Utils\MenuHelper::isActiveRoute('story.create') }}"><a href="{{ route('story.create') }}">@lang('menu.create_story')</a></li>  --}}
         @elseif($user->role == \App\Models\Enums\UserType::MOD)
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('tags.index') }}"><a href="{{ route('tags.index') }}">@lang('menu.labels')</a></li>
         @elseif($user->role == \App\Models\Enums\UserType::ADMIN)
@@ -15,9 +15,11 @@
         @endif
     </ul>
 
-    <ul class="nav navbar-nav login">
+    <ul class="nav navbar-nav login logged">
         <li class="{{ \App\Utils\MenuHelper::isActiveRoute('user.edit') }}">
-            <a data-toggle="modal" href="{{ route('user.edit') }}">{{ $user->getName() }}</a>
+            {{--  lo muevo a la página de show  --}}
+            {{--  <a data-toggle="modal" href="{{ route('user.edit') }}">{{ $user->getName() }}</a>  --}}
+            <a data-toggle="modal" href="{{ route('user.show', $user->username) }}">{{ $user->getName() }}</a>
         </li>
         <li class="{{ \App\Utils\MenuHelper::isActiveRoute('salir') }}">
             <a data-toggle="modal" href="{{ route('salir') }}">@lang('menu.exit')</a>

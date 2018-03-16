@@ -9,9 +9,9 @@
             <div class="col-lg-12">
                 @if ($story->textNodes->count() > 0)
                     @include('snippets.stories.data')
-                    <div class="publicar-nodo btn btn-guardar">
+                    {{--  <div class="publicar-nodo btn btn-guardar">
                         <a href="#">Publicar nodo</a>
-                    </div>
+                    </div>  --}}
                 @else
                     <h1>
                         <span class="numero">2
@@ -56,7 +56,25 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row">  
+                <div class="col-md-9">
+                    <div class="container-botones">
+                        <div class="botones-save-form">
+                            <button class="btn btn-cancelar">Publicar</button>
+                            <button type="submit" class="btn btn-guardar">Guardar</button>
+                        </div>
+                        <div class="botones-nav-form">
+                            <a href="{{route('nodes.index', $story->_id)}}" class="bot ant">Volver al listado de nodos</a>
+                        </div>
+                    </div>
+                    <div class="guardado" role="alert">
+                        <div class="success">Tus cambios <strong>fueron guardados</strong>.</div>
+                    </div>
+                </div>
+            </div>
+
+            <textarea name="text" class="hidden"></textarea>
+            {{--  <div class="row">
                 <div class="col-md-9">
                     <div class="container-botones">
                         <div class="botones-save-form">
@@ -70,8 +88,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <textarea name="text" class="hidden"></textarea>
+            </div>  --}}
             <input name="story" value="{{$story->_id}}" type="hidden" /> @if(isset($node))
             <input name="id" type="hidden" value="{{$node->id}}" /> @endif
         </form>
@@ -81,19 +98,19 @@
 
 @endsection
 @push('javascript')
-<link rel="stylesheet" href="{{asset('js/libs/simplebar/simplebar.css')}}">
-<script src="{{asset('js/libs/simplebar/simplebar.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('js/libs/simplebar/simplebar.css')}}">
+    <script src="{{asset('js/libs/simplebar/simplebar.js')}}"></script>
 
-<link href="{{asset('js/libs/summernote/summernote.css')}}" rel="stylesheet">
-<script src="{{asset('js/libs/summernote/summernote.es.min.js')}}"></script>
-<script src="{{asset('js/functions-summernote.js')}}"></script>
-<script>
-    @if (isset($node))
-    //  $('textarea[name="text"]').html($('.note-editable').html());
-    //  updateCount();
-    @endif
-</script>
-@include('textNodes.scripts.save-update')
-<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\CreateTextNode') !!}
+    <link href="{{asset('js/libs/summernote/summernote.css')}}" rel="stylesheet">
+    <script src="{{asset('js/libs/summernote/summernote.es.min.js')}}"></script>
+    <script src="{{asset('js/functions-summernote.js')}}"></script>
+    <script>
+        @if (isset($node))
+            //  $('textarea[name="text"]').html($('.note-editable').html());
+            //  updateCount();
+        @endif
+    </script>
+    @include('textNodes.scripts.save-update')
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    {!! JsValidator::formRequest('App\Http\Requests\CreateTextNode') !!}
 @endpush

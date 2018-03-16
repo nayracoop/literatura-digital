@@ -1,4 +1,4 @@
-<nav class="navbar navbar-top navbar-lexia" role="navigation">
+<nav class="navbar navbar-top navbar-lexia @yield('navbar-home-class')" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-escrituras-collapse">
@@ -41,8 +41,8 @@
 </nav>
 
 @guest
-    @include('auth.register')
-    @include('auth.login')
+    @include('auth.register_modal')
+    @include('auth.login_modal')
 @endguest
 
 {{--  @push('javascript')

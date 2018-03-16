@@ -12,7 +12,7 @@
         @stack('stylesheets')
     </head>
 
-    <body @yield( 'body_class')>
+    <body @yield('body_class')>
         <div class="reborde-top"></div><div class="reborde-right"></div><div class="reborde-bottom"></div><div class="reborde-left"></div>
 
         @include('layouts.menu')

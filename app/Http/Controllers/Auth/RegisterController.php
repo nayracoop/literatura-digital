@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -26,9 +27,11 @@ class RegisterController extends Controller
     /**
      * Where to redirect users after registration.
      *
-     * @var string
      */
-    protected $redirectTo = '/mi-perfil';
+    protected function redirectTo()
+    {
+        return route('story.create', ['step' => 2]);
+    }
 
     /**
      * Create a new controller instance.
@@ -37,7 +40,18 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
+    }
+
+    public function showRegistrationForm()
+    {
+        // si ya está logueado lo muevo al paso 2 (escribir)
+        // sin $step, para que me lo muestre como paso 1.
+        if (Auth::guest()) {
+            return view('auth.register');
+        } else {
+            return redirect()->route('story.create');
+        }
     }
 
     /**

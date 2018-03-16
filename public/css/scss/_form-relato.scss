@@ -89,12 +89,12 @@
 .formulario form .tag-item{ 
   background: #F7F6F5;
   border-radius: 6px;
-  text-transform: uppercase;
+  text-transform: lowercase;
   font-size: 12px;
   font-family: $akzidenz-grotesk-pro-med;
   font-weight: bold;
   color: #666;
-  padding: 10px 22px 8px 10px;
+  padding: 9px 22px 8px 10px;
   margin-right: 6px;
   margin-bottom: 10px;
   display: inline-block;
@@ -103,6 +103,8 @@
 }
 
 .formulario form .tag-item p{ margin: 0; line-height: 1;}
+
+.formulario form .tag-item p:before{ content:'#'; }
 
 .formulario form .tag-item button{ 
   background: transparent url(../img/iconos/cruz-tags.png) no-repeat center right; 
@@ -115,6 +117,10 @@
   right: 0;
   top: 0;
 } 
+
+.formulario form .tag-item button:hover{ 
+  opacity: 0.5;
+}
 
 .formulario .more-tags-title{ 
   font-size: 15px; 
@@ -197,3 +203,8 @@
 
 }
 
+.registrarse-first{ text-align: left; padding-top: 20px; }
+.correcto{ 
+  font-family: $akzidenz-grotesk-pro-light; 
+  color: #666;
+}
