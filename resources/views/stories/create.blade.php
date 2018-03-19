@@ -38,6 +38,6 @@
 @push('javascript')
 @include('stories.scripts.save-update')
 @include('stories.scripts.tags')
-<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\CreateStory', '#story-form') !!}
+<?php $validator = JsValidator::formRequest('App\Http\Requests\CreateStory', '#story-form'); ?>
+{!! $validator->view('layouts.validation') !!}
 @endpush

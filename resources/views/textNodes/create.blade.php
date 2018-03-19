@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-9">
                     <label for="texto-nodo" class="invisibilizar">Texto *</label>
-                    <div id="texto-nodo">@if(isset($node)){!!$node->text!!}@endif</div>
+                    <div id="texto-nodo" class="texto-nodo">@if(isset($node)){!!$node->text!!}@endif</div>
                 </div>
                 <div class="col-xs-12 col-sm-3 contador">
                     <h2 class="invisibilizar">Contador de caracteres y palabras del nodo</h2>
@@ -57,21 +57,21 @@
             </div>
 
             <div class="row">  
-                    <div class="col-md-9">
-                        <div class="container-botones">
-                            <div class="botones-save-form">
-                                <button class="btn btn-cancelar">Publicar</button>
-                                <button type="submit" class="btn btn-guardar">Guardar</button>
-                            </div>
-                            <div class="botones-nav-form">
-                                <a href="{{route('nodes.index', $story->_id)}}" class="bot ant">Ir al listado de nodos</a>
-                            </div>
+                <div class="col-md-9">
+                    <div class="container-botones">
+                        <div class="botones-save-form">
+                            <button class="btn btn-cancelar">Publicar</button>
+                            <button type="submit" class="btn btn-guardar">Guardar</button>
                         </div>
-                        <div class="guardado" role="alert">
-                            <div class="success">Tus cambios <strong>fueron guardados</strong>.</div>
+                        <div class="botones-nav-form">
+                            <a href="{{route('nodes.index', $story->_id)}}" class="bot ant">Ir al listado de nodos</a>
                         </div>
                     </div>
+                    <div class="guardado" role="alert">
+                        <div class="success">Tus cambios <strong>fueron guardados</strong>.</div>
+                    </div>
                 </div>
+            </div>
     
                 <textarea name="text" class="hidden"></textarea>
             <input name="story" value="{{$story->_id}}" type="hidden" /> @if(isset($node))
@@ -83,16 +83,16 @@
 
 @endsection
 @push('javascript')
-<link rel="stylesheet" href="{{asset('js/libs/simplebar/simplebar.css')}}">
-<script src="{{asset('js/libs/simplebar/simplebar.js')}}"></script>
+{{--  <link rel="stylesheet" href="{{asset('js/libs/simplebar/simplebar.css')}}">
+<script src="{{asset('js/libs/simplebar/simplebar.js')}}"></script>  --}}
 
 <link href="{{asset('js/libs/summernote/summernote.css')}}" rel="stylesheet">
 <script src="{{asset('js/libs/summernote/summernote.es.min.js')}}"></script>
 <script src="{{asset('js/functions-summernote.js')}}"></script>
 <script>
     @if (isset($node))
-    //  $('textarea[name="text"]').html($('.note-editable').html());
-    //  updateCount();
+        $('textarea[name="text"]').html($('.note-editable').html());
+        updateCount(); // ¿?
     @endif
 </script>
 @include('textNodes.scripts.save-update')

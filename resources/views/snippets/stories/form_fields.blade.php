@@ -73,7 +73,7 @@
         </div>
         <label for="tag" class="more-tags-title">@lang('messages.add_tag'):</label>
         <input type="text" class="form-control more-tags-input" id="tag" />
-        <button id="add_tag" class="more-tags-bot">@lang('messages.add_tag')</button>
+        <button type="button" id="add_tag" class="more-tags-bot">@lang('messages.add_tag')</button>
     </div>
 
     {{--  ID DE LA HISTORIA  --}}

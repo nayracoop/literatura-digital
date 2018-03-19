@@ -14,8 +14,13 @@
         var tag = camelize($('#tag').val());
         //no agrega tags vacios
         if (tag.trim() != '') {
-            $(".tag-group").append('<div class="tag-item"><p>' + tag +
-              '<p><input type="hidden" name="tags[]" value="' + tag + '" /><button>@lang('Eliminar etiqueta ')</button></div>');
+            var tagi = $('<div class="tag-item" onclick="javascript:update"><p>' + tag + '</p>' + 
+                '<input type="hidden" name="tags[]" value="' + tag + '" />' +
+                '<button type="button">@lang('Eliminar etiqueta')</button>' +
+                '</div>').on('click', function (e) {
+                    $(this).remove();
+                });
+            $(".tag-group").append(tagi);
             $('#tag').val('');
         }
     }
@@ -29,10 +34,8 @@
         }
     });
 
-
     camelize = function camelize(str) {
-      return str.replace(/\W+(.)/g, function(match, chr)
-       {
+        return str.replace(/\W+(.)/g, function (match, chr) {
             return chr.toUpperCase();
         });
     }

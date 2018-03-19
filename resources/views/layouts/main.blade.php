@@ -21,6 +21,7 @@
         <script src="{{ asset('js/jquery.min.js')}}"></script>
         <script src="{{ asset('js/bootstrap.min.js')}}"></script>
         <script src="{{ asset('js/functions-general.js')}}"></script>
+        <script src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}" type="text/javascript"></script>
         @stack('javascript')
     </body>
 </html>

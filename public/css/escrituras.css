@@ -3273,3 +3273,8 @@ div.comentario-editor .btn:hover, div.comentario-editor .btn:focus {
     margin: 0 auto; } }
 
 /*# sourceMappingURL=escrituras.css.map */
+
+.help-block:empty {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
