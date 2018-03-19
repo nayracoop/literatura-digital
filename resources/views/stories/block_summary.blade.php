@@ -5,7 +5,7 @@
             @if ($story->cover != null && !empty($story->cover))
                 <img alt="@lang('tapa de') {{ $story->title }}" src="{{ asset('imagenes/cover/'.$story->cover )}}">
             @else
-                <img alt="" src="{{ asset('img/img-3.jpg')}}">
+                <img alt="" src="{{ asset('img/img-relato-default.jpg')}}">
             @endif
 
             <h3>{{ $story->title or __('messages.no_title') }}</h3>

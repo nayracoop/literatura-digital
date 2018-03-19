@@ -56,7 +56,7 @@
                     <div class="portada-border">
                         @if( isset($story) && $story->cover != null && !empty($story->cover) )
                         <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}"> @else
-                        <img alt="" src="{{ asset('img/img-2.jpg')}}"> @endif
+                        <img alt="" src="{{ asset('img/img-relato-default.jpg')}}"> @endif
 
                     </div>
                     <input type="file" class="form-control portada-archivo" name="cover_drag" id="portada">
