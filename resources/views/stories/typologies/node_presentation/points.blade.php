@@ -18,6 +18,16 @@
 	<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
 	<script type="text/javascript">
 
+	@php
+  //  $data =  [];
+    $voices = [];
+    foreach ($story->textNodes as $node) {
+    //  $data[] = $node->charCount;
+      $voices[] = $node->voice;
+    }
+  @endphp
+  var voices = {!! json_encode(array_values(array_unique($voices))) !!};
+
   var nodes = {!!json_encode($story->textNodes)!!};
 	var data = {
 			"name": "Nodos",
@@ -70,7 +80,7 @@
 					.append("circle")
 				      .attr("id", function(d) { return d.id; })
 				      .attr("r", function(d) { return d.r; })
-							.attr("class", function(d) { return d.data.group; });
+							.attr("class", function(d) { return 'group-'+ voices.indexOf(d.data.group); });
 				      //.style("fill", function(d) { return color(d.package); });
 
 	</script>
