@@ -18,7 +18,9 @@
                             <input type="text" name="search" placeholder="Buscar relatos">
                         </form>
                     </div>
-                    @include('stories.block_list', ['title' => __('favorites')])
+                    <h2 class="tit-home" id="list_title">@lang('messages.favorites')</h2>
+                    <hr />
+                    @include('stories.block_list')
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
         @stack('stylesheets')
     </head>
 
-    <body @yield( 'body_class')>
+    <body @yield('body_class')>
         <div class="reborde-top"></div><div class="reborde-right"></div><div class="reborde-bottom"></div><div class="reborde-left"></div>
 
         @include('layouts.menu')
@@ -21,6 +21,7 @@
         <script src="{{ asset('js/jquery.min.js')}}"></script>
         <script src="{{ asset('js/bootstrap.min.js')}}"></script>
         <script src="{{ asset('js/functions-general.js')}}"></script>
+        <script src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}" type="text/javascript"></script>
         @stack('javascript')
     </body>
 </html>

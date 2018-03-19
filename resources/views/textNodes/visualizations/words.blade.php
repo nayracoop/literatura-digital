@@ -60,9 +60,9 @@
 
 
 @push('javascript')
-<script src="{{asset('js/libs/jquery.min.js')}}"></script>
+
 <script src="{{asset('js/libs/jquery-ui.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
+
 
 
 <script>
@@ -101,9 +101,9 @@
               var top = parseInt($(this).css('top'));
               var left = parseInt($(this).css('left'));
             }
-
+            console.log('vino '+$(this).data('node'));
             $(".modal-opciones-nodo").css({ 'top': top , 'left': left });
-            $(".leer").attr('id',$(this).data('node'));
+            $(".leer").attr('data-node', $(this).data('node'));
             $(".edit").data('edit-node',$(this).data('node'));
             $(".modal-opciones-nodo h2").text($(this).text());
             $(".modal-opciones-nodo").show();

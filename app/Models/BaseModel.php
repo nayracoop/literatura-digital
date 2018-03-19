@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 use Moloquent;
 use Carbon\Carbon;
+use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class BaseModel extends Moloquent
 {

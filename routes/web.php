@@ -13,6 +13,8 @@ Route::get('/', 'StoryController@index')->name('index');
 Route::get('/autor/{user}', 'UserController@show')->name('user.show');
 #formulario público de contacto
 Route::get('/contacto', 'AdminController@listCategories')->name('contact');
+#
+Route::get('/explicacion/{typology}', 'TypologyController@description')->name('typology.description');
 
 #relatos y nodos de acceso público
 Route::group(['prefix' => 'relatos'], function () {
@@ -54,7 +56,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     Route::get('/', 'StoryController@list')->name('stories.list');
 
     # crear relato
-    Route::get('/nuevo', 'StoryController@create')->name('story.create');
+    Route::get('/nuevo/{step?}', 'StoryController@create')->name('story.create');
     Route::post('/nuevo', 'StoryController@store')->name('story.store');
 
     # editar relato
@@ -91,6 +93,8 @@ Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin'], function () {
     Route::post('/usuarios/nuevo', 'UserController@store')->name('admin.user.store');
 
     Route::get('/etiquetas', 'TagController@index')->name('tags.index');
+    Route::patch('/etiquetas/{id}', 'TagController@toggleDeleted')->name('tag.toggleDeleted');
+
     Route::get('/categories', 'CategoryController@index')->name('admin.categories');
     Route::post('/relatos/publicar', 'StoryController@changeStatus')->name('story.change-status');
 });

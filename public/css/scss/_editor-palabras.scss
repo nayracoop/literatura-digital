@@ -52,7 +52,9 @@
   text-transform: lowercase;
 }
 
-.container-nodo.palabras{ cursor: move; }
+@media only screen and (min-width: $screen-md) {
+  .container-nodo.palabras{ cursor: move; }
+}
 
 .amarillo li a{ background: #FEF200; }
 .celeste li a{ background: #33F1FF; }

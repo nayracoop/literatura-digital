@@ -41,8 +41,17 @@ class UserController extends Controller
     */
     public function show($user)
     {
+        $myUser = User::where('username', $user)->first();
+        $me = Auth::user();
+        $isOwner = false;
+
+        if ($myUser->id === $me->id) {
+            $isOwner = true;
+        }
+
         return view('users.show')
-            ->with('user', User::where('username', $user)->first());
+            ->with('user', $myUser)
+            ->with('isOwner', $isOwner);
     }
 
     /**

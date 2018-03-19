@@ -66,7 +66,7 @@
   position: relative;
 }
 
-.loginmodal-container input[type=text], input[type=password] {
+.loginmodal-container input[type=text], .loginmodal-container input[type=password] {
   height: 32px;
   font-size: 16px;
   width: 100%;
@@ -142,6 +142,37 @@
 .recovery a{ 
   color: #8D8D8D; 
   border-bottom: 1px solid #C6C5C4;
+}
+
+.recovery-field{
+  text-align: left;
+  overflow: hidden;;
+}
+
+.recovery-field label{
+  font-size: 13px;
+}
+
+.newemail-enviar{
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: 14px;
+  letter-spacing: .5px;
+  padding: 10px 12px 9px 15px;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  float: right;
+  border: 0 solid red;
+  border-radius: 2px;
+  font-family: $brandon-grotesque-bold;
+  font-weight: bold;
+  background: $color-destacado;
+  color: #FFF;
+  box-shadow: 0 12px 15px rgba(0,0,0,0.1);
+}
+
+.newemail-enviar:hover, .newemail-enviar:focus{
+  color: #000;
 }
 
 /* submenu */

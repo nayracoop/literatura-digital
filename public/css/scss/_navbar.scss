@@ -1,10 +1,17 @@
 .navbar-brand{ 
-	background: url(../img/logo/logo-lexia.svg) no-repeat 0 0;
-	width: 80px;
-	height: 34px;
+	background: url(../img/logo/logo-lexia-gris.png) no-repeat 0 0;
+	background-size: 130px auto;
+	width: 130px;
+	height: 52px;
 }
 
-.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand { margin: 10px 0 0 0; }
+.home .navbar-brand{ 
+	background-image: url(../img/logo/logo-lexia-blanco.png);
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand { 
+	margin: 10px 0 0 0; margin-top: -5px;
+}
 
 .navbar-toggle .icon-bar { background: $color-destacado; }
 
@@ -136,6 +143,10 @@
 	  background: url(../img/iconos/register.svg) no-repeat center center; 	
 	}
 
+	.navbar-lexia .login > li.active > a {
+		border-bottom: 0 solid $color-destacado;
+	}
+
 	.logged li > a{ background-image: url(../img/iconos/logout.svg); width: 45px;}
 
 	.navbar-lexia .login li:first-child > a:hover, .navbar-lexia .login li:first-child > a:focus{ 
@@ -174,16 +185,16 @@
 
 @media only screen and (max-width: ($screen-md - 1)) {
 
-	.navbar-brand{ 
-		background: url(../img/logo/logo-lexia-white.svg) no-repeat 0 0;
-		width: 60px;
-		height: 25px; 
-		background-size: 100% auto; 
+	.navbar-lexia .navbar-brand{ 
+		background: url(../img/logo/logo-lexia-mobile.png) no-repeat 0 0;
+		width: 85px;
+		height: 30px; 
+		background-size: 72px auto;
 	}
 
 	.navbar > .container .navbar-brand,  .navbar > .container-fluid .navbar-brand  {
 		margin-left: 15px;
-		margin-top: 14px;
+		margin-top: 9px;
 	}
 
 	.navbar-lexia{

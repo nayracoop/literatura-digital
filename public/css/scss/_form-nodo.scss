@@ -17,13 +17,13 @@
 }
 
 @media only screen and (max-width: ($screen-md)) {
-  .tit-relato{ font-size: 15px;}
+  .tit-relato{ font-size: 15px;} 
   .autor-relato{ font-size: 13px }
 }
 
-.publicar-nodo{ float: right; }
-
-.publicar-nodo a{ 
+.editar-usuario{ float: right; }
+ 
+.editar-usuario a{ 
   color: #0CA6BE;
   font-family: $brandon-grotesque-bold;;
   font-weight: bold;
@@ -33,34 +33,26 @@
   display: block;
   background: url(../img/iconos/flecha-publicar.svg) no-repeat bottom right;
   width: 150px;
-  height: 62px;
+  height: 40px;
   margin: 4px 15px 0 0;
-  padding-right: 2px; 
+  padding: 10px 50px 0 0; 
 }
 
 @media only screen and (max-width: ($screen-md)) {
-  .publicar-nodo a{ 
-    margin: 10px 15px 0 0; 
-    font-size: 14px; 
-    padding-right: 4px; 
+  .editar-usuario a{ 
+    font-size: 14px;  
   }
   .image-clip{ margin-bottom: 0; }
 }
 
 @media only screen and (max-width: ($screen-xs - 70)) {
-  .publicar-nodo{ position: absolute; top: -20px; right: 0; }
-  .publicar-nodo a{ 
-    text-align: left;  
-    width: 160px;
-    padding-top: 10px;
-    height: 40px;
-    background-position: top right;
-  }
+  .editar-usuario{ position: absolute; top: 0; right: -10px; }
+
   .data-relato{ margin-top: 10px; }
   .relato-data-nodo{ margin-top: 40px; }
-}
+} 
 
-.publicar-nodo a:hover, .publicar-nodo a:focus{
+.editar-usuario a:hover, .editar-usuario a:focus{
   color: #000; 
   text-decoration: none;
   background-image: url(../img/iconos/flecha-publicar-hover.svg);
@@ -246,7 +238,7 @@ form .tit-nodo input{
 
 .note-editor.panel{ box-shadow: none; }
 
-.note-editable{ 
+.note-editable, .note-placeholder{ 
   font-size: 16px;
   font-family: $caecilia-roman; 
   line-height: 1.7;
@@ -398,6 +390,7 @@ form .tit-nodo input{
     box-shadow: none;
     outline: 0 none;
     position: relative;
+    box-shadow: 0 12px 15px rgba(0,0,0,0.1);
 }
 
 h4.modal-title {
@@ -437,3 +430,5 @@ h4.modal-title {
 }
 
 .note-form-group + .checkbox{display: none;}
+
+.note-group-image-url{display: none;}

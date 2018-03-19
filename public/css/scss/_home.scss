@@ -1,15 +1,285 @@
-.destacado-home{
-	background: $color-destacado;
-	min-height: 400px;
-	margin-top: 30px;
-	margin-bottom: 75px;
+
+@media only screen and (min-width: $screen-md){
+  .navbar-home{
+    background: #FFF;
+    margin-bottom: 0;
+    padding-bottom: 15px;
+    padding-top: 0;
+  }
 }
+
+@media only screen and (min-width: $screen-lg){
+  .destacado-home:after{
+      content:'';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      margin-left: -20px;
+      width: 0;
+      height: 0;
+      border-top: solid 20px #FFF;
+      border-left: solid 20px transparent;
+      border-right: solid 20px transparent;
+      z-index: 3;
+  }
+}
+
+.destacado-home{
+	background: #FFF;
+  margin: 0 15px 35px 15px;
+  position: relative;
+  padding-top: 10px;
+}
+
+.destacado-home .container{
+  background: url(../img/home/lapiz.jpg) no-repeat bottom right;
+  padding-bottom: 45px;
+}
+
+@media only screen and (max-width: $screen-lg){
+  .destacado-home .container{
+    background-position: 340px -200px;  
+  }
+}
+
+@media only screen and (max-width: $screen-md){
+  .destacado-home{
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .destacado-home .container{
+    background-position: 340px -220px;  
+  }
+  .cards-home{
+    margin-bottom: 30px;
+  }
+  .cards-home .card{
+    margin-left: -15px;
+    margin-right: -15px; 
+  }
+}
+
+.destacado-home h1{
+  background: url(../img/home/amarillos-call-to-action.png) no-repeat top left;
+  font-size: 74px;
+  padding-left: 15px;
+  margin-top: 30px;
+  margin-left: 10px;
+  line-height: 1.15;
+  letter-spacing: -2px;
+  font-family: $maax-rounded;
+}
+
+.destacado-home h1 .brush{
+  font-family: $playlist-script;
+  font-size: 1.15em;
+  letter-spacing: 0;
+  box-shadow: none;
+}
+
+@media only screen and (max-width: $screen-md){
+
+  .destacado-home{
+    padding-top: 0;
+  }
+
+  .destacado-home h1{
+    background-size: 460px auto;
+    font-size: 64px;
+  }
+}
+
+@media only screen and (min-width: $screen-sm){
+  .destacado-home h1 .white{
+    background: rgba(255,255,255,1);
+    box-shadow: 15px 0 0 0 rgba(255,255,255,1);
+  }
+}
+
+@media only screen and (max-width: $screen-xs){
+ .destacado-home h1{
+    background-size: 350px auto;
+    font-size: 48px;
+    padding-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: $screen-xs - 130){
+.destacado-home h1{
+    background-size: 260px auto;
+    font-size: 38px;
+    padding-left: 0;
+    margin-left: 0;
+    
+  }
+}
+
+@media only screen and (max-width: $screen-xs){
+  .destacado-home .container{
+    background-image: none;
+  }
+  .destacado-home{
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
+}
+
+.cards-home .card{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-bottom: 30px;
+  max-height: none;
+  min-height: 215px;
+}
+
+.cards-home .card img{
+  width: 102px;
+  margin: 35px 30px 30px 30px;
+}
+
+.cards-home article:nth-child(1) .card img{
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+.cards-home article:nth-child(2) .card img{
+  margin-top: 38px;
+}
+
+.cards-home .card h3{
+  padding-top: 25px;
+  font-size: 21px;
+}
+
+.cards-home .card hr{
+  margin-top: 5px;
+}
+
+.cards-home .card .resumen{
+  font-size: 18px;
+  font-family: $akzidenz-grotesk-pro-regular;
+  margin-right: 35px;
+}
+
+@media only screen and (max-width: $screen-xs){
+  .destacado-home h1 .white{
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .cards-home .card a{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .cards-home .card h3{
+    padding-top: 25px;
+    font-size: 28px;
+    position: static;
+  }
+}
+
+@media only screen and (max-width: $screen-xl){
+  .cards-home .card{
+     min-height: 235px;
+  }
+  .cards-home .card img{
+    margin-bottom: 40px;
+  }
+}
+
+@media only screen and (max-width: $screen-lg){
+  .cards-home .card .resumen{
+    font-size: 20px;
+    margin-right: 65px;
+  }
+}
+
+@media only screen and (max-width: $screen-md){
+  .cards-home .card{
+    min-height: auto;
+  }
+  .cards-home .card img{
+    margin-bottom: 40px;
+  }
+
+  .cards-home article:nth-child(1) .card img{
+    margin-top: 35px;
+  }
+
+  .cards-home article:nth-child(3) .card img{
+    margin-top: 42px;
+    margin-left: 30px;
+  }
+
+  .cards-home article:nth-child(4) .card img{
+    margin-top: 35px;
+  }
+
+}
+
+@media only screen and (max-width: $screen-xs){
+  .cards-home .card .resumen{
+    font-size: 20px;
+    margin-right: 25px;
+    margin-bottom: 20px;
+    padding-left: 162px;
+  }
+  .cards-home .card img{
+    margin-bottom: 60px;
+  }
+}
+
+@media only screen and (min-width: $screen-xs){
+.cards-home .card .resumen{
+    padding-left: 0;
+  }
+  }
+
+@media only screen and (max-width: $screen-xs - 150) {
+    .cards-home .card .resumen{
+      padding-left: 0;
+    }
+   .cards-home article div.card a img{ 
+     width: auto;
+     height: 100%;
+     max-height: none;
+     height: 152px;
+     margin: 0 0 50px 30px;
+   }
+   .cards-home article:nth-child(3) .card img{
+      margin-left: 40px;
+   }
+
+ }
+
+.cards-home .card .ver-mas{
+  text-indent: 0;
+  width: auto;
+  right: 4px;
+  padding-right: 25px;
+  text-align: right;
+  height: 26px;
+  background-position: center right;
+  font-family: $akzidenz-grotesk-pro-med;
+  font-weight: bold;
+  color: #0EA7BE;
+  font-size: 18px;
+}
+
+.cards-home .card a:hover .ver-mas, .cards-home .card a:focus .ver-mas{
+  color: #666;
+}
+
+
+
+/* FAVORITOS */
 
 .tit-home{
 	color: #000;
-    font-weight: 500;
-    font-size: 21px;
-    font-family: $akzidenz-grotesk-pro-med;
+  font-weight: 500;
+  font-size: 21px;
+  font-family: $akzidenz-grotesk-pro-med;
 }
 
 .tit-home + hr{

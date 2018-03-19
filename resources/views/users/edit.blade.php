@@ -71,8 +71,11 @@
                         @endif
 
                         {{--  <label for="contrasena">Contraseña *</label>
-                        <input type="password" class="form-control" id="contarsena">  --}}
-                        <a href="{{route('user.password.edit')}}">Cambiar contraseña</a>
+                        <input type="password" class="form-control" id="contarsena">
+                        <a href="{{route('user.password.edit')}}">Cambiar contraseña</a>  --}}
+                        <div class="formulario comentario-editor">
+                            <a href="{{route('user.password.edit')}}" class="btn btn-guardar">Cambiar contraseña</a>
+                        </div>
                     </div>
 
                 </div>
@@ -89,6 +92,9 @@
                     <input type="file" class="form-control portada-archivo" id="portada">
                 </div>
                 <div class="col-md-8">
+                    <div class="botones-nav-form">
+                        <a href="{{ url()->previous() }}" class="bot ant">Ver mi perfil</a>
+                    </div>
                     <div class="container-botones">
                         <div class="botones-save-form">
                             <button class="btn btn-cancelar">Cancelar</button>

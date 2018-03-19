@@ -5,6 +5,6 @@
             <img alt="" src="{{ asset('img/img-relato-default.jpg')}}">
         @endif
     </div>
-    <p class="tit-relato">{{ $story->title or ' --' }}</p>
+    <p class="tit-relato">{{ empty($story->title) ? '-' : $story->title }}</p>
     <p class="autor-relato">{{ $story->getAuthorName() }}</p>
 </div>

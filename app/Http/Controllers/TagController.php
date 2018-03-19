@@ -4,59 +4,56 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use App\Models\Story;
-use App\Http\Requests\DeleteTag;
+use Request;
 
 class TagController extends Controller
 {
     public function index()
     {
-        //$data = Story::project(['tags' => ['$slice' => 1]])->get();
-        // $data = Story::distinct('tags')->get();
-        /* ->raw(function ($collection) {
-            return $collection->aggregate([
-                [
-                    '$group'    => [
-                        '_id'   => '$tags.name',
-                        'count' => [
-                            '$sum'  => 1
-                        ]
-                    ]
-                ]
-            ]);
-        }); */
-
-        $thedata = Story::raw(function ($collection) {
-            return $collection->aggregate([
-                [
-                    '$unwind' => '$tags'
-                ],
-                [
-                    '$group'    => [
-                        '_id'   => '$tags.name',
-                        'count' => [
-                            '$sum'  => 1
-                        ]
-                    ]
-                    
-                ]
-            ]);
-        });
-
-        var_dump($thedata);
-
-        print_r($thedata[1]->count);
-        print_r($thedata[1]->_id);
-
-        //print_r($thedata);
+        $stories = Story::all();
+        $tags = [];
         
-        if (!isset($thedata['result'])) {
-            // throw new UnexpectedValueException('Error in the query');
+        foreach ($stories as $story) {
+            $story_tags = $story->tags->all();
+
+            foreach ($story_tags as $tag) {
+                $tags[$tag->name] = $tag;
+            }
         }
-        //$tags = Tag::hydrate($data['result']);
 
-        // $tags = Story::project(['tags'])->get();
+        return view('tags.index')
+            ->with('tags', $tags);
+    }
 
-        /* return view('tags.index')
-            ->with('tags', $data); */
+    public function toggleDeleted($id)
+    {
+        $tag = Tag::withTrashed()->find($id);
+        $trashed = $tag->trashed();
+
+        if ($trashed) {
+            $tag->restore();
+        } else {
+            $tag->delete();
+        }
+
+        //y la busco en los stories por nombre
+        $stories = Story::all();
+
+        foreach ($stories as $story) {
+            $story_tags = $story->tags->where('name', $tag->name);
+
+            foreach ($story_tags as $tag) {
+                if ($trashed) {
+                    $tag->restore();
+                } else {
+                    $tag->delete();
+                }
+            }
+        }
+
+        if (Request::ajax()) {
+            return response()->json(['status'=>'ok']);
+        }
+        return back();
     }
 }

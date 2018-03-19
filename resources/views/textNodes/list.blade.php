@@ -52,8 +52,6 @@
                     <a href="{{ route('stories.list') }}" class="bot ant">{{__('messages.back_my_stories')}}</a>
                     <a href="{{ route('story.update', $story->id) }}" class="bot sig">{{__('messages.go_story_details')}}</a>
                 </div>
-
-            </div>
         </div>
     </div>
 </div>
@@ -64,7 +62,7 @@
 @push('javascript')
 <script>
 //$(document).ready(function(){
-  
+
 
 //});
 //</script>

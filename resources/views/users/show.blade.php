@@ -10,6 +10,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+
+                        @if ($isOwner)
+                            <div class="editar-usuario btn btn-guardar">
+                                <a href="{{ route('user.edit') }}">Editar</a>
+                            </div>
+                        @endif
+
                         <div class="data-relato">
                             <div class="image-clip">
                                 @if( $user->avatar != null && !empty($user->avatar))
@@ -18,7 +25,6 @@
                                 @endif
                             </div>
                             <p class="nom-usuario">{{ $user->getName() }}</p>
-
                             <p class="fecha-usuario">@lang('Se ha unido el') {{ strftime ( '%e de %B de %Y' , strtotime($user->created_at) ) }}</p>
                             <hr />
                             <div class="descripcion-usuario">

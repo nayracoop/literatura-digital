@@ -6,6 +6,7 @@ return [
     'stories' => 'Relatos',
     'my_stories' => 'Mis Relatos',
     'create_story' => 'Crear Relato',
+    'write' => 'Escribir',
     'users' => 'Usuarios',
     'categories' => 'Categorías',
     'labels' => 'Etiquetas',

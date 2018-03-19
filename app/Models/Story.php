@@ -23,6 +23,7 @@ class Story extends BaseModel
 
     protected $dates = [
         'published_at',
+        'deleted_at'
     ];
 
     public static $rulesPublish = [

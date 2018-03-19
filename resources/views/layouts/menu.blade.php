@@ -1,4 +1,4 @@
-<nav class="navbar navbar-top navbar-lexia" role="navigation">
+<nav class="navbar navbar-top navbar-lexia @yield('navbar-home-class')" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-escrituras-collapse">
@@ -25,9 +25,9 @@
                             @lang('menu.stories')
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="{{ route('index') . '#todos' }}">@lang('menu.genres_all')</a></li>
+                        <li><a class="dropdown-item" href="{{ route('stories.genre') }}">@lang('menu.genres_all')</a></li>
                         @foreach(\App\Models\Genre::all() as $genre)
-                            <li><a class="dropdown-item" href="{{ route('index') . '#' . $genre->slug }}">{{ $genre->name }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('stories.genre', $genre->slug) }}">{{ $genre->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -35,17 +35,17 @@
                     Menú que arma los accesos para el tipo de usuario logueado
                     ojo que cierra el </ul> de arriba
                 --}}
-                @include('layouts.menu_user')                
+                @include('layouts.menu_user')
         </div>
     </div>
 </nav>
 
 @guest
-    @include('auth.register')
-    @include('auth.login')
+    @include('auth.register_modal')
+    @include('auth.login_modal')
 @endguest
 
-@push('javascript')
+{{--  @push('javascript')
     <script>
         window.addEventListener("hashchange", function (e) {
             searchByGenre(location.hash);
@@ -83,4 +83,4 @@
             xhttp.send("genre=" + genre);
         }
     </script>
-@endpush
+@endpush  --}}
