@@ -1,7 +1,8 @@
 <div class="nodo-backdrop-fondo esconder">
-  <div class="nodo-backdrop" id="ventana-nodo" tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">
+  @foreach( $story->textNodesByDate() as $date =>  $nodes )
+  <div class="nodo-backdrop" id="ventana-nodo-{{ $node->_id }}" tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">
 
-        <a class="back-button cerrar-nodo close-arrow" href="#">Volver</a>
+        <a class="back-button cerrar-nodo close-arrow" data-node="{{$node->_id}}"  href="#">Volver</a>
 
         <div class="nodo-data-relato">
           <a href="#" class="cerrar-nodo">
@@ -14,7 +15,7 @@
         </div>
 
         <div class="container-nodo">
-          @foreach( $story->textNodesByDate() as $date =>  $nodes )
+
           <ul class="timeline-dia">
             @foreach( $nodes as $key => $node )
             <li>
@@ -24,10 +25,11 @@
             </li>
             @endforeach
           </ul>
-          @endforeach
+
         </div>
 
-        <a class="back-button back-button-bottom cerrar-nodo" href="#">Volver</a>
+        <a class="back-button back-button-bottom cerrar-nodo" data-node="{{$node->_id}}" href="#">Volver</a>
 
   </div>
+  @endforeach
 </div>
