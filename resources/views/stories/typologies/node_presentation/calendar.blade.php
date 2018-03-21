@@ -1,8 +1,10 @@
 <?php
 $maxDate = $story->textNodes()->max('created_at');
 $minDate = $story->textNodes()->min('created_at');
-
-$day_num=date("j"); //If today is September 29, $day_num=29
+$nodesByDate = $story->textNodesByDate();
+//echo ''.json_encode($nodesByDate);
+//echo ($nodesByDate);
+$day_num = date("j"); //If today is September 29, $day_num=29
 $month_num = date("m"); //If today is September 29, $month_num=9
 $year = date("Y"); //4-digit year
 $date_today = getdate(mktime(0,0,0,$month_num,1,$year)); //Returns array of date info for 1st day of this month
@@ -71,12 +73,26 @@ $today++;
               <td> </td>{{-- //Put a blank cell for each day until you hit $first_week_day --}}
               @endfor
               @php $firstweek = false; //Great, we're done with the blank cells @endphp
+
             @endif
 
             @if ($wday==0) {{-- //Start a new row every Sunday --}}
               <tr align=left>
             @endif
-            <td>@if($day==$day_num)<a href="#" class="dia">{{$day}}</a>@else {{$day}} @endif</td>
+            @php
+                $currentDay = \Carbon\Carbon::createFromDate($year, $month_num, $day)->formatLocalized('%A %d de %B %Y');
+                $hasNode = false;
+                $firstNodeId = null;
+                 foreach ($nodesByDate as $key => $value):
+
+                    if($key == $currentDay){
+                      $hasNode = true;
+                      $firstNodeId = $value[0];
+                      //echo '<br>nodo: '.$firstNodeId->title;
+                    }
+                 endforeach;
+            @endphp
+            <td>@if( $hasNode )<a href="#" class="dia leer" data-node="{{$firstNodeId->_id}}" >{{$day}}</a>@else {{$day}} @endif</td>
             @if ($wday==6)
           </tr> {{-- //If today is Saturday, close this row --}}
             @endif

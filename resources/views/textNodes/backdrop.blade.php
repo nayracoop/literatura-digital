@@ -3,7 +3,7 @@
 
   <div class="nodo-backdrop esconder" id="ventana-nodo-{{ $node->_id }}" tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">
 
-        <a class="back-button cerrar-nodo close-arrow" data-node="{{$node->_id}}" href="#">Volver</a>
+        <a class="back-button cerrar-nodo close-arrow" data-node="{{$node->_id}}" href="#">{{_('messages.back')}}</a>
 
         <div class="nodo-data-relato">
           <a href="#" class="cerrar-nodo">
@@ -26,7 +26,7 @@
 
         <div class="container-nodo">{!!$node->text!!}</div>
 
-        <a class="back-button back-button-bottom cerrar-nodo" data-node="{{$node->_id}}" href="#">Volver</a>
+        <a class="back-button back-button-bottom cerrar-nodo" data-node="{{$node->_id}}" href="#">{{_('messages.back')}}</a>
 
   </div>
 
