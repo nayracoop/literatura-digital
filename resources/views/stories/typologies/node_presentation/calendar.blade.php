@@ -1,5 +1,7 @@
-
 <?php
+$maxDate = $story->textNodes()->max('created_at');
+$minDate = $story->textNodes()->min('created_at');
+
 $day_num=date("j"); //If today is September 29, $day_num=29
 $month_num = date("m"); //If today is September 29, $month_num=9
 $year = date("Y"); //4-digit year
@@ -43,6 +45,7 @@ $today++;
 
           <div class="container-nodo">
           <table summary="Lista de nodos del relato">
+
               <caption class="tit-mes">{{$month_name}}</caption>
               <thead>
                 <tr>
@@ -102,4 +105,4 @@ $today++;
       </div>
     </div>
   </div>
-  @include('textNodes.backdrop')
+  @include('textNodes.backdrop-calendar')

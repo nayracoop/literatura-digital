@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //discutible si va aqui pero permite ajustar las fechas
+        setlocale(LC_TIME, \App::getLocale());
     }
 }

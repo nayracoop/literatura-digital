@@ -74,6 +74,25 @@ class Story extends BaseModel
     {
         return $this->embedsMany('\App\Models\Like');
     }
+    /**
+    * textNodesByDate
+    * @return array
+    **/
+
+    public function textNodesByDate()
+    {
+        $calendar = [];
+        \Carbon\Carbon::setLocale( 'es');
+      //  setlocale(LC_TIME, 'Spanish');
+        foreach ($this->textNodes->sortBy('created_at') as $node) {
+            //if ( array_key_exists("Volvo",$a) ) {
+          //    $calendar[print_r($node->created_at)][] = $node->title;
+                  $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
+          //  }
+        }
+
+        return $calendar;
+    }
 
     /**
     * scopeFeatured
