@@ -56,7 +56,7 @@
     </div>
 </div>
 @include('textNodes.backdrop')
-@include('textNodes.editModal')
+@include('textNodes.edit_modal')
 @endsection
 
 @push('javascript')

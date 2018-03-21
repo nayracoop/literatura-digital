@@ -1,5 +1,8 @@
 @extends('layouts.main')
-@section('title') {{ $story->title }} @lang('de') {{ $story->getAuthorName() }}  @endsection  
+@section('title') 
+    {{ $story->title }} @lang('de') {{ $story->getAuthorName() }}  
+@endsection  
+
 @section('content')
 <div class="padding-container">
     <div class="row">
@@ -23,10 +26,9 @@
                 </div>
                 @include('snippets.stories.audience')
                 <div class="nodo-texto">{!! $textNode->text !!}</div>
-                @include('stories.typologies.node_links.'.$story->typology)
+                @include('stories.visualizations.links.'.$story->visualization)
             </div>
         </div>
     </div>
 </div>
 @endsection
-

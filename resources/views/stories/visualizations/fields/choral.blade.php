@@ -14,4 +14,4 @@ $voices = $story->choralVoices();
 	<input type="text" class="form-control" placeholder="" name="new_voice" >
 </div>
 
-@include('typologies.select_order')
+@include('visualizations.select_order')
