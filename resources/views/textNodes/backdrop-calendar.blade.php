@@ -1,3 +1,4 @@
+@php $nodesByDate = $story->textNodesByDate(); @endphp
 <div class="nodo-backdrop-fondo esconder">
   @foreach( $nodesByDate as $date =>  $nodes )
   <div class="nodo-backdrop esconder" id="ventana-nodo-{{ $nodes[0]->_id }}" tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">

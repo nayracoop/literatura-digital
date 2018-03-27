@@ -79,16 +79,20 @@ class Story extends BaseModel
     * @return array
     **/
 
-    public function textNodesByDate()
+    public function textNodesByDate($month = null, $year = null)
     {
         $calendar = [];
         \Carbon\Carbon::setLocale( 'es');
-      //  setlocale(LC_TIME, 'Spanish');
+        \Carbon\Carbon::setUtf8(true);
+
         foreach ($this->textNodes->sortBy('created_at') as $node) {
-            //if ( array_key_exists("Volvo",$a) ) {
-          //    $calendar[print_r($node->created_at)][] = $node->title;
-                  $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
-          //  }
+                  if($month !== null && $year !== null) {
+                      if ($node->created_at->month == $month && $node->created_at->year == $year) {
+                        $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
+                      }
+                  } else {
+                      $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
+                  }    
         }
 
         return $calendar;

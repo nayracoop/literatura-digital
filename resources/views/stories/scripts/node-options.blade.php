@@ -1,38 +1,46 @@
 <script>
 /* BOTONES MODAL */
-$('.leer').click(function(e) {
-    e.preventDefault();
-    var id = $(this).attr('id');
-     id = $(this).data('node');
-    var node = $('#ventana-nodo-'+id);
 
-    console.log( 'id '+ id);
-    console.log( 'modadl id '+ node.data('node'));
-    console.log( 'NODO-- '+ node);
+    readNode();
 
-    if($('.nodo-backdrop-fondo').hasClass('esconder')){
-       $('.nodo-backdrop-fondo').removeClass('esconder');
-    }
-    //node.removeClass('esconder');
-    if(node.hasClass('esconder')){
-    //	  console.log( node.removeClass('esconder'));
-        node.removeClass('esconder');
-        //node.attr('class','ssss');
-      //	$('body').addClass('overflow');
-    }else{
-        node.addClass('esconder');
-    //		$('body').removeClass('overflow');
-    }
+
+function readNode() {
+  $('.leer').click(function(e) {
+  e.preventDefault();
+  var id = $(this).attr('id');
+   id = $(this).data('node');
+  var node = $('#ventana-nodo-'+id);
+
+  console.log( 'id '+ id);
+  console.log( 'modadl id '+ node.data('node'));
+  console.log( 'NODO-- '+ node);
+
+  if($('.nodo-backdrop-fondo').hasClass('esconder')){
+     $('.nodo-backdrop-fondo').removeClass('esconder');
+  }
+  //node.removeClass('esconder');
+  if(node.hasClass('esconder')){
+  //	  console.log( node.removeClass('esconder'));
+      node.removeClass('esconder');
+      //node.attr('class','ssss');
+    //	$('body').addClass('overflow');
+  }else{
+      node.addClass('esconder');
+  //		$('body').removeClass('overflow');
+  }
 
 /*
-  if($('.nodo-backdrop').hasClass('esconder')){
-    $('.nodo-backdrop').removeClass('esconder');
-  }else{
-    $('.nodo-backdrop').addClass('esconder');
-  }
-  */
-    return false;
-});
+if($('.nodo-backdrop').hasClass('esconder')){
+  $('.nodo-backdrop').removeClass('esconder');
+}else{
+  $('.nodo-backdrop').addClass('esconder');
+}
+*/
+  return false;
+  });
+}
+
+
 //--
 $('.edit').click(function(e) {
   e.preventDefault();

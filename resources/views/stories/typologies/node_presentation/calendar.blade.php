@@ -1,34 +1,9 @@
-<?php
-$maxDate = $story->textNodes()->max('created_at');
-$minDate = $story->textNodes()->min('created_at');
-$nodesByDate = $story->textNodesByDate();
-//echo ''.json_encode($nodesByDate);
-//echo ($nodesByDate);
-$day_num = date("j"); //If today is September 29, $day_num=29
-$month_num = date("m"); //If today is September 29, $month_num=9
-$year = date("Y"); //4-digit year
-$date_today = getdate(mktime(0,0,0,$month_num,1,$year)); //Returns array of date info for 1st day of this month
-$month_name = $date_today["month"]; //Example: "September" - to label the Calendar
-$first_week_day = $date_today["wday"]; //"wday" is 0-6, 0 being Sunday. This is for day 1 of this month
-
-//Refer to PHP: getdate – Manual for more information on this function.
-//Next we are going to figure out which day is the FINAL day of the month.
-$cont = true;
-$today = 27; //The last day of the month must be >27, so start here
-while (($today <= 32) && ($cont)) //At 32, we have to be rolling over to the next month
-{
-//Iterate through, incrementing $today
-//Get the date information for the (hypothetical) date $month_num/$today/$year
-$date_today = getdate(mktime(0,0,0,$month_num,$today,$year));
-//Once $date_today's month ($date_today["mon"]) rolls over to the next month, we've found the $lastday
-if ($date_today["mon"] != $month_num)
-{
-$lastday = $today - 1; //If we just rolled over to the next month, need to subtract 1 to get our $lastday
-$cont = false; //This kicks us out of the while loop
-}
-$today++;
-}
-?>
+@php
+$first = $story->textNodes->sortBy('created_at')->first()->created_at;
+$firstMonth = $first->month;
+$firstYear = $first->year;
+//echo $firstYear;
+@endphp
 <div class="fondo-forms">
     <div class="container">
       <div class="row leer-palabras">
@@ -45,80 +20,51 @@ $today++;
               <p class="autor-relato">{{$story->getAuthorName()}}</p>
           </div>
 
-          <div class="container-nodo">
-          <table summary="Lista de nodos del relato">
-
-              <caption class="tit-mes">{{$month_name}}</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Lun</th>
-                  <th scope="col">Mar</th>
-                  <th scope="col">Mie</th>
-                  <th scope="col">Jue</th>
-                  <th scope="col">Vie</th>
-                  <th scope="col">Sab</th>
-                  <th scope="col">Dom</th>
-                </tr>
-              </thead>
-              <tbody>
-          <?php
-          $day = 1; //This variable will track the day of the month
-          $wday = $first_week_day; //This variable will track the day of the week (0-6, with Sunday being 0)
-          $firstweek = true; //Initialize $firstweek variable so we can deal with it first
-          ?>
-          @while ( $day <= $lastday) {{-- Iterate through all days of the month  --}}
-            @if ($firstweek) {{--Special case - first week (remember we initialized $first_week_day above)--}}
-            <tr>
-              @for ($i=1; $i<=$first_week_day; $i++)
-              <td> </td>{{-- //Put a blank cell for each day until you hit $first_week_day --}}
-              @endfor
-              @php $firstweek = false; //Great, we're done with the blank cells @endphp
-
-            @endif
-
-            @if ($wday==0) {{-- //Start a new row every Sunday --}}
-              <tr align=left>
-            @endif
-            @php
-                $currentDay = \Carbon\Carbon::createFromDate($year, $month_num, $day)->formatLocalized('%A %d de %B %Y');
-                $hasNode = false;
-                $firstNodeId = null;
-                 foreach ($nodesByDate as $key => $value):
-
-                    if($key == $currentDay){
-                      $hasNode = true;
-                      $firstNodeId = $value[0];
-                      //echo '<br>nodo: '.$firstNodeId->title;
-                    }
-                 endforeach;
-            @endphp
-            <td>@if( $hasNode )<a href="#" class="dia leer" data-node="{{$firstNodeId->_id}}" >{{$day}}</a>@else {{$day}} @endif</td>
-            @if ($wday==6)
-          </tr> {{-- //If today is Saturday, close this row --}}
-            @endif
-          @php
-          $wday++; //Increment $wday
-          $wday = $wday % 7; //Make sure $wday stays between 0 and 6 (so when $wday++ == 7, this will take it back to 0)
-          $day++; //Increment $day
-          @endphp
-          @endwhile
-
-
-          @while($wday <=6 ) {{-- //Until we get through Saturday --}}
-           {{-- <td> </td>//Output an empty cell --}}
-          @php $wday++; @endphp
-          @endwhile
-          </tr>
-          </tbody>
-          </table>
-          <div class="botones-nav-form">
-            <a href="#" class="bot ant">Mayo</a>
-            <a href="#" class="bot sig">Junio</a>
-          </div>
-          </div>
+          <div id="grilla-calendario" class="container-nodo"></div>
 
         </div>
       </div>
     </div>
   </div>
-  @include('textNodes.backdrop-calendar')
+@include('textNodes.backdrop-calendar')
+@push('javascript')
+<script type="text/javascript">
+
+loadMonthCalendar({{$firstMonth}}, {{$firstYear}});
+function loadMonthCalendar(month, year)
+{
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.open("GET", '{{ route("node.getMonthCalendar", $story ) }}');
+  xhr.send('month='+month+'&year='+year);
+
+  xhr.addEventListener("readystatechange", function (e) {
+      var xhr = e.target;
+      if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+              console.log('200');
+              newResponse = JSON.parse(xhr.response);
+              $('#grilla-calendario').html(newResponse.calendar);
+
+              //$('.leer').click(function(ev) {
+                  readNode( );
+              //});
+
+            //  var id = newResponse.id;
+              // var alert = "include('snippets.flash.saved_changes')";
+              // var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
+
+            //  var redirect = newResponse.redirect;
+
+            //  if (redirect != null) {
+            //      window.location.replace(redirect);
+            //  }
+              //   $('.container.formulario').prepend(alert);
+
+          } else console.log(xhr.statusText);
+      }
+  });
+}
+</script>
+@endpush
