@@ -6,6 +6,6 @@ use App\Utils\Enum;
 
 abstract class StoryStatus extends Enum
 {
-    const PUBLISHED = 'publicada';
+    const PUBLISHED = 'publicado';
     const DRAFT = 'borrador';
 }

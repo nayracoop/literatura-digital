@@ -39,7 +39,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -62,11 +61,9 @@
             @if (isset($story))
                 @foreach ($story->tags as $tag)
                     <div class="tag-item">
-                        <p>{{ $tag->name }}</p>
-                        <p>
-                            <button>@lang('messages.delete_tag')</button>
-                            <input type="hidden" name="tags[]" value="{{ $tag->name }}"/>
-                        </p>
+                        <p>{{ $tag->name }}</p>                        
+                        <button>@lang('messages.delete_tag')</button>
+                        <input type="hidden" name="tags[]" value="{{ $tag->name }}"/>                        
                     </div>
                 @endforeach
             @endif

@@ -38,5 +38,6 @@
 @push('javascript')
 @include('stories.scripts.save-update')
 @include('stories.scripts.tags')
+@include('stories.scripts.upload-picture')
 {!! JsValidator::formRequest('App\Http\Requests\UpdateStory', '#story-form') !!}
 @endpush

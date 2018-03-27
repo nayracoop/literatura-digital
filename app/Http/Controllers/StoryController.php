@@ -482,7 +482,7 @@ class StoryController extends Controller
             $s = Story::where('_id', $request->id)->first();
             $a = $s->update($input);
             $action = 'updated';
-            $redirect = route('nodes.index', $s->getIdAttribute());
+            // $redirect = route('nodes.index', $s->getIdAttribute());
         } else {
             $story = new Story();
             $s = $story->create($input);
@@ -490,9 +490,10 @@ class StoryController extends Controller
             $action = 'created';
             $redirect = route('node.create', $s->getIdAttribute());
         }
+
         //guarda etiquetas como camelcase
+        $s->unset('tags');
         if ($request->has('tags')) {
-            $s->unset('tags');
             foreach ($request->tags as $tag) {
                 $tag = camel_case($tag);
                 if ($s->tags->where('name', $tag)->first() === null) {
@@ -500,6 +501,7 @@ class StoryController extends Controller
                 }
             }
         }
+
         $s->save();
 
         return response()->json([
@@ -508,7 +510,7 @@ class StoryController extends Controller
             'input' => $input,
             'redirect' => $redirect,
             'action' => $action
-            ]);
+        ]);
     }
 
     /**
