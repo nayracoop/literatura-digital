@@ -35,9 +35,9 @@ function loadMonthCalendar(month, year)
 {
 
   var xhr = new XMLHttpRequest();
-
-  xhr.open("GET", '{{ route("node.getMonthCalendar", $story ) }}');
-  xhr.send('month='+month+'&year='+year);
+  var params = '?month='+month+'&year='+year;
+  xhr.open("GET", '{{ route("node.getMonthCalendar", $story ) }}'+params);
+  xhr.send();
 
   xhr.addEventListener("readystatechange", function (e) {
       var xhr = e.target;

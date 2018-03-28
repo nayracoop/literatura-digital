@@ -159,9 +159,10 @@ class TextNodeController extends Controller
     */
     public function getMonthCalendar(Request $request, $slug)
     {
+        $input = $request->all();
         $month = null;
         $year = null;
-        if (isset($request->month) && ($request->year)) {
+        if (isset($request->month) && isset($request->year)) {
             $month = $request->month;
             $year = $request->year;
         }
@@ -171,10 +172,11 @@ class TextNodeController extends Controller
       //  $monthNodes = $nodes;
 
 
-        $calendar = \App\Utils\RenderCalendar::render($nodes, $request->month, $request->year);
+        $calendar = \App\Utils\RenderCalendar::render($nodes, $month, $year);
         return response()
           ->json([
               'month' => $month,
+              'year' => $year,
           //    'next' => $next,
           //    'prev' => $prev,
               'textNodes' =>   $nodes,
