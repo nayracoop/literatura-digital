@@ -31,6 +31,7 @@ $firstYear = $first->year;
 <script type="text/javascript">
 
 loadMonthCalendar({{$firstMonth}}, {{$firstYear}});
+
 function loadMonthCalendar(month, year)
 {
 
@@ -45,25 +46,23 @@ function loadMonthCalendar(month, year)
           if (xhr.status == 200) {
               console.log('200');
               newResponse = JSON.parse(xhr.response);
+              $('#grilla-calendario').html('');
               $('#grilla-calendario').html(newResponse.calendar);
-
-              //$('.leer').click(function(ev) {
-                  readNode( );
-              //});
-
-            //  var id = newResponse.id;
-              // var alert = "include('snippets.flash.saved_changes')";
-              // var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
-
-            //  var redirect = newResponse.redirect;
-
-            //  if (redirect != null) {
-            //      window.location.replace(redirect);
-            //  }
-              //   $('.container.formulario').prepend(alert);
+              readNode( );
+              clickForCalendar();  
 
           } else console.log(xhr.statusText);
       }
+  });
+}
+
+
+function clickForCalendar()
+{
+  $('.getNewCalendar').click(function(e){
+    console.log('sdfsgfdhgfdj');
+      e.preventDefault();
+      loadMonthCalendar($(this).data('month'), $(this).data('year'));
   });
 }
 </script>

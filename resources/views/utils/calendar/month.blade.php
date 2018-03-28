@@ -12,7 +12,7 @@ $day_num = date("j"); //If today is September 29, $day_num=29
 //$date_today->month = $month
 $date_today = getdate(mktime(0,0,0,$month,1,$year)); //Returns array of date info for 1st day of this month
 $date = \Carbon\Carbon::createFromDate($year, $month, 1);
-$month_name = $date->formatLocalized('%B'); //Example: "September" - to label the Calendar
+$month_name = $date->formatLocalized('%B'); //nombre del mes localizado
 //echo \Carbon\Carbon::parse(8);
 $first_week_day = $date_today["wday"]; //"wday" is 0-6, 0 being Sunday. This is for day 1 of this month
 
@@ -100,6 +100,15 @@ $today++;
           </tbody>
 </table>
 <div class="botones-nav-form">
-  <a href="#" class="bot ant">Mayo</a>
-  <a href="#" class="bot sig">Junio</a>
+  @php
+  $prevMonth = $story->getPrevMonth($date->month, $date->year);
+  $nextMonth = $story->getNextMonth($date->month, $date->year);
+  @endphp
+  @if($prevMonth !== null)
+  <a href="#" class="bot ant getNewCalendar" data-month="{{ $prevMonth->month }}" data-year="{{ $prevMonth->year }}">{{$prevMonth->formatLocalized('%B')}}</a>
+  @endif
+
+  @if($nextMonth !== null)
+  <a href="#" class="bot sig getNewCalendar" data-month="{{ $nextMonth->month }}" data-year="{{ $nextMonth->year }}">{{$nextMonth->formatLocalized('%B')}}</a>
+  @endif
 </div>

@@ -75,7 +75,10 @@ class Story extends BaseModel
         return $this->embedsMany('\App\Models\Like');
     }
     /**
-    * textNodesByDate
+    * textNodesByDate retorna un array con los relatos separados por dia. Locacliza y formatea la fecha
+    * admite como parametro el mes y anho para filtrar
+    * @param $mont
+    * @param $year
     * @return array
     **/
 
@@ -92,11 +95,65 @@ class Story extends BaseModel
                       }
                   } else {
                       $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
-                  }    
+                  }
         }
 
         return $calendar;
     }
+
+    /**
+    * getNextMonth   usados para calendario.Permite a partir de un nodo saber cual es el siguiente mes
+    * con nodos
+    * @param $mont, $year
+    * @return Carbon or null
+    *
+    */
+    public function getNextMonth($month, $year)
+    {
+        $currentMonth = \Carbon\Carbon::create($year, $month, 1);
+        $nextMonth = \Carbon\Carbon::create($year, $month, 1)->addMonth()->firstOfMonth();
+        $next = null;
+        $nodes = $this->textNodes->where('created_at', '>=', $nextMonth)->sortByDesc('created_at');
+        while ($next == null && $nodes->count() > 0) {
+            $node = $nodes->pop();
+            if ($node->created_at->month == $nextMonth->month) {
+              //  $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
+                $next = $nextMonth;
+            } else {
+                $nextMonth = $nextMonth->addMonth()->firstOfMonth();
+                $nodes = $this->textNodes->where('created_at', '>=', $nextMonth)->sortByDesc('created_at');
+            }
+        }
+        return $next;
+    }
+
+    /**
+    *
+    * getPrevMonth  usados para calendario.Permite a partir de un nodo saber cual es el anterior mes
+    * con nodos
+    * @param nodeId
+    * @return Carbon or null
+    *
+    */
+    public function getPrevMonth($month, $year)
+    {
+        $currentMonth = \Carbon\Carbon::create($year, $month, 20);
+        $prevMonth = $currentMonth->subMonth()->firstOfMonth();
+        $prev = null;
+        $nodes = $this->textNodes->where('created_at', '<=', $prevMonth)->sortByDesc('created_at');
+        while ($prev == null && $nodes->count() > 0) {
+            $node = $nodes->pop();
+            if ($node->created_at->month == $prevMonth->month) {
+            //  $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
+                $prev = $prevMonth;
+            } else {
+                $prevMonth = $prevMonth->subMonth()->firstOfMonth();
+                $nodes = $this->textNodes->where('created_at', '>=', $prevMonth)->sortByDesc('created_at');
+            }
+        }
+        return $prev;
+    }
+
 
     /**
     * scopeFeatured

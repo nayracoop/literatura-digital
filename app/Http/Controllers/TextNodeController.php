@@ -168,18 +168,17 @@ class TextNodeController extends Controller
         }
 
         $story = Story::where('_id', $slug)->orWhere('slug', $slug)->first();
-        $nodes = $story->textNodesByDate($month, $year);
       //  $monthNodes = $nodes;
 
 
-        $calendar = \App\Utils\RenderCalendar::render($nodes, $month, $year);
+        $calendar = \App\Utils\RenderCalendar::render($story, $month, $year);
         return response()
           ->json([
               'month' => $month,
               'year' => $year,
           //    'next' => $next,
           //    'prev' => $prev,
-              'textNodes' =>   $nodes,
+            //  'textNodes' =>   $nodes,
               'calendar' => $calendar
           ]);
     }
