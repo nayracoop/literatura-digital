@@ -1,6 +1,3 @@
-
-
-
 <?php
 $day_num=date("j"); //If today is September 29, $day_num=29
 $month_num = date("m"); //If today is September 29, $month_num=9
