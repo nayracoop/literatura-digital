@@ -153,4 +153,33 @@ class TextNodeController extends Controller
     //  //    'st' => ($s->textNodes()->first())
         ]);
     }
+    /**
+    *  getMonthCalendar
+    *  @return json response
+    */
+    public function getMonthCalendar(Request $request, $slug)
+    {
+        $input = $request->all();
+        $month = null;
+        $year = null;
+        if (isset($request->month) && isset($request->year)) {
+            $month = $request->month;
+            $year = $request->year;
+        }
+
+        $story = Story::where('_id', $slug)->orWhere('slug', $slug)->first();
+      //  $monthNodes = $nodes;
+
+
+        $calendar = \App\Utils\RenderCalendar::render($story, $month, $year);
+        return response()
+          ->json([
+              'month' => $month,
+              'year' => $year,
+          //    'next' => $next,
+          //    'prev' => $prev,
+            //  'textNodes' =>   $nodes,
+              'calendar' => $calendar
+          ]);
+    }
 }
