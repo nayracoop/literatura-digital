@@ -83,7 +83,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     # guardar nodo nuevo o editar por Xhr
     Route::post('/save-textNode', 'TextNodeController@saveNodeXhr')->name('node.saveXhr');
     # guardar imagen
-    Route::post('/store-picture', 'StoryController@storePictureXhr')->name('picture.storeXhr');
+    Route::post('/store-cover-picture', 'UploadController@storeCoverPictureXhr')->name('picture.storeXhr');
+    Route::post('/store-textnode-picture', 'UploadController@storeTextNodePictureXhr')->name('picture.textNode.storeXhr');
 });
 
 #acciones exclusivas de admin

@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="row">  
+            <div class="row">
                 <div class="col-md-9">
                     <div class="container-botones">
                         <div class="botones-save-form">
@@ -72,7 +72,7 @@
                     </div>
                 </div>
             </div>
-    
+
                 <textarea name="text" class="hidden"></textarea>
             <input name="story" value="{{$story->_id}}" type="hidden" /> @if(isset($node))
             <input name="id" type="hidden" value="{{$node->id}}" /> @endif
@@ -85,7 +85,7 @@
 @push('javascript')
 {{--  <link rel="stylesheet" href="{{asset('js/libs/simplebar/simplebar.css')}}">
 <script src="{{asset('js/libs/simplebar/simplebar.js')}}"></script>  --}}
-
+@include('stories.scripts.upload-picture')
 <link href="{{asset('js/libs/summernote/summernote.css')}}" rel="stylesheet">
 <script src="{{asset('js/libs/summernote/summernote.es.min.js')}}"></script>
 <script src="{{asset('js/functions-summernote.js')}}"></script>

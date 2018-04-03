@@ -32,4 +32,29 @@
             }
         });
     });
+
+
+    function sendFile(files) {
+
+        data = new FormData();
+      //  data.append('cover', files[0]);
+        data.append("picture", files);
+        data.append('_token', '{{ csrf_token() }}');
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "{{ route('picture.textNode.storeXhr') }}",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                // upload image to server and create imgNode...
+                //tipo var node = document.createElement('div');
+                console.log(response);
+                var image = $('<img>').attr('src',  response.imgNode);
+                $('.texto-nodo').summernote('insertNode', image[0]);
+            }
+        });
+
+    }
 </script>
