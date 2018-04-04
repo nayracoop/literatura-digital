@@ -27,6 +27,9 @@ Route::group(['prefix' => 'relatos'], function () {
     Route::post('/busqueda', 'StoryController@search')->name('stories.search');
     Route::get('/{story}', 'StoryController@show')->name('story.show');
     Route::get('/{story}/fragmentos/{textNode}', 'TextNodeController@show')->name('node.show');
+
+    //json calendario
+    Route::get('/{story}/mes', 'TextNodeController@getMonthCalendar')->name('node.getMonthCalendar');
 });
 
 #acciones exclusivas de usuarios hacia otros relatos
@@ -82,7 +85,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     # cambiar status a un nodo
     Route::patch('/toggleStatus-textNode/{id}', 'TextNodeController@toggleStatus')->name('node.toggleStatus');
     # guardar imagen
-    Route::post('/store-picture', 'StoryController@storePictureXhr')->name('picture.storeXhr');
+    Route::post('/store-cover-picture', 'UploadController@storeCoverPictureXhr')->name('picture.storeXhr');
+    Route::post('/store-textnode-picture', 'UploadController@storeTextNodePictureXhr')->name('picture.textNode.storeXhr');
 });
 
 #acciones exclusivas de admin
@@ -111,3 +115,4 @@ Route::get('/salir', function () {
 Auth::routes();
 
 Route::get('/etiqueta/{tag}', 'StoryController@storiesByTag')->name('tag.stories');
+Route::get('/validar-slug', 'StoryController@validateSlug')->name('validate-slug');

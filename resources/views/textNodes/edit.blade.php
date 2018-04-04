@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="row">  
+            <div class="row">
                 <div class="col-md-9">
                     <div class="container-botones">
                         <div class="botones-save-form">
@@ -100,7 +100,7 @@
 @push('javascript')
     <link rel="stylesheet" href="{{asset('js/libs/simplebar/simplebar.css')}}">
     <script src="{{asset('js/libs/simplebar/simplebar.js')}}"></script>
-
+    @include('textNodes.scripts.upload-picture')
     <link href="{{asset('js/libs/summernote/summernote.css')}}" rel="stylesheet">
     <script src="{{asset('js/libs/summernote/summernote.es.min.js')}}"></script>
     <script src="{{asset('js/functions-summernote.js')}}"></script>
@@ -111,6 +111,7 @@
         @endif
     </script>
     @include('textNodes.scripts.save-update')
+
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
     {!! JsValidator::formRequest('App\Http\Requests\CreateTextNode') !!}
 @endpush

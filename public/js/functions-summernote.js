@@ -5,7 +5,7 @@ $(document).ready(function() {
     if($(".nuevo-nodo-ergodico").length){
         alturaEditor = 300;
     }
-    
+
     $('.texto-nodo').summernote({
         tabsize: 2,
         height: alturaEditor,
@@ -37,27 +37,11 @@ $(document).ready(function() {
 		    },
           onImageUpload: function(files) {
             sendFile(files[0]);
-            }
+          }
   		}
     });
 
-    function sendFile(files) {
-        data = new FormData();
-        data.append("file", files);
-        $.ajax({
-            data: data,
-            type: "POST",
-            url: "Your URL POST (php)",
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(url) {
-                // upload image to server and create imgNode...
-                //tipo var node = document.createElement('div');
-                $('.texto-nodo').summernote('insertNode', imgNode);
-            }
-        });
-    }
+
 /*
     if ($_FILES['file']['name']) {
         if (!$_FILES['file']['error']) {
@@ -77,9 +61,9 @@ $(document).ready(function() {
 
 
 	function updateCount() {
-	  var palabras = $('.note-editable').text().replace(/\s*$/,""); 
+	  var palabras = $('.note-editable').text().replace(/\s*$/,"");
       var palabrasArray = palabras.split(' ');
-	  $('.contador-palabras').text(palabrasArray.length); 
+	  $('.contador-palabras').text(palabrasArray.length);
 	  var caracteres = $('.note-editable').text().length;
 	  $('.contador-caracteres').text(caracteres);
 	}

@@ -34,6 +34,7 @@ return [
     'delete_tag' => 'Eliminar etiqueta',
     'add_tag' => 'Agregar etiqueta',
     'delete' => 'Eliminar',
+    'back' => 'Volver',
     //mensajes
     'add_node' => 'Agregar nodo',
     'back_my_stories' => 'Volver a mis relatos',
