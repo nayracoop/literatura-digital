@@ -8,7 +8,7 @@ class SlugValidator
      * @param $title
      * @param int $id
      * @return string
-     * @throws \Exception
+     *
      */
     public function createSlug($title, $id = 0)
     {
@@ -28,7 +28,8 @@ class SlugValidator
                 return $newSlug;
             }
         }
-        throw new \Exception('No pudo generarse el slug');
+        return null;
+        //throw new \Exception('No pudo generarse el slug');
     }
 
     protected function getRelatedSlugs($slug, $id = 0)
