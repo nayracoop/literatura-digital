@@ -113,3 +113,4 @@ Route::get('/salir', function () {
 Auth::routes();
 
 Route::get('/etiqueta/{tag}', 'StoryController@storiesByTag')->name('tag.stories');
+Route::get('/validar-slug', 'StoryController@validateSlug')->name('validate-slug');

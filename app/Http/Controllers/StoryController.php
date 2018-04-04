@@ -298,7 +298,7 @@ class StoryController extends Controller
         if (Auth::check()) {
             $isAdminOrMod = Auth::user()->isAdminOrMod() ? true : false;
         }
-        
+
         $query = Story::query();
 
         if (!$isAdminOrMod) {
@@ -362,11 +362,11 @@ class StoryController extends Controller
         $tags = [];
         $results = '';
         $isAdminOrMod = false;
-        
+
         if (Auth::check()) {
             $isAdminOrMod = Auth::user()->isAdminOrMod() ? true : false;
         }
-        
+
         $query = Story::query();
 
         if (!$isAdminOrMod) {
@@ -380,7 +380,7 @@ class StoryController extends Controller
         } else {
             $title = 'Todos';
         }
-        
+
         $stories = $query->orderBy('created_at')->get();
 
         foreach ($stories as $story) {
@@ -399,7 +399,7 @@ class StoryController extends Controller
 
             return response()->json(['genre'=>$search, 'results' => $results]);
         }
-            
+
         return view('stories.genre')
             ->with('stories', $stories)
             ->with('tags', $tags)
@@ -554,5 +554,19 @@ class StoryController extends Controller
               'status' => $status,
               'color' => $request->color
           ]);
+    }
+
+
+
+    /**
+    *
+    */
+    public function validateSlug(Request $request)
+    {
+         $slugValidator = new \App\Utils\SlugValidator();
+         $slug = $slugValidator->createSlug($request->slug);
+         return response()->json(
+             ['slug' => $slug]
+         );
     }
 }
