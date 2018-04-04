@@ -38,7 +38,7 @@
                         <td class="tit-listado">{{$node->title or '--'}}</td>
                         <td class="ocultar-sm">{{ date('d.m.Y', strtotime($node->created_at) ) }}</td>
                         <td class="ocultar-lg">{{ $node->charCount }}</td>
-                        <td class="ocultar-sm">{{ $node->status }}</td>
+                        <td class="ocultar-sm">{{ ucfirst($node->status) }}</td>
                         <td>
                             <a href="{{ route('node.edit', [$story->id, $node->id]) }}">
                                 <button>Editar</button>

@@ -1,8 +1,9 @@
 
-	<div class="grindex-wrapper strict-limits">
-		<ul class="grindex bubbles">
-
-		</ul>
+	<div class="fondo-forms">
+		<div class="grindex-wrapper strict-limits">
+			<ul class="grindex bubbles">
+			</ul>
+		</div>
 	</div>
   @include('textNodes.backdrop')
   @push('stylesheets')

@@ -5,7 +5,7 @@
                 @if($user->avatar != null && !empty($user->avatar))
                     <img alt="@lang('messages.avatar_of') {{ $user->username }}" src="{{ asset('imagenes/avatar/' . $user->avatar)}}">
                 @else
-                    <img alt="" src="{{ asset('img/img-usuario.jpg') }}">
+                    <img alt="" src="{{ asset('img/img-usuario-default.jpg') }}">
                 @endif
             </div>
         </a>

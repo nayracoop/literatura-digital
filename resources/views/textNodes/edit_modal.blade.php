@@ -75,8 +75,6 @@
   <a class="back-button back-button-bottom cerrar-nodo"  href="#">Volver</a>
 </div>
 @push('javascript')
-<link rel="stylesheet" href="{{asset('js/libs/simplebar/simplebar.css')}}">
-<script src="{{asset('js/libs/simplebar/simplebar.js')}}"></script>
 
 <link href="{{asset('js/libs/summernote/summernote.css')}}" rel="stylesheet">
 <script src="{{asset('js/libs/summernote/summernote.es.min.js')}}"></script>

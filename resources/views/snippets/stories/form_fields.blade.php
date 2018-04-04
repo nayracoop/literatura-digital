@@ -86,3 +86,5 @@
     <input type="hidden" name="id" value="@if (isset($story)) {{ $story->_id }} @endif"/>
     {{--  visualización  --}}
     <input type="hidden" name="visualization" value="@if (isset($story)) {{ $story->visualization }} @else {{ \App\Models\Enums\Visualization::LIST[\App\Models\Enums\Typology::EPISODIC][0] }} @endif"/>
+    {{--  Status  --}}
+    <input type="hidden" name="status" value="@if (isset($story)) {{ $story->status }} @else {{ \App\Models\Enums\StoryStatus::DRAFT }} @endif"/>

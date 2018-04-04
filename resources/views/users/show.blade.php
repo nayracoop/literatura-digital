@@ -21,7 +21,7 @@
                             <div class="image-clip">
                                 @if( $user->avatar != null && !empty($user->avatar))
                                     <img alt="@lang('Avatar de') {{$user->getName()}}" src="{{ asset('imagenes/avatar/'.$user->avatar )}}"> @else
-                                    <img src="{{asset('img/img-usuario.jpg')}}" alt="" /> 
+                                    <img src="{{asset('img/img-usuario-default.jpg')}}" alt="" /> 
                                 @endif
                             </div>
                             <p class="nom-usuario">{{ $user->getName() }}</p>
