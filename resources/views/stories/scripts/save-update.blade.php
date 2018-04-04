@@ -2,7 +2,7 @@
     /* Guardar Borrador */
     $('.bot.sig, .btn.btn-guardar').on('click', function (e) {
         e.preventDefault();
-        if ($('#story-form').valid() ) {
+        if ($('#story-form').valid()) {
             console.log('formulario valido, procediendo a grabar');
             save();
         } else {

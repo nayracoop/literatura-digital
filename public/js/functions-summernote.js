@@ -32,7 +32,8 @@ $(document).ready(function() {
             updateCount();
         	},
 		  onKeyup: function(e) {
-			updateCount();    
+            updateCount();
+            $('textarea[name="text"]').html($('.note-editable').html());
 		    },
           onImageUpload: function(files) {
             sendFile(files[0]);

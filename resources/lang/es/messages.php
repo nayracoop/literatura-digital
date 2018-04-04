@@ -64,5 +64,7 @@ return [
     'save' => 'Guardar',
     'saved_confirmation' => 'Tus cambios <strong>fueron guardados</strong>.',
     'saved_error' => 'Se produjo un error <strong>volvé a intentarlo</strong>.',
-    'start_writing' => 'Empezá a escribir'
+    'start_writing' => 'Empezá a escribir',
+    'status_changed_confirmation' => 'El estado <strong>fue modificado</strong>.',
+    'visualization' => 'Visualización',
 ];

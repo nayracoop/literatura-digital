@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Request as R;
 use Flash;
 use Auth;
 use App\Models\Story;
@@ -59,6 +60,28 @@ class TextNodeController extends Controller
             ->with('story', Story::where('_id', $story)->orWhere('slug', $story)->first());
     }
 
+    public function togglePublished($id)
+    {
+        // cambiar fecha de publicación
+        if (isset($id)) {
+            $textNode = TextNode::withTrashed()->find($id);
+            $status = $textNode->status();
+    
+            if ($status == StoryStatus::DRAFT) {
+                $textNode->status = StoryStatus::PUBLISHED;
+            } else {
+                $textNode->status = StoryStatus::DRAFT;
+            }
+    
+            $textNode->save();
+        }
+
+        if (R::ajax()) {
+            return response()->json(['status'=>'ok']);
+        }
+        return back();
+    }
+
     /**
     * saveNodeXhr
     *
@@ -73,16 +96,15 @@ class TextNodeController extends Controller
         $action = '';
         $story = Story::where('_id', $request->story)->first();
         $node = null;
+        
         if ($request->has('id')) {
             $node = $story->textNodes->where('_id', $request->id)->first();
             $n = $node->update($input);
             $story->textNodes()->save($node);
             $story->save();
             $action = 'updated';
-            // $story->update();
         } else {
             $node = new TextNode($input);
-            // $n = $newNode->create($input);
             $story->textNodes()->save($node);
             $story->save();
             $action = 'created';

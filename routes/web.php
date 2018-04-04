@@ -79,6 +79,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     Route::post('/save-story', 'StoryController@saveStoryXhr')->name('story.saveXhr');
     # guardar nodo nuevo o editar por Xhr
     Route::post('/save-textNode', 'TextNodeController@saveNodeXhr')->name('node.saveXhr');
+    # cambiar status a un nodo
+    Route::patch('/toggleStatus-textNode/{id}', 'TextNodeController@toggleStatus')->name('node.toggleStatus');
     # guardar imagen
     Route::post('/store-picture', 'StoryController@storePictureXhr')->name('picture.storeXhr');
 });

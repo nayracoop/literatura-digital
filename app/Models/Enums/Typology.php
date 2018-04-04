@@ -8,5 +8,5 @@ class Typology extends Enum
 {
     const EPISODIC = 'Episódico';
     const RIZOME = 'Ergódico';
-    const CHORAL = 'Choral';
+    const CHORAL = 'Coral';
 }

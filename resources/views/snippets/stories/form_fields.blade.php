@@ -15,14 +15,14 @@
                     <label for="tipologia">@lang('messages.typology') *</label>
                     <div class="styled-select">
                         <select type="text" class="form-control" id="tipologia" name="typology">
-                            <option value="episodic" @if (isset($story) && $story->typology === 'episodic') selected @endif>@lang('messages.episodic')</option>
-                            <option value="choral" @if (isset($story) && $story->typology === 'choral') selected @endif>@lang('messages.choral')</option>
-                            <option value="rizome" @if (isset($story) && $story->typology === 'rizome') selected @endif>@lang('messages.rizome')</option>
+                            {{--  Volver al loop  --}}
+                            <option value="episodic" @if (isset($story) && $story->typology === \App\Models\Enums\Typology::EPISODIC) selected @endif>@lang('messages.episodic')</option>
+                            <option value="choral" @if (isset($story) && $story->typology === \App\Models\Enums\Typology::RIZOME) selected @endif>@lang('messages.choral')</option>
+                            <option value="rizome" @if (isset($story) && $story->typology === \App\Models\Enums\Typology::CHORAL) selected @endif>@lang('messages.rizome')</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-6">
-
                     {{--  GÉNERO  --}}
                     <label for="genero">@lang('messages.gender') *</label>
                     <div class="styled-select">
@@ -38,19 +38,28 @@
                         </select>
                     </div>
                 </div>
+
             </div>
+
+            {{--  TITULO  --}}
+            <label for="visualization">@lang('messages.visualization'):
+                @if (isset($story))
+                    {{ $story->visualization }}
+                @else
+                    {{ \App\Models\Enums\Visualization::LIST[\App\Models\Enums\Typology::EPISODIC][0] }}
+                @endif
+            </label>
         </div>
     </div>
 
     <div class="col-md-4">
-
         {{--  IMAGEN DE PORTADA  --}}
         <label for="portada">@lang('messages.story_cover')</label>
         <div class="portada-border">
             @if (isset($story) && $story->cover != null && !empty($story->cover))
                 <img alt="@lang('messages.cover_for') {{$story->title}}" src="{{ asset('imagenes/cover/' . $story->cover) }}">
             @else
-                <img alt="" src="{{ asset('img/img-relato-default.jpg')}}"> 
+                <img alt="" src="{{ asset('img/img-relato-default.jpg')}}">
             @endif
         </div>
         <input type="file" class="form-control portada-archivo" name="cover_drag" id="portada">
@@ -75,3 +84,5 @@
 
     {{--  ID DE LA HISTORIA  --}}
     <input type="hidden" name="id" value="@if (isset($story)) {{ $story->_id }} @endif"/>
+    {{--  visualización  --}}
+    <input type="hidden" name="visualization" value="@if (isset($story)) {{ $story->visualization }} @else {{ \App\Models\Enums\Visualization::LIST[\App\Models\Enums\Typology::EPISODIC][0] }} @endif"/>

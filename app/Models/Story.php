@@ -18,7 +18,7 @@ class Story extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'description', 'typology', 'genre', 'cover', 'type', 'attachment', 'published_at'
+        'title', 'slug', 'description', 'typology', 'visualization', 'genre', 'cover', 'type', 'attachment', 'published_at'
     ];
 
     protected $dates = [
