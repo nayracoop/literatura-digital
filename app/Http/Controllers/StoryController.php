@@ -15,6 +15,7 @@ use App\Models\Enums\Typology;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
 use View;
+use Lang;
 use Illuminate\Cookie\CookieJar;
 use App\Utils\UserHistory;
 
@@ -474,12 +475,14 @@ class StoryController extends Controller
     {
         $story = null;
         $s = null;
+        $title = null;
         $input = $request->all();
         $redirect = '';
         $action = '';
 
         if ($request->has('id')) {
             $s = Story::where('_id', $request->id)->first();
+            $title = $s->title;
             $a = $s->update($input);
             $action = 'updated';
             // $redirect = route('nodes.index', $s->getIdAttribute());
@@ -488,7 +491,7 @@ class StoryController extends Controller
             $s = $story->create($input);
             $s->author()->associate(Auth::user());
             $action = 'created';
-            $redirect = route('node.create', $s->getIdAttribute());
+          //  $redirect = route('node.create', $s->getIdAttribute());
         }
 
         //guarda etiquetas como camelcase
@@ -501,6 +504,24 @@ class StoryController extends Controller
                 }
             }
         }
+        //slug
+        $slugValidator = new \App\Utils\SlugValidator();
+        if (empty($s->title) || $s->title === null) {
+            $s->slug = $slugValidator->createSlug(Lang::get('messages.untitled'));
+        } else {
+            $s->slug = $slugValidator->createSlug($s->title);
+        }
+
+        if ($title !== null && $action == 'updated' && $title !== $s->title) {
+            $redirect = route('story.edit', $s->slug);
+        } elseif ($action == 'created') {
+            $redirect = route('node.create', $s->slug);
+        }
+
+        //status
+        if (!isset($story->status) || $story->status === null) {
+          //  $story->status = StoryStatus::DRAFT;
+        }
 
         $s->save();
 
@@ -509,7 +530,8 @@ class StoryController extends Controller
             'id' => $s->getIdAttribute(),
             'input' => $input,
             'redirect' => $redirect,
-            'action' => $action
+            'action' => $action,
+            'debug' =>  $s->title.' --- '.  $title
         ]);
     }
 
@@ -565,8 +587,8 @@ class StoryController extends Controller
     {
          $slugValidator = new \App\Utils\SlugValidator();
          $slug = $slugValidator->createSlug($request->slug);
-         return response()->json(
-             ['slug' => $slug]
-         );
+         return response()->json([
+              'slug' => $slug
+         ]);
     }
 }
