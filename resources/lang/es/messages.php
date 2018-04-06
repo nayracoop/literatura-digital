@@ -68,4 +68,6 @@ return [
     'start_writing' => 'Empezá a escribir',
     'status_changed_confirmation' => 'El estado <strong>fue modificado</strong>.',
     'visualization' => 'Visualización',
+    'untitled' => 'Sin Título',
+    'untitled-slug' => 'sin-titulo'
 ];

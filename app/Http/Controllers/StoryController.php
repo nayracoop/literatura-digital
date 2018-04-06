@@ -15,6 +15,7 @@ use App\Models\Enums\Status;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
 use View;
+use Lang;
 use Illuminate\Cookie\CookieJar;
 use App\Utils\UserHistory;
 
@@ -490,14 +491,17 @@ class StoryController extends Controller
     public function saveStoryXhr(Request $request)
     {
         $story = null;
+        $s = null;
+        $title = null;
         $input = $request->all();
         $author = Auth::user();
         $redirect = '';
         $action = '';
 
-        if ($request->has('id')) {
-            $story = Story::where('_id', $request->id)->first();
-            $story->update($input);
+        if ($request->has('story') && !empty($request->story)) {
+            $story = Story::where('_id', $request->story)->first();
+            $title = $s->title;
+            $a = $story->update($input);
             $action = 'updated';
         } else {
             $step = 1;
@@ -512,7 +516,7 @@ class StoryController extends Controller
 
         $typology = Typology::find($input['typology']);
         $visualization = $typology->visualizations()->find($input['visualization']);
-        
+
         //guardo la tipología y la visualización asociada al relato
         //$story->typology()->save($typology);
         $story->typology()->associate($typology);
@@ -528,6 +532,24 @@ class StoryController extends Controller
                 }
             }
         }
+        //slug
+        $slugValidator = new \App\Utils\SlugValidator();
+        if (empty($story->title) || $story->title === null) {
+            $story->slug = $slugValidator->createSlug(Lang::get('messages.untitled'));
+        } else {
+            $story->slug = $slugValidator->createSlug($story->title);
+        }
+
+        if ($title !== null && $action == 'updated' && $title !== $story->title) {
+            $redirect = route('story.edit', $story->slug);
+        } elseif ($action == 'created') {
+            $redirect = route('node.create', $story->slug);
+        }
+
+        //status
+        if (!isset($story->status) || $story->status === null) {
+          //  $story->status = StoryStatus::DRAFT;
+        }
 
         $story->save();
 
@@ -536,7 +558,8 @@ class StoryController extends Controller
             'id' => $story->getIdAttribute(),
             'input' => $input,
             'redirect' => $redirect,
-            'action' => $action
+            'action' => $action,
+          //  'debug' =>  $s->title.' --- '.  $title
         ]);
     }
 
@@ -592,8 +615,8 @@ class StoryController extends Controller
     {
          $slugValidator = new \App\Utils\SlugValidator();
          $slug = $slugValidator->createSlug($request->slug);
-         return response()->json(
-             ['slug' => $slug]
-         );
+         return response()->json([
+              'slug' => $slug
+         ]);
     }
 }

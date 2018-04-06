@@ -12,7 +12,7 @@
 <div class="fondo-forms editor-relato">
     <div class="container listado-relatos">
         <div class="row">
-            
+
             @include('textNodes.visualizations.' . $visualization->slug)
 
             <div id="modo-listado" class="tabpanel">
@@ -40,18 +40,18 @@
                         <td class="ocultar-lg">{{ $node->charCount }}</td>
                         <td class="ocultar-sm">{{ ucfirst($node->status) }}</td>
                         <td>
-                            <a href="{{ route('node.edit', [$story->id, $node->id]) }}">
+                            <a href="{{ route('node.edit', [$story->slug, $node->id]) }}">
                                 <button>Editar</button>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
-                </table>                
+                </table>
             </div>
             <a href="{{ route('node.create', $story->_id) }}"><button class="btn btn-nuevo-relato"><span>{{__('messages.add_node')}}</span><span class="plus"></span></button></a>
             <div class="botones-nav-form">
                 <a href="{{ route('stories.list') }}" class="bot ant">{{__('messages.back_my_stories')}}</a>
-                <a href="{{ route('story.update', $story->id) }}" class="bot sig">{{__('messages.go_story_details')}}</a>
+                <a href="{{ route('story.update', $story->slug) }}" class="bot sig">{{__('messages.go_story_details')}}</a>
             </div>
         </div>
     </div>

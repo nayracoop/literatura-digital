@@ -22,7 +22,7 @@ class SlugValidator
             return $slug;
         }
         // Just append numbers like a savage until we find not used.
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 500; $i++) {
             $newSlug = $slug.'-'.$i;
             if (! $allSlugs->contains('slug', $newSlug)) {
                 return $newSlug;
