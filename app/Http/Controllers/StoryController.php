@@ -498,10 +498,10 @@ class StoryController extends Controller
         $redirect = '';
         $action = '';
 
-        if ($request->has('id')) {
-            $s = Story::where('_id', $request->id)->first();
+        if ($request->has('story') && !empty($request->story)) {
+            $story = Story::where('_id', $request->story)->first();
             $title = $s->title;
-            $a = $s->update($input);
+            $a = $story->update($input);
             $action = 'updated';
         } else {
             $story = Story::create($input);
@@ -530,16 +530,16 @@ class StoryController extends Controller
         }
         //slug
         $slugValidator = new \App\Utils\SlugValidator();
-        if (empty($s->title) || $s->title === null) {
-            $s->slug = $slugValidator->createSlug(Lang::get('messages.untitled'));
+        if (empty($story->title) || $story->title === null) {
+            $story->slug = $slugValidator->createSlug(Lang::get('messages.untitled'));
         } else {
-            $s->slug = $slugValidator->createSlug($s->title);
+            $story->slug = $slugValidator->createSlug($story->title);
         }
 
-        if ($title !== null && $action == 'updated' && $title !== $s->title) {
-            $redirect = route('story.edit', $s->slug);
+        if ($title !== null && $action == 'updated' && $title !== $story->title) {
+            $redirect = route('story.edit', $story->slug);
         } elseif ($action == 'created') {
-            $redirect = route('node.create', $s->slug);
+            $redirect = route('node.create', $story->slug);
         }
 
         //status
@@ -555,7 +555,7 @@ class StoryController extends Controller
             'input' => $input,
             'redirect' => $redirect,
             'action' => $action,
-            'debug' =>  $s->title.' --- '.  $title
+          //  'debug' =>  $s->title.' --- '.  $title
         ]);
     }
 

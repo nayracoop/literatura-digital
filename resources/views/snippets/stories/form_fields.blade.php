@@ -31,8 +31,8 @@
                     <div class="styled-select">
                         <select type="text" class="form-control" id="genero" name="genre">
                             @foreach(\App\Models\Genre::all() as $genre)
-                                <option value="{{ $genre->slug }}" 
-                                    @if (isset($story) && !empty($story->genre) && $story->genre === $genre->slug) 
+                                <option value="{{$genre->slug}}"
+                                    @if (isset($story) && !empty($story->genre) && $story->genre === $genre->slug)
                                         selected
                                     @endif>
                                     {{ $genre->name }}
@@ -46,7 +46,7 @@
             {{--  VISUALIZACIÓN  --}}
             <label for="genero">@lang('messages.visualization') *</label>
             <div class="styled-select">
-                <select type="text" class="form-control" id="visualization" name="visualization">                    
+                <select type="text" class="form-control" id="visualization" name="visualization">
                     @foreach($visualizations as $visualization)
                         <option value="{{ $visualization->_id }}"
                             @if (isset($story) && !empty($story->visualization) && $story->visualization === $visualization->_id)
@@ -78,9 +78,9 @@
             @if (isset($story))
                 @foreach ($story->tags as $tag)
                     <div class="tag-item">
-                        <p>{{ $tag->name }}</p>                        
+                        <p>{{ $tag->name }}</p>
                         <button>@lang('messages.delete_tag')</button>
-                        <input type="hidden" name="tags[]" value="{{ $tag->name }}"/>                        
+                        <input type="hidden" name="tags[]" value="{{ $tag->name }}"/>
                     </div>
                 @endforeach
             @endif
@@ -91,6 +91,9 @@
     </div>
 
     {{--  ID DE LA HISTORIA  --}}
-    <input type="hidden" name="id" value="@if (isset($story)) {{ $story->_id }} @endif"/>
+     @if (isset($story))
+    <input type="hidden" name="id" value="{{ $story->_id }}"/>
+    <input type="hidden" name="story" value="{{ $story->_id }}"/>
+    @endif
     {{--  Status  --}}
     <input type="hidden" name="status" value="@if (isset($story)) {{ $story->status }} @else {{ \App\Models\Enums\Status::DRAFT }} @endif"/>
