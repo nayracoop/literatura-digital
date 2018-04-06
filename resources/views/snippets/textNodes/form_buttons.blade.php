@@ -12,7 +12,7 @@
         </div>
 
         {{--  MENSAJES DE CONFIRMACION  --}}
-        <div class="guardado exito" role="alert">
+        <div class="guardado cambios exito" role="alert">
             <div class="success">
                 @lang('messages.saved_confirmation')
             </div>

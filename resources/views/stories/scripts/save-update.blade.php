@@ -30,7 +30,8 @@
             if (xhr.readyState == 4) {
                 console.log('status: ' + xhr.status);
                 if (xhr.status === 200) {
-                    var jsonResponse = JSON.parse(xhr.response);                    
+                    var jsonResponse = JSON.parse(xhr.response); 
+                                       
                     if (jsonResponse.redirect) {
                         window.location.replace(jsonResponse.redirect);
                     } else {

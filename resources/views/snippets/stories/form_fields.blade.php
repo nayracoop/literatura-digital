@@ -94,3 +94,6 @@
     <input type="hidden" name="id" value="@if (isset($story)) {{ $story->_id }} @endif"/>
     {{--  Status  --}}
     <input type="hidden" name="status" value="@if (isset($story)) {{ $story->status }} @else {{ \App\Models\Enums\Status::DRAFT }} @endif"/>
+    {{-- Step para pasarselo al nodo --}}
+    <input type="hidden" name="step" value="{{ $step or '1'}}"/>
+    

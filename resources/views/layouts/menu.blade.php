@@ -17,6 +17,7 @@
         --}}
         <div class="collapse navbar-collapse navbar-escrituras-collapse">
             <ul class="nav navbar-nav">
+                <li class="{{ \App\Utils\MenuHelper::isActiveRoute('stories.list') }}"><a href="{{ route('stories.list') }}">@lang('menu.write')</a></li>
                 <li class="dropdown">
                     <a href="{{ route('stories') }}"
                         class="dropdown-toggle" type="button" 

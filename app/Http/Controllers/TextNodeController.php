@@ -62,10 +62,11 @@ class TextNodeController extends Controller
     /**
      * Muestra el formulario para nuevos fragmentos (Node)
      */
-    public function create($story)
+    public function create($story, $step = null)
     {
         return view('textNodes.create')
-            ->with('story', Story::where('_id', $story)->orWhere('slug', $story)->first());
+            ->with('story', Story::where('_id', $story)->orWhere('slug', $story)->first())
+            ->with('step', $step);
     }
 
     public function togglePublished($id)
@@ -105,14 +106,18 @@ class TextNodeController extends Controller
         $story = Story::where('_id', $request->story)->first();
         $node = null;
         
+        $date = \App\Utils\Dates::getDateFromInput($input);
+        
         if ($request->has('id')) {
             $node = $story->textNodes->where('_id', $request->id)->first();
+            $node->node_date = $date;
             $n = $node->update($input);
             $story->textNodes()->save($node);
             $story->save();
             $action = 'updated';
         } else {
             $node = new TextNode($input);
+            $node->node_date = $date;
             $story->textNodes()->save($node);
             $story->save();
             $action = 'created';
@@ -201,13 +206,13 @@ class TextNodeController extends Controller
       //  $monthNodes = $nodes;
 
 
-        $calendar = \App\Utils\RenderCalendar::render($story, $month, $year);
+        $calendar = \App\Utils\Dates::renderCalendar($story, $month, $year);
         return response()
           ->json([
               'month' => $month,
               'year' => $year,
-          //    'next' => $next,
-          //    'prev' => $prev,
+            //  'next' => $next,
+            //  'prev' => $prev,
             //  'textNodes' =>   $nodes,
               'calendar' => $calendar
           ]);

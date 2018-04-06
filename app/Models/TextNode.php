@@ -15,11 +15,13 @@ class TextNode extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'status', 'title', 'slug', 'text', 'image', 'published_at', 'nodes', 'order', 'wordCount', 'charCount'
+        'status', 'title', 'slug', 'text', 'image', 'published_at',
+        'node_date', 'nodes', 'order', 'wordCount', 'charCount'
     ];
 
     protected $dates = [
         'published_at',
+        'node_date'
     ];
 
     public static $rulesPublish = [

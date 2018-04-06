@@ -161,12 +161,12 @@ class StoryController extends Controller
     {
         $myStory = Story::where('_id', $story)->orWhere('slug', $story)->first();
         $typologies = Typology::all();
-        $vizualizations = Typology::find($myStory->tipology)->visualizations();
+        $visualizations = $myStory->typology->visualizations;
 
         return view('stories.edit')
             ->with('story', $myStory)
-            ->with('typologies', $tipologies)
-            ->with('visualizations', $vizualizations);
+            ->with('typologies', $typologies)
+            ->with('visualizations', $visualizations);
     }
 
     public function updateStory(Request $request, $slug)
@@ -500,9 +500,13 @@ class StoryController extends Controller
             $story->update($input);
             $action = 'updated';
         } else {
+            $step = 1;
+            if ($request->has('step')) {
+                $step = $request->step;
+            }
             $story = Story::create($input);
             $story->author()->associate($author);
-            $redirect = route('node.create', $story->getIdAttribute());
+            $redirect = route('node.create', [ 'story' => $story->getIdAttribute(), 'step' => ++$step ]);
             $action = 'created';
         }
 

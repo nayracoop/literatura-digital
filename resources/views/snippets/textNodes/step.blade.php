@@ -1,9 +1,7 @@
 <h1>
-    <span class="numero">2
-        <span class="invisibilizar">.</span>
-    </span>
+    <span class="numero">{{ $step or '2'}}<span class="invisibilizar">.</span></span>
     @if (isset($node))
-        Editar fragmento
+        Editar fragmento.
     @else
         Escribí tu primer nodo.
     @endif

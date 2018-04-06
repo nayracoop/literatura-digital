@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        setlocale(LC_TIME, app()->getLocale());
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
     }
 
     /**
@@ -23,7 +25,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //discutible si va aqui pero permite ajustar las fechas
-        setlocale(LC_TIME, \App::getLocale());
     }
 }

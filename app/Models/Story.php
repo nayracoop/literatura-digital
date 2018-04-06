@@ -97,8 +97,8 @@ class Story extends BaseModel
     public function textNodesByDate($month = null, $year = null)
     {
         $calendar = [];
-        \Carbon\Carbon::setLocale('es');
-        \Carbon\Carbon::setUtf8(true);
+        // \Carbon\Carbon::setLocale('es');
+        // \Carbon\Carbon::setUtf8(true);
 
         foreach ($this->textNodes->sortBy('created_at') as $node) {
             if ($month !== null && $year !== null) {

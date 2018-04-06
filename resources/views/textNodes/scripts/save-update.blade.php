@@ -34,12 +34,18 @@
                     var redirect = newResponse.redirect;
                     if (redirect != null) {
                         window.location.replace(redirect);
+                    } else {
+                        //este temporaryclass está en functions-general
+                        $('.guardado.cambios.exito').addTemporaryClass('active', 1500);
                     }
                     
                     @if (!isset($node))
-                        $("#node-form").append('<input name="id" id="nodeId" type="hidden" value="' + id + '" />');
+                        if (!$('#nodeId').length) {
+                            $("#node-form").append('<input name="id" id="nodeId" type="hidden" value="' + id + '" />');
+                        }
                     @endif
                 } else {
+                    $('.guardado.error').addTemporaryClass('active', 1500);
                     console.log(xhr.statusText);
                 }
             }

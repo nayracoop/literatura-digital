@@ -38,21 +38,20 @@ $(document).ready(function() {
             }
   		}
     });
-
-	function updateCount() {
-        var palabras = $('.note-editable').text().replace(/\s*$/,"");
-        var palabrasArray = palabras.split(' ');
-        var caracteres = $('.note-editable').text().length;
-
-        $('.contador-palabras').text(palabrasArray.length);        
-        $('.contador-caracteres').text(caracteres);
-
-        $('input[name="wordCount"]').val(palabrasArray.length);
-        $('input[name="charCount"]').val(caracteres);
-    }
-    
-    function updateHiddenText() {
-        $('textarea[name="text"]').html(unescape($('.note-editable').html()));
-    }
-
 });
+
+function updateCount() {
+    var palabras = $('.note-editable').text().replace(/\s*$/,"");
+    var palabrasArray = palabras.split(' ');
+    var caracteres = $('.note-editable').text().length;
+
+    $('.contador-palabras').text(palabrasArray.length);        
+    $('.contador-caracteres').text(caracteres);
+
+    $('input[name="wordCount"]').val(palabrasArray.length);
+    $('input[name="charCount"]').val(caracteres);
+}
+
+function updateHiddenText() {
+    $('textarea[name="text"]').html(unescape($('.note-editable').html()));
+}

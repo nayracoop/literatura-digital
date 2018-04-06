@@ -1,5 +1,5 @@
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('#typology').on('change', (event) => {
             getVisualizations(event.currentTarget);
         });
