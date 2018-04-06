@@ -10,8 +10,8 @@ use App\Models\TextNode;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Tag;
-use App\Models\Enums\StoryStatus;
-use App\Models\Enums\Typology;
+use App\Models\Typology;
+use App\Models\Enums\Status;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
 use View;
@@ -103,8 +103,16 @@ class StoryController extends Controller
      */
     public function create($step = null)
     {
+        //paso todas las tipologías
+        //y las visualizaciones asociadas a la primer tipología
+        $typologies = Typology::all();
+        $visualizations = Typology::first()->visualizations;
+
+        //muestro el resto de las visuzalizaciones a partir del onChange de tipologías en el formulario.
         return view('stories.create')
-            ->with('step', $step);
+            ->with('step', $step)
+            ->with('typologies', $typologies)
+            ->with('visualizations', $visualizations);
     }
 
      /**
@@ -112,9 +120,7 @@ class StoryController extends Controller
      */
     public function storeStory(Request $request)
     {
-        $author = Auth::user();
         $input = $request->all();
-        $story =  new \App\Models\Story();
 
         //imagen de portada
         if ($request->hasFile('cover') && $request->file('cover')->isValid()) {
@@ -129,17 +135,23 @@ class StoryController extends Controller
         }
 
         //@todo validar slug
-        $s = $story->create($input);
+        $s = Story::create($input);
 
         // publicar o borrador
         if ($request->has('draft')) {
-            $s->status = StoryStatus::DRAFT;
+            $s->status = Status::DRAFT;
         } else {
-            $s->status = StoryStatus::PUBLISHED;
+            $s->status = Status::PUBLISHED;
         }
+
+        $author = Auth::user();
+        $typology = Typology::find($input['typology']);
+        $visualization = $typology->visualizations()::find($input['visualization']);
 
         $s->slug = str_slug($s->title);
         $s->author()->associate($author);
+        $s->typology()->save($typology);
+        $s->visualization()->save($visualization);
         $s->save();
 
         return redirect()->back();
@@ -147,9 +159,14 @@ class StoryController extends Controller
 
     public function edit($story)
     {
+        $myStory = Story::where('_id', $story)->orWhere('slug', $story)->first();
+        $typologies = Typology::all();
+        $vizualizations = Typology::find($myStory->tipology)->visualizations();
+
         return view('stories.edit')
-            ->with('story', Story::where('_id', $story)->orWhere('slug', $story)->first())
-            ->with('typologies', Typology::values());
+            ->with('story', $myStory)
+            ->with('typologies', $tipologies)
+            ->with('visualizations', $vizualizations);
     }
 
     public function updateStory(Request $request, $slug)
@@ -176,9 +193,9 @@ class StoryController extends Controller
 
         // publicar o borrador
         if ($request->has('draft')) {
-            $story->status = StoryStatus::DRAFT;
+            $story->status = Status::DRAFT;
         } else {
-            $story->status = StoryStatus::PUBLISHED;
+            $story->status = Status::PUBLISHED;
         }
 
         $story->slug = str_slug($story->title);
@@ -220,9 +237,9 @@ class StoryController extends Controller
 
         // publicar o borrador
         if ($request->has('draft')) {
-            $node->status = StoryStatus::DRAFT;
+            $node->status = Status::DRAFT;
         } else {
-            $node->status = StoryStatus::PUBLISHED;
+            $node->status = Status::PUBLISHED;
         }
 
         $story->textNodes()->save($node);
@@ -302,7 +319,7 @@ class StoryController extends Controller
         $query = Story::query();
 
         if (!$isAdminOrMod) {
-            $query->where('status', StoryStatus::PUBLISHED);
+            $query->where('status', Status::PUBLISHED);
         }
 
         if (isset($genre) && $genre != 'todos') {
@@ -370,7 +387,7 @@ class StoryController extends Controller
         $query = Story::query();
 
         if (!$isAdminOrMod) {
-            $query->where('status', StoryStatus::PUBLISHED);
+            $query->where('status', Status::PUBLISHED);
         }
 
         if (isset($genre)) {
@@ -426,10 +443,10 @@ class StoryController extends Controller
 
         if ($isAdminOrMod) {
             $story = Story::find($id);
-            if ($story->status == StoryStatus::PUBLISHED) {
-                $story->status = StoryStatus::DRAFT;
+            if ($story->status == Status::PUBLISHED) {
+                $story->status = Status::DRAFT;
             } else {
-                $story->status = StoryStatus::PUBLISHED;
+                $story->status = Status::PUBLISHED;
             }
             $story->save();
             $results = 'Success';
@@ -473,40 +490,46 @@ class StoryController extends Controller
     public function saveStoryXhr(Request $request)
     {
         $story = null;
-        $s = null;
         $input = $request->all();
+        $author = Auth::user();
         $redirect = '';
         $action = '';
 
         if ($request->has('id')) {
-            $s = Story::where('_id', $request->id)->first();
-            $a = $s->update($input);
+            $story = Story::where('_id', $request->id)->first();
+            $story->update($input);
             $action = 'updated';
-            // $redirect = route('nodes.index', $s->getIdAttribute());
         } else {
-            $story = new Story();
-            $s = $story->create($input);
-            $s->author()->associate(Auth::user());
+            $story = Story::create($input);
+            $story->author()->associate($author);
+            $redirect = route('node.create', $story->getIdAttribute());
             $action = 'created';
-            $redirect = route('node.create', $s->getIdAttribute());
         }
 
+        $typology = Typology::find($input['typology']);
+        $visualization = $typology->visualizations()->find($input['visualization']);
+        
+        //guardo la tipología y la visualización asociada al relato
+        //$story->typology()->save($typology);
+        $story->typology()->associate($typology);
+        $story->visualization()->associate($visualization);
+
         //guarda etiquetas como camelcase
-        $s->unset('tags');
+        $story->unset('tags');
         if ($request->has('tags')) {
             foreach ($request->tags as $tag) {
                 $tag = camel_case($tag);
-                if ($s->tags->where('name', $tag)->first() === null) {
-                     $s->tags()->create(['name' => $tag]);
+                if ($story->tags->where('name', $tag)->first() === null) {
+                    $story->tags()->create(['name' => $tag]);
                 }
             }
         }
 
-        $s->save();
+        $story->save();
 
         return response()->json([
-            'author' => Auth::user()->_id,
-            'id' => $s->getIdAttribute(),
+            'author' => $author->_id,
+            'id' => $story->getIdAttribute(),
             'input' => $input,
             'redirect' => $redirect,
             'action' => $action

@@ -5,12 +5,13 @@ use Illuminate\Http\Request;
 use Request as R;
 use Flash;
 use Auth;
-use App\Models\Story;
+use App\Models\Story as Story;
 use App\Models\TextNode;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Tag;
-use App\Models\Enums\StoryStatus;
+use App\Models\Typology;
+use App\Models\Enums\Status;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
 use View;
@@ -26,9 +27,16 @@ class TextNodeController extends Controller
      */
     public function index($story)
     {
+        $myStory = Story::where('_id', $story)->orWhere('slug', $story)->first();
+        
+        $typology = $myStory->typology;
+        $visualization = $typology->visualizations()->find($myStory->visualization_id);
+
         return view('textNodes.list')
             ->with('user', Auth::user())
-            ->with('story', Story::where('_id', $story)->orWhere('slug', $story)->first());
+            ->with('story', $myStory)
+            ->with('typology', $typology)
+            ->with('visualization', $visualization);
     }
 
     /**
@@ -67,10 +75,10 @@ class TextNodeController extends Controller
             $textNode = TextNode::withTrashed()->find($id);
             $status = $textNode->status();
     
-            if ($status == StoryStatus::DRAFT) {
-                $textNode->status = StoryStatus::PUBLISHED;
+            if ($status == Status::DRAFT) {
+                $textNode->status = Status::PUBLISHED;
             } else {
-                $textNode->status = StoryStatus::DRAFT;
+                $textNode->status = Status::DRAFT;
             }
     
             $textNode->save();

@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
 	$('.cerrar-nodo').click(function() {
 		      $('.nodo-backdrop').addClass('esconder');
 					$('.nodo-backdrop-fondo').addClass('esconder');
@@ -110,11 +110,8 @@ $(document).ready(function(){
 			});
 		}
 	});
-
 });
 
 (function($){
 	
-			
-	
-	})(jQuery);
+})(jQuery);

@@ -10,15 +10,18 @@
 
             <div class="row">
                 <div class="col-md-6">
-
                     {{--  TIPOLOGÍA  --}}
-                    <label for="tipologia">@lang('messages.typology') *</label>
+                    <label for="genero">@lang('messages.typology') *</label>
                     <div class="styled-select">
-                        <select type="text" class="form-control" id="tipologia" name="typology">
-                            {{--  Volver al loop  --}}
-                            <option value="episodic" @if (isset($story) && $story->typology === \App\Models\Enums\Typology::EPISODIC) selected @endif>@lang('messages.episodic')</option>
-                            <option value="choral" @if (isset($story) && $story->typology === \App\Models\Enums\Typology::RIZOME) selected @endif>@lang('messages.choral')</option>
-                            <option value="rizome" @if (isset($story) && $story->typology === \App\Models\Enums\Typology::CHORAL) selected @endif>@lang('messages.rizome')</option>
+                        <select type="text" class="form-control" id="typology" name="typology" data-url="{{ route('typology.visualizations') }}">
+                        @foreach($typologies as $typology)
+                            <option value="{{ $typology->_id }}"
+                                @if (isset($story) && !empty($story->typology) && $story->typology === $typology->_id)
+                                    selected
+                                @endif>
+                                {{ ucfirst($typology->name) }}
+                            </option>
+                        @endforeach
                         </select>
                     </div>
                 </div>
@@ -28,27 +31,32 @@
                     <div class="styled-select">
                         <select type="text" class="form-control" id="genero" name="genre">
                             @foreach(\App\Models\Genre::all() as $genre)
-                                <option value="{{$genre->slug}}" 
+                                <option value="{{ $genre->slug }}" 
                                     @if (isset($story) && !empty($story->genre) && $story->genre === $genre->slug) 
                                         selected
                                     @endif>
-                                    {{$genre->name}}
+                                    {{ $genre->name }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-
             </div>
 
-            {{--  TITULO  --}}
-            <label for="visualization">@lang('messages.visualization'):
-                @if (isset($story))
-                    {{ $story->visualization }}
-                @else
-                    {{ \App\Models\Enums\Visualization::LIST[\App\Models\Enums\Typology::EPISODIC][0] }}
-                @endif
-            </label>
+            {{--  VISUALIZACIÓN  --}}
+            <label for="genero">@lang('messages.visualization') *</label>
+            <div class="styled-select">
+                <select type="text" class="form-control" id="visualization" name="visualization">                    
+                    @foreach($visualizations as $visualization)
+                        <option value="{{ $visualization->_id }}"
+                            @if (isset($story) && !empty($story->visualization) && $story->visualization === $visualization->_id)
+                                selected
+                            @endif>
+                            {{ ucfirst($visualization->name) }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
     </div>
 
@@ -84,7 +92,5 @@
 
     {{--  ID DE LA HISTORIA  --}}
     <input type="hidden" name="id" value="@if (isset($story)) {{ $story->_id }} @endif"/>
-    {{--  visualización  --}}
-    <input type="hidden" name="visualization" value="@if (isset($story)) {{ $story->visualization }} @else {{ \App\Models\Enums\Visualization::LIST[\App\Models\Enums\Typology::EPISODIC][0] }} @endif"/>
     {{--  Status  --}}
-    <input type="hidden" name="status" value="@if (isset($story)) {{ $story->status }} @else {{ \App\Models\Enums\StoryStatus::DRAFT }} @endif"/>
+    <input type="hidden" name="status" value="@if (isset($story)) {{ $story->status }} @else {{ \App\Models\Enums\Status::DRAFT }} @endif"/>

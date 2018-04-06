@@ -4,9 +4,9 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 
-class Genre extends BaseModel
+class Visualization extends BaseModel
 {
-    
+
     /**
      * The attributes that are mass assignable.
      *

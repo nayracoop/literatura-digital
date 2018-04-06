@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     Route::patch('/{story}/editar', 'StoryController@update')->name('story.update');
 
     # crear nodos de un relato
-    Route::get('/{story}/nuevo-fragmento', 'TextNodeController@create')->name('node.create');
+    Route::get('/{story}/nuevo-fragmento/{step?}', 'TextNodeController@create')->name('node.create');
     Route::post('/{story}/nuevo-fragmento', 'TextNodeController@store')->name('node.store');
 
     Route::get('/{story}/fragmentos', 'TextNodeController@index')->name('nodes.index');
@@ -86,7 +86,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     Route::patch('/toggleStatus-textNode/{id}', 'TextNodeController@toggleStatus')->name('node.toggleStatus');
     # guardar imagen
     Route::post('/store-cover-picture', 'UploadController@storeCoverPictureXhr')->name('picture.storeXhr');
-    Route::post('/store-textnode-picture', 'UploadController@storeTextNodePictureXhr')->name('picture.textNode.storeXhr');
+    Route::post(
+        '/store-textnode-picture',
+        'UploadController@storeTextNodePictureXhr'
+    )->name('picture.textNode.storeXhr');
 });
 
 #acciones exclusivas de admin
@@ -101,7 +104,7 @@ Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin'], function () {
     Route::get('/etiquetas', 'TagController@index')->name('tags.index');
     Route::patch('/etiquetas/{id}', 'TagController@toggleDeleted')->name('tag.toggleDeleted');
 
-    Route::get('/categories', 'CategoryController@index')->name('admin.categories');
+    Route::get('/categorias', 'CategoryController@index')->name('admin.categories');
     Route::post('/relatos/publicar', 'StoryController@changeStatus')->name('story.change-status');
 });
 
@@ -116,3 +119,4 @@ Auth::routes();
 
 Route::get('/etiqueta/{tag}', 'StoryController@storiesByTag')->name('tag.stories');
 Route::get('/validar-slug', 'StoryController@validateSlug')->name('validate-slug');
+Route::get('/visualizaciones', 'VisualizationController@getByTypologyId')->name('typology.visualizations');
