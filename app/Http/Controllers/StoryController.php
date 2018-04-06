@@ -503,14 +503,9 @@ class StoryController extends Controller
             $title = $s->title;
             $a = $story->update($input);
             $action = 'updated';
-        } else {
-            $step = 1;
-            if ($request->has('step')) {
-                $step = $request->step;
-            }
+        } else {            
             $story = Story::create($input);
-            $story->author()->associate($author);
-            $redirect = route('node.create', [ 'story' => $story->getIdAttribute(), 'step' => ++$step ]);
+            $story->author()->associate($author);            
             $action = 'created';
         }
 
@@ -540,10 +535,16 @@ class StoryController extends Controller
             $story->slug = $slugValidator->createSlug($story->title);
         }
 
+        $step = 0;
+        if ($request->has('step')) {
+            $step = $request->step;
+        }
+
         if ($title !== null && $action == 'updated' && $title !== $story->title) {
             $redirect = route('story.edit', $story->slug);
         } elseif ($action == 'created') {
-            $redirect = route('node.create', $story->slug);
+            //le agrego el step, que viene de esta especie de wizard
+            $redirect = route('node.create', [ 'story' => $story->slug, 'step' => ++$step ]);
         }
 
         //status
@@ -559,7 +560,7 @@ class StoryController extends Controller
             'input' => $input,
             'redirect' => $redirect,
             'action' => $action,
-          //  'debug' =>  $s->title.' --- '.  $title
+            // 'debug' =>  $s->title.' --- '.  $title
         ]);
     }
 
