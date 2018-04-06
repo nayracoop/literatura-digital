@@ -18,6 +18,16 @@
             "program": "${file}",
             "cwd": "${fileDirname}",
             "port": 9000
+        },
+        {
+            "log": true,
+            "name": "XDebug listening to Laradock",
+            "type": "php",
+            "request": "launch",
+            "port": 9000,
+            "pathMappings": {
+                "/var/www": "/home/pehuen/local_code/bitbucket/literatura-digital"
+            }
         }
     ]
 }

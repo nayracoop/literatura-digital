@@ -8,7 +8,7 @@ Las tipologías (Typology/ies) definen los tipos de relatos:
 
 * Temporal / Calendario
 
-Orden cronológico de los text nodes (es un orden que eventualmnte dejaríamos alterar al usuario, pero cambiando la fecha de publicación o algo así)
+Orden cronológico de los text nodes (es un orden que eventualmente dejaríamos alterar al usuario, pero cambiando la fecha de publicación o algo así)
 
 > Con sus visualizaciones: IDEM
 
@@ -38,7 +38,7 @@ una tabla debería guardar estas relaciones y permitirles un orden de relacion p
 
 Acá cada nodo pertenecería a una "voz" o "personaje", entonces es parecida a los episodios, pueden reordenarse, pero a su vez cada nodo va a tener un color particular de acuerdo al personaje que lo contenga.
 
-> Con sus visualizaciones: CÍRCULOS, CUADRICULA, PUNTOS
+> Con sus visualizaciones: FICHAS, CUADRICULA, PUNTOS
 
 ## La visión de José
 

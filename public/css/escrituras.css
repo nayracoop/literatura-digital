@@ -114,7 +114,7 @@
   font-style: normal;
   font-weight: bold;
   src: url("../fonts/playlist/playlist-script.eot");
-  src: url("../fonts/playlist/playlist-script.eot?") format("eot"), url("../fonts/playlist/playlist-script.woff2") format("woff2"), url("../fonts/playlist/playlist-script.woff") format("woff"), url("../fonts/playlist/playlist-script.ttf") format("truetype"), url("../fonts/playlist/playlist-script.svg") format("svg"); }
+  src: url("../fonts/playlist/playlist-script.eot?") format("eot"), url("../fonts/playlist/playlist-script.woff") format("woff"), url("../fonts/playlist/playlist-script.ttf") format("truetype"), url("../fonts/playlist/playlist-script.svg") format("svg"); }
 html {
   height: 100%; }
 
@@ -1540,9 +1540,9 @@ form .tit-nodo input {
   font-family: "Caecilia", Arial, Helvetica, "Liberation Sans", sans-serif;
   line-height: 1.7; }
 
-.note-editor.note-frame .note-editing-area .note-editable.panel-body {
-  /*white-space: initial;
-  overflow-x: hidden;*/ }
+/*.note-editor.note-frame .note-editing-area .note-editable.panel-body {
+  white-space: initial;
+  overflow-x: hidden; }*/
 
 .note-editable.panel-body a {
   text-decoration: none;

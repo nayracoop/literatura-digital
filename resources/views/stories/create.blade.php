@@ -35,10 +35,9 @@
 </div>
 @endsection
 
+{{--  SCRIPTS  --}}
 @push('javascript')
-@include('stories.scripts.save-update')
-@include('stories.scripts.tags')
-@include('stories.scripts.upload-picture')
-<?php $validator = JsValidator::formRequest('App\Http\Requests\CreateStory', '#story-form'); ?>
-{!! $validator->view('layouts.validation') !!}
+    @include ('snippets.stories.include_scripts')
+    {!! $validator = JsValidator::formRequest('App\Http\Requests\CreateStory', '#story-form') !!}
+    {!! $validator->view('layouts.validation') !!}
 @endpush

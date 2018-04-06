@@ -31,7 +31,7 @@
 
 <textarea name="text" class="hidden"></textarea>
 <input name="story" value="{{ $story->_id }}" type="hidden" />
-<input name="status" id="nodeStatus" value="@if (isset($node)) {{ $node->status }} @else {{ \App\Models\Enums\StoryStatus::DRAFT }} @endif" type="hidden" />
+<input name="status" id="nodeStatus" value="@if (isset($node)) {{ $node->status }} @else {{ \App\Models\Enums\Status::DRAFT }} @endif" type="hidden" />
 @if (isset($node))
     <input name="id" id="nodeId" value="{{ $node->_id }}" type="hidden" />
 @endif

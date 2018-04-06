@@ -66,11 +66,11 @@
                         
                         // nombre al botón y al campo hidden
                         $nodeStatus = $('#nodeStatus');
-                        if($nodeStatus.val() === '{{ \App\Models\Enums\StoryStatus::DRAFT }}') {
-                            $nodeStatus.val('{{ \App\Models\Enums\StoryStatus::PUBLISHED }}')
+                        if($nodeStatus.val() === '{{ \App\Models\Enums\Status::DRAFT }}') {
+                            $nodeStatus.val('{{ \App\Models\Enums\Status::PUBLISHED }}')
                             //nombre al botón = 'MOVER A BORRADOR'
                         } else {
-                            $nodeStatus.val('{{ \App\Models\Enums\StoryStatus::DRAFT }}')
+                            $nodeStatus.val('{{ \App\Models\Enums\Status::DRAFT }}')
                             //nombre al botón = 'PUBLICAR'
                         }
                     }
@@ -90,10 +90,10 @@
         } else {
 
             $nodeStatus = $('#nodeStatus');
-            if($nodeStatus.val() === '{{ \App\Models\Enums\StoryStatus::DRAFT }}') {
-                $nodeStatus.val('{{ \App\Models\Enums\StoryStatus::PUBLISHED }}')
+            if($nodeStatus.val() === '{{ \App\Models\Enums\Status::DRAFT }}') {
+                $nodeStatus.val('{{ \App\Models\Enums\Status::PUBLISHED }}')
             } else {
-                $nodeStatus.val('{{ \App\Models\Enums\StoryStatus::DRAFT }}')
+                $nodeStatus.val('{{ \App\Models\Enums\Status::DRAFT }}')
             }
             save();
             // cambiar nombre al botón

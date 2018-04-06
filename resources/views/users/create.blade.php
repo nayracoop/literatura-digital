@@ -49,7 +49,7 @@
                 <div class="col-md-4">
                     <label for="portada">Imagen del usuario</label>
                     <div class="portada-border">
-                        <img src="{{asset('img/img-usuario.jpg')}}" alt="" />
+                        <img src="{{asset('img/img-usuario-default.jpg')}}" alt="" />
                     </div>
                     <input type="file" class="form-control portada-archivo" id="portada">
                 </div>
