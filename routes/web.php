@@ -63,8 +63,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     Route::post('/nuevo', 'StoryController@store')->name('story.store');
 
     # editar relato
-    Route::get('/{story}/editar', 'StoryController@edit')->name('story.edit');
-    Route::patch('/{story}/editar', 'StoryController@update')->name('story.update');
+    Route::get('/{story}/editar', 'StoryController@edit')->name('story.edit')->middleware('auth.author');
+    Route::patch('/{story}/editar', 'StoryController@update')->name('story.update')->middleware('auth.author');
 
     # crear nodos de un relato
     Route::get('/{story}/nuevo-fragmento', 'TextNodeController@create')->name('node.create');

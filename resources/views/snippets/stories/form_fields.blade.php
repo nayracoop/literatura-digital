@@ -28,8 +28,8 @@
                     <div class="styled-select">
                         <select type="text" class="form-control" id="genero" name="genre">
                             @foreach(\App\Models\Genre::all() as $genre)
-                                <option value="{{$genre->slug}}" 
-                                    @if (isset($story) && !empty($story->genre) && $story->genre === $genre->slug) 
+                                <option value="{{$genre->slug}}"
+                                    @if (isset($story) && !empty($story->genre) && $story->genre === $genre->slug)
                                         selected
                                     @endif>
                                     {{$genre->name}}
@@ -70,9 +70,9 @@
             @if (isset($story))
                 @foreach ($story->tags as $tag)
                     <div class="tag-item">
-                        <p>{{ $tag->name }}</p>                        
+                        <p>{{ $tag->name }}</p>
                         <button>@lang('messages.delete_tag')</button>
-                        <input type="hidden" name="tags[]" value="{{ $tag->name }}"/>                        
+                        <input type="hidden" name="tags[]" value="{{ $tag->name }}"/>
                     </div>
                 @endforeach
             @endif
@@ -83,6 +83,6 @@
     </div>
 
     {{--  ID DE LA HISTORIA  --}}
-    <input type="hidden" name="id" value="@if (isset($story)) {{ $story->_id }} @endif"/>
+    <input type="hidden" name="story" value="@if (isset($story)) {{ $story->_id }} @endif"/>
     {{--  visualización  --}}
     <input type="hidden" name="visualization" value="@if (isset($story)) {{ $story->visualization }} @else {{ \App\Models\Enums\Visualization::LIST[\App\Models\Enums\Typology::EPISODIC][0] }} @endif"/>

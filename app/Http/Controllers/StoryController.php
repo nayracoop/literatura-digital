@@ -148,8 +148,11 @@ class StoryController extends Controller
 
     public function edit($story)
     {
+        $editStory = Story::where('_id', $story)->orWhere('slug', $story)->first();
+
+
         return view('stories.edit')
-            ->with('story', Story::where('_id', $story)->orWhere('slug', $story)->first())
+            ->with('story', $editStory)
             ->with('typologies', Typology::values());
     }
 
@@ -480,8 +483,8 @@ class StoryController extends Controller
         $redirect = '';
         $action = '';
 
-        if ($request->has('id')) {
-            $s = Story::where('_id', $request->id)->first();
+        if ($request->has('story')) {
+            $s = Story::where('_id', $request->story)->first();
             $title = $s->title;
             $a = $s->update($input);
             $action = 'updated';
