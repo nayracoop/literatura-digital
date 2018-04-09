@@ -269,10 +269,10 @@ class StoryController extends Controller
      */
     public function like($story, $node = null)
     {
-        $likeable = Story::where('slug', $story)->first();
-
+        $likeable = Story::where('_id', $story)->first();
+        $status = null;
         if ($node != null) {
-            $likeable = $likeable->textNodes->where('slug', $node)->first();
+            $likeable = $likeable->textNodes->where('_id', $node)->first();
         }
 
         //echo $likeable;
@@ -282,15 +282,36 @@ class StoryController extends Controller
         $currentLike = $likeable->likes->where('user_id', $me->getIdAttribute())->first();
 
         if ($currentLike !== null) {
-            $likeable->likes()->destroy($currentLike);
+            //  $likeable->likes()->destroy($currentLike);
+            //$likeable->likes()->where('_id', $currentLike)->forceDelete();
+            $a = $likeable->likes->find($currentLike->_id);
+            $status = $a->status === 'liked' ?'unliked':'liked';
+            $a->status = $status;
+            $a->save();
+            /*
+            if (!isset($currentLike->deleted_at) || $currentLike->deleted_at == null) {
+                $a->delete();
+                $status = 'unliked';
+            } else {
+                $a->restore();
+                $status = 'liked';
+            }*/
+            //*/
+          //  $status = $a->status === 'liked' ?'unliked':'liked';
+          //  $a->save();
+
         } else {
-            $like = new Like();
+            $like = new Like(['status' => 'liked']);
             $like->user()->associate($me);
 
             $likeable->likes()->save($like);
+            $status = 'liked';
         }
 
-        return response()->json(['status' => 'ok']);
+        return response()->json([
+          'status' => $status,
+          'o' => $likeable->likes->count()
+        ]);
     }
 
     public function search(Request $request)

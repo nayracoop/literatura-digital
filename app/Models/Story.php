@@ -254,4 +254,14 @@ class Story extends BaseModel
         }
         return $count;
     }
+
+
+    /**
+    *
+    *
+    */
+    public function countLikes()
+    {
+        return $this->likes->where('status', 'liked')->get();
+    }
 }
