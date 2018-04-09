@@ -13,8 +13,8 @@
             @foreach( $nodes as $key => $node )
             <li>
               <p>{{ $date }}</p>
-              <h2>{{ $node->title }}</h2>
-              <p>{{ $node->text }}</p>
+              <h2>{!! $node->title !!}</h2>
+              <p>{!! $node->text !!}</p>
             </li>
             @endforeach
           </ul>

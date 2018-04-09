@@ -13,7 +13,7 @@
     <div class="container listado-relatos">
         <div class="row">
 
-            @include('textNodes.visualizations.' . $visualization->slug)
+            @include('textNodes.visualizations.' . $story->getVisualization()->slug)
 
             <div id="modo-listado" class="tabpanel">
                 <h1>Listado de nodos</h1>

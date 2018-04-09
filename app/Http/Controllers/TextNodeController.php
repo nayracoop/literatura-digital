@@ -28,15 +28,16 @@ class TextNodeController extends Controller
     public function index($story)
     {
         $myStory = Story::where('_id', $story)->orWhere('slug', $story)->first();
-        
+
         $typology = $myStory->typology;
-        $visualization = $typology->visualizations()->find($myStory->visualization_id);
+      //  $visualization = $typology->visualizations()->find($myStory->visualization_id);
 
         return view('textNodes.list')
             ->with('user', Auth::user())
             ->with('story', $myStory)
             ->with('typology', $typology)
-            ->with('visualization', $visualization);
+        //    ->with('visualization', $visualization);
+        ;
     }
 
     /**
@@ -75,13 +76,13 @@ class TextNodeController extends Controller
         if (isset($id)) {
             $textNode = TextNode::withTrashed()->find($id);
             $status = $textNode->status();
-    
+
             if ($status == Status::DRAFT) {
                 $textNode->status = Status::PUBLISHED;
             } else {
                 $textNode->status = Status::DRAFT;
             }
-    
+
             $textNode->save();
         }
 
@@ -105,9 +106,9 @@ class TextNodeController extends Controller
         $action = '';
         $story = Story::where('_id', $request->story)->first();
         $node = null;
-        
+
         $date = \App\Utils\Dates::getDateFromInput($input);
-        
+
         if ($request->has('id')) {
             $node = $story->textNodes->where('_id', $request->id)->first();
             $node->node_date = $date;

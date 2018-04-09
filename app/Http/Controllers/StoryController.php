@@ -521,12 +521,12 @@ class StoryController extends Controller
 
         if ($request->has('story') && !empty($request->story)) {
             $story = Story::where('_id', $request->story)->first();
-            $title = $s->title;
+            $title = $story->title;
             $a = $story->update($input);
             $action = 'updated';
-        } else {            
+        } else {
             $story = Story::create($input);
-            $story->author()->associate($author);            
+            $story->author()->associate($author);
             $action = 'created';
         }
 

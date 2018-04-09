@@ -262,6 +262,15 @@ class Story extends BaseModel
     */
     public function countLikes()
     {
-        return $this->likes->where('status', 'liked')->get();
+        return $this->likes->where('status', 'liked')->get()->count();
+    }
+
+    /**
+    *
+    *
+    */
+    public function getVisualization()
+    {
+        return $this->typology->visualizations()->find($this->visualization_id);
     }
 }
