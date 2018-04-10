@@ -48,13 +48,15 @@ class TextNodeController extends Controller
     public function show(Request $request, CookieJar $cookieJar, $story, $showStory)
     {
         $story = Story::where('slug', $story)->first();
+
         $textNode = $story->textNodes->where('slug', $showStory)->first();
+        /*
         if (Auth::check()) {
              UserHistory::addNode('user', $textNode, Auth::user());
               // var_dump(json_encode(Auth::user()->history, JSON_PRETTY_PRINT));
         } else {
              UserHistory::addNode('cookie', $textNode, $request, $cookieJar);
-        }
+        }*/
         return view('textNodes.show')
             ->with('story', $story)
             ->with('textNode', $textNode);
@@ -217,5 +219,29 @@ class TextNodeController extends Controller
             //  'textNodes' =>   $nodes,
               'calendar' => $calendar
           ]);
+    }
+
+
+    /**
+    * saveHistory
+    * @return Response json
+    */
+    public function saveHistory(Request $request, CookieJar $cookieJar, $story)
+    {
+        $status = '-';
+        $story = Story::where('_id', $story)->first();
+        $textNode = $story->textNodes->where('slug', $request->node)->first();
+        if (Auth::check()) {
+             UserHistory::addNode('user', $textNode, Auth::user());
+             $status = 'added to user';
+              // var_dump(json_encode(Auth::user()->history, JSON_PRETTY_PRINT));
+        } else {
+             UserHistory::addNode('cookie', $textNode, $request, $cookieJar);
+             $status = 'updated history cookie';
+        }
+
+        return response()->json([
+          'status' => $status
+        ]);
     }
 }

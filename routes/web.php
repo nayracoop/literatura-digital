@@ -120,3 +120,5 @@ Auth::routes();
 Route::get('/etiqueta/{tag}', 'StoryController@storiesByTag')->name('tag.stories');
 Route::get('/validar-slug', 'StoryController@validateSlug')->name('validate-slug');
 Route::get('/visualizaciones', 'VisualizationController@getByTypologyId')->name('typology.visualizations');
+#historial de nodos
+Route::post('/historial/nodo/{story}', 'TextNodeController@saveHistory')->name('history.save-node');

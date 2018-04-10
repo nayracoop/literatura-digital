@@ -10,7 +10,7 @@ function readNode() {
   var id = $(this).attr('id');
    id = $(this).data('node');
   var node = $('#ventana-nodo-'+id);
-
+  saveNodeHistory(node,id);
   console.log( 'id '+ id);
   console.log( 'modadl id '+ node.data('node'));
   console.log( 'NODO-- '+ node);
@@ -97,4 +97,32 @@ $('.btn-guardar').click(function(e){
     var val = $('input[name="title"]').val();
     $('li[data-node="'+val+'"]').text(val);
 });
+
+
+function saveNodeHistory(node, nodeId)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "{{route('history.save-node',$story->id)}}", true);
+  xhttp.setRequestHeader("X-CSRF-Token", "{{csrf_token()}}");
+  xhttp.send('node='+nodeId);
+  xhttp.addEventListener("readystatechange", function (e) {
+      var el = e.target;
+      if (xhttp.readyState == 4) {
+          console.log('status: ' + xhttp.status);
+          if (xhttp.status === 200) {
+              var jsonResponse = JSON.parse(xhttp.response);
+              console.log(jsonResponse.status);
+              /*
+              if (jsonResponse.status === 'liked') {
+                  $('.btn-social.like').addClass('active');
+              } else {
+                  $('.btn-social.like').removeClass('active');
+              }*/
+
+          } else {
+              console.log(xhttp.status + ' ' + xhttp.statusText);
+          }
+      }
+  });
+}
 </script>

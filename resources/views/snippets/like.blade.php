@@ -1,6 +1,6 @@
 @php
 $likeActive = '';
-if ( $story->likes->where('status', 'liked')->where('user_id', \Auth::user()->_id)->first() !== null ) {
+if ( \Auth::check() && $story->likes->where('status', 'liked')->where('user_id', \Auth::user()->_id)->first() !== null ) {
     $likeActive = 'active';
 }
 @endphp

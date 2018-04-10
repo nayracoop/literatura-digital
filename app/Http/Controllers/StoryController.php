@@ -82,7 +82,7 @@ class StoryController extends Controller
              UserHistory::addStory('user', $story, Auth::user());
         } else {
              UserHistory::addStory('cookie', $story, $request, $cookieJar);
-          //var_dump(json_encode($request->cookie('history'), JSON_PRETTY_PRINT));
+             //var_dump(json_encode($request->cookie('history'), JSON_PRETTY_PRINT));
         }
 
         return view('stories.show')
