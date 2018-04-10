@@ -4,7 +4,7 @@ if ( $story->likes->where('status', 'liked')->where('user_id', \Auth::user()->_i
     $likeActive = 'active';
 }
 @endphp
-<a href="#" class="btn-social share">Compartir</a>
+<!--<a href="#" class="btn-social share">Compartir</a>-->
 <a href="#" class="btn-social like  {{$likeActive}}">Me gusta</a>
 @push('javascript')
 <script type="text/javascript">
@@ -22,9 +22,13 @@ if ( $story->likes->where('status', 'liked')->where('user_id', \Auth::user()->_i
               if (xhttp.status === 200) {
                   var jsonResponse = JSON.parse(xhttp.response);
                   console.log(jsonResponse.status);
+                  if (jsonResponse.status === 'liked') {
+                      $('.btn-social.like').addClass('active');
+                  } else {
+                      $('.btn-social.like').removeClass('active');
+                  }
 
               } else {
-                  $('.guardado.error').addTemporaryClass('active', 1500);
                   console.log(xhttp.status + ' ' + xhttp.statusText);
               }
           }
