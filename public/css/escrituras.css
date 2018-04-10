@@ -2,9 +2,9 @@
 /* BREAKPOINTS */
 /*
 .col- 	 < 576px
-.col-sm- ÔëÑ 576px	
-.col-md- ÔëÑ 768px	
-.col-lg- ÔëÑ 992px	
+.col-sm- ÔëÑ 576px
+.col-md- ÔëÑ 768px
+.col-lg- ÔëÑ 992px
 .col-xl- ÔëÑ1200px
 */
 /* cambios en container para no pisra el border blanco -60px */
@@ -1482,7 +1482,7 @@ form .tit-nodo input {
 .botones-save-form {
   position: absolute;
   bottom: -20px;
-  right: 15px; 
+  right: 15px;
   z-index: 6; }
 
 @media only screen and (max-width: 576px) {

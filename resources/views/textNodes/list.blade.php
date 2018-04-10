@@ -64,8 +64,4 @@
 @endsection
 
 @push('javascript')
-<script>
-//$(document).ready(function(){
-//});
-</script>
 @endpush

@@ -1,3 +1,4 @@
+@include('snippets.like')
 <div class="container">
     <div class="comentarios">
       <h2 class="tit-usuario">@lang('messages.comments')</h2>

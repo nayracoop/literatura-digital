@@ -257,7 +257,7 @@ class Story extends BaseModel
 
 
     /**
-    *
+    * countLikes cantidad de me gusta
     *
     */
     public function countLikes()
@@ -266,8 +266,8 @@ class Story extends BaseModel
     }
 
     /**
-    *
-    *
+    * getVisualization  facilita el objeto con clase Visualization a partir de refencian de id
+    * @param id
     */
     public function getVisualization()
     {
