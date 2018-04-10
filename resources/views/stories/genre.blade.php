@@ -4,10 +4,10 @@
 @section('content')
 
 <div class="container-fluid">
-    <div class="row">   
-      <div class="encabezado-categoria">      
+    <div class="row">
+      <div class="encabezado-categoria">
         <div class="container">
-          <div class="row">         
+          <div class="row">
             <div class="col-md-12">
               <h1>{{ ucfirst($title) }}</h1>
               <div class="container-tags">
@@ -26,7 +26,7 @@
 
   <div class="container-fluid">
     <div class="buscador">
-      <div class="container">        
+      <div class="container">
         <div class="row">
           <div class="col-md-12">
             <form id='stories_search'>
@@ -83,12 +83,12 @@ function search() {
         var stories = newResponse.stories;
         $('.items-listado').empty();
         $('.items-listado').append(stories);
-
+        hashChangedUpdate();
         // todo agregar funcionalidad:
         // clase a la etiqueta clickeada y (x)
         // para eliminar el filtro por etiqueta
 
-        // var tags = newResponse.tags;        
+        // var tags = newResponse.tags;
         // console.log(newResponse);
         // console.log(tags);
         // $('.container-tags').empty();
