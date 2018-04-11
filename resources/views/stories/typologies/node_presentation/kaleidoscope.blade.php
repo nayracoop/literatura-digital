@@ -70,7 +70,10 @@
 				if(triaglePos%2) draw = 'M ' + x + ' ' + (y + size) + ' l ' + half + ' -' + size + ' l -' + size + ' 0 z';
 				else draw = 'M ' + x + ' ' + y + ' l ' + half + ' ' + size + ' l -' + size + ' 0 z';
 
-				grindex.append('path').attr('d', draw);
+				grindex.append('path')
+        .attr('d', draw)
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 'thin')
 			}
 		})
 		.selectAll("a")
@@ -88,6 +91,9 @@
 				var half = size/2;
 
 				var n = i + bumpsCount;
+        var x, y;
+        var isFirst = false;
+
 				if(n == boardRowH-1 && triaglePos%2 == 0) {
 					n++;
 					bumpsCount++;
@@ -96,9 +102,32 @@
 				if(n == boardSize-boardRowH && triaglePos%2 == 0) {
 					n++;
 					bumpsCount++;
+          isFirst = true;
 					// triaglePos++;
 				}
 				if(n%boardRowH == 0 && boardRowH%2 == 0) triaglePos++;
+
+        if(n%boardRowH == 0 || isFirst) {
+          var draw;
+          x = (half/-2) + half * (1+n%((boardRowV)*2));
+          y = size * Math.floor(n/((boardRowV)*2));
+          if(triaglePos%2) draw = 'M ' + (x-half) + ' ' + (y + size) + ' l ' + half + ' -' + size + ' l -' + size + ' 0 z';
+          else draw = 'M ' + (x-half) + ' ' + y + ' l ' + half + ' ' + size + ' l -' + size + ' 0 z';
+          grindex.append('path')
+          .attr('d', draw)
+          .attr('stroke', '#fff')
+          .attr('stroke-width', 'thin');
+        } else if(n%boardRowH == boardRowH-1) {
+          var draw;
+          x = (half/-2) + half * (1+n%((boardRowV)*2));
+          y = size * Math.floor(n/((boardRowV)*2));
+          if(triaglePos%2) draw = 'M ' + (x+half) + ' ' + (y + size) + ' l ' + half + ' -' + size + ' l -' + size + ' 0 z';
+          else draw = 'M ' + (x+half) + ' ' + y + ' l ' + half + ' ' + size + ' l -' + size + ' 0 z';
+          grindex.append('path')
+          .attr('d', draw)
+          .attr('stroke', '#fff')
+          .attr('stroke-width', 'thin');
+        }
 
 				/*if(i != 0 && i%bumpsFreq == 0) {
 					triaglePos++;
@@ -107,8 +136,8 @@
 					if(n%boardRowH == 0 && boardRowH%2 == 0) triaglePos++;
 				}*/
 
-				var x = (half/-2) + half * (1+n%((boardRowV)*2));
-				var y = size * Math.floor(n/((boardRowV)*2));
+        x = (half/-2) + half * (1+n%((boardRowV)*2));
+        y = size * Math.floor(n/((boardRowV)*2));
 
 				triaglePos++;
 				//bumpsCount++;
@@ -137,7 +166,10 @@
 				if(triaglePos%2) draw = 'M ' + x + ' ' + (y + size) + ' l ' + half + ' -' + size + ' l -' + size + ' 0 z';
 				else draw = 'M ' + x + ' ' + y + ' l ' + half + ' ' + size + ' l -' + size + ' 0 z';
 
-				grindex.append('path').attr('d', draw);
+				grindex.append('path')
+        .attr('d', draw)
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 'thin');
 			}
 
 			if(boardRowH%5 == 1) {

@@ -28,6 +28,8 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  padding: 0;
+  margin: 0;
   /* position: absolute;
   top:0; */
 }
@@ -194,7 +196,8 @@ body {
   /* background-image: url(../img/visualizaciones/diagonal-lines-pattern.png); */
   background-color: #111;
   overflow: visible;
-  /* padding:20px; */
+  padding:0;
+  margin: 0;
 }
 
 .grindex.grid li {
@@ -294,7 +297,8 @@ body {
   /* background-image: url(../img/visualizaciones/diagonal-lines-pattern.png); */
   background-color: #111;
   overflow: visible;
-  /* padding:20px; */
+  padding:0;
+  margin:0;
 }
 
 .grindex.circles .frame {
@@ -492,8 +496,8 @@ body {
 .grindex.kaleidoscope a:nth-child(5n+2) path { fill:#eb4873; }
 .grindex.kaleidoscope a:nth-child(5n+3) path { fill:#fd873d; }
 .grindex.kaleidoscope a:nth-child(5n+4) path { fill:#64404c; }
-.grindex.kaleidoscope path:nth-child(2n+0) { fill:#ddd; }
-.grindex.kaleidoscope path:nth-child(2n+1) { fill:#e6e6e6; }
+.grindex.kaleidoscope path:nth-of-type(2n+0) { fill:#ddd; }
+.grindex.kaleidoscope path:nth-of-type(2n+1) { fill:#e6e6e6; }
 
 .grindex.kaleidoscope li a::after,
 .grindex.kaleidoscope li a::before/*,
