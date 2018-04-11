@@ -55,7 +55,7 @@
                                             @if($story->cover != null && !empty($story->cover))
                                                 <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">
                                             @else
-                                                <img alt="" src="{{ asset('img/img-3.jpg')}}">
+                                                <img alt="" src="{{ asset('img/img-relato-default.jpg') }}">
                                             @endif
                                         </div>
                                     </a>
@@ -65,7 +65,7 @@
                                 </td>
                                 <td class="ocultar-sm">{{ date('d.m.Y', strtotime($story->created_at) ) }}</td>
                                 <td class="ocultar-lg">{{ $story->countChars() }}</td>
-                                <td class="ocultar-sm">{{ $story->status }}</td>
+                                <td class="ocultar-sm">{{ ucfirst($story->status) }}</td>
                                 <td class="ocultar-sm">{{ $story->likes->count() }}</td>
                                 <td>
                                     <a href="{{ route('nodes.index', $story->_id) }}">

@@ -3,8 +3,7 @@
             $user = auth()->user();
         @endphp
         @if($user->role == \App\Models\Enums\UserType::AUTHOR)
-            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('contact') }}"><a href="{{ route('contact') }}">@lang('menu.contact')</a></li>
-            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('stories.list') }}"><a href="{{ route('stories.list') }}">@lang('menu.write')</a></li>
+            <li class="{{ \App\Utils\MenuHelper::isActiveRoute('contact') }}"><a href="{{ route('contact') }}">@lang('menu.contact')</a></li>            
             {{--  <li class="{{ \App\Utils\MenuHelper::isActiveRoute('story.create') }}"><a href="{{ route('story.create') }}">@lang('menu.create_story')</a></li>  --}}
         @elseif($user->role == \App\Models\Enums\UserType::MOD)
             <li class="{{ \App\Utils\MenuHelper::isActiveRoute('tags.index') }}"><a href="{{ route('tags.index') }}">@lang('menu.labels')</a></li>

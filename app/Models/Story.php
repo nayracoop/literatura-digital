@@ -6,7 +6,7 @@ use App\Models\BaseModel;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 use Lang;
 use Auth;
-use App\Models\Enums\StoryStatus;
+use App\Models\Enums\Status;
 
 class Story extends BaseModel
 {
@@ -18,7 +18,8 @@ class Story extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'description', 'typology', 'genre', 'cover', 'type', 'attachment', 'published_at'
+        'title', 'status', 'slug', 'description',// 'typology', 'visualization',
+        'genre', 'cover', 'type', 'attachment', 'published_at'
     ];
 
     protected $dates = [
@@ -75,6 +76,96 @@ class Story extends BaseModel
         return $this->embedsMany('\App\Models\Like');
     }
 
+    public function visualization()
+    {
+        //return $this->hasOne('\App\Models\Visualization');
+        return $this->belongsTo('\App\Models\Visualization');
+    }
+
+    public function typology()
+    {
+        return $this->belongsTo('\App\Models\Typology');
+    }
+
+    /**
+    * textNodesByDate retorna un array con los relatos separados por dia. Locacliza y formatea la fecha
+    * admite como parametro el mes y anho para filtrar
+    * @param $mont
+    * @param $year
+    * @return array
+    **/
+    public function textNodesByDate($month = null, $year = null)
+    {
+        $calendar = [];
+        // \Carbon\Carbon::setLocale('es');
+        // \Carbon\Carbon::setUtf8(true);
+
+        foreach ($this->textNodes->sortBy('created_at') as $node) {
+            if ($month !== null && $year !== null) {
+                if ($node->created_at->month == $month && $node->created_at->year == $year) {
+                    $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
+                }
+            } else {
+                $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
+            }
+        }
+
+        return $calendar;
+    }
+
+    /**
+    * getNextMonth   usados para calendario.Permite a partir de un nodo saber cual es el siguiente mes
+    * con nodos
+    * @param $mont, $year
+    * @return Carbon or null
+    *
+    */
+    public function getNextMonth($month, $year)
+    {
+        $currentMonth = \Carbon\Carbon::create($year, $month, 1);
+        $nextMonth = \Carbon\Carbon::create($year, $month, 1)->addMonth()->firstOfMonth();
+        $next = null;
+        $nodes = $this->textNodes->where('created_at', '>=', $nextMonth)->sortByDesc('created_at');
+        while ($next == null && $nodes->count() > 0) {
+            $node = $nodes->pop();
+            if ($node->created_at->month == $nextMonth->month) {
+                // $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
+                $next = $nextMonth;
+            } else {
+                $nextMonth = $nextMonth->addMonth()->firstOfMonth();
+                $nodes = $this->textNodes->where('created_at', '>=', $nextMonth)->sortByDesc('created_at');
+            }
+        }
+        return $next;
+    }
+
+    /**
+    *
+    * getPrevMonth  usados para calendario.Permite a partir de un nodo saber cual es el anterior mes
+    * con nodos
+    * @param nodeId
+    * @return Carbon or null
+    *
+    */
+    public function getPrevMonth($month, $year)
+    {
+        $currentMonth = \Carbon\Carbon::create($year, $month, 20);
+        $prevMonth = $currentMonth->subMonth()->firstOfMonth();
+        $prev = null;
+        $nodes = $this->textNodes->where('created_at', '<=', $prevMonth)->sortByDesc('created_at');
+        while ($prev == null && $nodes->count() > 0) {
+            $node = $nodes->pop();
+            if ($node->created_at->month == $prevMonth->month) {
+            //  $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
+                $prev = $prevMonth;
+            } else {
+                $prevMonth = $prevMonth->subMonth()->firstOfMonth();
+                $nodes = $this->textNodes->where('created_at', '>=', $prevMonth)->sortByDesc('created_at');
+            }
+        }
+        return $prev;
+    }
+
     /**
     * scopeFeatured
     *
@@ -92,7 +183,7 @@ class Story extends BaseModel
         if (Auth::check() && Auth::user()->isAdminOrMod()) {
             $stories = $query->get();
         } else {
-            $stories = $query->where('status', StoryStatus::PUBLISHED)->take($count)->get();
+            $stories = $query->where('status', Status::PUBLISHED)->take($count)->get();
         }
         return $stories;
     }
@@ -111,7 +202,6 @@ class Story extends BaseModel
     {
         return $query->where('author_id', $id);
     }
-
 
     /**
     * scopeChoralVoices
@@ -165,32 +255,22 @@ class Story extends BaseModel
         return $count;
     }
 
+
     /**
-     *  Reader
-     *
-     * Envia el proceso de la histortia de acuerdo al tipo de relato
-     */
-    public function reader()
+    * countLikes cantidad de me gusta
+    *
+    */
+    public function countLikes()
     {
-        switch ($this->typology) {
-            case 'lineal':
-                # code...
-            break;
-            case 'temporal':
-                # code...
-            break;
-            case 'cyowa':
-                # code...
-            break;
-            case 'coral':
-                # code...
-            break;
-            case 'episode':
-            # code...
-            break;
-            default:
-            # code...
-            break;
-        }
+        return $this->likes->where('status', 'liked')->get()->count();
+    }
+
+    /**
+    * getVisualization  facilita el objeto con clase Visualization a partir de refencian de id
+    * @param id
+    */
+    public function getVisualization()
+    {
+        return $this->typology->visualizations()->find($this->visualization_id);
     }
 }

@@ -175,6 +175,7 @@ form .tit-nodo input{
   position: absolute;
   bottom: -20px;
   right: 15px;
+  z-index: 6;
 }
 
 @media only screen and (max-width: ($screen-sm)) {

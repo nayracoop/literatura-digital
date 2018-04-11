@@ -10,11 +10,12 @@ use App\Models\TextNode;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Tag;
-use App\Models\Enums\StoryStatus;
-use App\Models\Enums\Typology;
+use App\Models\Typology;
+use App\Models\Enums\Status;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
 use View;
+use Lang;
 use Illuminate\Cookie\CookieJar;
 use App\Utils\UserHistory;
 
@@ -81,7 +82,7 @@ class StoryController extends Controller
              UserHistory::addStory('user', $story, Auth::user());
         } else {
              UserHistory::addStory('cookie', $story, $request, $cookieJar);
-          //var_dump(json_encode($request->cookie('history'), JSON_PRETTY_PRINT));
+             //var_dump(json_encode($request->cookie('history'), JSON_PRETTY_PRINT));
         }
 
         return view('stories.show')
@@ -103,8 +104,16 @@ class StoryController extends Controller
      */
     public function create($step = null)
     {
+        //paso todas las tipologías
+        //y las visualizaciones asociadas a la primer tipología
+        $typologies = Typology::all();
+        $visualizations = Typology::first()->visualizations;
+
+        //muestro el resto de las visuzalizaciones a partir del onChange de tipologías en el formulario.
         return view('stories.create')
-            ->with('step', $step);
+            ->with('step', $step)
+            ->with('typologies', $typologies)
+            ->with('visualizations', $visualizations);
     }
 
      /**
@@ -112,9 +121,7 @@ class StoryController extends Controller
      */
     public function storeStory(Request $request)
     {
-        $author = Auth::user();
         $input = $request->all();
-        $story =  new \App\Models\Story();
 
         //imagen de portada
         if ($request->hasFile('cover') && $request->file('cover')->isValid()) {
@@ -129,17 +136,23 @@ class StoryController extends Controller
         }
 
         //@todo validar slug
-        $s = $story->create($input);
+        $s = Story::create($input);
 
         // publicar o borrador
         if ($request->has('draft')) {
-            $s->status = StoryStatus::DRAFT;
+            $s->status = Status::DRAFT;
         } else {
-            $s->status = StoryStatus::PUBLISHED;
+            $s->status = Status::PUBLISHED;
         }
+
+        $author = Auth::user();
+        $typology = Typology::find($input['typology']);
+        $visualization = $typology->visualizations()::find($input['visualization']);
 
         $s->slug = str_slug($s->title);
         $s->author()->associate($author);
+        $s->typology()->save($typology);
+        $s->visualization()->save($visualization);
         $s->save();
 
         return redirect()->back();
@@ -147,9 +160,14 @@ class StoryController extends Controller
 
     public function edit($story)
     {
+        $myStory = Story::where('_id', $story)->orWhere('slug', $story)->first();
+        $typologies = Typology::all();
+        $visualizations = $myStory->typology->visualizations;
+
         return view('stories.edit')
-            ->with('story', Story::where('_id', $story)->orWhere('slug', $story)->first())
-            ->with('typologies', Typology::values());
+            ->with('story', $myStory)
+            ->with('typologies', $typologies)
+            ->with('visualizations', $visualizations);
     }
 
     public function updateStory(Request $request, $slug)
@@ -176,9 +194,9 @@ class StoryController extends Controller
 
         // publicar o borrador
         if ($request->has('draft')) {
-            $story->status = StoryStatus::DRAFT;
+            $story->status = Status::DRAFT;
         } else {
-            $story->status = StoryStatus::PUBLISHED;
+            $story->status = Status::PUBLISHED;
         }
 
         $story->slug = str_slug($story->title);
@@ -220,9 +238,9 @@ class StoryController extends Controller
 
         // publicar o borrador
         if ($request->has('draft')) {
-            $node->status = StoryStatus::DRAFT;
+            $node->status = Status::DRAFT;
         } else {
-            $node->status = StoryStatus::PUBLISHED;
+            $node->status = Status::PUBLISHED;
         }
 
         $story->textNodes()->save($node);
@@ -251,10 +269,10 @@ class StoryController extends Controller
      */
     public function like($story, $node = null)
     {
-        $likeable = Story::where('slug', $story)->first();
-
+        $likeable = Story::where('_id', $story)->first();
+        $status = null;
         if ($node != null) {
-            $likeable = $likeable->textNodes->where('slug', $node)->first();
+            $likeable = $likeable->textNodes->where('_id', $node)->first();
         }
 
         //echo $likeable;
@@ -264,15 +282,36 @@ class StoryController extends Controller
         $currentLike = $likeable->likes->where('user_id', $me->getIdAttribute())->first();
 
         if ($currentLike !== null) {
-            $likeable->likes()->destroy($currentLike);
+            //  $likeable->likes()->destroy($currentLike);
+            //$likeable->likes()->where('_id', $currentLike)->forceDelete();
+            $a = $likeable->likes->find($currentLike->_id);
+            $status = $a->status === 'liked' ?'unliked':'liked';
+            $a->status = $status;
+            $a->save();
+            /*
+            if (!isset($currentLike->deleted_at) || $currentLike->deleted_at == null) {
+                $a->delete();
+                $status = 'unliked';
+            } else {
+                $a->restore();
+                $status = 'liked';
+            }*/
+            //*/
+          //  $status = $a->status === 'liked' ?'unliked':'liked';
+          //  $a->save();
+
         } else {
-            $like = new Like();
+            $like = new Like(['status' => 'liked']);
             $like->user()->associate($me);
 
             $likeable->likes()->save($like);
+            $status = 'liked';
         }
 
-        return response()->json(['status' => 'ok']);
+        return response()->json([
+          'status' => $status,
+          'o' => $likeable->likes->count()
+        ]);
     }
 
     public function search(Request $request)
@@ -298,11 +337,11 @@ class StoryController extends Controller
         if (Auth::check()) {
             $isAdminOrMod = Auth::user()->isAdminOrMod() ? true : false;
         }
-        
+
         $query = Story::query();
 
         if (!$isAdminOrMod) {
-            $query->where('status', StoryStatus::PUBLISHED);
+            $query->where('status', Status::PUBLISHED);
         }
 
         if (isset($genre) && $genre != 'todos') {
@@ -362,15 +401,15 @@ class StoryController extends Controller
         $tags = [];
         $results = '';
         $isAdminOrMod = false;
-        
+
         if (Auth::check()) {
             $isAdminOrMod = Auth::user()->isAdminOrMod() ? true : false;
         }
-        
+
         $query = Story::query();
 
         if (!$isAdminOrMod) {
-            $query->where('status', StoryStatus::PUBLISHED);
+            $query->where('status', Status::PUBLISHED);
         }
 
         if (isset($genre)) {
@@ -380,7 +419,7 @@ class StoryController extends Controller
         } else {
             $title = 'Todos';
         }
-        
+
         $stories = $query->orderBy('created_at')->get();
 
         foreach ($stories as $story) {
@@ -399,7 +438,7 @@ class StoryController extends Controller
 
             return response()->json(['genre'=>$search, 'results' => $results]);
         }
-            
+
         return view('stories.genre')
             ->with('stories', $stories)
             ->with('tags', $tags)
@@ -426,10 +465,10 @@ class StoryController extends Controller
 
         if ($isAdminOrMod) {
             $story = Story::find($id);
-            if ($story->status == StoryStatus::PUBLISHED) {
-                $story->status = StoryStatus::DRAFT;
+            if ($story->status == Status::PUBLISHED) {
+                $story->status = Status::DRAFT;
             } else {
-                $story->status = StoryStatus::PUBLISHED;
+                $story->status = Status::PUBLISHED;
             }
             $story->save();
             $results = 'Success';
@@ -474,41 +513,76 @@ class StoryController extends Controller
     {
         $story = null;
         $s = null;
+        $title = null;
         $input = $request->all();
+        $author = Auth::user();
         $redirect = '';
         $action = '';
 
-        if ($request->has('id')) {
-            $s = Story::where('_id', $request->id)->first();
-            $a = $s->update($input);
+        if ($request->has('story') && !empty($request->story)) {
+            $story = Story::where('_id', $request->story)->first();
+            $title = $story->title;
+            $a = $story->update($input);
             $action = 'updated';
-            $redirect = route('nodes.index', $s->getIdAttribute());
         } else {
-            $story = new Story();
-            $s = $story->create($input);
-            $s->author()->associate(Auth::user());
+            $story = Story::create($input);
+            $story->author()->associate($author);
             $action = 'created';
-            $redirect = route('node.create', $s->getIdAttribute());
         }
+
+        $typology = Typology::find($input['typology']);
+        $visualization = $typology->visualizations()->find($input['visualization']);
+
+        //guardo la tipología y la visualización asociada al relato
+        //$story->typology()->save($typology);
+        $story->typology()->associate($typology);
+        $story->visualization()->associate($visualization);
+
         //guarda etiquetas como camelcase
+        $story->unset('tags');
         if ($request->has('tags')) {
-            $s->unset('tags');
             foreach ($request->tags as $tag) {
                 $tag = camel_case($tag);
-                if ($s->tags->where('name', $tag)->first() === null) {
-                     $s->tags()->create(['name' => $tag]);
+                if ($story->tags->where('name', $tag)->first() === null) {
+                    $story->tags()->create(['name' => $tag]);
                 }
             }
         }
-        $s->save();
+        //slug
+        $slugValidator = new \App\Utils\SlugValidator();
+        if (empty($story->title) || $story->title === null) {
+            $story->slug = $slugValidator->createSlug(Lang::get('messages.untitled'));
+        } else {
+            $story->slug = $slugValidator->createSlug($story->title);
+        }
+
+        $step = 0;
+        if ($request->has('step')) {
+            $step = $request->step;
+        }
+
+        if ($title !== null && $action == 'updated' && $title !== $story->title) {
+            $redirect = route('story.edit', $story->slug);
+        } elseif ($action == 'created') {
+            //le agrego el step, que viene de esta especie de wizard
+            $redirect = route('node.create', [ 'story' => $story->slug, 'step' => ++$step ]);
+        }
+
+        //status
+        if (!isset($story->status) || $story->status === null) {
+          //  $story->status = StoryStatus::DRAFT;
+        }
+
+        $story->save();
 
         return response()->json([
-            'author' => Auth::user()->_id,
-            'id' => $s->getIdAttribute(),
+            'author' => $author->_id,
+            'id' => $story->getIdAttribute(),
             'input' => $input,
             'redirect' => $redirect,
-            'action' => $action
-            ]);
+            'action' => $action,
+            // 'debug' =>  $s->title.' --- '.  $title
+        ]);
     }
 
     /**
@@ -552,5 +626,19 @@ class StoryController extends Controller
               'status' => $status,
               'color' => $request->color
           ]);
+    }
+
+
+
+    /**
+    *
+    */
+    public function validateSlug(Request $request)
+    {
+         $slugValidator = new \App\Utils\SlugValidator();
+         $slug = $slugValidator->createSlug($request->slug);
+         return response()->json([
+              'slug' => $slug
+         ]);
     }
 }

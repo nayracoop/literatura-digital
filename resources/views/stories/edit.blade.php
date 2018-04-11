@@ -36,7 +36,7 @@
 @endsection
 
 @push('javascript')
-@include('stories.scripts.save-update')
-@include('stories.scripts.tags')
-{!! JsValidator::formRequest('App\Http\Requests\UpdateStory', '#story-form') !!}
+@include ('snippets.stories.include_scripts')
+{!! $validator = JsValidator::formRequest('App\Http\Requests\UpdateStory', '#story-form') !!}
+{!! $validator->view('layouts.validation') !!}
 @endpush

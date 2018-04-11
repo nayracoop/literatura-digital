@@ -1,38 +1,46 @@
 <script>
 /* BOTONES MODAL */
-$('.leer').click(function(e) {
-    e.preventDefault();
-    var id = $(this).attr('id');
-     id = $(this).data('node');
-    var node = $('#ventana-nodo-'+id);
 
-    console.log( 'id '+ id);
-    console.log( 'modadl id '+ node.data('node'));
-    console.log( 'NODO-- '+ node);
+    readNode();
 
-    if($('.nodo-backdrop-fondo').hasClass('esconder')){
-       $('.nodo-backdrop-fondo').removeClass('esconder');
-    }
-    //node.removeClass('esconder');
-    if(node.hasClass('esconder')){
-    //	  console.log( node.removeClass('esconder'));
-        node.removeClass('esconder');
-        //node.attr('class','ssss');
-      //	$('body').addClass('overflow');
-    }else{
-        node.addClass('esconder');
-    //		$('body').removeClass('overflow');
-    }
+
+function readNode() {
+  $('.leer').click(function(e) {
+  e.preventDefault();
+  var id = $(this).attr('id');
+   id = $(this).data('node');
+  var node = $('#ventana-nodo-'+id);
+  saveNodeHistory(node,id);
+  console.log( 'id '+ id);
+  console.log( 'modadl id '+ node.data('node'));
+  console.log( 'NODO-- '+ node);
+
+  if($('.nodo-backdrop-fondo').hasClass('esconder')){
+     $('.nodo-backdrop-fondo').removeClass('esconder');
+  }
+  //node.removeClass('esconder');
+  if(node.hasClass('esconder')){
+  //	  console.log( node.removeClass('esconder'));
+      node.removeClass('esconder');
+      //node.attr('class','ssss');
+    //	$('body').addClass('overflow');
+  }else{
+      node.addClass('esconder');
+  //		$('body').removeClass('overflow');
+  }
 
 /*
-  if($('.nodo-backdrop').hasClass('esconder')){
-    $('.nodo-backdrop').removeClass('esconder');
-  }else{
-    $('.nodo-backdrop').addClass('esconder');
-  }
-  */
-    return false;
-});
+if($('.nodo-backdrop').hasClass('esconder')){
+  $('.nodo-backdrop').removeClass('esconder');
+}else{
+  $('.nodo-backdrop').addClass('esconder');
+}
+*/
+  return false;
+  });
+}
+
+
 //--
 $('.edit').click(function(e) {
   e.preventDefault();
@@ -89,4 +97,32 @@ $('.btn-guardar').click(function(e){
     var val = $('input[name="title"]').val();
     $('li[data-node="'+val+'"]').text(val);
 });
+
+
+function saveNodeHistory(node, nodeId)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "{{route('history.save-node',$story->id)}}", true);
+  xhttp.setRequestHeader("X-CSRF-Token", "{{csrf_token()}}");
+  xhttp.send('node='+nodeId);
+  xhttp.addEventListener("readystatechange", function (e) {
+      var el = e.target;
+      if (xhttp.readyState == 4) {
+          console.log('status: ' + xhttp.status);
+          if (xhttp.status === 200) {
+              var jsonResponse = JSON.parse(xhttp.response);
+              console.log(jsonResponse.status);
+              /*
+              if (jsonResponse.status === 'liked') {
+                  $('.btn-social.like').addClass('active');
+              } else {
+                  $('.btn-social.like').removeClass('active');
+              }*/
+
+          } else {
+              console.log(xhttp.status + ' ' + xhttp.statusText);
+          }
+      }
+  });
+}
 </script>

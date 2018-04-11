@@ -1,9 +1,9 @@
-@extends('layouts.main') 
-@section('title') 
-    @lang('Buscar Relatos') 
-@endsection 
-@section('body_class') 
-    class="white" 
+@extends('layouts.main')
+@section('title')
+    @lang('Buscar Relatos')
+@endsection
+@section('body_class')
+    class="white"
 @endsection
 @section('content')
 <div class="container listado-container">

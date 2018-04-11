@@ -27,6 +27,9 @@ Route::group(['prefix' => 'relatos'], function () {
     Route::post('/busqueda', 'StoryController@search')->name('stories.search');
     Route::get('/{story}', 'StoryController@show')->name('story.show');
     Route::get('/{story}/fragmentos/{textNode}', 'TextNodeController@show')->name('node.show');
+
+    //json calendario
+    Route::get('/{story}/mes', 'TextNodeController@getMonthCalendar')->name('node.getMonthCalendar');
 });
 
 #acciones exclusivas de usuarios hacia otros relatos
@@ -60,11 +63,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     Route::post('/nuevo', 'StoryController@store')->name('story.store');
 
     # editar relato
-    Route::get('/{story}/editar', 'StoryController@edit')->name('story.edit');
-    Route::patch('/{story}/editar', 'StoryController@update')->name('story.update');
+    Route::get('/{story}/editar', 'StoryController@edit')->name('story.edit')->middleware('auth.author');
+    Route::patch('/{story}/editar', 'StoryController@update')->name('story.update')->middleware('auth.author');
 
     # crear nodos de un relato
-    Route::get('/{story}/nuevo-fragmento', 'TextNodeController@create')->name('node.create');
+    Route::get('/{story}/nuevo-fragmento/{step?}', 'TextNodeController@create')->name('node.create');
     Route::post('/{story}/nuevo-fragmento', 'TextNodeController@store')->name('node.store');
 
     Route::get('/{story}/fragmentos', 'TextNodeController@index')->name('nodes.index');
@@ -79,8 +82,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mis-relatos'], function () {
     Route::post('/save-story', 'StoryController@saveStoryXhr')->name('story.saveXhr');
     # guardar nodo nuevo o editar por Xhr
     Route::post('/save-textNode', 'TextNodeController@saveNodeXhr')->name('node.saveXhr');
+    # cambiar status a un nodo
+    Route::patch('/toggleStatus-textNode/{id}', 'TextNodeController@toggleStatus')->name('node.toggleStatus');
     # guardar imagen
-    Route::post('/store-picture', 'StoryController@storePictureXhr')->name('picture.storeXhr');
+    Route::post('/store-cover-picture', 'UploadController@storeCoverPictureXhr')->name('picture.storeXhr');
+    Route::post(
+        '/store-textnode-picture',
+        'UploadController@storeTextNodePictureXhr'
+    )->name('picture.textNode.storeXhr');
 });
 
 #acciones exclusivas de admin
@@ -95,7 +104,7 @@ Route::group(['middleware' => 'auth.admin', 'prefix' => 'admin'], function () {
     Route::get('/etiquetas', 'TagController@index')->name('tags.index');
     Route::patch('/etiquetas/{id}', 'TagController@toggleDeleted')->name('tag.toggleDeleted');
 
-    Route::get('/categories', 'CategoryController@index')->name('admin.categories');
+    Route::get('/categorias', 'CategoryController@index')->name('admin.categories');
     Route::post('/relatos/publicar', 'StoryController@changeStatus')->name('story.change-status');
 });
 
@@ -109,3 +118,7 @@ Route::get('/salir', function () {
 Auth::routes();
 
 Route::get('/etiqueta/{tag}', 'StoryController@storiesByTag')->name('tag.stories');
+Route::get('/validar-slug', 'StoryController@validateSlug')->name('validate-slug');
+Route::get('/visualizaciones', 'VisualizationController@getByTypologyId')->name('typology.visualizations');
+#historial de nodos
+Route::post('/historial/nodo/{story}', 'TextNodeController@saveHistory')->name('history.save-node');

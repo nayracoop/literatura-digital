@@ -34,6 +34,7 @@ return [
     'delete_tag' => 'Eliminar etiqueta',
     'add_tag' => 'Agregar etiqueta',
     'delete' => 'Eliminar',
+    'back' => 'Volver',
     //mensajes
     'add_node' => 'Agregar nodo',
     'back_my_stories' => 'Volver a mis relatos',
@@ -64,5 +65,9 @@ return [
     'save' => 'Guardar',
     'saved_confirmation' => 'Tus cambios <strong>fueron guardados</strong>.',
     'saved_error' => 'Se produjo un error <strong>volvé a intentarlo</strong>.',
-    'start_writing' => 'Empezá a escribir'
+    'start_writing' => 'Empezá a escribir',
+    'status_changed_confirmation' => 'El estado <strong>fue modificado</strong>.',
+    'visualization' => 'Visualización',
+    'untitled' => 'Sin Título',
+    'untitled-slug' => 'sin-titulo'
 ];

@@ -6,7 +6,7 @@
             <div class="container-botones">
                 {{--  GUARDAR  --}}            
                 <div class="botones-save-form">
-                    <button class="btn btn-guardar">@lang('messages.save')</button>
+                    <button class="btn btn-guardar" type="button">@lang('messages.save')</button>
                 </div>
                 {{--  VOLVER A LISTA DE NODOS  --}}
                 <div class="botones-nav-form">
@@ -22,10 +22,13 @@
         @endif
 
         {{--  MENSAJE DE CONFIRMACION  --}}
-        <div class="guardado" role="alert">
+        <div class="guardado exito" role="alert">
             <div class="success">
                 @lang('messages.saved_confirmation')
             </div>
+        </div>
+
+        <div class="guardado error" role="alert">
             <div class="error">
                 @lang('messages.saved_error')
             </div>

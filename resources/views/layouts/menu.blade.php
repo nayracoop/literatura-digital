@@ -11,15 +11,16 @@
                 <span class="invisibilizar">Lexía</span>
             </a>
         </div>
-        {{--  
+        {{--
             TODOS los usuarios tienen acceso a
             los géneros y al formulario de contacto
         --}}
         <div class="collapse navbar-collapse navbar-escrituras-collapse">
             <ul class="nav navbar-nav">
+                <li class="{{ \App\Utils\MenuHelper::isActiveRoute('stories.list') }}"><a href="{{ route('stories.list') }}">@lang('menu.write')</a></li>
                 <li class="dropdown">
                     <a href="{{ route('stories') }}"
-                        class="dropdown-toggle" type="button" 
+                        class="dropdown-toggle" type="button"
                         id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                             @lang('menu.stories')
@@ -31,7 +32,7 @@
                         @endforeach
                     </ul>
                 </li>
-                {{--  
+                {{--
                     Menú que arma los accesos para el tipo de usuario logueado
                     ojo que cierra el </ul> de arriba
                 --}}
@@ -67,8 +68,12 @@
         function searchByGenre(genre) {
             genre = genre.substring(1);
             var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "{{ route('stories.search-by-genre') }}", true);
+            xhttp.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("genre=" + genre);
             xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {                    
+                if (this.readyState == 4 && this.status == 200) {
                     var storiesList = JSON.parse(xhttp.response);
                     var el = document.getElementById("stories_block_list");
                     el.innerHTML= storiesList.results;
@@ -77,10 +82,7 @@
                     // console.log(xhttp.statusText);
                 }
             };
-            xhttp.open("POST", "{{ route('stories.search-by-genre') }}", true);
-            xhttp.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("genre=" + genre);
+
         }
     </script>
 @endpush  --}}

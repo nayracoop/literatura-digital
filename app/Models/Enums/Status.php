@@ -4,8 +4,8 @@ namespace App\Models\Enums;
 
 use App\Utils\Enum;
 
-abstract class StoryStatus extends Enum
+abstract class Status extends Enum
 {
-    const PUBLISHED = 'publicada';
+    const PUBLISHED = 'publicado';
     const DRAFT = 'borrador';
 }

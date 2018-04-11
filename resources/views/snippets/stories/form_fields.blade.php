@@ -10,29 +10,32 @@
 
             <div class="row">
                 <div class="col-md-6">
-
                     {{--  TIPOLOGÍA  --}}
-                    <label for="tipologia">@lang('messages.typology') *</label>
+                    <label for="genero">@lang('messages.typology') *</label>
                     <div class="styled-select">
-                        <select type="text" class="form-control" id="tipologia" name="typology">
-                            <option value="episodic" @if (isset($story) && $story->typology === 'episodic') selected @endif>@lang('messages.episodic')</option>
-                            <option value="choral" @if (isset($story) && $story->typology === 'choral') selected @endif>@lang('messages.choral')</option>
-                            <option value="rizome" @if (isset($story) && $story->typology === 'rizome') selected @endif>@lang('messages.rizome')</option>
+                        <select type="text" class="form-control" id="typology" name="typology" data-url="{{ route('typology.visualizations') }}">
+                        @foreach($typologies as $typology)
+                            <option value="{{ $typology->_id }}"
+                                @if (isset($story) && !empty($story->typology) && $story->typology === $typology->_id)
+                                    selected
+                                @endif>
+                                {{ ucfirst($typology->name) }}
+                            </option>
+                        @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-md-6">
-
                     {{--  GÉNERO  --}}
                     <label for="genero">@lang('messages.gender') *</label>
                     <div class="styled-select">
                         <select type="text" class="form-control" id="genero" name="genre">
                             @foreach(\App\Models\Genre::all() as $genre)
-                                <option value="{{$genre->slug}}" 
-                                    @if (isset($story) && !empty($story->genre) && $story->genre === $genre->slug) 
+                                <option value="{{$genre->slug}}"
+                                    @if (isset($story) && !empty($story->genre) && $story->genre === $genre->slug)
                                         selected
                                     @endif>
-                                    {{$genre->name}}
+                                    {{ $genre->name }}
                                 </option>
                             @endforeach
                         </select>
@@ -40,18 +43,31 @@
                 </div>
             </div>
 
+            {{--  VISUALIZACIÓN  --}}
+            <label for="genero">@lang('messages.visualization') *</label>
+            <div class="styled-select">
+                <select type="text" class="form-control" id="visualization" name="visualization">
+                    @foreach($visualizations as $visualization)
+                        <option value="{{ $visualization->_id }}"
+                            @if (isset($story) && !empty($story->visualization) && $story->visualization === $visualization->_id)
+                                selected
+                            @endif>
+                            {{ ucfirst($visualization->name) }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
     </div>
 
     <div class="col-md-4">
-
         {{--  IMAGEN DE PORTADA  --}}
         <label for="portada">@lang('messages.story_cover')</label>
         <div class="portada-border">
             @if (isset($story) && $story->cover != null && !empty($story->cover))
                 <img alt="@lang('messages.cover_for') {{$story->title}}" src="{{ asset('imagenes/cover/' . $story->cover) }}">
             @else
-                <img alt="" src="{{ asset('img/img-relato-default.jpg')}}"> 
+                <img alt="" src="{{ asset('img/img-relato-default.jpg')}}">
             @endif
         </div>
         <input type="file" class="form-control portada-archivo" name="cover_drag" id="portada">
@@ -63,10 +79,8 @@
                 @foreach ($story->tags as $tag)
                     <div class="tag-item">
                         <p>{{ $tag->name }}</p>
-                        <p>
-                            <button>@lang('messages.delete_tag')</button>
-                            <input type="hidden" name="tags[]" value="{{ $tag->name }}"/>
-                        </p>
+                        <button>@lang('messages.delete_tag')</button>
+                        <input type="hidden" name="tags[]" value="{{ $tag->name }}"/>
                     </div>
                 @endforeach
             @endif
@@ -77,4 +91,12 @@
     </div>
 
     {{--  ID DE LA HISTORIA  --}}
-    <input type="hidden" name="id" value="@if (isset($story)) {{ $story->_id }} @endif"/>
+     @if (isset($story))
+    <input type="hidden" name="id" value="{{ $story->_id }}"/>
+    <input type="hidden" name="story" value="{{ $story->_id }}"/>
+    @endif
+    {{--  Status  --}}
+    <input type="hidden" name="status" value="@if (isset($story)) {{ $story->status }} @else {{ \App\Models\Enums\Status::DRAFT }} @endif"/>
+    {{-- Step para pasarselo al nodo --}}
+    <input type="hidden" name="step" value="{{ $step or '1'}}"/>
+    

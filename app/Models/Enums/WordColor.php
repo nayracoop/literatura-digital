@@ -6,9 +6,9 @@ use App\Utils\Enum;
 
 class WordColor extends Enum
 {
-    const YELLOW = 'Amarillo';
-    const LIGTH_BLUE = 'Celeste';
-    const ORANGE = 'Naranja';
-    const GREEN = 'Verde';
-    const PINK = 'Rosa';
+    const YELLOW = 'amarillo';
+    const LIGTH_BLUE = 'celeste';
+    const ORANGE = 'naranja';
+    const GREEN = 'verde';
+    const PINK = 'rosa';
 }

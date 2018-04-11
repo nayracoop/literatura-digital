@@ -1,1 +1,0 @@
-@include('typologies.select_order')

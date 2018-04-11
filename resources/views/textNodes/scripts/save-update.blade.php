@@ -2,14 +2,12 @@
     /* Guardar Borrador */
     $('.btn.btn-guardar').on('click', function (e) {
         e.preventDefault();
-        $('.alert').remove();
-        if ( $("#node-form").valid() ) {
-          console.log('paso!!!');
-          save();
+        if ($('#node-form').valid()) {
+            console.log('formulario valido, procediendo a grabar');
+            save();
         } else {
-          console.log('NO paso!!!');
+            console.log('formulario inválido, corrija, haga el favor');
         }
-
     });
 
     $('.btn-cancelar').on('click', function (e) {
@@ -17,37 +15,94 @@
         window.location.replace("{{ route('nodes.index', $story->_id) }}");
     });
 
-    function save()
-    {
-      var formElement = document.getElementById("node-form");
-      var xhr = new XMLHttpRequest();
-      var formData = new FormData(formElement);
-      //formData.append('status', 'draft');
-      formData.append('_token', '{{ csrf_token() }}');
-      xhr.open("POST", '{{ route("node.saveXhr") }}');
-      xhr.send(formData);
+    function save() {
+        var formElement = document.getElementById("node-form");
+        var xhr = new XMLHttpRequest();
+        var formData = new FormData(formElement);
 
-      xhr.addEventListener("readystatechange", function (e) {
-          var xhr = e.target;
-          if (xhr.readyState == 4) {
-              if (xhr.status == 200) {
-                  console.log('200');
-                  newResponse = JSON.parse(xhr.response);
-                  var id = newResponse.id;
-                  // var alert = "include('snippets.flash.saved_changes')";
-                  // var  alert = '<div class="alert alert-success">@lang("Tus cambios han sido guardados")</div>';
+        formData.append('_token', '{{ csrf_token() }}');
+        xhr.open("POST", '{{ route("node.saveXhr") }}');
+        xhr.send(formData);
 
-                  var redirect = newResponse.redirect;
+        xhr.addEventListener('readystatechange', function (e) {
+            var xhr = e.target;
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {                    
+                    newResponse = JSON.parse(xhr.response);
+                    var id = newResponse.id;
+                    
+                    var redirect = newResponse.redirect;
+                    if (redirect != null) {
+                        window.location.replace(redirect);
+                    } else {
+                        //este temporaryclass está en functions-general
+                        $('.guardado.cambios.exito').addTemporaryClass('active', 1500);
+                    }
+                    
+                    @if (!isset($node))
+                        if (!$('#nodeId').length) {
+                            $("#node-form").append('<input name="id" id="nodeId" type="hidden" value="' + id + '" />');
+                        }
+                    @endif
+                } else {
+                    $('.guardado.error').addTemporaryClass('active', 1500);
+                    console.log(xhr.statusText);
+                }
+            }
+        });
+    } 
 
-                  if (redirect != null) {
-                      window.location.replace(redirect);
-                  }
-                  //   $('.container.formulario').prepend(alert);
-                  @if(!isset($node))
-                      $("#node-form").append('<input name="id" type="hidden"  value="' + id + '" />');
-                  @endif
-              } else console.log(xhr.statusText);
-          }
-      });
+    function nodeToggleStatus(el) {
+        // si el nodo existe, le cambio el estado.
+        // sino, cambio el valor de status y voy a save
+        if ($('#nodeId').length) {
+
+            $el = $(el);
+            let method = 'PATCH';
+            let uri = $el.data('uri');
+
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = JSON.parse(xhttp.response);
+                    if(response.status === 'ok') {
+
+                        $('.guardado.estado.exito').addTemporaryClass('active', 1500);
+                        
+                        // nombre al botón y al campo hidden
+                        $nodeStatus = $('#nodeStatus');
+                        if($nodeStatus.val() === '{{ \App\Models\Enums\Status::DRAFT }}') {
+                            $nodeStatus.val('{{ \App\Models\Enums\Status::PUBLISHED }}')
+                            //nombre al botón = 'MOVER A BORRADOR'
+                        } else {
+                            $nodeStatus.val('{{ \App\Models\Enums\Status::DRAFT }}')
+                            //nombre al botón = 'PUBLICAR'
+                        }
+                    }
+                } else {
+                    console.log('error');
+                }
+            };
+
+            //esto necesita una barra al final para pasar el id
+            xhttp.open(method, uri + "/", true);
+            xhttp.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            //necesito este encabezado para que Symfony lo agarre con el Request::ajax() 
+            xhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            xhttp.send(null);
+            
+        } else {
+
+            $nodeStatus = $('#nodeStatus');
+            if($nodeStatus.val() === '{{ \App\Models\Enums\Status::DRAFT }}') {
+                $nodeStatus.val('{{ \App\Models\Enums\Status::PUBLISHED }}')
+            } else {
+                $nodeStatus.val('{{ \App\Models\Enums\Status::DRAFT }}')
+            }
+            save();
+            // cambiar nombre al botón
+        }
     }
 </script>
