@@ -2,8 +2,7 @@
     <div class="col-md-9">
         <div class="container-botones">
             <div class="botones-save-form">
-                {{--  si estoy editando, voy a usar la URI para cambiar el estado  --}}
-                <button type="button" class="btn btn-cancelar" @if (isset($node)) data-uri='{{ route("node.toggleStatus", $node->_id) }}' @endif>Publicar</button>
+                {{--  si estoy editando, voy a usar la URI para cambiar el estado  --}}                
                 <button type="button" class="btn btn-guardar">Guardar</button>
             </div>
             <div class="botones-nav-form">

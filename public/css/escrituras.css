@@ -2614,15 +2614,18 @@ body.overflow {
   border: 0;
   border-radius: 0;
   height: 34px;
-  -webkit-appearance: none; }
+  -webkit-appearance: none; 
+}
 
 .editor-relato .container-checkbox {
   margin-top: 15px;
   margin-left: 20px;
-  padding-left: 15px; }
+  padding-left: 15px; 
+}
 
-.editor-relato .formulario .container-checkbox input[type=checkbox] {
-  visibility: hidden; }
+.formulario .container-checkbox input[type=checkbox] {
+  visibility: hidden; 
+}
 
 .tick {
   cursor: pointer;
@@ -2631,10 +2634,15 @@ body.overflow {
   height: 30px;
   border-radius: 4px;
   top: -2px;
-  left: -35px;
-  background: #EEE; }
+  left: 106px;
+  background: #EEE; 
+}
 
-.editor-relato .formulario .container-checkbox .tick:after {
+.check-left .tick {
+  left: -35px;
+}
+
+.formulario .container-checkbox .tick:after {
   opacity: 0.1;
   content: '';
   position: absolute;
@@ -2646,10 +2654,12 @@ body.overflow {
   border: 4px solid #666;
   border-top: none;
   border-right: none;
-  transform: rotate(-45deg); }
+  transform: rotate(-45deg); 
+}
 
-.editor-relato .formulario .container-checkbox input[type=checkbox]:checked + .tick:after {
-  opacity: 1; }
+.formulario .container-checkbox input[type=checkbox]:checked + .tick:after {
+  opacity: 1; 
+}
 
 /* Modalcito VISUALIZACION */
 .modal-opciones-nodo {
