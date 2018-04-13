@@ -126,6 +126,14 @@ class TextNodeController extends Controller
             $action = 'created';
             $redirect = route('nodes.index', $story->_id);
         }
+        //coral
+        if ($request->has('new_voice') && $request->new_voice != '') {
+            $node->voice = $request->new_voice;
+        } elseif ($request->has('voice')) {
+            $node->voice = $input['voice'];
+        }
+
+        $node->save();
 
         return response()->json([
             'action' => $action,

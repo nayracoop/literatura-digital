@@ -10,14 +10,14 @@
 
 @section('content')
 <div class="fondo-forms">
-    @php $stories = $user->getStories(); @endphp    
+    @php $stories = $user->getStories(); @endphp
     <div class="container listado-relatos">
         <div class="row">
             <div class="col-md-12">
                 <h1>Listado de relatos</h1>
                 <hr />
                 @if (count($stories) <= 0)
-                    <div class="aviso">Todavía no tenés relatos <strong>¿Qué estás esperando?</strong></div>                    
+                    <div class="aviso">Todavía no tenés relatos <strong>¿Qué estás esperando?</strong></div>
                 @else
                     <table summary="Lista de relatos del usuario">
                         <caption class="invisibilizar">Lista de relatos del usuario</caption>
@@ -50,7 +50,7 @@
                             @foreach($stories as $story)
                             <tr>
                                 <td class="ocultar-lg">
-                                    <a href="{{ route('nodes.index', $story->_id) }}">
+                                    <a href="{{ route('nodes.index', $story->slug) }}">
                                         <div class="image-clip">
                                             @if($story->cover != null && !empty($story->cover))
                                                 <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}">
@@ -61,14 +61,14 @@
                                     </a>
                                 </td>
                                 <td class="tit-listado">
-                                    <a href="{{ route('nodes.index',$story->_id) }}">{{ $story->title }}</a>
+                                    <a href="{{ route('nodes.index',$story->slug) }}">{{ $story->title }}</a>
                                 </td>
                                 <td class="ocultar-sm">{{ date('d.m.Y', strtotime($story->created_at) ) }}</td>
                                 <td class="ocultar-lg">{{ $story->countChars() }}</td>
                                 <td class="ocultar-sm">{{ ucfirst($story->status) }}</td>
                                 <td class="ocultar-sm">{{ $story->likes->count() }}</td>
                                 <td>
-                                    <a href="{{ route('nodes.index', $story->_id) }}">
+                                    <a href="{{ route('nodes.index', $story->slug) }}">
                                         <button>Editar</button>
                                     </a>
                                 </td>
@@ -87,7 +87,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 @endsection
 

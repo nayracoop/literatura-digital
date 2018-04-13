@@ -35,3 +35,7 @@
 @if (isset($node))
     <input name="id" id="nodeId" value="{{ $node->_id }}" type="hidden" />
 @endif
+
+@if($story->typology->slug === 'choral')
+@include('textNodes.visualizations.fields.'.$story->typology->slug)
+@endif

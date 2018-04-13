@@ -215,7 +215,11 @@ class Story extends BaseModel
     **/
     public function choralVoices()
     {
-        return $this->textNodes->unique('voice');
+        $voices = [];
+        foreach ($this->textNodes->unique('voice') as $node) {
+            $voices[] = $node->voice;
+        }
+        return $voices;
     }
 
     /**

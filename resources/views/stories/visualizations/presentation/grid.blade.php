@@ -61,6 +61,7 @@
 			.classed("bump-right", isBumpRight)
 			.classed("leer", true)
 			.attr('data-node',d._id)
+			.attr('title',d.title)
 
 			if(isBump) bumpsCount++;
 		})
