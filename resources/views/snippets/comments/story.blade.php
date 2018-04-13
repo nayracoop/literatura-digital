@@ -8,7 +8,10 @@
         @foreach ($story->comments->sortByDesc('created_at') as $comment)
             <li>
             <div class="image-clip">
-              <img alt="@lang('Avatar de') {{$comment->user->getName()}}" src="{{ asset('imagenes/avatar/'.$comment->user->avatar )}}" />
+              @if( $comment->user->avatar != null && !empty($comment->user->avatar))
+                  <img alt="@lang('Avatar de') {{$comment->user->getName()}}" src="{{ asset('imagenes/avatar/'.$comment->user->avatar )}}"> @else
+                  <img src="{{asset('img/img-usuario-default.jpg')}}" alt="" />
+              @endif
             </div>
             <h2>{{ $comment->user->getName() }}</h2>
             <p>{{ $comment->content }}</p>
