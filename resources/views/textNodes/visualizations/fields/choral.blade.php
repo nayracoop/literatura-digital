@@ -10,8 +10,8 @@ $voices = $story->choralVoices();
 	@foreach($voices as $voice)
 
 		<div class="form-check">
-			<input class="form-check-input" id="voice{{$loop->index}}" type="radio" name="voice" value="{{$voice}}" @if(isset($node) && $node->voice === $voice )  @endif >
-			<label for="voice{{$loop->index}}" class="form-check-label">{{$voice}}</label>
+			<input class="form-check-input" id="voice-{{$loop->index}}" type="radio" name="voice" value="{{$voice}}" @if(isset($node) && $node->voice === $voice ) checked  @endif >
+			<label for="voice-{{$loop->index}}" class="form-check-label">{{$voice}}</label>
 	</div>
 	@endforeach
 	</div>

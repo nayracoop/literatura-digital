@@ -22,15 +22,17 @@ var data = [ ];//30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90,
 	}
 
   @php
+	  $textNodes = [];
     $data =  [];
     $voices = $story->choralVoices();
-    foreach ($story->textNodes as $node) {
+    foreach ($story->textNodesPublished() as $node) {
       $data[] = $node->charCount;
     //  $voices[] = $node->voice;
+		  $textNodes[] = $node; 
     }
   @endphp
   var data = {!!json_encode($data)!!};
-  var nodes = {!!json_encode($story->textNodes)!!};
+  var nodes = {!!json_encode($textNodes)!!};
   var voices = {!! json_encode($voices) !!}
 
 	var boardRow = Math.ceil(Math.sqrt(data.length))+1;

@@ -1,5 +1,5 @@
 <div class="nodo-backdrop-fondo esconder">
-@foreach($story->textNodes as $node)
+@foreach($story->textNodesPublished() as $node)
 
   <div class="nodo-backdrop esconder" id="ventana-nodo-{{ $node->_id }}" tabindex="-1" role="dialog" aria-labelledby="tit-nodo" aria-hidden="true">
 

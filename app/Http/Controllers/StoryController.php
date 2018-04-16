@@ -230,7 +230,7 @@ class StoryController extends Controller
         }
 
         //coral
-        if ($request->has('new_voice') && $request->new_voice != '') {
+        if ($request->has('new_voice') && trim($request->new_voice) != '') {
             $node->voice = $request->new_voice;
         } elseif ($request->has('voice')) {
             $node->voice = $input['voice'];
