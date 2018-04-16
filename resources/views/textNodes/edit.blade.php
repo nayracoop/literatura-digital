@@ -19,9 +19,8 @@
         <form role="form" id="node-form" method="POST">
             {{--  CAMPOS DEL FORM  --}}
             @include ('snippets.textNodes.form_fields')
-            @include ('snippets.textNodes.form_date_selection')
+            @include ('snippets.textNodes.form_date_selection')            
         </form>
-        
         {{--  BOTONERA  --}}
         @include ('snippets.textNodes.form_buttons')
     </div>

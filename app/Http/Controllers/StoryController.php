@@ -299,7 +299,6 @@ class StoryController extends Controller
             //*/
           //  $status = $a->status === 'liked' ?'unliked':'liked';
           //  $a->save();
-
         } else {
             $like = new Like(['status' => 'liked']);
             $like->user()->associate($me);

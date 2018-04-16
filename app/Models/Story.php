@@ -88,7 +88,7 @@ class Story extends BaseModel
     }
 
     /**
-    * textNodesByDate retorna un array con los relatos separados por dia. Locacliza y formatea la fecha
+    * textNodesByDate retorna un array con los relatos separados por dia. Localiza y formatea la fecha
     * admite como parametro el mes y anho para filtrar
     * @param $mont
     * @param $year
