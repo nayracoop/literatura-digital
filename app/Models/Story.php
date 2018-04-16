@@ -94,11 +94,11 @@ class Story extends BaseModel
     {
       //  $textNodes = null;
         $published = \App\Models\Enums\Status::PUBLISHED;
-        if (\Route::currentRouteName() == 'story.show') {
+        //if (\Route::currentRouteName() == 'story.show') {
             return  $this->textNodes->where('status', $published);
-        } else {
-            return $this->textNodes;
-        }
+      //  } else {
+        //    return $this->textNodes;
+      //  }
     }
 
     /**

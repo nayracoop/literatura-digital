@@ -30,7 +30,7 @@
 </div>
 </div>
 </div>
-
+</div>
 @include('textNodes.backdrop')
 @push('stylesheets')
 <link href="{{asset('css/visualizations.css')}}" rel="stylesheet">
