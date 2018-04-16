@@ -89,6 +89,3 @@
 @include('textNodes.backdrop')
 @include('textNodes.edit_modal')
 @endsection
-@push('javascript')
-    @include('stories.scripts.node-options')
-@endpush

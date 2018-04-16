@@ -82,8 +82,14 @@ var data = [ ];//30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90,
 		})
 		.append("a")
 		.attr("href", "#")
-    .classed('leer', true)
-    .attr("data-node", function(d){return d._id;})
+		.attr("data-node", function(d){return d._id;})
+	  @if(\Route::currentRouteName() === 'nodes.index')
+	//	.attr("edit-node", function(d){return d._id;})
+		//.classed('edit', true)
+		@else
+
+		.classed('leer', true)
+		@endif
 		.attr("title", function(d){return d.title;})
 		.styles({
 			// "animation-delay":function(d) { return d3.randomUniform(-100, 0)() + "s"; },

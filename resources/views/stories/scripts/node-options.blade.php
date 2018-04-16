@@ -98,6 +98,30 @@ $('.btn-guardar').click(function(e){
     $('li[data-node="'+val+'"]').text(val);
 });
 
+$('.grindex a').click( function(e) {
+     e.preventDefault();
+
+  //  var top = parseInt($(this).css('top')) - 29;
+  //  var left = parseInt($(this).css('left')) - 21;
+     var top = parseInt(e.clientY) ;
+     var left = parseInt(e.clientX);
+     var offset = $(this).offset();
+     var height = $(this).height();
+     var width = $('.variant-0').width();
+
+     console.log('grindex a '+top+' - '+left+ ' nodo:'+$(this).data('node'));
+
+    $(".modal-opciones-nodo").css({ 'top':offset.top - height - 100 , 'left': offset.left - width  });
+    $(".leer").data('node',$(this).data('node'));
+    $(".edit").data('edit-node',$(this).data('node'));
+    $(".modal-opciones-nodo h2").text($(this).attr('title'));
+    $(".modal-opciones-nodo").show();
+
+      //console.log('+++NODO : '+$(this).data('edit-node'));
+  //  console.log('li id '+$(this).attr('id'));
+  //  saveWordPosition($(this).data('node'), left, top);
+
+});
 
 function saveNodeHistory(node, nodeId)
 {
