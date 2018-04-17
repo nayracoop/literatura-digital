@@ -243,7 +243,11 @@ class Story extends BaseModel
      */
     public function getAuthorName()
     {
-        return $this->author->getName();
+        $authorName = $this->author->getName();
+        if (empty($authorName)) {
+            $authorName = $this->author->username;
+        }
+        return $authorName;
     }
 
     /**
