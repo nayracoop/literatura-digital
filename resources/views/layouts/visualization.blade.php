@@ -1,5 +1,6 @@
 @yield('visualization')
 @if(\Route::currentRouteName() === 'story.show')
+@include('snippets.like')
 @include('textNodes.backdrop')
 @endif
 @push('stylesheets')

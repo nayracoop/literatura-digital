@@ -14,6 +14,7 @@ use App\Models\Typology;
 use App\Models\Enums\Status;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
+use App\Http\Requests\StoreComment;
 use View;
 use Lang;
 use Illuminate\Cookie\CookieJar;
@@ -248,7 +249,7 @@ class StoryController extends Controller
         return redirect()->route('story.show', $story->slug);
     }
 
-    public function storeComment(Request $request, $slug)
+    public function storeComment(StoreComment $request, $slug)
     {
         $user = Auth::user();
         $input = $request->all();
