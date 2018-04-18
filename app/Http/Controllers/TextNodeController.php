@@ -133,6 +133,13 @@ class TextNodeController extends Controller
             $node->voice = $input['voice'];
         }
 
+        //ergodic
+        if ($request->has('first_node') && $request->first_node != '1') {
+            $firstNode = $story->firstNode();
+            $firstNode = false;
+            $node->firstNode = true;
+        }
+
         $node->save();
 
         return response()->json([
