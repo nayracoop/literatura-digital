@@ -259,4 +259,19 @@ class TextNodeController extends Controller
           'status' => $status
         ]);
     }
+
+    /**
+    * getNodeErgodic
+    */
+    public function getNodeErgodic($story, $node)
+    {
+          $story = Story::find($story);
+          $node = $story->textNodes()->find($node);
+
+          $ergodicNode = \App\Utils\Ergodic::renderNode($story, $node);
+          return response()
+            ->json([
+                'node' => $ergodicNode
+            ]);
+    }
 }

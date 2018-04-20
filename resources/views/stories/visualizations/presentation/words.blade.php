@@ -6,12 +6,7 @@
 
 @endif
 
-
-
-
-
 @push('javascript')
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
-
   @include('stories.scripts.node-options')
 @endpush

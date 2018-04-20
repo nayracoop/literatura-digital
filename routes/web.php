@@ -30,6 +30,8 @@ Route::group(['prefix' => 'relatos'], function () {
 
     //json calendario
     Route::get('/{story}/mes', 'TextNodeController@getMonthCalendar')->name('node.getMonthCalendar');
+    // vista ergodico
+    Route::get('/ergodico/{story}/{node}', 'TextNodeController@getNodeErgodic')->name('node.ergodic');
 });
 
 #acciones exclusivas de usuarios hacia otros relatos
