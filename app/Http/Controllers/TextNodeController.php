@@ -134,15 +134,18 @@ class TextNodeController extends Controller
         }
 
         //ergodic
-        if ($request->has('first_node') && $request->first_node != '1') {
+        if ($request->has('first_node') && $request->first_node === '1') {
             $firstNode = $story->firstNode();
-            $firstNode = false;
+            $firstNode->firstNode = false;
+            $firstNode->save();
+            $story->save();
             $node->firstNode = true;
         }
 
         $node->save();
 
         return response()->json([
+           //'first_node' => $node->firstNode,
             'action' => $action,
             'id' => $node->_id,
             'redirect' => $redirect

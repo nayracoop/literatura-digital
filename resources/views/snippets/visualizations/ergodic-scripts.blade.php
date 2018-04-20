@@ -1,4 +1,3 @@
-
 <script type="text/javascript">
 getNodeErgodic("{{route('node.ergodic',[$story->_id, $story->firstNode()->_id])}}");
 clickErgodicNode();
@@ -31,5 +30,4 @@ function getNodeErgodic(url)
         }
     });
 }
-
 </script>

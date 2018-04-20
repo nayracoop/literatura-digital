@@ -38,5 +38,7 @@
 
 @if($story->typology->slug === 'choral')
 @include('textNodes.visualizations.fields.'.$story->typology->slug)
+
+@elseif($story->typology->slug === 'ergodic')
+@include('textNodes.visualizations.fields.'.$story->typology->slug)
 @endif
-   
