@@ -17,6 +17,3 @@ $node = $story->firstNode();
     </div>
   </div>
 </div>
-@push('javascript')
-@include('snippets.visualizations.ergodic-scripts')
-@endpush
