@@ -37,7 +37,7 @@
             </select>
           </div>
         </div>
-        @endif 
+        @endif
 
     </div>
 </div>
@@ -47,11 +47,4 @@
 <input name="status" id="nodeStatus" value="@if (isset($node)) {{ $node->status }} @else {{ \App\Models\Enums\Status::DRAFT }} @endif" type="hidden" />
 @if (isset($node))
     <input name="id" id="nodeId" value="{{ $node->_id }}" type="hidden" />
-@endif
-
-@if($story->typology->slug === 'choral')
-@include('textNodes.visualizations.fields.'.$story->typology->slug)
-
-@elseif($story->typology->slug === 'ergodic')
-@include('textNodes.visualizations.fields.'.$story->typology->slug)
 @endif
