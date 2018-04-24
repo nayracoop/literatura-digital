@@ -1,3 +1,4 @@
+<div class="col-xs-12 col-sm-9 ">
 <div class="form-padding-interno container-select-fecha">
     <label for="dia">Fecha y hora:</label>
     <div class="styled-select select-fecha">
@@ -168,9 +169,9 @@
                 <div class="check-right">
                     <div class="check">
                         <label class="checkbox" for="status_checkbox">
-                            <input name="status_checkbox" 
+                            <input name="status_checkbox"
                             @if (isset($node) && $node->status === \App\Models\Enums\Status::PUBLISHED)
-                                checked="checked" 
+                                checked="checked"
                             @endif
                             type="checkbox" id="status_checkbox">
                             <span class="tick"></span>
@@ -180,9 +181,9 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
-
+</div>
 @push('javascript')
 <script>
     @php
@@ -201,9 +202,9 @@
                 $('#nodeStatus').val('{{ \App\Models\Enums\Status::PUBLISHED }}');
             } else {
                 $('#nodeStatus').val('{{ \App\Models\Enums\Status::DRAFT }}');
-            }        
+            }
         });
-        
+
     });
 </script>
 @endpush

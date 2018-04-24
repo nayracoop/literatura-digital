@@ -1,13 +1,32 @@
-<div class="orden-nodo">
-<label for="orden">Inicio</label>
-  <div class="styled-select">
-    <select name="first_node" type="text" class="form-control" id="orden">
-      <option   @if (isset($node->firstNode) && $node->firstNode ) selected @endif value="1">Sí</option>
-      <option   @if (!isset($node->firstNode) || !$node->firstNode ) selected @endif >No</option>
-    </select>
-  </div>
-</div>
+@if($story->textNodes->count() > 1 && isset($node))
+<div class="col-xs-12 col-sm-9 ">
+      @if(isset($node->next))
+      <h2 class="invitacion-preguntas-ergodico">Ingresá las frases que invitan a seguir por otros nodos:</h2>
+      <ul class="preguntas-ergodico">
 
+        @foreach($node->next as $nn)
+        <li data-nodo-id="{{$nn['id']}}">
+          <button class="delete-pregunta-ergodico delete-node">Desasociar nodo</button>
+          <label for="pregunta1" class="invisibilizar">Pregunta 1</label>
+          <input type="text" class="form-control input-pregunta-ergodico" id="pregunta1">
+          <div class="opciones-preguntas-ergodico">
+            <div class="tit-preguntas-ergodico">
+              <h2>{{$nn['title']}}</h2>
+              <hr />
+            </div>
+            <div class="botones-preguntas-ergodico">
+              <a href="#" class="dia">Leer nodo</a>
+              <a href="#" class="asociar">Editar nodo</a>
+            </div>
+        </div>
+        </li>
+        @endforeach
+      </ul>
+      @endif
+      <button class="btn btn-nuevo-relato  btn-nuevo-nodo-ergodico asociar"><span>Asociar nodo</span><span class="plus"></span></button>
+</div>
+@endif
+{{--
 <div class="col-md-4 col-lg-3">
 <h2 class="tit-usuario">Elegí un nodo</h2>
 <hr />
@@ -65,4 +84,4 @@
           <a href="#" class="dia">Leer nodo</a>
         </li>
   </ul>
-  </div>
+  </div>--}}
