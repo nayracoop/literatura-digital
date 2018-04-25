@@ -146,18 +146,21 @@ class TextNodeController extends Controller
 
             $i = 0;
             $nextArray = [];
+            $node->next = null;
             foreach ($request->nextNodeTag as $next) {
                 $var = 'titleNode_'.$next;
                 $nextArray[] = ['id' => $next, 'title' => $request->$var];
                 $i++;
             }
             $node->next = $nextArray;
+        } else {
+            $node->next = null;
         }
 
         $node->save();
 
         return response()->json([
-            'next' => $nextArray,
+          //  'next' => $nextArray,
             'action' => $action,
             'id' => $node->_id,
             'redirect' => $redirect

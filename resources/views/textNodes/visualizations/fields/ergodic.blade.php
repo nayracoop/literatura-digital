@@ -34,6 +34,11 @@ $('.delete-node').click(function(e){
    e.preventDefault();
    $(this).parent().remove();
 });
+
+$('.btn-nuevo-nodo-ergodico').click(function(e){
+    e.preventDefault();
+});
+
 </script>
 
 @endpush
