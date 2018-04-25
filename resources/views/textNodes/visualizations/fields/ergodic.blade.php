@@ -8,7 +8,8 @@
         <li data-nodo-id="{{$nn['id']}}">
           <button class="delete-pregunta-ergodico delete-node">Desasociar nodo</button>
           <label for="pregunta1" class="invisibilizar">Pregunta {{$loop->index}}</label>
-          <input type="text" class="form-control input-pregunta-ergodico" id="pregunta{{$loop->index}}" value="{{$nn['title']}}" name="title-nodes-{{$node->_id}}[]">
+          <input type="hidden" name="nextNodeTag[]" value="{{$nn['id']}}">
+          <input type="text" class="form-control input-pregunta-ergodico" id="pregunta-{{$loop->index}}" value="{{$nn['title']}}" name="titleNode_{{$nn['id']}}">
           <div class="opciones-preguntas-ergodico">
             <div class="tit-preguntas-ergodico">
               <h2>{{$story->textNodes->find($nn['id'])->title}}</h2>

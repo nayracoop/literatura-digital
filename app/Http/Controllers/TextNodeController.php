@@ -141,11 +141,23 @@ class TextNodeController extends Controller
             $story->save();
             $node->firstNode = true;
         }
+        //etiquetas de nodos asociados
+        if ( $request->has('nextNodeTag') ) {
+
+            $i = 0;
+            $nextArray = [];
+            foreach ($request->nextNodeTag as $next) {
+                $var = 'titleNode_'.$next;
+                $nextArray[] = ['id' => $next, 'title' => $request->$var];
+                $i++;
+            }
+            $node->next = $nextArray;
+        }
 
         $node->save();
 
         return response()->json([
-           //'first_node' => $node->firstNode,
+            'next' => $nextArray,
             'action' => $action,
             'id' => $node->_id,
             'redirect' => $redirect
