@@ -11,7 +11,7 @@
           <input type="text" class="form-control input-pregunta-ergodico" id="pregunta{{$loop->index}}" value="{{$nn['title']}}" name="title-nodes-{{$node->_id}}[]">
           <div class="opciones-preguntas-ergodico">
             <div class="tit-preguntas-ergodico">
-              <h2>{{$nn['title']}}</h2>
+              <h2>{{$story->textNodes->find($nn['id'])->title}}</h2>
               <hr />
             </div>
             <div class="botones-preguntas-ergodico">
