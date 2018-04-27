@@ -27,7 +27,7 @@
       <button class="btn btn-nuevo-relato  btn-nuevo-nodo-ergodico asociar"><span>Asociar nodo</span><span class="plus"></span></button>
 </div>
 @endif
-
+@include('snippets.visualizations.ergodic-associate')
 @push('javascript')
 <script type="text/javascript">
 $('.delete-node').click(function(e){
