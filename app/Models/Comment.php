@@ -14,10 +14,19 @@ class Comment extends BaseModel
     protected $fillable = [
         'content', 'published_at',
     ];
-    
+
     protected $dates = [
         'published_at',
     ];
+
+    protected static $rules = [
+        'content' => 'required|min:1|max:160'
+    ];
+
+    public static function getRules()
+    {
+        return self::$rules;
+    }
 
     public function user()
     {

@@ -14,6 +14,7 @@ use App\Models\Typology;
 use App\Models\Enums\Status;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
+use App\Http\Requests\StoreComment;
 use View;
 use Lang;
 use Illuminate\Cookie\CookieJar;
@@ -230,7 +231,7 @@ class StoryController extends Controller
         }
 
         //coral
-        if ($request->has('new_voice') && $request->new_voice != '') {
+        if ($request->has('new_voice') && trim($request->new_voice) != '') {
             $node->voice = $request->new_voice;
         } elseif ($request->has('voice')) {
             $node->voice = $input['voice'];
@@ -248,7 +249,7 @@ class StoryController extends Controller
         return redirect()->route('story.show', $story->slug);
     }
 
-    public function storeComment(Request $request, $slug)
+    public function storeComment(StoreComment $request, $slug)
     {
         $user = Auth::user();
         $input = $request->all();

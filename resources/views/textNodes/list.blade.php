@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-@lang('Buscar Relatos')
+@lang('Mis relatos - '.$story->title)
 @endsection
 
 @section('body_class')
@@ -12,9 +12,31 @@
 <div class="fondo-forms editor-relato">
     <div class="container listado-relatos">
         <div class="row">
+            <!-- -->
+            <div class="col-md-12">
+                @include('snippets.stories.data')
+                @include('snippets.textNodes.modes_tabs')
 
-            @include('textNodes.visualizations.' . $story->getVisualization()->slug)
 
+                <div id="modo-visualizacion" class="tabpanel active">
+                    <div class="row" style="clear: both;">
+                          <div class="col-sm-7 col-md-6 tit-editor-visual">
+                                <h1>Visualización</h1>
+                                <hr />
+                          </div>
+                </div>
+
+                <div class="row formulario" style="clear: both;">
+                <div class="col-md-12">
+                @include('stories.visualizations.presentation.'. $story->getVisualization()->slug )
+                    @include('snippets.edit.node-options')
+                		
+
+                </div>
+                </div>
+                </div>
+                </div>
+                <!-- -->
             <div id="modo-listado" class="tabpanel">
                 <h1>Listado de nodos</h1>
                 <hr />
@@ -62,6 +84,3 @@
 @include('textNodes.backdrop')
 @include('textNodes.edit_modal')
 @endsection
-
-@push('javascript')
-@endpush

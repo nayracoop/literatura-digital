@@ -1,20 +1,13 @@
+@extends('layouts.visualization')
+@section('visualization')
 <div class="grindex-wrapper strict-limits">
 		<ul class="grindex circles">
 
 		</ul>
 </div>
+@endsection
 
-@include('textNodes.backdrop')
-@push('stylesheets')
-<link href="{{asset('css/visualizations.css')}}" rel="stylesheet">
-<!-- <link href="{{asset('css/reset.css')}}" rel="stylesheet"> -->
-@endpush
-@push('javascript')
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://d3js.org/d3-path.v1.min.js"></script>
-<script src="https://d3js.org/d3-shape.v1.min.js"></script>
-<script src="https://d3js.org/d3-random.v1.min.js"></script>
-<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+@section('visualization_scripts')
 <script type="text/javascript">
 var data = [ ];//30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28 ];
 	for(var i = 0; i < d3.randomUniform(5, 64)(); i++) {
@@ -22,15 +15,17 @@ var data = [ ];//30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90,
 	}
 
   @php
+	  $tN = [];
     $data =  [];
     $voices = $story->choralVoices();
-    foreach ($story->textNodes as $node) {
+    foreach ($story->textNodesPublished() as $node) {
       $data[] = $node->charCount;
     //  $voices[] = $node->voice;
+		  $tN[] = $node;
     }
   @endphp
   var data = {!!json_encode($data)!!};
-  var nodes = {!!json_encode($story->textNodes)!!};
+  var nodes = {!!json_encode($tN)!!};
   var voices = {!! json_encode($voices) !!}
 
 	var boardRow = Math.ceil(Math.sqrt(data.length))+1;
@@ -87,9 +82,15 @@ var data = [ ];//30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90,
 		})
 		.append("a")
 		.attr("href", "#")
-    .classed('leer', true)
-    .attr("data-node", function(d){return d._id;})
-		.attr("title", d.title)
+		.attr("data-node", function(d){return d._id;})
+	  @if(\Route::currentRouteName() === 'nodes.index')
+	//	.attr("edit-node", function(d){return d._id;})
+		//.classed('edit', true)
+		@else
+
+		.classed('leer', true)
+		@endif
+		.attr("title", function(d){return d.title;})
 		.styles({
 			// "animation-delay":function(d) { return d3.randomUniform(-100, 0)() + "s"; },
 			// "margin-top":getTilePosition,
@@ -139,4 +140,4 @@ var data = [ ];//30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90,
 		}
 
 </script>
-@endpush
+@endsection

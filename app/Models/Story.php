@@ -87,6 +87,20 @@ class Story extends BaseModel
         return $this->belongsTo('\App\Models\Typology');
     }
 
+   /**
+   * Filtra los nodos, retornando solo publicados en la ruta publica
+   **/
+    public function textNodesPublished()
+    {
+      //  $textNodes = null;
+        $published = \App\Models\Enums\Status::PUBLISHED;
+        //if (\Route::currentRouteName() == 'story.show') {
+            return  $this->textNodes->where('status', $published);
+      //  } else {
+        //    return $this->textNodes;
+      //  }
+    }
+
     /**
     * textNodesByDate retorna un array con los relatos separados por dia. Localiza y formatea la fecha
     * admite como parametro el mes y anho para filtrar

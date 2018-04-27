@@ -11,10 +11,6 @@
 @endsection
 
 @section('content')
-    @include('stories.visualizations.presentation.'. $story->getVisualization()->slug )    
+    @include('stories.visualizations.presentation.'. $story->getVisualization()->slug )
     @include('snippets.comments.story')
 @endsection
-
-@push('javascript')
-    @include('stories.scripts.node-options')
-@endpush
