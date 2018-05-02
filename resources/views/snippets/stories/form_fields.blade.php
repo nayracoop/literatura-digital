@@ -11,12 +11,12 @@
             <div class="row">
                 <div class="col-md-6">
                     {{--  TIPOLOGÍA  --}}
-                    <label for="genero">@lang('messages.typology') *</label>
+                    <label for="typology">@lang('messages.typology') *</label>
                     <div class="styled-select">
                         <select type="text" class="form-control" id="typology" name="typology" data-url="{{ route('typology.visualizations') }}">
                         @foreach($typologies as $typology)
                             <option value="{{ $typology->_id }}"
-                                @if (isset($story) && !empty($story->typology) && $story->typology === $typology->_id)
+                                @if (isset($story) && !empty($story->typology) && $story->typology->getIdAttribute() === $typology->_id)
                                     selected
                                 @endif>
                                 {{ ucfirst($typology->name) }}
@@ -44,12 +44,12 @@
             </div>
 
             {{--  VISUALIZACIÓN  --}}
-            <label for="genero">@lang('messages.visualization') *</label>
-            <div class="styled-select">
+            <label for="visualization">@lang('messages.visualization') *</label>
+            <div class="styled-select">                
                 <select type="text" class="form-control" id="visualization" name="visualization">
                     @foreach($visualizations as $visualization)
                         <option value="{{ $visualization->_id }}"
-                            @if (isset($story) && !empty($story->visualization) && $story->visualization === $visualization->_id)
+                            @if (isset($story) && !empty($story->visualization_id) && $story->visualization_id === $visualization->_id)
                                 selected
                             @endif>
                             {{ ucfirst($visualization->name) }}
