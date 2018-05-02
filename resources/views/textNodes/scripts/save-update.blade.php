@@ -12,7 +12,7 @@
 
     $('.btn-cancelar').on('click', function (e) {
         e.preventDefault();
-        window.location.replace("{{ route('nodes.index', $story->_id) }}");
+        window.location.replace("{{ route('nodes.index', $story->slug) }}");
     });
 
     function save() {

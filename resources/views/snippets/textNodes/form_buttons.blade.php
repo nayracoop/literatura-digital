@@ -6,7 +6,7 @@
                 <button type="button" class="btn btn-guardar">Guardar</button>
             </div>
             <div class="botones-nav-form">
-                <a href="{{route('nodes.index', $story->_id)}}" class="bot ant">Ir al listado de nodos</a>
+                <a href="{{route('nodes.index', $story->slug)}}" class="bot ant">Ir al listado de nodos</a>
             </div>
         </div>
 

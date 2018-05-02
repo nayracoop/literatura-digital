@@ -24,7 +24,7 @@
 
       @if (Auth::check())
           <h4>@lang('Dejar un comentario'):</h4>
-          <form role="form" method="POST" action="{{ route('comment.store',$story->slug) }}">
+          <form role="form" method="POST" action="{{ route('comment.store', $story->slug) }}">
               {{ csrf_field() }}
               <div class="form-group">
                   <textarea class="form-control" rows="3" name="content"></textarea>

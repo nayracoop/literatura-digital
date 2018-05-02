@@ -73,7 +73,7 @@
                     </table>
                 @endif
             </div>
-            <a href="{{ route('node.create', $story->_id) }}"><button class="btn btn-nuevo-relato"><span>{{__('messages.add_node')}}</span><span class="plus"></span></button></a>
+            <a href="{{ route('node.create', $story->slug) }}"><button class="btn btn-nuevo-relato"><span>{{__('messages.add_node')}}</span><span class="plus"></span></button></a>
             <div class="botones-nav-form">
                 <a href="{{ route('stories.list') }}" class="bot ant">{{__('messages.back_my_stories')}}</a>
                 <a href="{{ route('story.update', $story->slug) }}" class="bot sig">{{__('messages.go_story_details')}}</a>

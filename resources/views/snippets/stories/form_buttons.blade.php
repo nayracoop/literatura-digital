@@ -10,7 +10,7 @@
                 </div>
                 {{--  VOLVER A LISTA DE NODOS  --}}
                 <div class="botones-nav-form">
-                    <a href="{{ route('nodes.index', [ 'story' => $story->_id ]) }}" class="bot ant">@lang('messages.return_to_nodes')</a>
+                    <a href="{{ route('nodes.index', [ 'story' => $story->slug ]) }}" class="bot ant">@lang('messages.return_to_nodes')</a>
                 </div>
             </div>            
         {{--  PARA NUEVA HISTORIA  --}}
