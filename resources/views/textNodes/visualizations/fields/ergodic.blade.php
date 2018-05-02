@@ -1,9 +1,10 @@
 @if($story->textNodes->count() > 1 && isset($node))
 <div class="col-xs-12 col-sm-9 ">
-      @if(isset($node->next))
-      <h2 class="invitacion-preguntas-ergodico">Ingresá las frases que invitan a seguir por otros nodos:</h2>
-      <ul class="preguntas-ergodico">
 
+      <h2 class="invitacion-preguntas-ergodico">Ingresá las frases que invitan a seguir por otros nodos:</h2>
+
+      <ul class="preguntas-ergodico">
+        @if(isset($node->next))
         @foreach($node->next as $nn)
         <li data-nodo-id="{{$nn['id']}}">
           <button class="delete-pregunta-ergodico delete-node">Desasociar nodo</button>
@@ -22,8 +23,9 @@
         </div>
         </li>
         @endforeach
+        @endif
       </ul>
-      @endif
+
       <button class="btn btn-nuevo-relato  btn-nuevo-nodo-ergodico asociar"><span>Asociar nodo</span><span class="plus"></span></button>
 </div>
 @endif

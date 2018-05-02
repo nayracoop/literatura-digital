@@ -297,6 +297,11 @@ class Story extends BaseModel
     */
     public function firstNode()
     {
-        return $this->textNodes->where('firstNode', true)->first();
+        $first = $this->textNodes->where('firstNode', true)->first();
+        if ($first === null) {
+            $first = $this->textNodes->first();
+        }
+
+        return $first;
     }
 }

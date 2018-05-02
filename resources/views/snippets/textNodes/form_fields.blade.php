@@ -27,12 +27,12 @@
         </p>
         <input name="charCount" type="hidden" />
 
-        @if($story->getVisualization()->slug === 'ergodic')
+        @if($story->getVisualization()->slug === 'ergodic' &&  ($story->textNodes->count() > 0) )
         <div class="orden-nodo">
         <label for="orden">Inicio</label>
           <div class="styled-select">
             <select name="first_node" type="text" class="form-control" id="orden">
-              <option   @if (isset($node->firstNode) && $node->firstNode ) selected @endif value="1">Sí</option>
+              <option   @if (  (isset($node->firstNode) && $node->firstNode) ) selected @endif value="1">Sí</option>
               <option   @if (!isset($node->firstNode) || !$node->firstNode ) selected @endif >No</option>
             </select>
           </div>

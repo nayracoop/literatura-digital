@@ -133,7 +133,7 @@ class TextNodeController extends Controller
             $node->voice = $input['voice'];
         }
 
-        //ergodic
+        //ergodic primer relato
         if ($request->has('first_node') && $request->first_node === '1') {
             $firstNode = $story->firstNode();
             $firstNode->firstNode = false;
@@ -141,6 +141,10 @@ class TextNodeController extends Controller
             $story->save();
             $node->firstNode = true;
         }
+        if ($story->textNodes->count() === 0) {
+            $node->firstNode = true;
+        }
+
         //etiquetas de nodos asociados
         if ( $request->has('nextNodeTag') ) {
 
@@ -149,7 +153,7 @@ class TextNodeController extends Controller
             $node->next = null;
             foreach ($request->nextNodeTag as $next) {
                 $var = 'titleNode_'.$next;
-                $nextArray[] = ['id' => $next, 'title' => $request->$var];
+                $nextArray[] = (object)['id' => $next, 'title' => $request->$var];
                 $i++;
             }
             $node->next = $nextArray;
@@ -160,7 +164,7 @@ class TextNodeController extends Controller
         $node->save();
 
         return response()->json([
-          //  'next' => $nextArray,
+            'next' => $nextArray,
             'action' => $action,
             'id' => $node->_id,
             'redirect' => $redirect
