@@ -3289,3 +3289,7 @@ div.comentario-editor .btn:hover, div.comentario-editor .btn:focus {
   margin-top: 0px;
   margin-bottom: 0px;
 }
+
+.form-check-label {
+  margin-top: 5px !important;
+}

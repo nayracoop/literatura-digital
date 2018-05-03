@@ -521,7 +521,8 @@ class StoryController extends Controller
 
         if ($request->has('story') && !empty($request->story)) {
             $story = Story::where('_id', $request->story)->first();
-            $title = $story->title;
+            $oldTitle = $story->title;
+            // este "$a" no lo uso para nada
             $a = $story->update($input);
             $action = 'updated';
         } else {
@@ -550,10 +551,13 @@ class StoryController extends Controller
         }
         //slug
         $slugValidator = new \App\Utils\SlugValidator();
-        if (empty($story->title) || $story->title === null) {
-            $story->slug = $slugValidator->createSlug(Lang::get('messages.untitled'));
-        } else {
-            $story->slug = $slugValidator->createSlug($story->title);
+        //solo le creo un nuevo slug si el título cambió
+        if ($oldTitle !== $story->title) {
+            if (empty($story->title) || $story->title === null) {
+                $story->slug = $slugValidator->createSlug(Lang::get('messages.untitled'));
+            } else {
+                $story->slug = $slugValidator->createSlug($story->title);
+            }
         }
 
         $step = 0;
@@ -561,7 +565,7 @@ class StoryController extends Controller
             $step = $request->step;
         }
 
-        if ($title !== null && $action == 'updated' && $title !== $story->title) {
+        if ($oldTitle !== null && $action == 'updated' && $oldTitle !== $story->title) {
             $redirect = route('story.edit', $story->slug);
         } elseif ($action == 'created') {
             //le agrego el step, que viene de esta especie de wizard

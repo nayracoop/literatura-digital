@@ -30,14 +30,13 @@ class TextNodeController extends Controller
         $myStory = Story::where('_id', $story)->orWhere('slug', $story)->first();
 
         $typology = $myStory->typology;
-      //  $visualization = $typology->visualizations()->find($myStory->visualization_id);
+        // $visualization = $typology->visualizations()->find($myStory->visualization_id);
 
         return view('textNodes.list')
             ->with('user', Auth::user())
             ->with('story', $myStory)
-            ->with('typology', $typology)
-        //    ->with('visualization', $visualization);
-        ;
+            ->with('typology', $typology);
+        // ->with('visualization', $visualization);
     }
 
     /**
