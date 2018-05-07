@@ -60,19 +60,18 @@ class TextNode extends BaseModel
     {
         return $this->embedsMany('\App\Models\Like');
     }
+
+    public function nextNodes()
+    {
+        return $this->embedsMany('\App\Models\NextNode');
+    }
+
     /**
     *
     */
-    public  function isNext($nodeId)
+    public function isNext($nodeId)
     {
-        $is = false;
-        if (isset($this->next)) {
-            foreach ($this->next as $next) {
-                if ($this->_id === $nodeId) {
-                    $is = true;
-                }
-            }
-        }
-        return $is;
+        $next = $this->nextNodes->find($nodeId);
+        return $next !== null ? true : false;
     }
 }

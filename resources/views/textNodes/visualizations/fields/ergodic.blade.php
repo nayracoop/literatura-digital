@@ -4,16 +4,16 @@
       <h2 class="invitacion-preguntas-ergodico">Ingresá las frases que invitan a seguir por otros nodos:</h2>
 
       <ul class="preguntas-ergodico">
-        @if(isset($node->next))
-        @foreach($node->next as $nn)
-        <li data-nodo-id="{{$nn['id']}}">
+
+        @forelse($node->nextNodes as $nn)
+        <li data-nodo-id="{{$nn->nodeId}}">
           <button class="delete-pregunta-ergodico delete-node">Desasociar nodo</button>
           <label for="pregunta1" class="invisibilizar">Pregunta {{$loop->index}}</label>
-          <input type="hidden" name="nextNodeTag[]" value="{{$nn['id']}}">
-          <input type="text" class="form-control input-pregunta-ergodico" id="pregunta-{{$loop->index}}" value="{{$nn['title']}}" name="titleNode_{{$nn['id']}}">
+          <input type="hidden" name="nextNodeTag[]" value="{{$nn->nodeId}}">
+          <input type="text" class="form-control input-pregunta-ergodico" id="pregunta-{{$loop->index}}" value="{{$nn->label}}" name="titleNode_{{$nn->nodeId}}">
           <div class="opciones-preguntas-ergodico">
             <div class="tit-preguntas-ergodico">
-              <h2>{{$story->textNodes->find($nn['id'])->title}}</h2>
+              <h2>{{$story->textNodes->find($nn->nodeId)->title}}</h2>
               <hr />
             </div>
             <div class="botones-preguntas-ergodico">
@@ -22,8 +22,10 @@
             </div>
         </div>
         </li>
-        @endforeach
-        @endif
+        @empty
+        <li>No hay nodos asociados</li>
+        @endforelse
+
       </ul>
 
       <button class="btn btn-nuevo-relato  btn-nuevo-nodo-ergodico asociar"><span>Asociar nodo</span><span class="plus"></span></button>

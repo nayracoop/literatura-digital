@@ -11,6 +11,7 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Tag;
 use App\Models\Typology;
+use App\Models\NextNode;
 use App\Models\Enums\Status;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
@@ -138,25 +139,32 @@ class TextNodeController extends Controller
             $firstNode = $story->firstNode();
             $firstNode->firstNode = false;
             $firstNode->save();
-            $story->save();
+        //    $story->save();
             $node->firstNode = true;
+            $node->save();
         }
         if ($story->textNodes->count() === 0) {
             $node->firstNode = true;
         }
 
         //etiquetas de nodos asociados
-        if ( $request->has('nextNodeTag') ) {
-
-            $i = 0;
-            $nextArray = [];
-            $node->next = null;
+        if ($request->has('nextNodeTag')) {
             foreach ($request->nextNodeTag as $next) {
+              //  $nextNode = null;
                 $var = 'titleNode_'.$next;
-                $nextArray[] = (object)['id' => $next, 'title' => $request->$var];
-                $i++;
+                $nextData =  ['nodeId' => $next, 'label' => $request->$var];
+
+                $currentNode = $node->nextNodes->where('nodeId', $next)->first();
+                if ($currentNode === null) {
+                    $node->nextNodes()->save(new NextNode($nextData));
+                } else {
+                //    $currentNode->update($nextData);
+                    $currentNode->nodeId = $nextData['nodeId'];
+                    $currentNode->label =  $nextData['label'];
+                    $currentNode->save();
+                }
+              //  $nextArray[] = (object)['nodeId' => $next, 'label' => $request->$var];
             }
-            $node->next = $nextArray;
         } else {
             $node->next = null;
         }
@@ -164,7 +172,7 @@ class TextNodeController extends Controller
         $node->save();
 
         return response()->json([
-            'next' => $nextArray,
+          //  'next' => $nextArray,
             'action' => $action,
             'id' => $node->_id,
             'redirect' => $redirect

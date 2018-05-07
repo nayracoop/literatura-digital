@@ -12,11 +12,12 @@
   <hr />
     <ul class="listado-nodos-ergodicos">
         @foreach($story->textNodes as $n)
+        @if($node->_id !== $n->_id)
         <div class="col-md-4 col-lg-3">
           <li data-nodo-id="{{$n->_id}}">
             <h3>{{$n->title}}</h3>
             <hr />
-            <p>{!! substr($n->text,0,100) !!}</p>
+            <p>{!! substr(strip_tags($n->text),0,100) !!}</p>
             <div class="container-checkbox">
               <div class="check-left">
                 <div class="check">
@@ -27,6 +28,7 @@
             <a href="#" data-node="{{$n->_id}}" class="leerde">Leer nodo</a>
           </li>
         </div>
+        @endif
         @endforeach
     </ul>
     </div>

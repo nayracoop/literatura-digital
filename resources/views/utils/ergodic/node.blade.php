@@ -7,10 +7,12 @@
 
 <ul class="container-nodo condicionales-ergodico">
 
-@if(isset($node->next))
-@foreach($node->next as $nn)
+
+@forelse($node->nextNodes as $nn)
 {{--print_r($nn)--}}
-<li><a href="#" data-nextnode="{{route('node.ergodic',[$story->_id, $nn['id']])}}" >{{$nn['title']}}</a></li>
-@endforeach
-@endif
+<li><a href="#" data-nextnode="{{route('node.ergodic',[$story->_id, $nn->nodeId])}}" >{{$nn->label}}</a></li>
+@empty
+<li><a href="#home" data-nextnode="{{route('node.ergodic',[$story->_id, $story->firstNode()->_id])}}">H</a></li>
+@endforelse
+
 </ul>
