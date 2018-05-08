@@ -32,8 +32,8 @@
         <label for="orden">Inicio</label>
           <div class="styled-select">
             <select name="first_node" type="text" class="form-control" id="orden">
-              <option   @if (  (isset($node->firstNode) && $node->firstNode !== null) ) selected @endif value="1">Sí</option>
-              <option   @if (!isset($node->firstNode)  ) selected @endif >No</option>
+              <option   @if ( isset($node) && ($story->firstNode()->_id === $node->_id)) selected @endif value="1">Sí</option>
+              <option   @if ( !isset($node) || ($story->firstNode()->_id !== $node->_id)  ) selected @endif >No</option>
             </select>
           </div>
         </div>

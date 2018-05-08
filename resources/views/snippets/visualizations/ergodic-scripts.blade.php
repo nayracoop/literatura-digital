@@ -6,7 +6,13 @@ function clickErgodicNode()
   $('.condicionales-ergodico a').click(function(e){
       e.preventDefault();
       getNodeErgodic($(this).data('nextnode'));
+      //scroll
+      $('html, body').animate({
+        scrollTop: $("h1").offset().top
+      }, 500);
+
   });
+
 }
 
 function getNodeErgodic(url)
@@ -26,6 +32,8 @@ function getNodeErgodic(url)
                 $('.ergodic-node').empty();
                 $('.ergodic-node').html(node);
                 clickErgodicNode();
+                //
+
             } else console.log(xhr.statusText);
         }
     });

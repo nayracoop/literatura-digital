@@ -17,7 +17,7 @@
           <li data-nodo-id="{{$n->_id}}">
             <h3>{{$n->title}}</h3>
             <hr />
-            <p>{!! substr(strip_tags($n->text),0,100) !!}</p>
+            <p class="ellipsis">{!! substr(strip_tags($n->text),0,100) !!}</p>
             <div class="container-checkbox">
               <div class="check-left">
                 <div class="check">
@@ -25,7 +25,7 @@
                 </div>
              </div>
             </div>
-            <a href="#" data-node="{{$n->_id}}" class="leerde">Leer nodo</a>
+            {{-- <a href="#" data-node="{{$n->_id}}" class="leerde">Leer nodo</a> --}}
           </li>
         </div>
         @endif
