@@ -11,6 +11,7 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Tag;
 use App\Models\Typology;
+use App\Models\NextNode;
 use App\Models\Enums\Status;
 use Carbon\Carbon;
 use App\Http\Requests\UploadPicture;
@@ -132,9 +133,38 @@ class TextNodeController extends Controller
             $node->voice = $input['voice'];
         }
 
+        //ergodic primer relato
+        if ($request->has('first_node') && $request->first_node === '1') {
+            $firstNode = $story->firstNode();
+            $firstNode->firstNode = false;
+            $firstNode->save();
+        //    $story->save();
+            $node->firstNode = true;
+            $node->save();
+        }
+
+
+        //etiquetas de nodos asociados
+        $node->unsetNextNodes();
+
+        if ($request->has('nextNodeTag')) {
+            foreach ($request->nextNodeTag as $next) {
+              //  $nextNode = null;
+                $var = 'titleNode_'.$next;
+                $nextData =  ['nodeId' => $next, 'label' => $request->$var];
+
+                $currentNode = $node->nextNodes->where('nodeId', $next)->first();
+                if ($currentNode === null) {
+                    $node->nextNodes()->save(new NextNode($nextData));
+                }
+            }
+        }
+
         $node->save();
 
+
         return response()->json([
+          //  'next' => $nextArray,
             'action' => $action,
             'id' => $node->_id,
             'redirect' => $redirect
@@ -250,5 +280,20 @@ class TextNodeController extends Controller
         return response()->json([
           'status' => $status
         ]);
+    }
+
+    /**
+    * getNodeErgodic
+    */
+    public function getNodeErgodic($story, $node)
+    {
+          $story = Story::find($story);
+          $node = $story->textNodes()->find($node);
+
+          $ergodicNode = \App\Utils\Ergodic::renderNode($story, $node);
+          return response()
+            ->json([
+                'node' => $ergodicNode
+            ]);
     }
 }

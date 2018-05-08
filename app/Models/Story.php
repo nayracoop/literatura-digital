@@ -295,4 +295,17 @@ class Story extends BaseModel
     {
         return $this->typology->visualizations()->find($this->visualization_id);
     }
+
+    /**
+    * Obtenemos el primer nodo en ergódico
+    */
+    public function firstNode()
+    {
+        $first = $this->textNodes->where('firstNode', true)->first();
+        if ($first === null) {
+            $first = $this->textNodes->first();
+        }
+
+        return $first;
+    }
 }

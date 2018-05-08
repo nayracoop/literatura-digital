@@ -26,6 +26,19 @@
             </strong> caracteres
         </p>
         <input name="charCount" type="hidden" />
+
+        @if($story->getVisualization()->slug === 'ergodic' &&  ($story->textNodes->count() > 0) )
+        <div class="orden-nodo">
+        <label for="orden">Inicio</label>
+          <div class="styled-select">
+            <select name="first_node" type="text" class="form-control" id="orden">
+              <option   @if ( isset($node) && ($story->firstNode()->_id === $node->_id)) selected @endif value="1">Sí</option>
+              <option   @if ( !isset($node) || ($story->firstNode()->_id !== $node->_id)  ) selected @endif >No</option>
+            </select>
+          </div>
+        </div>
+        @endif
+
     </div>
 </div>
 
@@ -35,8 +48,3 @@
 @if (isset($node))
     <input name="id" id="nodeId" value="{{ $node->_id }}" type="hidden" />
 @endif
-
-@if($story->typology->slug === 'choral')
-@include('textNodes.visualizations.fields.'.$story->typology->slug)
-@endif
-   

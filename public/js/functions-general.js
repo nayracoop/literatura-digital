@@ -2,6 +2,8 @@ $(document).ready(function() {
 	$('.cerrar-nodo').click(function() {
 		      $('.nodo-backdrop').addClass('esconder');
 					$('.nodo-backdrop-fondo').addClass('esconder');
+					$('.nodo-ergodico-backdrop-fondo').addClass('esconder');
+
 	  return false;
 	});
 
@@ -36,7 +38,7 @@ $(document).ready(function() {
 
 	/* ON CHANGE PARA MESES de 31 */
 	$('.meses, .anio').on('change', function() {
-		
+
 		var a = this.value;
 
 		if (this.name === 'anio') {
@@ -62,9 +64,9 @@ $(document).ready(function() {
 				break;
 			case "2":
 				$('select option').show();
-					if($(".anio option:selected").text() === '2016' || 
-					$(".anio option:selected" ).text() === '2020' || 
-					$(".anio option:selected" ).text() === '2024') {						
+					if($(".anio option:selected").text() === '2016' ||
+					$(".anio option:selected" ).text() === '2020' ||
+					$(".anio option:selected" ).text() === '2024') {
 						$('.d30, .d31').hide();
 					} else {
 						$('.d29, .d30, .d31').hide();
@@ -118,5 +120,5 @@ $(document).ready(function() {
 });
 
 (function($){
-	
+
 })(jQuery);

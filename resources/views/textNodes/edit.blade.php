@@ -19,7 +19,13 @@
         <form role="form" id="node-form" method="POST">
             {{--  CAMPOS DEL FORM  --}}
             @include ('snippets.textNodes.form_fields')
-            @include ('snippets.textNodes.form_date_selection')            
+            @include ('snippets.textNodes.form_date_selection')
+            @if($story->typology->slug === 'choral')
+            @include('textNodes.visualizations.fields.'.$story->typology->slug)
+
+            @elseif($story->typology->slug === 'ergodic')
+            @include('textNodes.visualizations.fields.'.$story->typology->slug)
+            @endif        
         </form>
         {{--  BOTONERA  --}}
         @include ('snippets.textNodes.form_buttons')
@@ -32,7 +38,7 @@
     @include('textNodes.scripts.upload-picture')
     <link href="{{asset('js/libs/summernote/summernote.css')}}" rel="stylesheet">
     <script src="{{asset('js/libs/summernote/summernote.es.min.js')}}"></script>
-    <script src="{{asset('js/functions-summernote.js')}}"></script>    
+    <script src="{{asset('js/functions-summernote.js')}}"></script>
     <script>
         @if (isset($node))
             $(document).ready(function() {
