@@ -67,11 +67,23 @@ class TextNode extends BaseModel
     }
 
     /**
-    *
+    *  isNext
+    *  @return boolean
     */
     public function isNext($nodeId)
     {
         $next = $this->nextNodes->find($nodeId);
         return $next !== null ? true : false;
+    }
+
+    /**
+    *  unsetNextNodes
+    */
+    public function unsetNextNodes()
+    {
+        foreach ($this->nextNodes as $n) {
+            $n->delete();
+        }
+
     }
 }

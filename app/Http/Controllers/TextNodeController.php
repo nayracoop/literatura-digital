@@ -143,11 +143,11 @@ class TextNodeController extends Controller
             $node->firstNode = true;
             $node->save();
         }
-        if ($story->textNodes->count() === 0) {
-            $node->firstNode = true;
-        }
+
 
         //etiquetas de nodos asociados
+        $node->unsetNextNodes();
+
         if ($request->has('nextNodeTag')) {
             foreach ($request->nextNodeTag as $next) {
               //  $nextNode = null;
@@ -157,19 +157,12 @@ class TextNodeController extends Controller
                 $currentNode = $node->nextNodes->where('nodeId', $next)->first();
                 if ($currentNode === null) {
                     $node->nextNodes()->save(new NextNode($nextData));
-                } else {
-                //    $currentNode->update($nextData);
-                    $currentNode->nodeId = $nextData['nodeId'];
-                    $currentNode->label =  $nextData['label'];
-                    $currentNode->save();
                 }
-              //  $nextArray[] = (object)['nodeId' => $next, 'label' => $request->$var];
             }
-        } else {
-            $node->next = null;
         }
 
         $node->save();
+
 
         return response()->json([
           //  'next' => $nextArray,
