@@ -1,10 +1,10 @@
-
+@extends('layouts.visualization')
 <div class="grindex-wrapper">
 		<ul class="grindex grid">
 
 		</ul>
 </div>
-@include('textNodes.backdrop')
+
 @push('stylesheets')
 <link href="{{asset('css/visualizations.css')}}" rel="stylesheet">
 <!-- <link href="{{asset('css/reset.css')}}" rel="stylesheet"> -->
@@ -59,7 +59,11 @@
 			.classed("variant-" + Math.round(d.charCount%3), true)
 			.classed("bump-left", (isBump && !isBumpRight))
 			.classed("bump-right", isBumpRight)
+			@if(\Route::currentRouteName() === 'story.show')
 			.classed("leer", true)
+			@elseif(\Route::currentRouteName() === 'nodes.index')
+      .classed("edit", true)
+			@endif
 			.attr('data-node',d._id)
 			.attr('title',d.title)
 
@@ -67,6 +71,7 @@
 		})
 		.append("a")
 		.attr("href", "#")
+		.attr('data-node',function(d){return d._id;})
 		.styles({
 			// "animation-delay":function(d) { return d3.randomUniform(-100, 0)() + "s"; },
 			// "margin-top":getTilePosition,

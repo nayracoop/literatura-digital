@@ -29,8 +29,8 @@
                 <div class="row formulario" style="clear: both;">
                 <div class="col-md-12">
                 @include('stories.visualizations.presentation.'. $story->getVisualization()->slug )
-                    @include('snippets.edit.node-options')
-                		
+                @include('snippets.edit.node-options')
+
 
                 </div>
                 </div>
@@ -82,5 +82,5 @@
     </div>
 </div>
 @include('textNodes.backdrop')
-@include('textNodes.edit_modal')
+{{-- @include('textNodes.edit_modal') --}}
 @endsection
