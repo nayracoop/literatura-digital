@@ -19,12 +19,12 @@
 
   @php
     $data =  [];
-		foreach ($story->textNodes as $node) {
+		foreach ($story->textNodesPublished() as $node) {
 			$data[] = $node->charCount;
 	  }
 	@endphp
   var data = {!!json_encode($data)!!};
-	var nodes = {!!json_encode($story->textNodes)!!};
+	var nodes = {!!json_encode($story->textNodesPublished())!!};
 	//data = nodes;
 	//var data = [30, 86, 16 ];//30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28, 30, 86, 16, 90, 77, 28 ];
 	//for(var i = 0; i < d3.randomUniform(5, 64)(); i++) {

@@ -19,7 +19,13 @@
             <form role="form" id="node-form" method="POST">
                 {{--  CAMPOS DEL FORM  --}}
                 @include ('snippets.textNodes.form_fields')
-                @include ('snippets.textNodes.form_date_selection')                
+                @include ('snippets.textNodes.form_date_selection')
+                @if($story->typology->slug === 'choral')
+                @include('textNodes.visualizations.fields.'.$story->typology->slug)
+
+                @elseif($story->typology->slug === 'ergodic')
+                @include('textNodes.visualizations.fields.'.$story->typology->slug)
+                @endif             
             </form>
             {{--  BOTONERA  --}}
             @include ('snippets.textNodes.form_buttons')

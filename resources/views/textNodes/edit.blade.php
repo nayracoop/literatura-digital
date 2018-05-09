@@ -17,6 +17,7 @@
             </div>
         </div>
         <form role="form" id="node-form" method="POST">
+
             {{--  CAMPOS DEL FORM  --}}
             @include ('snippets.textNodes.form_fields')
             @include ('snippets.textNodes.form_date_selection')
@@ -25,7 +26,7 @@
 
             @elseif($story->typology->slug === 'ergodic')
             @include('textNodes.visualizations.fields.'.$story->typology->slug)
-            @endif        
+            @endif
         </form>
         {{--  BOTONERA  --}}
         @include ('snippets.textNodes.form_buttons')

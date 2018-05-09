@@ -518,6 +518,7 @@ class StoryController extends Controller
         $author = Auth::user();
         $redirect = '';
         $action = '';
+        $oldTitle = '';
 
         if ($request->has('story') && !empty($request->story)) {
             $story = Story::where('_id', $request->story)->first();
