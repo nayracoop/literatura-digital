@@ -76,7 +76,7 @@
                     'left': left
                 });
                 $(".leer").attr('data-node', $(this).data('node'));
-                $(".edit").data('edit-node', $(this).data('node'));
+                $(".edit").attr('data-node', $(this).data('node'));
                 $(".modal-opciones-nodo h2").text($(this).text());
                 $(".modal-opciones-nodo").show();
 
