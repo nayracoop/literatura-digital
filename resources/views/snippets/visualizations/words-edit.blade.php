@@ -34,8 +34,11 @@
 <script>
     // var posiciones = [ ['Animales', '20', '30'], ['Descanso', '10', '70'], ['Supersticiones','33','84'], ['Festejos', '5', '30'], ['Ventana', '4.23', '50'], ['Lluvia', '20', '80'], ['Leña', '50', '90'], ['Tradiciones', '50', '65'], ['Cielo', '80', '88'], [ 'Familia', '40', '66'], ['Interiores', '20', '40'], ['Reuniones', '56', '70'], ['Compañerismo', '28', '38'], ['Albañilería', '56', '45'], ['Cerveza', '88', '80'], ['Árboles', '26', '20'] ];
     var posiciones = {!! json_encode($story->textNodes) !!}
+    @if(isset($story->color))
     posiciones.color = '{{ strtolower($story->color) }}';
-
+    @else
+    posiciones.color = '{{ \App\Models\Enums\WordColor::YELLOW}}';
+    @endif
     var i = 0;
     var mult = 1;
     if ($(window).width() < 992) {
