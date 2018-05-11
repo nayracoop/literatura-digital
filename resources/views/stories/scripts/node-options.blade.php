@@ -64,8 +64,15 @@ $('.edit').click(function(e) {
             $('input[name="id"]').val(nodeId);
             $('input[name="title"]').val(node.title);
             $('input[name="text"]').val(node.text);
-            $('#texto-nodo').html(node.text);
+
             $('.note-editable').html(node.text);
+            $('.texto-nodo').html(node.text);
+            //ocultamos place holder si ya hay texto cargado
+            if (node.text.length > 0) {
+              $('.note-placeholder').hide();
+            }
+
+            //$('textarea[name="text"]').html($('.note-editable').html());
 
             $('input[name="charCount"]').val(node.charCount);
             $('.contador-caracteres').text(node.charCount);

@@ -82,5 +82,5 @@
     </div>
 </div>
 @include('textNodes.backdrop')
-{{-- @include('textNodes.edit_modal') --}}
+@include('textNodes.edit_modal')
 @endsection
