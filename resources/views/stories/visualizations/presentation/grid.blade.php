@@ -60,9 +60,9 @@
 			.classed("bump-left", (isBump && !isBumpRight))
 			.classed("bump-right", isBumpRight)
 			@if(\Route::currentRouteName() === 'story.show')
-			.classed("leer", true)
+		//	.classed("leer", true)
 			@elseif(\Route::currentRouteName() === 'nodes.index')
-      .classed("edit", true)
+      //.classed("edit", true)
 			@endif
 			.attr('data-node',d._id)
 			.attr('title',d.title)

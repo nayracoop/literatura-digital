@@ -60,10 +60,10 @@ $('.edit').click(function(e) {
             var response = JSON.parse(xhr.response);
             //var results = newResponse.results;
             var node = response.node;
-            //  console.log(node);
+              console.log(node.text);
             $('input[name="id"]').val(nodeId);
             $('input[name="title"]').val(node.title);
-            $('input[name="text"]').val(node.text);
+            $('textarea[name="text"]').html(node.text);
 
             $('.note-editable').html(node.text);
             $('.texto-nodo').html(node.text);
@@ -122,8 +122,6 @@ $('.grindex a').click( function(e) {
   //  saveWordPosition($(this).data('node'), left, top);
 
 });
-
-
 
 
 function saveNodeHistory(node, nodeId)
