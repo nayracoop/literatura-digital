@@ -531,15 +531,15 @@ class StoryController extends Controller
             $story->author()->associate($author);
             $action = 'created';
         }
+        if ($request->has('typology') && $request->has('visualization')) {
+            $typology = Typology::find($input['typology']);
+            $visualization = $typology->visualizations()->find($input['visualization']);
 
-        $typology = Typology::find($input['typology']);
-        $visualization = $typology->visualizations()->find($input['visualization']);
-
-        //guardo la tipología y la visualización asociada al relato
-        //$story->typology()->save($typology);
-        $story->typology()->associate($typology);
-        $story->visualization()->associate($visualization);
-
+            //guardo la tipología y la visualización asociada al relato
+            //$story->typology()->save($typology);
+            $story->typology()->associate($typology);
+            $story->visualization()->associate($visualization);
+        }
         //guarda etiquetas como camelcase
         $story->unset('tags');
         if ($request->has('tags')) {

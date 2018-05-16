@@ -9,8 +9,10 @@
             <textarea class="form-control" id="mensaje" name="description">{{$story->description or ''}}</textarea>
 
             <div class="row">
+                @if(\Route::currentRouteName() === 'story.create')
                 <div class="col-md-6">
                     {{--  TIPOLOGÍA  --}}
+
                     <label for="typology">@lang('messages.typology') *</label>
                     <div class="styled-select">
                         <select type="text" class="form-control" id="typology" name="typology" data-url="{{ route('typology.visualizations') }}">
@@ -24,7 +26,9 @@
                         @endforeach
                         </select>
                     </div>
+
                 </div>
+                @endif
                 <div class="col-md-6">
                     {{--  GÉNERO  --}}
                     <label for="genero">@lang('messages.gender') *</label>
@@ -44,8 +48,9 @@
             </div>
 
             {{--  VISUALIZACIÓN  --}}
+            @if(\Route::currentRouteName() === 'story.create')
             <label for="visualization">@lang('messages.visualization') *</label>
-            <div class="styled-select">                
+            <div class="styled-select">
                 <select type="text" class="form-control" id="visualization" name="visualization">
                     @foreach($visualizations as $visualization)
                         <option value="{{ $visualization->_id }}"
@@ -57,6 +62,7 @@
                     @endforeach
                 </select>
             </div>
+            @endif
         </div>
     </div>
 
@@ -99,4 +105,3 @@
     <input type="hidden" name="status" value="@if (isset($story)) {{ $story->status }} @else {{ \App\Models\Enums\Status::DRAFT }} @endif"/>
     {{-- Step para pasarselo al nodo --}}
     <input type="hidden" name="step" value="{{ $step or '1'}}"/>
-    
