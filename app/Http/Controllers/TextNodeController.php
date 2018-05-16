@@ -165,6 +165,7 @@ class TextNodeController extends Controller
 
         return response()->json([
           //  'next' => $nextArray,
+            'node' => $node->toArray(),
             'action' => $action,
             'id' => $node->_id,
             'redirect' => $redirect

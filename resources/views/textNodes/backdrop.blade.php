@@ -20,7 +20,7 @@
         </div>
 
         <div class="titulo-nodo">
-          <h1 id="tit-nodo">{{ $node->title }}</h1>
+          <h1 class="tit-nodo">{{ $node->title }}</h1>
           <span class="acento"><span></span></span>
         </div>
 

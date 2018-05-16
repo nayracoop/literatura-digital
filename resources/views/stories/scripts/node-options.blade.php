@@ -90,12 +90,7 @@ $('.edit').click(function(e) {
   });
 
 });
-/*actualizar etiqueta palabra*/
-$('.btn-guardar').click(function(e){
-    //console.log('actualizar etiqueta title');
-    var val = $('input[name="title"]').val();
-    $('li[data-node="'+val+'"]').text(val);
-});
+
 
 $('.grindex a').click( function(e) {
      e.preventDefault();

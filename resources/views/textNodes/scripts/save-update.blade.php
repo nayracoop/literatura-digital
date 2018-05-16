@@ -27,18 +27,23 @@
         xhr.addEventListener('readystatechange', function (e) {
             var xhr = e.target;
             if (xhr.readyState == 4) {
-                if (xhr.status == 200) {                    
+                if (xhr.status == 200) {
                     newResponse = JSON.parse(xhr.response);
                     var id = newResponse.id;
-                    
+                    var node = newResponse.node;
+
                     var redirect = newResponse.redirect;
                     if (redirect != null) {
                         window.location.replace(redirect);
                     } else {
                         //este temporaryclass está en functions-general
                         $('.guardado.cambios.exito').addTemporaryClass('active', 1500);
+                        let nodeUpdated = $('#ventana-nodo-'+id);
+                        nodeUpdated.find('.container-nodo').html(node.text);
+                        nodeUpdated.find('.tit-nodo').html(node.title);
+
                     }
-                    
+
                     @if (!isset($node))
                         if (!$('#nodeId').length) {
                             $("#node-form").append('<input name="id" id="nodeId" type="hidden" value="' + id + '" />');
@@ -50,7 +55,7 @@
                 }
             }
         });
-    } 
+    }
 
     function nodeToggleStatus(el) {
         // si el nodo existe, le cambio el estado.
@@ -69,7 +74,7 @@
                     if(response.status === 'ok') {
 
                         $('.guardado.estado.exito').addTemporaryClass('active', 1500);
-                        
+
                         // nombre al botón y al campo hidden
                         $nodeStatus = $('#nodeStatus');
                         if($nodeStatus.val() === '{{ \App\Models\Enums\Status::DRAFT }}') {
@@ -89,10 +94,10 @@
             xhttp.open(method, uri + "/", true);
             xhttp.setRequestHeader('X-CSRF-Token', "{{ csrf_token() }}");
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            //necesito este encabezado para que Symfony lo agarre con el Request::ajax() 
+            //necesito este encabezado para que Symfony lo agarre con el Request::ajax()
             xhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
             xhttp.send(null);
-            
+
         } else {
 
             $nodeStatus = $('#nodeStatus');
@@ -105,4 +110,14 @@
             // cambiar nombre al botón
         }
     }
+   @if($story->getVisualization()->slug === 'words' )
+    /*actualizar etiqueta palabra*/
+    $('.btn-guardar').click(function(e){
+        let nodeId = $('#nodeId').val();
+        let val = $('input[name="title"]').val();
+        console.log('actualizar etiqueta title '+ val + ' node '+ nodeId);
+        $('li[data-node="'+nodeId+'"] a').text(val);
+        $('.modal-opciones-nodo h2').text(val);
+    });
+    @endif
 </script>
