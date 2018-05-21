@@ -16,5 +16,5 @@
 @endsection
 
 @push('javascript')
-    @include('stories.scripts.node-options')
+    
 @endpush

@@ -3325,3 +3325,8 @@ div.comentario-editor .btn:hover, div.comentario-editor .btn:focus {
   white-space: nowrap;
   overflow: hidden;
 }
+
+/**/
+.modal-backdrop.in {
+  z-index: 1020;
+}

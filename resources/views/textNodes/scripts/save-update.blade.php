@@ -121,3 +121,4 @@
     });
     @endif
 </script>
+@include('textNodes.scripts.upload-picture')
