@@ -48,7 +48,7 @@ class UploadController extends Controller
 
         return response()->json([
           //  'picUrl' => url('/' . $picture),
-            'imgNode' => route('imagecache', ['original', $picture])
+            'imgNode' => route('imagecache', ['upload', $picture])
         ]);
     }
 
