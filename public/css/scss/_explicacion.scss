@@ -108,6 +108,10 @@
 
 /* CREDITOS */
 
+.puestos{
+  margin-bottom: 40px;
+}
+
 .puestos h2{
   font-family: $akzidenz-grotesk-pro-med;
   font-size: 20px;
@@ -126,4 +130,50 @@
 .puestos p{
   margin-bottom: 0;
 }
+
+/* CONTACTANOS */
+
+.contactanos{
+  border: 1px dotted rgb(100,100,100);
+  padding: 0 15px 15px 15px;
+  background: rgb(250,250,250);
+}
+
+.contactanos h2{
+  color: $color-destacado;
+  font-weight: bold;
+}
+
+.contactanos textarea{
+  height: 200px;
+  text-indent: 6px;
+}
+
+.contactanos form label{ 
+  font-family: $akzidenz-grotesk-pro-med;
+  color: rgb(100,100,100);
+}
+
+.contactanos .btn{
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: 1em;
+  letter-spacing: .5px;
+  padding: 15px 30px;
+  border-radius: 2px;
+  font-family: $brandon-grotesque-bold;
+  font-weight: bold;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+  background: $color-destacado;
+  color: #FFF;
+}
+
+.contactanos .success, .contactanos .error{
+  margin-top: -20px;
+  margin-bottom: 15px;
+}
+
+
+/* oculto */
+.movil{ display: none; visibility: hidden;}
 

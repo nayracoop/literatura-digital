@@ -2,12 +2,14 @@
   font-family: $akzidenz-grotesk-pro-med;
 }
 
-.formulario form label{ 
+.formulario form label, .formulario fieldset legend{ 
   margin-top: 30px;
   margin-bottom: 10px;
   color: #272939; 
   padding-left: 5px;
   font-size: 1.285714285714286em;
+  font-weight: bold;
+  border-width: 0;
 }
 
 .formulario form input[type=text], .formulario form input[type=password], .formulario form textarea, .formulario form select{ 
@@ -76,5 +78,183 @@ div.container-select-fecha label{ float: left; margin: 10px 10px 0 0;}
   font-size: 1em;
 }
 
+
+/* Formato y visualización */
+
+.formulario .field-formato legend {
+  float: left;
+}
+
+.formulario .field-formato [type="radio"], .formulario .field-disenio [type="radio"]  {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding:0 !important;
+  border:0 !important;
+  overflow: hidden !important;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.formulario .field-formato label{
+  background: #F7F6F5;
+  color: #666;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-family: $akzidenz-grotesk-pro-med;
+  font-weight: bold;
+  padding: 8px 14px 6px 16px;
+  margin-top: 8px;
+  margin-right: 6px;
+  margin-bottom: 5px;
+  display: inline-block;
+  position: relative;
+  box-shadow: 1px 2px 1px rgba(207,207,207,1);
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.formulario .field-formato label span{ display: block; }
+
+@media only screen and (min-width: ($screen-md - 260)) {
+
+  .formulario .field-formato .op.active:after{
+    content:'';
+    position: absolute;
+    bottom: -10px;
+    left: 46%;
+    left: calc(50% - 14px);
+    margin-bottom: -10px;
+    width: 0;
+    height: 0;
+    border-top: solid 13px transparent;
+    border-bottom: solid 13px #EAE9E8;
+    border-right: solid 13px transparent;
+    border-left: solid 13px transparent;
+    z-index: 3;
+  }
+
+}
+
+.formulario .field-formato label:hover{ cursor: pointer; }
+
+.formulario .field-formato label.active{
+  background: $color-destacado;
+  color: #FFF;
+}
+
+.field-disenio{  max-width: 455px; }
+
+@media only screen and (max-width: ($screen-md - 260)) {
+  .field-disenio{  max-width: 255px; }
+}
+
+.field-disenio.none{ display: none;  }
+
+.formulario .field-disenio legend {
+  margin: 10px 0 15px 15px;
+  padding-top: 0;
+  float: left;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: ($screen-md - 260)) {
+  .formulario .field-disenio legend {
+    margin: 0 0 13px 0;
+    margin-top: -5px;
+    font-size: 13px;
+    text-align: center;
+    padding-left: 0;
+  }
+}
+
+.formulario .field-disenio label {
+  background: url(../img/formatos/burbujas.png) no-repeat top center;
+  width: 124px;
+  margin: 0 8px 20px 8px;
+  padding-top: 95px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  font-family: $akzidenz-grotesk-pro-med;
+  font-weight: bold;
+  text-align: center;
+  color: #272939;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: ($screen-md - 260)) {
+  .formulario .field-disenio label {
+    background-size: 70px auto;
+    width: 76px;
+    margin: 0 0 10px 0;
+    padding-top: 55px;
+    font-size: 11px;
+    font-family: $akzidenz-grotesk-pro-regular;
+    font-weight: normal;
+  }
+  .formulario .field-disenio label:first-of-type{ margin-left: -5px; }
+}
+
+.formulario .field-disenio label:hover, .formulario .field-disenio label:focus, .formulario .field-disenio [type="radio"]:checked + label{
+  outline: 1px dotted $color-destacado;
+}
+
+.formulario .field-disenio [for="burbujas"]{
+  background-image: url(../img/formatos/burbujas.png)
+}
+
+.formulario .field-disenio [for="caleidoscopio"]{
+  background-image: url(../img/formatos/caleidoscopio.png)
+}
+
+.formulario .field-disenio [for="etiquetas"]{
+  background-image: url(../img/formatos/etiquetas.png)
+}
+
+.formulario .field-disenio [for="cuadricula"]{
+  background-image: url(../img/formatos/cuadricula.png)
+}
+
+.formulario .field-disenio [for="fichas"]{
+  background-image: url(../img/formatos/fichas.png)
+}
+
+.formulario .field-disenio [for="puntos"]{
+  background-image: url(../img/formatos/puntos.png)
+}
+
+.formulario .field-disenio .cambiar{
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-family: $akzidenz-grotesk-pro-med;
+  font-weight: bold;
+  text-align: center;
+  color: #999;
+}
+
+@media only screen and (max-width: ($screen-md - 260)) {
+  .formulario .field-disenio .cambiar{
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.field-disenio{
+  display: none; 
+  margin-top: 15px;
+  padding: 20px 10px 5px 10px;
+  background: #F7F6F5;
+  border-radius: 8px;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.field-disenio.active, .field-disenio.segundo{ display: block; }
 
 

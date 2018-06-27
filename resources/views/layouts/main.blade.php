@@ -10,10 +10,12 @@
         <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{ asset('css/escrituras.css')}}" rel="stylesheet">
         @stack('stylesheets')
+
+        @include('layouts.iconos')
     </head>
 
     <body @yield('body_class')>
-        <div class="reborde-top"></div><div class="reborde-right"></div><div class="reborde-bottom"></div><div class="reborde-left"></div>
+        <div class="reborde-right"></div><div class="reborde-left"></div>
 
         @include('layouts.menu')
         @yield('content')

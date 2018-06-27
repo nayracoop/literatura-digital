@@ -76,7 +76,7 @@
         </div>
         </div>
     </div>
-    {{--  <div class="container-fluid fondo-gris">
+    <div class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-    </div>    --}}
+    </div>    
 @endsection
 {{--  @push('javascript')
 esto pasa a estar en la lista de historias

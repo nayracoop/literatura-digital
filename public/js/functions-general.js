@@ -105,6 +105,19 @@ $(document).ready(function() {
 		$(tab_id).addClass('active');
 	});
 
+	/* TABS FORMATOS */	
+
+	$('.field-formato label').click(function(e){
+		$('.field-formato label').removeClass('active');
+		$(this).addClass('active');
+
+		var ident = $(this).attr('for');
+		$('.field-disenio').removeClass('active');
+		$('.field-disenio.' + ident).addClass('active');
+		//$('.field-disenio [type="radio"]').prop('checked', false);
+	})
+
+
 	$.fn.extend({
 		addTemporaryClass: function(className, duration) {
 			var elements = this;

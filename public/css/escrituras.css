@@ -2,9 +2,9 @@
 /* BREAKPOINTS */
 /*
 .col- 	 < 576px
-.col-sm- ÔëÑ 576px
-.col-md- ÔëÑ 768px
-.col-lg- ÔëÑ 992px
+.col-sm- ÔëÑ 576px	
+.col-md- ÔëÑ 768px	
+.col-lg- ÔëÑ 992px	
 .col-xl- ÔëÑ1200px
 */
 /* cambios en container para no pisra el border blanco -60px */
@@ -114,7 +114,7 @@
   font-style: normal;
   font-weight: bold;
   src: url("../fonts/playlist/playlist-script.eot");
-  src: url("../fonts/playlist/playlist-script.eot?") format("eot"), url("../fonts/playlist/playlist-script.woff") format("woff"), url("../fonts/playlist/playlist-script.ttf") format("truetype"), url("../fonts/playlist/playlist-script.svg") format("svg"); }
+  src: url("../fonts/playlist/playlist-script.eot?") format("eot"), url("../fonts/playlist/playlist-script.woff2") format("woff2"), url("../fonts/playlist/playlist-script.woff") format("woff"), url("../fonts/playlist/playlist-script.ttf") format("truetype"), url("../fonts/playlist/playlist-script.svg") format("svg"); }
 html {
   height: 100%; }
 
@@ -676,7 +676,8 @@ footer {
 
 @media only screen and (max-width: 768px) {
   footer {
-    padding-bottom: 20px; }
+    padding-bottom: 20px;
+    padding-top: 30px; }
 
   .footer-fluid {
     border-bottom: none;
@@ -1017,6 +1018,9 @@ footer a:last-child {
   color: #000; }
 
 /* CREDITOS */
+.puestos {
+  margin-bottom: 40px; }
+
 .puestos h2 {
   font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif;
   font-size: 20px;
@@ -1033,15 +1037,57 @@ footer a:last-child {
 .puestos p {
   margin-bottom: 0; }
 
+/* CONTACTANOS */
+.contactanos {
+  border: 1px dotted #646464;
+  padding: 0 15px 15px 15px;
+  background: #fafafa; }
+
+.contactanos h2 {
+  color: #0CA6BE;
+  font-weight: bold; }
+
+.contactanos textarea {
+  height: 200px;
+  text-indent: 6px; }
+
+.contactanos form label {
+  font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif;
+  color: #646464; }
+
+.contactanos .btn {
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: 1em;
+  letter-spacing: .5px;
+  padding: 15px 30px;
+  border-radius: 2px;
+  font-family: "Brandon Grotesque", Arial, Helvetica, "Liberation Sans", sans-serif;
+  font-weight: bold;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  background: #0CA6BE;
+  color: #FFF; }
+
+.contactanos .success, .contactanos .error {
+  margin-top: -20px;
+  margin-bottom: 15px; }
+
+/* oculto */
+.movil {
+  display: none;
+  visibility: hidden; }
+
 .formulario {
   font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif; }
 
-.formulario form label {
+.formulario form label, .formulario fieldset legend {
   margin-top: 30px;
   margin-bottom: 10px;
   color: #272939;
   padding-left: 5px;
-  font-size: 1.285714285714286em; }
+  font-size: 1.285714285714286em;
+  font-weight: bold;
+  border-width: 0; }
 
 .formulario form input[type=text], .formulario form input[type=password], .formulario form textarea, .formulario form select {
   border-radius: 4px;
@@ -1124,6 +1170,165 @@ div.container-select-fecha label {
   padding: 0 0 0 8px;
   margin-top: 15px;
   font-size: 1em; }
+
+/* Formato y visualizaci├│n */
+.formulario .field-formato legend {
+  float: left; }
+
+.formulario .field-formato [type="radio"], .formulario .field-disenio [type="radio"] {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  clip: rect(1px, 1px, 1px, 1px); }
+
+.formulario .field-formato label {
+  background: #F7F6F5;
+  color: #666;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif;
+  font-weight: bold;
+  padding: 8px 14px 6px 16px;
+  margin-top: 8px;
+  margin-right: 6px;
+  margin-bottom: 5px;
+  display: inline-block;
+  position: relative;
+  box-shadow: 1px 2px 1px #cfcfcf;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome and Opera */ }
+
+.formulario .field-formato label span {
+  display: block; }
+
+@media only screen and (min-width: 508px) {
+  .formulario .field-formato .op.active:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 46%;
+    left: calc(50% - 14px);
+    margin-bottom: -10px;
+    width: 0;
+    height: 0;
+    border-top: solid 13px transparent;
+    border-bottom: solid 13px #EAE9E8;
+    border-right: solid 13px transparent;
+    border-left: solid 13px transparent;
+    z-index: 3; } }
+.formulario .field-formato label:hover {
+  cursor: pointer; }
+
+.formulario .field-formato label.active {
+  background: #0CA6BE;
+  color: #FFF; }
+
+.field-disenio {
+  max-width: 455px; }
+
+@media only screen and (max-width: 508px) {
+  .field-disenio {
+    max-width: 255px; } }
+.field-disenio.none {
+  display: none; }
+
+.formulario .field-disenio legend {
+  margin: 10px 0 15px 15px;
+  padding-top: 0;
+  float: left;
+  font-size: 16px; }
+
+@media only screen and (max-width: 508px) {
+  .formulario .field-disenio legend {
+    margin: 0 0 13px 0;
+    margin-top: -5px;
+    font-size: 13px;
+    text-align: center;
+    padding-left: 0; } }
+.formulario .field-disenio label {
+  background: url(../img/formatos/burbujas.png) no-repeat top center;
+  width: 124px;
+  margin: 0 8px 20px 8px;
+  padding-top: 95px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif;
+  font-weight: bold;
+  text-align: center;
+  color: #272939;
+  text-transform: lowercase;
+  cursor: pointer; }
+
+@media only screen and (max-width: 508px) {
+  .formulario .field-disenio label {
+    background-size: 70px auto;
+    width: 76px;
+    margin: 0 0 10px 0;
+    padding-top: 55px;
+    font-size: 11px;
+    font-family: "Akzidenz-Grotesk Pro Regular", Arial, Helvetica, "Liberation Sans", sans-serif;
+    font-weight: normal; }
+
+  .formulario .field-disenio label:first-of-type {
+    margin-left: -5px; } }
+.formulario .field-disenio label:hover, .formulario .field-disenio label:focus, .formulario .field-disenio [type="radio"]:checked + label {
+  outline: 1px dotted #0CA6BE; }
+
+.formulario .field-disenio [for="burbujas"] {
+  background-image: url(../img/formatos/burbujas.png); }
+
+.formulario .field-disenio [for="caleidoscopio"] {
+  background-image: url(../img/formatos/caleidoscopio.png); }
+
+.formulario .field-disenio [for="etiquetas"] {
+  background-image: url(../img/formatos/etiquetas.png); }
+
+.formulario .field-disenio [for="cuadricula"] {
+  background-image: url(../img/formatos/cuadricula.png); }
+
+.formulario .field-disenio [for="fichas"] {
+  background-image: url(../img/formatos/fichas.png); }
+
+.formulario .field-disenio [for="puntos"] {
+  background-image: url(../img/formatos/puntos.png); }
+
+.formulario .field-disenio .cambiar {
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif;
+  font-weight: bold;
+  text-align: center;
+  color: #999; }
+
+@media only screen and (max-width: 508px) {
+  .formulario .field-disenio .cambiar {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px; } }
+.field-disenio {
+  display: none;
+  margin-top: 15px;
+  padding: 20px 10px 5px 10px;
+  background: #F7F6F5;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset; }
+
+.field-disenio.active, .field-disenio.segundo {
+  display: block; }
 
 .form-detalle {
   padding-top: 42px; }
@@ -1482,8 +1687,7 @@ form .tit-nodo input {
 .botones-save-form {
   position: absolute;
   bottom: -20px;
-  right: 15px;
-  z-index: 6; }
+  right: 15px; }
 
 @media only screen and (max-width: 576px) {
   .botones-save-form {
@@ -1540,9 +1744,9 @@ form .tit-nodo input {
   font-family: "Caecilia", Arial, Helvetica, "Liberation Sans", sans-serif;
   line-height: 1.7; }
 
-/*.note-editor.note-frame .note-editing-area .note-editable.panel-body {
-  white-space: initial;
-  overflow-x: hidden; }*/
+.note-editor.note-frame .note-editing-area .note-editable.panel-body {
+  /*white-space: initial;
+  overflow-x: hidden;*/ }
 
 .note-editable.panel-body a {
   text-decoration: none;
@@ -2614,18 +2818,15 @@ body.overflow {
   border: 0;
   border-radius: 0;
   height: 34px;
-  -webkit-appearance: none;
-}
+  -webkit-appearance: none; }
 
 .editor-relato .container-checkbox {
   margin-top: 15px;
   margin-left: 20px;
-  padding-left: 15px;
-}
+  padding-left: 15px; }
 
-.formulario .container-checkbox input[type=checkbox] {
-  visibility: hidden;
-}
+.editor-relato .formulario .container-checkbox input[type=checkbox] {
+  visibility: hidden; }
 
 .tick {
   cursor: pointer;
@@ -2634,15 +2835,10 @@ body.overflow {
   height: 30px;
   border-radius: 4px;
   top: -2px;
-  left: 106px;
-  background: #EEE;
-}
-
-.check-left .tick {
   left: -35px;
-}
+  background: #EEE; }
 
-.formulario .container-checkbox .tick:after {
+.editor-relato .formulario .container-checkbox .tick:after {
   opacity: 0.1;
   content: '';
   position: absolute;
@@ -2654,12 +2850,10 @@ body.overflow {
   border: 4px solid #666;
   border-top: none;
   border-right: none;
-  transform: rotate(-45deg);
-}
+  transform: rotate(-45deg); }
 
-.formulario .container-checkbox input[type=checkbox]:checked + .tick:after {
-  opacity: 1;
-}
+.editor-relato .formulario .container-checkbox input[type=checkbox]:checked + .tick:after {
+  opacity: 1; }
 
 /* Modalcito VISUALIZACION */
 .modal-opciones-nodo {
@@ -3012,9 +3206,8 @@ div.comentario-editor .btn:hover, div.comentario-editor .btn:focus {
   margin-bottom: 0; }
 
 .nodo-ergodico-backdrop .row div:last-child hr {
-  /* float: right; */
-  /* margin-right: 20px; */
-  }
+  float: right;
+  margin-right: 20px; }
 
 @media only screen and (max-width: 992px) {
   .nodo-ergodico-backdrop .row div:last-child h2 {
@@ -3076,8 +3269,7 @@ div.comentario-editor .btn:hover, div.comentario-editor .btn:focus {
   list-style: none;
   clear: both;
   height: 480px;
-  overflow-y: scroll;
-  }
+  overflow-y: scroll; }
 
 @media only screen and (max-width: 992px) {
   .listado-nodos-ergodicos {
@@ -3286,47 +3478,3 @@ div.comentario-editor .btn:hover, div.comentario-editor .btn:focus {
     margin: 0 auto; } }
 
 /*# sourceMappingURL=escrituras.css.map */
-
-.help-block:empty {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-
-.form-check-label {
-  margin-top: 5px !important;
-}
-
-/*******/
-
-/*asociar nodo ergodico*/
-.listado-nodos-ergodicos {
-   overflow-y: visible;
-}
-
-.listado-nodos-ergodicos p{
-   height:60px;
-   margin-bottom:70px;
-}
-
-.listado-nodos-ergodicos li{
-  height:250px;
-}
-
-.nodo-ergodico-backdrop .row div:last-child hr{
-  float: none;
-  margin-right: 0;
-}
-
-.ellipsis {
-  text-overflow: ellipsis;
-
-  /* Required for text-overflow to do anything */
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-/**/
-.modal-backdrop.in {
-  z-index: 1020;
-}

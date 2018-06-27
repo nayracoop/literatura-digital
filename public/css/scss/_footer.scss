@@ -14,7 +14,7 @@ footer{
 }
     
 @media only screen and (max-width: ($screen-md)) {
-  footer{ padding-bottom: 20px; }
+  footer{ padding-bottom: 20px; padding-top: 30px;}
   .footer-fluid{ border-bottom: none; position: static;}
 }
 
