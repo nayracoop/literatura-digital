@@ -9,9 +9,9 @@
             <textarea class="form-control" id="mensaje" name="description">{{$story->description or ''}}</textarea>
 
             <div class="row">
-                @if(\Route::currentRouteName() === 'story.create')
+                {{--  @if(\Route::currentRouteName() === 'story.create')
                 <div class="col-md-6">
-                    {{--  TIPOLOGÍA  --}}
+                    TIPOLOGÍA
 
                     <label for="typology">@lang('messages.typology') *</label>
                     <div class="styled-select">
@@ -28,7 +28,7 @@
                     </div>
 
                 </div>
-                @endif
+                @endif   --}}
                 <div class="col-md-6">
                     {{--  GÉNERO  --}}
                     <label for="genero">@lang('messages.gender') *</label>
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            {{--  VISUALIZACIÓN  --}}
+            {{--  VISUALIZACIÓN
             @if(\Route::currentRouteName() === 'story.create')
             <label for="visualization">@lang('messages.visualization') *</label>
             <div class="styled-select">
@@ -62,7 +62,64 @@
                     @endforeach
                 </select>
             </div>
-            @endif
+
+            @endif   --}}
+            <div class="row">
+                <div class="col-md-12">
+                  <fieldset class="field-formato">
+                    <legend>Tu historia tiene un formato</legend>
+                  
+                    @foreach($typologies as $typology)
+                      @php
+                        //echo $story->typology->getIdAttribute() .' -- '.$typology->_id;
+                        $tipologyActive = false;
+                        if (isset($story) && !empty($story->typology) && ($story->typology->getIdAttribute() === $typology->_id)) {
+                            $typologyActive = true;
+                        } else {
+                            $typologyActive = false;
+                        }
+                      @endphp
+                      <label for="{{ $typology->slug }}" class="op @if($typologyActive) active @endif"><span>{{ $typology->name }}</span></label>
+                      <input type="radio" name="typology" id="{{ $typology->slug }}" value="{{ $typology->_id }}"
+                        @if($typologyActive)
+                          checked="checked"
+                        @endif
+                       />
+                    @endforeach
+                  </fieldset>
+                  @foreach($typologies as $typology)
+                    @if($typology->visualizations->count() > 1)
+                      <fieldset class="field-disenio {{ $typology->slug }}">
+                        <legend>La visualización de tu relato {{ $typology->name }} será del tipo</legend>
+                        @foreach($typology->visualizations as $visualization)
+                          @php
+                            $visualizationActive = false;
+                            if (isset($story) && !empty($story->visualization_id) && $story->visualization_id === $visualization->_id) {
+                               $visualizationActive = true;
+                            } else {
+                              $visualizationActive = false;
+                            }
+                          @endphp
+                          <input type="radio" name="visualization" id="{{$visualization->slug}}" value="{{$visualization->_id}}" @if($visualizationActive) checked="checked" @endif />
+                          <label for="{{$visualization->slug}}">{{$visualization->name}}</label>
+                        @endforeach
+                      <p class="cambiar">(más adelante la podés cambiar)</p>
+                    </fieldset>
+                    @endif
+                  @endforeach
+
+                  <!-- <fieldset class="field-disenio choral">
+                    <legend>La visualización de tu relato coral será del tipo</legend>
+                    <input type="radio" name="disenio-coral" id="cuadricula" value="Cuadrícula" checked="checked" />
+                    <label for="cuadricula">Cuadrícula</label>
+                    <input type="radio" name="disenio-coral" id="fichas" value="Fichas" />
+                    <label for="fichas">Fichas</label>
+                    <input type="radio" name="disenio-coral" id="puntos" value="Puntos" />
+                    <label for="puntos">Puntos</label>
+                    <p class="cambiar">(más adelante la podés cambiar)</p>
+                  </fieldset> -->
+                </div>
+              </div>
         </div>
     </div>
 

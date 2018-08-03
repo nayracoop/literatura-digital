@@ -162,7 +162,9 @@ class StoryController extends Controller
     public function edit($story)
     {
         $myStory = Story::where('_id', $story)->orWhere('slug', $story)->first();
-        $typologies = Typology::all();
+        //  $typologies = Typology::all();
+        //$typologies = Typology::where($myStory->typology->getIdAttribute())->get();
+        $typologies = [$myStory->typology];
         $visualizations = $myStory->typology->visualizations;
 
         return view('stories.edit')

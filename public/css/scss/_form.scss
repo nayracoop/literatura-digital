@@ -2,20 +2,20 @@
   font-family: $akzidenz-grotesk-pro-med;
 }
 
-.formulario form label, .formulario fieldset legend{ 
+.formulario form label, .formulario fieldset legend{
   margin-top: 30px;
   margin-bottom: 10px;
-  color: #272939; 
+  color: #272939;
   padding-left: 5px;
   font-size: 1.285714285714286em;
   font-weight: bold;
   border-width: 0;
 }
 
-.formulario form input[type=text], .formulario form input[type=password], .formulario form textarea, .formulario form select{ 
-  border-radius: 4px; 
-  border-width: 0; 
-  color: #666; 
+.formulario form input[type=text], .formulario form input[type=password], .formulario form textarea, .formulario form select{
+  border-radius: 4px;
+  border-width: 0;
+  color: #666;
   background-color: #F7F6F5;
   box-shadow: 0 0 0 transparent inset;
   min-height: 45px;
@@ -23,14 +23,14 @@
   font-size: 1.285714285714286em;
 }
 
-.formulario form input[type=file]{ 
-  border-width: 0; 
+.formulario form input[type=file]{
+  border-width: 0;
   box-shadow: none;
 }
 
 .formulario form textarea{ min-height: 230px; }
 
-.formulario form input:focus, .formulario form textarea:focus, , .formulario form textarea:select{ 
+.formulario form input:focus, .formulario form textarea:focus, , .formulario form textarea:select{
    box-shadow: 0 0 0 transparent inset, 0 0 8px rgba(12,166,190,0.6);
 }
 
@@ -68,7 +68,7 @@ div.container-select-fecha label{ float: left; margin: 10px 10px 0 0;}
 .formulario .select-fecha select { width: 108px; }
 
 .formulario .select-fecha-largo { width: 140px; float: left; margin-right: 10px; margin-bottom: 10px;}
-.formulario .select-fecha-largo select { width: 168px; }    
+.formulario .select-fecha-largo select { width: 168px; }
 
 .formulario .portada-archivo{
   background: transparent;
@@ -205,27 +205,27 @@ div.container-select-fecha label{ float: left; margin: 10px 10px 0 0;}
   outline: 1px dotted $color-destacado;
 }
 
-.formulario .field-disenio [for="burbujas"]{
+.formulario .field-disenio [for="bubbles"]{
   background-image: url(../img/formatos/burbujas.png)
 }
 
-.formulario .field-disenio [for="caleidoscopio"]{
+.formulario .field-disenio [for="kaleidoscope"]{
   background-image: url(../img/formatos/caleidoscopio.png)
 }
 
-.formulario .field-disenio [for="etiquetas"]{
+.formulario .field-disenio [for="words"]{
   background-image: url(../img/formatos/etiquetas.png)
 }
 
-.formulario .field-disenio [for="cuadricula"]{
+.formulario .field-disenio [for="grid"]{
   background-image: url(../img/formatos/cuadricula.png)
 }
 
-.formulario .field-disenio [for="fichas"]{
+.formulario .field-disenio [for="circles"]{
   background-image: url(../img/formatos/fichas.png)
 }
 
-.formulario .field-disenio [for="puntos"]{
+.formulario .field-disenio [for="points"]{
   background-image: url(../img/formatos/puntos.png)
 }
 
@@ -247,7 +247,7 @@ div.container-select-fecha label{ float: left; margin: 10px 10px 0 0;}
 }
 
 .field-disenio{
-  display: none; 
+  display: none;
   margin-top: 15px;
   padding: 20px 10px 5px 10px;
   background: #F7F6F5;
@@ -256,5 +256,3 @@ div.container-select-fecha label{ float: left; margin: 10px 10px 0 0;}
 }
 
 .field-disenio.active, .field-disenio.segundo{ display: block; }
-
-
