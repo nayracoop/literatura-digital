@@ -513,6 +513,8 @@ class StoryController extends Controller
     */
     public function saveStoryXhr(Request $request)
     {
+       //print_r($request->all());
+
         $story = null;
         $s = null;
         $title = null;
@@ -533,10 +535,14 @@ class StoryController extends Controller
             $story->author()->associate($author);
             $action = 'created';
         }
-        if ($request->has('typology') && $request->has('visualization')) {
-            $typology = Typology::find($input['typology']);
-            $visualization = $typology->visualizations()->find($input['visualization']);
 
+        if ($request->has('typology')) {
+            $typology = Typology::find($input['typology']);
+            if ($request->has('visualization')) {
+                $visualization = $typology->visualizations()->find($input['visualization']);
+            } else {
+                $visualization = $typology->visualizations()->first(); // si no esta definida la visualizacion se elige la primera
+            }
             //guardo la tipología y la visualización asociada al relato
             //$story->typology()->save($typology);
             $story->typology()->associate($typology);
