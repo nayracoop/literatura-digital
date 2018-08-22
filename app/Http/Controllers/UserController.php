@@ -45,7 +45,7 @@ class UserController extends Controller
         $me = Auth::user();
         $isOwner = false;
 
-        if ($myUser->id === $me->id) {
+        if (Auth::check() && $myUser->id === $me->id) {
             $isOwner = true;
         }
 

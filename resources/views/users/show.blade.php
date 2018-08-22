@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title')
-    {{ $user->getName() }} 
-@endsection 
+    {{ $user->getName() }}
+@endsection
 
 @section('content')
 <div class="container-fluid">
@@ -21,7 +21,7 @@
                             <div class="image-clip">
                                 @if( $user->avatar != null && !empty($user->avatar))
                                     <img alt="@lang('Avatar de') {{$user->getName()}}" src="{{ asset('imagenes/avatar/'.$user->avatar )}}"> @else
-                                    <img src="{{asset('img/img-usuario-default.jpg')}}" alt="" /> 
+                                    <img src="{{asset('img/img-usuario-default.jpg')}}" alt="" />
                                 @endif
                             </div>
                             <p class="nom-usuario">{{ $user->getName() }}</p>
@@ -43,13 +43,6 @@
         <div class="row">
             <div class="col-sm-12">
                 @include('stories.block_list', ['title' => __('messages.stories_of') . $user->getName(), 'stories' => $user->getStories()])
-                {{--  <h2 class="tit-usuario"></h2>
-                <hr />
-                <div class="row">
-                    @foreach($user->getStories() as $story) 
-                        @include('stories.summary')
-                    @endforeach
-                </div>  --}}
             </div>
         </div>
     </div>
