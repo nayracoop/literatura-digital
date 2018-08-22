@@ -9,8 +9,16 @@
               <p class="autor">{{$story->getAuthorName()}}</p>
 
              <ul>
-               @foreach($story->textNodes as $node)
-               <li ><a class="leer" data-node="{{ $node->_id }}" id="{{ $node->_id }}"  href="#">{{$node->title}}</a></li>
+               @php
+                    //
+                    //print_r($history);
+                    $history = new \App\Utils\UserHistory($history);
+               @endphp
+               @foreach($story->textNodes->where('status','publicado') as $node)
+               @php
+                    $isRead = $history->isReadNode($story->_id, $node->_id ) ? 'leido' : '';
+               @endphp
+               <li ><a class="leer {{$isRead}}" data-node="{{ $node->_id }}" id="{{ $node->_id }}"  href="#">{{$node->title}}</a></li>
                @endforeach
              </ul>
 

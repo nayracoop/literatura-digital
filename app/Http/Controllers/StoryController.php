@@ -81,13 +81,17 @@ class StoryController extends Controller
 
         if (Auth::check()) {
              UserHistory::addStory('user', $story, Auth::user());
+             $history = Auth::user()->history;
         } else {
              UserHistory::addStory('cookie', $story, $request, $cookieJar);
+             $history = $request->cookie('history');
              //var_dump(json_encode($request->cookie('history'), JSON_PRETTY_PRINT));
         }
 
         return view('stories.show')
-            ->with('story', $story);
+            ->with('story', $story)
+            ->with('history', $history)
+            ;
     }
 
     /**

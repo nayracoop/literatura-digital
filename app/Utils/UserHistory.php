@@ -73,10 +73,10 @@ class UserHistory
             $history = self::addStoryProcess($story, $history);
         }
 
-        if (isset($history['stories'][$story->_id]['textNodes'][$textNode->id])) {
-            $history['stories'][$story->_id]['textNodes'][$textNode->id]['views'] ++;
+        if (isset($history['stories'][$story->_id]['textNodes'][$textNode->_id])) {
+            $history['stories'][$story->_id]['textNodes'][$textNode->_id]['views'] ++;
         } else { //nuevo relato
-            $history['stories'][$story->_id]['textNodes'][$textNode->id]['views'] =   1;
+            $history['stories'][$story->_id]['textNodes'][$textNode->_id]['views'] =   1;
         }
 
         return $history;

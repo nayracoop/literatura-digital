@@ -268,14 +268,14 @@ class TextNodeController extends Controller
     {
         $status = '-';
         $story = Story::where('_id', $story)->first();
-        $textNode = $story->textNodes->where('slug', $request->node)->first();
+        $textNode = $story->textNodes->where('_id', $request->node)->first();
         if (Auth::check()) {
              UserHistory::addNode('user', $textNode, Auth::user());
              $status = 'added to user';
               // var_dump(json_encode(Auth::user()->history, JSON_PRETTY_PRINT));
         } else {
              UserHistory::addNode('cookie', $textNode, $request, $cookieJar);
-             $status = 'updated history cookie';
+             $status = 'updated history cookie '.$request->node;
         }
 
         return response()->json([

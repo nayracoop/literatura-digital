@@ -7,6 +7,7 @@ function readNode() {
   $('.leer').click(function(e) {
   e.preventDefault();
   var id = $(this).attr('data-node');
+  $(this).addClass('leido');
    //id = $(this).data('node');
   var node = $('#ventana-nodo-'+id);
   saveNodeHistory(node,id);
@@ -124,6 +125,7 @@ function saveNodeHistory(node, nodeId)
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST", "{{route('history.save-node',$story->id)}}", true);
   xhttp.setRequestHeader("X-CSRF-Token", "{{csrf_token()}}");
+  xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   xhttp.send('node='+nodeId);
   xhttp.addEventListener("readystatechange", function (e) {
       var el = e.target;
