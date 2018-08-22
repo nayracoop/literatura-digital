@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <div class="row">
           @forelse($stories as $story)
-              @if((Auth::check() && Auth::user()->_id === $story->author_id) || $story->status === 'publicado')
+              @if( (Auth::check() && Auth::user()->isAdminOrMod() ) || (Auth::check() && Auth::user()->_id === $story->author_id) || $story->status === 'publicado')
                   @include('stories.block_summary')
               @endif
           @empty

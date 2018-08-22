@@ -194,7 +194,7 @@ class Story extends BaseModel
     **/
     public function scopeFeatured($query, $count = 40)
     {
-        if (Auth::check() && Auth::user()->isAdminOrMod()) {
+        if (true) {
             $stories = $query->get();
         } else {
             $stories = $query->where('status', Status::PUBLISHED)->take($count)->get();
