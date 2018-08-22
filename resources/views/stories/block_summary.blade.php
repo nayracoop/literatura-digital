@@ -16,11 +16,6 @@
             @else
                 <p class="autor-relato"><a>@lang('messages.deleted_user')</a></p>
             @endif
-
-            <span><hr /></span>
-
-            <p class="resumen">{{ $story->description or __('messages.no_description') }}</p>
-
             @auth
                 @php
                     $user = auth()->user();
@@ -33,7 +28,12 @@
                 @if ($user->isAdminOrMod())
                     <input type="checkbox" name="publish_status" {{ $checked }} class="status_switch" id="{{ $story->id }}">
                 @endif
-            @endauth
+            @endauth 
+            <span><hr /></span>
+
+            <p class="resumen">{{ $story->description or __('messages.no_description') }}</p>
+
+
 
             <a href="{{ route('story.show', $story->slug ) }}"><span class="ver-mas"></span></a>
         </a>
