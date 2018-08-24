@@ -20,11 +20,11 @@
 .modos{ list-style: none; float: right; padding: 10px 0 0 0; }
 
 @media only screen and (max-width: ($screen-xs - 163)) {
-  .modos{ 
-    margin-top: 20px; 
+  .modos{
+    margin-top: 20px;
     float: left;
     margin-bottom: -10px;
-  } 
+  }
 }
 
 .modos li{ float: left; margin-right: 10px;}
@@ -51,7 +51,7 @@
   background-image: url(../img/iconos/relato-listado.png);
 }
 
-.modos a:hover, .modos a:focus, .modos li.active a{ 
+.modos a:hover, .modos a:focus, .modos li.active a{
   background-color: #666;
   border-color: #F4F3F2;
 }
@@ -69,8 +69,8 @@
   }
 }
 
-.editor-relato hr{ 
-  margin-top: -5px; 
+.editor-relato hr{
+  margin-top: -5px;
   margin-bottom: 12px;
 }
 
@@ -119,47 +119,49 @@
      -webkit-appearance: none;
   }
 
-.editor-relato .container-checkbox {
-  margin-top: 15px;
-  margin-left: 20px;
-  padding-left: 15px;
-}
+  .editor-relato .container-checkbox {
+    margin-top: 15px;
+    margin-left: 20px;
+    padding-left: 15px;
+  }
 
-.editor-relato .formulario .container-checkbox input[type=checkbox] {
-  visibility: hidden;
-}
+  .formulario .container-checkbox input[type=checkbox] {
+    visibility: hidden;
+  }
 
-.tick{
-  cursor: pointer;
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border-radius: 4px;  
-  top: -2px;
-  left: -35px;
-  background: #EEE;
-}
+  .tick {
+    cursor: pointer;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    top: -2px;
+    left: 106px;
+    background: #EEE;
+  }
 
-.editor-relato .formulario .container-checkbox .tick:after{
-  opacity: 0.1;
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 10px;
-  background: transparent;
-  top: 8px;
-  left: 7px;
-  border: 4px solid #666;
-  border-top: none;
-  border-right: none;
-  transform: rotate(-45deg);
-}
+  .check-left .tick {
+    left: -35px;
+  }
 
-.editor-relato .formulario .container-checkbox input[type=checkbox]:checked + .tick:after {
-  opacity: 1;
-}
+  .formulario .container-checkbox .tick:after {
+    opacity: 0.1;
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 10px;
+    background: transparent;
+    top: 8px;
+    left: 7px;
+    border: 4px solid #666;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-45deg);
+  }
 
-
+  .formulario .container-checkbox input[type=checkbox]:checked + .tick:after {
+    opacity: 1;
+  }
 /* Modalcito VISUALIZACION */
 
 .modal-opciones-nodo{
@@ -199,9 +201,9 @@
   margin-top: 0;
 }
 
-.modal-opciones-nodo hr{ 
-  height: 2px; 
-  background: #EAE8E6; 
+.modal-opciones-nodo hr{
+  height: 2px;
+  background: #EAE8E6;
   width: 20px;
 }
 
@@ -227,8 +229,8 @@
 
 /* Listado preguntas - Ergodico */
 
-.preguntas-ergodico, .invitacion-preguntas-ergodico{ 
-  padding: 0; 
+.preguntas-ergodico, .invitacion-preguntas-ergodico{
+  padding: 0;
   list-style: none;
   width: 90%;
   float: right;
@@ -239,7 +241,7 @@
    padding-bottom: 10px;
 }
 
-.preguntas-ergodico li{ 
+.preguntas-ergodico li{
   overflow: hidden;
   padding: 15px 0 6px 0;
   border-top: 2px dotted #CCCCCC;
@@ -247,7 +249,7 @@
 
 .preguntas-ergodico li:last-child{
   border-bottom: 2px dotted #CCCCCC;
-} 
+}
 
 .delete-pregunta-ergodico{
   width: 5%;
@@ -293,7 +295,7 @@
     width: 85%;
     float: left;
   }
-  .preguntas-ergodico, .invitacion-preguntas-ergodico{ 
+  .preguntas-ergodico, .invitacion-preguntas-ergodico{
     width: 100%;
   }
   .opciones-preguntas-ergodico{
@@ -319,9 +321,9 @@
   margin-bottom: 5px;
 }
 
-.opciones-preguntas-ergodico hr{ 
-  height: 2px; 
-  background: #EAE8E6; 
+.opciones-preguntas-ergodico hr{
+  height: 2px;
+  background: #EAE8E6;
   width: 20px;
   float: left;
   margin: 0;
@@ -350,7 +352,7 @@
 
 /* ALERT SUCCESS GUARDADO */
 
-.guardado{ 
+.guardado{
   position: fixed;
   width: 250px;
   height: 40px;
@@ -372,10 +374,9 @@
   -moz-transition: opacity .25s ease-in-out;
   -webkit-transition: opacity .25s ease-in-out;
   transition: opacity .25s ease-in-out;
-} 
+}
 
- .guardado .success{ 
+ .guardado .success{
   text-align: center;
   box-shadow: 0 3px 15px rgba(0,0,0,0.2);
 }
-
