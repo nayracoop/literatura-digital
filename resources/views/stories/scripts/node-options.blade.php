@@ -36,7 +36,6 @@ $('.edit').click(function(e) {
   e.preventDefault();
   var nodeId = $(this).data('node');
   //var node = $('#ventana-nodo-'+id);
-  console.log( 'NODO-- '+ nodeId);
 
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET','{{route('node.json',$story->_id)}}?id='+nodeId);
@@ -64,7 +63,6 @@ $('.edit').click(function(e) {
             if (node.text.length > 0) {
               $('.note-placeholder').hide();
             }
-
             //$('textarea[name="text"]').html($('.note-editable').html());
 
             $('input[name="charCount"]').val(node.charCount);
@@ -83,7 +81,6 @@ $('.edit').click(function(e) {
   });
 
 });
-
 
 $('.grindex a').click( function(e) {
      e.preventDefault();

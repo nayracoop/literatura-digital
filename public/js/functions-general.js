@@ -3,6 +3,7 @@ $(document).ready(function() {
 		      $('.nodo-backdrop').addClass('esconder');
 					$('.nodo-backdrop-fondo').addClass('esconder');
 					$('.nodo-ergodico-backdrop-fondo').addClass('esconder');
+					$('body').removeClass('overflow');
 
 	  return false;
 	});
@@ -105,7 +106,7 @@ $(document).ready(function() {
 		$(tab_id).addClass('active');
 	});
 
-	/* TABS FORMATOS */	
+	/* TABS FORMATOS */
 
 	$('.field-formato label').click(function(e){
 		$('.field-formato label').removeClass('active');
