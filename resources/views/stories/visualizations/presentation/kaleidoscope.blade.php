@@ -1,4 +1,4 @@
-
+@extends('layouts.visualization')
 <div class="grindex-wrapper">
   <div class="grindex kaleidoscope">
     <svg>
@@ -6,17 +6,17 @@
     </svg>
   </div>
 </div>
-@include('textNodes.backdrop')
+
 @push('stylesheets')
-<link href="{{asset('css/visualizations.css')}}" rel="stylesheet">
+<!-- <link href="{{asset('css/visualizations.css')}}" rel="stylesheet"> -->
 <!-- <link href="{{asset('css/reset.css')}}" rel="stylesheet"> -->
 @endpush
-@push('javascript')
-	<script src="https://d3js.org/d3.v4.min.js"></script>
+@push('visualization_scripts')
+	<!-- <script src="https://d3js.org/d3.v4.min.js"></script>
 	<script src="https://d3js.org/d3-path.v1.min.js"></script>
 	<script src="https://d3js.org/d3-shape.v1.min.js"></script>
 	<script src="https://d3js.org/d3-random.v1.min.js"></script>
-	<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+	<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script> -->
 	<script type="text/javascript">
 
   @php
@@ -81,9 +81,11 @@
 		.enter()
 		.append("a")
 		//.attr("href", "#")
-    .attr('data-node', function(d){ console.log('D'+ d); return d._id })
+    .attr('data-node', function(d){ return d._id })
+    .attr('title', function(d){ return d.title })
+    @if(\Route::currentRouteName() === 'story.show')
     .classed("leer", true)
-
+    @endif
 		.append('path')
       .attr('d', function(d, i) {
 

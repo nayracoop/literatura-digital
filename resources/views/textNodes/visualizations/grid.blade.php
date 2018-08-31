@@ -146,5 +146,5 @@
 
   });
 	</script>
-  @include('stories.scripts.node-options')
+  
   @endpush

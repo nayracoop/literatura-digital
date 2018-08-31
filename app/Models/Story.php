@@ -35,7 +35,7 @@ class Story extends BaseModel
     ];
 
     public static $rules = [
-        'title' => 'max:128',
+        'title' => 'required|max:128',
         'description' => 'max:512',
         'typology' => 'required',
         'genre' => 'required'

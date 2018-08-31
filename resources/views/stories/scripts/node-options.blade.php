@@ -7,13 +7,10 @@ function readNode() {
   $('.leer').click(function(e) {
   e.preventDefault();
   var id = $(this).attr('data-node');
-  $(this).addClass('leido');
+  $(this).addClass('visited');
    //id = $(this).data('node');
   var node = $('#ventana-nodo-'+id);
   saveNodeHistory(node,id);
-  console.log( 'id '+ id);
-  console.log( 'modadl id '+ node.data('node'));
-  console.log( 'leer NODO-- '+ node);
 
   if($('.nodo-backdrop-fondo').hasClass('esconder')){
      $('.nodo-backdrop-fondo').removeClass('esconder');
@@ -23,10 +20,10 @@ function readNode() {
   //	  console.log( node.removeClass('esconder'));
       node.removeClass('esconder');
       //node.attr('class','ssss');
-    //	$('body').addClass('overflow');
+    	$('body').addClass('overflow');
   }else{
       node.addClass('esconder');
-  //		$('body').removeClass('overflow');
+  		$('body').removeClass('overflow');
   }
 
   return false;
@@ -39,12 +36,7 @@ $('.edit').click(function(e) {
   e.preventDefault();
   var nodeId = $(this).data('node');
   //var node = $('#ventana-nodo-'+id);
-
-  //console.log( 'id '+ id);
-  //console.log( 'modadl id '+ node.attr('id'));
   console.log( 'NODO-- '+ nodeId);
-  //var formData = new FormData();
-  //formData.append('nodeId', nodeId);
 
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET','{{route('node.json',$story->_id)}}?id='+nodeId);
@@ -95,28 +87,24 @@ $('.edit').click(function(e) {
 
 $('.grindex a').click( function(e) {
      e.preventDefault();
-
   //  var top = parseInt($(this).css('top')) - 29;
   //  var left = parseInt($(this).css('left')) - 21;
      var top = parseInt(e.clientY) ;
      var left = parseInt(e.clientX);
      var offset = $(this).offset();
      var height = $(this).height();
-     var width = $('.variant-0').width();
+     var width = $('.modal-opciones-nodo').width();
      var dataNode = $(this).data('node');
      var title = $(this).parent().attr('title');
-     //console.log('grindex a '+top+' - '+left+ ' nodo:'+dataNode);
-     //console.log(title);
-    $(".modal-opciones-nodo").css({ 'top':offset.top - height - 100 , 'left': offset.left - width  });
+     //si no usa li
+     if (typeof title == "undefined") {
+         title = $(this).attr('title');
+     }
+    $(".modal-opciones-nodo").css({ 'top':top - height , 'left':left - width  });
     $(".leer").attr('data-node', dataNode);
     $(".edit").attr('data-node', dataNode);
     $(".modal-opciones-nodo h2").text(title);
     $(".modal-opciones-nodo").show();
-
-      //console.log('+++NODO : '+$(this).data('edit-node'));
-  //  console.log('li id '+$(this).attr('id'));
-  //  saveWordPosition($(this).data('node'), left, top);
-
 });
 
 
