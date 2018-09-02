@@ -1151,36 +1151,77 @@ footer a:last-child {
 .explicacion .row .back-button {
   margin: 0 0 0 0;
   padding-top: 50px;
-  padding-left: 0;
-}
+  padding-left: 0; }
 
 .explicacion {
   font-family: "Caecilia", Arial, Helvetica, "Liberation Sans", sans-serif;
   font-size: 16px;
-  line-height: 1.7;
-  padding-bottom: 70px;
-}
+  line-height: 1.70;
+  padding-bottom: 70px; }
 
 .explicacion h1 {
   font-family: "Playlist", Arial, Helvetica, "Liberation Sans", sans-serif;
   font-size: 80px;
   color: #0CA6BE;
-  margin-bottom: 50px;
-}
+  margin-bottom: 50px; }
+
+.explicacion h2 {
+  font-size: 1.25em;
+  font-weight: bold;
+  color: #0CA6BE; }
 
 .explicacion p {
-  margin-bottom: 2em;
-}
+  margin-bottom: 2em; }
 
 .explicacion img {
-  width: 100%;
-}
+  width: 100%; }
+
+.explicacion .clear {
+  clear: both; }
+
+.explicacion .borde {
+  border: 1px solid #CCC; }
+
+.explicacion .tam-33 {
+  width: 33%;
+  float: left;
+  margin: 5px 25px 10px 0; }
+
+.explicacion .tam-50 {
+  width: 50%;
+  float: left;
+  margin: 5px 25px 10px 0; }
 
 .explicacion .epigrafe {
-  margin: 10px 0 1.7em 0;
+  margin: 10px 0 1.70em 0;
   font-size: 14px;
-  text-align: right;
-}
+  text-align: center;
+  padding: 0 5px;
+  color: #666; }
+
+.explicacion ul {
+  list-style: none;
+  padding-left: 15px;
+  margin-bottom: 1.5em; }
+
+.explicacion ul li {
+  background: url(../img/iconos/bullet.png) no-repeat 0 0.6em;
+  padding-left: .9em;
+  margin-bottom: 10px; }
+
+.explicacion .citame {
+  font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif;
+  font-weight: bold;
+  font-size: 0.75em;
+  vertical-align: top;
+  letter-spacing: .5px; }
+
+.explicacion .notapie {
+  border-top: 1px solid #0CA6BE;
+  clear: both;
+  font-size: .8125em;
+  line-height: 1.3;
+  padding-top: 10px; }
 
 .explicacion .podra h2 {
   margin: 0 auto 0 auto;
@@ -1188,59 +1229,50 @@ footer a:last-child {
   width: 80%;
   text-align: center;
   font-size: 15px;
-  line-height: 1.7;
-}
+  line-height: 1.70;
+  color: #333; }
 
 .explicacion .podra hr {
   height: 2px;
   background: #0CA6BE;
   width: 40px;
-  margin: 15px auto 30px auto;
-}
+  margin: 15px auto 30px auto; }
 
 @media only screen and (max-width: 768px) {
   .explicacion h1 {
-    font-size: 76px;
-  }
+    font-size: 76px; }
 
   .explicacion .podra h2 {
     margin: 0;
     text-align: left;
     font-weight: bold;
     font-size: 18px;
-    color: #0CA6BE;
-  }
+    color: #0CA6BE; }
 
   .explicacion .podra hr {
-    margin: 15px 0 30px 0;
-  }
+    margin: 15px 0 30px 0; }
 
   .explicacion .modelos .figure {
     float: left;
-    margin: 0;
-  }
-}
+    margin: 0; } }
 .explicacion .modelos .epigrafe {
-  text-align: center;
-}
+  text-align: center; }
 
 .explicacion .modelos img {
   width: 232px;
   display: block;
-  margin: 0 auto;
-}
+  margin: 0 auto; }
 
 /* botones */
 .empeza {
   text-align: center;
-  margin-bottom: 50px;
-}
+  margin-bottom: 50px; }
 
 .empeza .btn {
   text-transform: uppercase;
   line-height: 1;
   font-size: 14px;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
   padding: 12px 15px 12px 15px;
   margin-top: 10px;
   border-radius: 2px;
@@ -1248,84 +1280,71 @@ footer a:last-child {
   font-weight: bold;
   background: #0CA6BE;
   color: #FFF;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-}
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); }
 
 .empeza .btn:hover, .empeza .btn:focus {
   background-color: #FFF;
-  color: #000;
-}
+  color: #000; }
 
 /* CREDITOS */
 .puestos {
-  margin-bottom: 40px;
-}
+  margin-bottom: 40px; }
 
 .puestos h2 {
   font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif;
   font-size: 20px;
   text-transform: uppercase;
   font-weight: bold;
-  margin-top: 50px;
-}
+  margin-top: 50px; }
 
 .puestos hr {
   height: 2px;
   background: #0CA6BE;
   width: 40px;
-  margin: 0 0 20px 0;
-}
+  margin: 0 0 20px 0; }
 
 .puestos p {
-  margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 /* CONTACTANOS */
 .contactanos {
   border: 1px dotted #646464;
   padding: 0 15px 15px 15px;
-  background: #fafafa;
-}
+  background: #fafafa; }
 
 .contactanos h2 {
   color: #0CA6BE;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .contactanos textarea {
   height: 200px;
-  text-indent: 6px;
-}
+  text-indent: 6px; }
 
 .contactanos form label {
   font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif;
-  color: #646464;
-}
+  color: #646464; }
 
 .contactanos .btn {
   text-transform: uppercase;
   line-height: 1;
   font-size: 1em;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
   padding: 15px 30px;
   border-radius: 2px;
   font-family: "Brandon Grotesque", Arial, Helvetica, "Liberation Sans", sans-serif;
   font-weight: bold;
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
   background: #0CA6BE;
-  color: #FFF;
-}
+  color: #FFF; }
 
 .contactanos .success, .contactanos .error {
   margin-top: -20px;
-  margin-bottom: 15px;
-}
+  margin-bottom: 15px; }
 
 /* oculto */
 .movil {
   display: none;
-  visibility: hidden;
-}
+  visibility: hidden; }
 
 .formulario {
   font-family: "Akzidenz-Grotesk Pro Md", Arial, Helvetica, "Liberation Sans", sans-serif;
