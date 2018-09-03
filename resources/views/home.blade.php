@@ -29,7 +29,7 @@
                     <img src="{{ asset('img/home/icono-episodico.png') }}" alt="" />
                     <h3>Episódico</h3>
                     <span><hr /></span>
-                    <p class="resumen">¿Qué pasaría si un relato tuviera la posibilidad de leerse de distintas maneras?</p>
+                    <p class="resumen">¿Cómo será construir un relato que puede leerse de varias maneras?</p>
                     <p class="ver-mas">conocé más</p>
                     </a>
                 </div>
@@ -41,7 +41,7 @@
                     <img src="{{ asset('img/home/icono-coral.png') }}" alt="" />
                     <h3>Coral</h3>
                     <span><hr /></span>
-                    <p class="resumen">¿Te encantan esas películas donde distintos personajes construyen un relato final? ¡Probá con este formato!</p>
+                    <p class="resumen">¿Te gustan esas películas varios personajes y muchas tramas conectadas entre sí? ¡Probá con este formato!</p>
                     <p class="ver-mas">conocé más</p>
                     </a>
                 </div>
@@ -53,7 +53,7 @@
                     <img src="{{ asset('img/home/icono-ergodico.png') }}" alt="" />
                     <h3>Ergódico</h3>
                     <span><hr /></span>
-                    <p class="resumen">¿Te gustan las aventuras gráficas? ¿Te fascinan los "Elije tu propia aventura? ¡Entonces este formato es para vos!</p>
+                    <p class="resumen">¿Te fascinan las historias del tipo <strong>Elije Tu Propia Aventura</strong>? ¡Entonces este formato es para vos!</p>
                     <p class="ver-mas">conocé más</p>
                     </a>
                 </div>
