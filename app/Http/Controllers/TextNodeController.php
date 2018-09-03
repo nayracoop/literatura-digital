@@ -246,7 +246,6 @@ class TextNodeController extends Controller
         $story = Story::where('_id', $slug)->orWhere('slug', $slug)->first();
       //  $monthNodes = $nodes;
 
-
         $calendar = \App\Utils\Dates::renderCalendar($story, $month, $year);
         return response()
           ->json([

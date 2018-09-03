@@ -10,7 +10,7 @@ $day_num = date("j"); //If today is September 29, $day_num=29
 //$date_today->month = date("m"); //If today is September 29, $date_today->month=9
 //$year = date("Y"); //4-digit year
 //$date_today->month = $month
-$date_today = getdate(mktime(0,0,0,$month,1,$year)); //Returns array of date info for 1st day of this month
+$date_today = getdate(mktime(0,0,0,$month,0,$year)); //Returns array of date info for 1st day of this month
 $date = \Carbon\Carbon::createFromDate($year, $month, 1);
 $month_name = $date->formatLocalized('%B'); //nombre del mes localizado
 //echo \Carbon\Carbon::parse(8);
@@ -22,16 +22,15 @@ $cont = true;
 $today = 27; //The last day of the month must be >27, so start here
 while (($today <= 32) && ($cont)) //At 32, we have to be rolling over to the next month
 {
-//Iterate through, incrementing $today
-//Get the date information for the (hypothetical) date $date_today->month/$today/$year
-$date_today = getdate(mktime(0,0,0,$month,$today,$year));
-//Once $date_today's month ($date_today["mon"]) rolls over to the next month, we've found the $lastday
-if ($date_today["mon"] != $date->month)
-{
-$lastday = $today - 1; //If we just rolled over to the next month, need to subtract 1 to get our $lastday
-$cont = false; //This kicks us out of the while loop
-}
-$today++;
+    //Iterate through, incrementing $today
+    //Get the date information for the (hypothetical) date $date_today->month/$today/$year
+    $date_today = getdate(mktime(0,0,0,$month,$today,$year));
+    //Once $date_today's month ($date_today["mon"]) rolls over to the next month, we've found the $lastday
+    if ($date_today["mon"] != $date->month) {
+        $lastday = $today - 1; //If we just rolled over to the next month, need to subtract 1 to get our $lastday
+        $cont = false; //This kicks us out of the while loop
+    }
+    $today++;
 }
 ?>
 <table summary="Lista de nodos del relato">
@@ -71,14 +70,14 @@ $today++;
                 $currentDay = \Carbon\Carbon::createFromDate($year, $date->month, $day)->formatLocalized('%A %d de %B %Y');
                 $hasNode = false;
                 $firstNodeId = null;
-                 foreach ($nodesByDate as $key => $value):
-
+                foreach ($nodesByDate as $key => $value):
                     if($key == $currentDay){
                       $hasNode = true;
                       $firstNodeId = $value[0];
-                      //echo '<br>nodo: '.$firstNodeId->title;
-                    }
-                 endforeach;
+                    //  echo '<br>nodo: '.$firstNodeId->title;
+                    //  echo $key;
+                   }
+                endforeach;
             @endphp
             <td>@if( $hasNode )<a href="#" class="dia leer" data-node="{{$firstNodeId->_id}}" >{{$day}}</a>@else {{$day}} @endif</td>
             @if ($wday==6)

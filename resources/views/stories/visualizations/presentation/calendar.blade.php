@@ -8,18 +8,9 @@ $firstYear = $first->year;
     <div class="container">
       <div class="row leer-palabras">
         <div class="col-md-12">
-
-          <div class="nodo-data-relato">
-              <div class="image-clip">
-                @if($story->cover != null && !empty($story->cover))
-                    <img alt="@lang('tapa de') {{$story->title}}" src="{{ asset('imagenes/cover/'.$story->cover )}}"> @else
-                    <img alt="" src="{{ asset('img/img-relato-default.jpg')}}">
-                @endif
-              </div>
-              <p class="tit-relato">{{$story->title}}</p>
-              <p class="autor-relato">{{$story->getAuthorName()}}</p>
-          </div>
-
+          @if(\Route::currentRouteName() === 'story.show')
+          @include('snippets.stories.data-node')
+          @endif
           <div id="grilla-calendario" class="container-nodo"></div>
 
         </div>
@@ -28,6 +19,7 @@ $firstYear = $first->year;
   </div>
 @include('textNodes.backdrop-calendar')
 @push('javascript')
+@include('stories.scripts.node-options')
 <script type="text/javascript">
 
 loadMonthCalendar({{$firstMonth}}, {{$firstYear}});
@@ -55,7 +47,6 @@ function loadMonthCalendar(month, year)
       }
   });
 }
-
 
 function clickForCalendar()
 {

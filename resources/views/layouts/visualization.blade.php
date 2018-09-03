@@ -13,7 +13,7 @@
 <script src="https://d3js.org/d3-shape.v1.min.js"></script>
 <script src="https://d3js.org/d3-random.v1.min.js"></script>
 <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
-@yield('visualization_scripts--')
+
 @stack('visualization_scripts')
 @include('stories.scripts.node-options')
 @endpush

@@ -113,17 +113,15 @@ class Story extends BaseModel
         $calendar = [];
         // \Carbon\Carbon::setLocale('es');
         // \Carbon\Carbon::setUtf8(true);
-
-        foreach ($this->textNodes->sortBy('created_at') as $node) {
+        foreach ($this->textNodes->sortBy('node_date') as $node) {
             if ($month !== null && $year !== null) {
-                if ($node->created_at->month == $month && $node->created_at->year == $year) {
-                    $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
+                if ($node->node_date->month == $month && $node->node_date->year == $year) {
+                    $calendar[utf8_encode($node->node_date->formatLocalized('%A %d de %B %Y'))][] = $node;
                 }
             } else {
-                $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
+                $calendar[utf8_encode($node->node_date->formatLocalized('%A %d de %B %Y'))][] = $node;
             }
         }
-
         return $calendar;
     }
 
@@ -139,15 +137,15 @@ class Story extends BaseModel
         $currentMonth = \Carbon\Carbon::create($year, $month, 1);
         $nextMonth = \Carbon\Carbon::create($year, $month, 1)->addMonth()->firstOfMonth();
         $next = null;
-        $nodes = $this->textNodes->where('created_at', '>=', $nextMonth)->sortByDesc('created_at');
+        $nodes = $this->textNodes->where('node_date', '>=', $nextMonth)->sortByDesc('node_date');
         while ($next == null && $nodes->count() > 0) {
             $node = $nodes->pop();
-            if ($node->created_at->month == $nextMonth->month) {
+            if ($node->node_date->month == $nextMonth->month) {
                 // $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
                 $next = $nextMonth;
             } else {
                 $nextMonth = $nextMonth->addMonth()->firstOfMonth();
-                $nodes = $this->textNodes->where('created_at', '>=', $nextMonth)->sortByDesc('created_at');
+                $nodes = $this->textNodes->where('node_date', '>=', $nextMonth)->sortByDesc('node_date');
             }
         }
         return $next;
@@ -163,18 +161,18 @@ class Story extends BaseModel
     */
     public function getPrevMonth($month, $year)
     {
-        $currentMonth = \Carbon\Carbon::create($year, $month, 20);
+        $currentMonth = \Carbon\Carbon::create($year, $month, 15);
         $prevMonth = $currentMonth->subMonth()->firstOfMonth();
         $prev = null;
-        $nodes = $this->textNodes->where('created_at', '<=', $prevMonth)->sortByDesc('created_at');
+        $nodes = $this->textNodes->where('node_date', '<=', $prevMonth)->sortByDesc('node_date');
         while ($prev == null && $nodes->count() > 0) {
             $node = $nodes->pop();
-            if ($node->created_at->month == $prevMonth->month) {
+            if ($node->node_date->month == $prevMonth->month) {
             //  $calendar[$node->created_at->formatLocalized('%A %d de %B %Y')][] = $node;
                 $prev = $prevMonth;
             } else {
                 $prevMonth = $prevMonth->subMonth()->firstOfMonth();
-                $nodes = $this->textNodes->where('created_at', '>=', $prevMonth)->sortByDesc('created_at');
+                $nodes = $this->textNodes->where('node_date', '>=', $prevMonth)->sortByDesc('node_date');
             }
         }
         return $prev;
