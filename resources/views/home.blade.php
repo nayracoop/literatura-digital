@@ -37,7 +37,7 @@
 
                 <article class="col-sm-12 col-md-6">
                 <div class="card">
-                    <a href="{{ route('typology.description', 'choral' ) }}">
+                    <a href="{{ route('typology.description', 'coral' ) }}">
                     <img src="{{ asset('img/home/icono-coral.png') }}" alt="" />
                     <h3>Coral</h3>
                     <span><hr /></span>
@@ -49,7 +49,7 @@
 
                 <article class="col-sm-12 col-md-6">
                 <div class="card">
-                    <a href="#">
+                    <a href="{{ route('typology.description', 'ergodico' ) }}">
                     <img src="{{ asset('img/home/icono-ergodico.png') }}" alt="" />
                     <h3>Ergódico</h3>
                     <span><hr /></span>
@@ -61,7 +61,7 @@
 
                 <article class="col-sm-12 col-md-6">
                 <div class="card">
-                    <a href="#">
+                    <a href="{{ route('typology.description', 'temporal' ) }}">
                     <img src="{{ asset('img/home/icono-temporal.png') }}" alt="" />
                     <h3>Temporal</h3>
                     <span><hr /></span>

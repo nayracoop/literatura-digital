@@ -1,4 +1,3 @@
-{{--  {{ csrf_field() }}  --}}
 <div class="row">
     <div class="col-sm-9 tit-nodo">
         <div class="form-padding-interno">

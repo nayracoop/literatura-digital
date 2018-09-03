@@ -11,6 +11,13 @@
   <h2 class="tit-usuario">Elegí un nodo</h2>
   <hr />
     <ul class="listado-nodos-ergodicos">
+
+        @php
+        if (!isset($node)) {
+            $node = new \App\Models\TextNode;
+        }
+        @endphp
+
         @foreach($story->textNodes as $n)
         @if($node->_id !== $n->_id)
         <div class="col-md-4 col-lg-3">

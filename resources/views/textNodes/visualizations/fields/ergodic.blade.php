@@ -17,8 +17,8 @@
               <hr />
             </div>
             <div class="botones-preguntas-ergodico">
-              <a href="#" class="dia">Leer nodo</a>
-              <a href="#" class="asociar">Editar nodo</a>
+            {{--  <a data-node="{{$nn->_id}}"  class="dia leer">Leer nodo</a>
+              <a href="#" class="asociar">Editar nodo</a> --}}
             </div>
         </div>
         </li>
@@ -32,7 +32,9 @@
 </div>
 @endif
 @include('snippets.visualizations.ergodic-associate')
+@include('textNodes.backdrop')
 @push('javascript')
+@include('stories.scripts.node-options')
 <script type="text/javascript">
 $('.delete-node').click(function(e){
    e.preventDefault();

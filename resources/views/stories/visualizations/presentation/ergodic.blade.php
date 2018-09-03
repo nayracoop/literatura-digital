@@ -3,7 +3,6 @@
 
 @elseif(\Route::currentRouteName() === 'nodes.index')
 @include('snippets.visualizations.ergodic-edit')
-
 @endif
 
 @push('javascript')
