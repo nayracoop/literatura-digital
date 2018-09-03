@@ -37,7 +37,7 @@
 
                 <article class="col-sm-12 col-md-6">
                 <div class="card">
-                    <a href="#">
+                    <a href="{{ route('typology.description', 'choral' ) }}">
                     <img src="{{ asset('img/home/icono-coral.png') }}" alt="" />
                     <h3>Coral</h3>
                     <span><hr /></span>
@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 @endsection
 {{--  @push('javascript')
 esto pasa a estar en la lista de historias
