@@ -1,45 +1,52 @@
-
-@media only screen and (min-width: $screen-md){
+@media only screen and (min-width: $screen-xl) and (max-width: $screen-xl + 90) {
   .navbar-home{
-    background: #FFF;
+    background: url(../img/home/fondo-menu.png) no-repeat bottom center;
     margin-bottom: 0;
-    padding-bottom: 15px;
-    padding-top: 0;
+    padding-bottom: 85px;
+    padding-top: 42px;
+    border: none;
   }
 }
 
-@media only screen and (min-width: $screen-lg){
-  .destacado-home:after{
-      content:'';
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      margin-left: -20px;
-      width: 0;
-      height: 0;
-      border-top: solid 20px #FFF;
-      border-left: solid 20px transparent;
-      border-right: solid 20px transparent;
-      z-index: 3;
+@media only screen and (min-width: $screen-lg) and (max-width: $screen-xl) {
+  .navbar-home{
+    background: url(../img/home/fondo-menu-lg.png) no-repeat bottom center;
+    margin-bottom: 0;
+    padding-bottom: 85px;
+    padding-top: 42px;
+    border: none;
   }
 }
+
 
 .destacado-home{
-	background: #FFF;
-  margin: 0 15px 35px 15px;
+  background: #FFF;
+  margin: 0 15px 0 15px;
   position: relative;
-  padding-top: 10px;
 }
 
 .destacado-home .container{
   background: url(../img/home/lapiz.jpg) no-repeat bottom right;
-  padding-bottom: 45px;
+  background-size: 80% auto; 
+  padding-top: 50px;
+  padding-bottom: 70px;
 }
 
 @media only screen and (max-width: $screen-lg){
   .destacado-home .container{
-    background-position: 340px -200px;  
+    background-size: 100% auto; 
   }
+}
+
+@media only screen and (max-width: $screen-xs) { 
+  .destacado-home .container{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.explicaciones-home{
+  background: #FFF;
 }
 
 @media only screen and (max-width: $screen-md){
@@ -50,31 +57,31 @@
   .destacado-home .container{
     background-position: 340px -220px;  
   }
-  .cards-home{
+  .explicaciones-home{
     margin-bottom: 30px;
-  }
-  .cards-home .card{
-    margin-left: -15px;
-    margin-right: -15px; 
   }
 }
 
 .destacado-home h1{
-  background: url(../img/home/amarillos-call-to-action.png) no-repeat top left;
-  font-size: 74px;
+  /*background: url(../img/home/amarillos-call-to-action.png) no-repeat top left;*/
+  font-size: 50px;
   padding-left: 15px;
-  margin-top: 30px;
-  margin-left: 10px;
-  line-height: 1.15;
+  margin-top: 20px;
+  line-height: 1.25;
   letter-spacing: -2px;
-  font-family: $maax-rounded;
+  font-family: $maax-rounded-medium;
+  font-weight: bold;
 }
 
-.destacado-home h1 .brush{
-  font-family: $playlist-script;
-  font-size: 1.15em;
+.destacado-home h1 .resaltado{
+  /*font-family: $playlist-script;
+  font-size: 1.15em;*/
   letter-spacing: 0;
   box-shadow: none;
+  background: #FEF200;
+  /*outline: 0.125em solid #FEF200;
+  box-shadow: 0.125em solid #FEF200;*/
+  box-shadow: 0.125em 0 0 0 rgba(254,242,0,1), -0.125em 0 0 0 rgba(254,242,0,1);
 }
 
 @media only screen and (max-width: $screen-md){
@@ -87,6 +94,8 @@
     background-size: 460px auto;
     font-size: 64px;
   }
+
+   .destacado-home h1 br{ display: none; }
 }
 
 @media only screen and (min-width: $screen-sm){
@@ -110,7 +119,6 @@
     font-size: 38px;
     padding-left: 0;
     margin-left: 0;
-    
   }
 }
 
@@ -119,164 +127,585 @@
     background-image: none;
   }
   .destacado-home{
-    padding-top: 10px;
-    padding-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 20px;
   }
 }
 
-.cards-home .card{
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+.explicaciones-home{
+  font-size: 1.25em;
+  line-height: 1.85;
+  font-family: $roboto-light;
+  background-color: #FFF; 
+  background-image: url(../img/home/fnd-10.png), url(../img/home/fnd-2.png);
+  background-repeat: no-repeat, no-repeat;
+  background-position: bottom left, top right;
+  background-size: 900px auto, 380px auto;
+  padding-bottom: 560px;
+}
+
+@media only screen and (max-width: ($screen-xl + 82)) { 
+  $size: $screen-xl - 255;
+  .explicaciones-home{background-position: bottom left, $size 0;}
+}
+
+@media only screen and (max-width: ($screen-xl - 28)) { 
+  .explicaciones-home{ background-image: url(../img/home/fnd-10.png);}
+}
+
+@media only screen and (max-width: $screen-lg) { 
+  .explicaciones-home{ 
+    background-image: none;
+    padding-bottom: 100px;
+  }
+}
+
+.explicaciones-home p{
+  padding-bottom: 1.85em;
+}
+
+.explicaciones-home .resumen{
+  overflow: hidden;
+  width: 1000px;
+  margin: 0 auto 100px auto;
   padding-bottom: 30px;
-  max-height: none;
-  min-height: 215px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
-.cards-home .card img{
-  width: 102px;
-  margin: 35px 30px 30px 30px;
+@media only screen and (max-width: $screen-xl) { 
+  .explicaciones-home .resumen{ width: 97%; padding-left: 0; margin-bottom: 40px; }
 }
 
-.cards-home article:nth-child(1) .card img{
-  margin-top: 25px;
-  margin-left: 25px;
+.explicaciones-home h2, .explicaciones-home .tit-modo{
+  font-size: 45px;
+  color: $color-destacado;
+  font-family: $maax-rounded-medium;
+  font-weight: bold;
 }
 
-.cards-home article:nth-child(2) .card img{
+.explicaciones-home .tit-modo{
+  font-size: 40px;
+  margin-bottom: 35px;
+}
+
+.explicaciones-home p b, .explicaciones-home p strong{ font-family: $roboto-medium; font-weight: normal;}
+
+.explicaciones-home p i, .explicaciones-home p em{ font-family: $roboto-light-italic; }
+
+.explicaciones-home .tit-sitio{ color: $color-destacado; }
+
+.btn-resumen{ 
+  background: #31B4C8;
+  font-size: 20px;
+  color: #FFF;
+  font-family: $maax-rounded-medium;
+  font-weight: bold;
+  border-radius: 24px;
+  padding: 12px 32px;
+  letter-spacing: 0.025em;
+  box-shadow: 0.125em 0 18px 0 rgba(49,180,200,0.3), -0.125em 0 18px 0 rgba(49,180,200,0.3);
+}
+
+.btn-resumen:hover, .btn-resumen:focus{
+  background-color: #000;
+  text-decoration: none;
+  color: #FFF;
+} 
+
+.texto-introduccion{ margin: 60px 350px 0 20px; }
+
+@media only screen and (max-width: $screen-xl) { 
+  .texto-introduccion{ margin-right: 140px; }
+}
+
+@media only screen and (max-width: $screen-lg) { 
+  .texto-introduccion{ margin-right: 0; }
+}
+
+@media only screen and (max-width: $screen-xs) { 
+  .texto-introduccion{ margin-top: 0; margin-left: 0; }
+}
+
+.texto-introduccion h2{
+  margin-bottom: 40px;
+  background: url(../img/home/fnd-1.png) no-repeat 0 0;
+  background-size: 100px auto;
+  overflow: visible;
+  padding: 25px 30px 30px 25px;
+  margin-left: -30px;
+}
+
+@media only screen and (max-width: $screen-xs) { 
+  .texto-introduccion h2{
+    margin-bottom: 10px;
+    background: none;
+    overflow: visible;
+    padding: 5px 30px 30px 5px;
+    margin-left: 0;
+    font-size: 35px;
+  }
+}
+
+
+.pixar-pitch{
+  padding: 70px 80px 30px 80px;
+  margin-top: 40px;
+  margin-bottom: 90px;
+  text-align: center;
+  width: 800px;
+  position: relative;
+  background-color: #F3FAFC;
+}
+
+@media only screen and (max-width: $screen-xs) { 
+  .pixar-pitch{
+    margin-top: 10px;
+  }
+}
+
+  .comillas-inicio{ 
+    width: 90px;
+    height: 72px;
+    background: url(../img/home/comillas-inicio.svg) no-repeat top left; 
+    background-size: 100% auto;
+    position: absolute; 
+    left: -40px;
+    top: -35px;
+  }
+
+  .comillas-final{ 
+    width: 90px;
+    height: 72px;
+    background: url(../img/home/comillas-final.svg) no-repeat top left; 
+    background-size: 100% auto;
+    position: absolute;
+    right: -65px;
+    bottom: -50px;
+  }
+
+@media only screen and (max-width: $screen-xl + 74) { 
+  .pixar-pitch{ padding: 60px 50px 30px 50px; margin-left: 20px;}
+  .comillas-inicio{  background-size: 70% auto; left: -20px; top: -30px; }
+  .comillas-final{  background-size: 70% auto; }
+}
+
+@media only screen and (max-width: $screen-lg) { 
+  .pixar-pitch{ 
+    padding: 40px 50px 20px 50px; 
+    width: 88%;
+    margin-left: 25px;
+  }
+}
+
+@media only screen and (max-width: $screen-md) { 
+  .pixar-pitch{ 
+    padding: 20px 20px 0 20px; 
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+  .comillas-inicio, .comillas-final, .pixar-pitch img{  display: none; }
+}
+
+.pixar-pitch p{
+  font-family: $droid-serif-italic;
+  font-style: italic;
+}
+
+.pixar-pitch img{ 
+  width: 160px;
+  position: absolute; 
+  right: -60px;
+  bottom: -20px;
+}
+
+@media only screen and (max-width: $screen-xl + 90) { 
+  .pixar-pitch img{ 
+    width: 130px;
+  }
+}
+
+p.intro-modelos{
+  width: 1000px;
+  padding: 50px 50px 50px 170px;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 70px;
+  line-height: 2;
+  background-image: url(../img/home/arrow-bottom.png), url(../img/home/fnd-3.png);
+  background-repeat: no-repeat, no-repeat;
+  background-position: bottom center, 0 60px;
+}
+
+@media only screen and (max-width: $screen-lg) {
+  p.intro-modelos{
+    width: 100%;
+    padding: 50px 20px 50px 20px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 70px;
+    line-height: 2;
+    background-image: url(../img/home/arrow-bottom-centered.png);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+  }
+}
+
+@media only screen and (max-width: $screen-xl) { 
+  p.intro-modelos{ width: 100%; padding-top: 10px;}
+}
+
+.explicaciones-home .resumen-episodico{
+  text-align: right;
+  padding-right: 200px;
+  padding-top: 70px;
+  background-image: url(../img/home/fnd-4.png), url(../img/home/fnd-5.png);
+  background-repeat: no-repeat, no-repeat;
+  background-position: top right, bottom right;
+  background-size: 160px auto, 120px auto;
+}
+
+
+.fnd-avatar-episodico{ 
+  float: right;
+  background: url(../img/home/fnd-episodico.png) no-repeat center center; 
+  background-size: 100% auto; 
+  width: 300px;
+  height: 312px;
+  text-align: center;
+  margin: 15px 0 15px 55px;
+}
+
+.fnd-avatar-episodico img{
+  width: 60%; 
+  display: inline-block;
+  margin-left: 19px;
+  margin-top: 40px;
+}
+
+
+@media only screen and (max-width: ($screen-lg )){
+
+  .resumen-episodico .tit-modo{ padding-right: 20px; }
+
+  .explicaciones-home .resumen-episodico{
+    text-align: right;
+    padding-right: 0;
+    padding-top: 20px;
+    background-image: none;
+    margin-left: 20px;
+  }
+
+  .fnd-avatar-episodico{ 
+    float: right;
+    background: url(../img/home/fnd-episodico.png) no-repeat center center; 
+    background-size: 100% auto; 
+    width: 200px;
+    height: 208px;
+    text-align: center;
+    margin: 105px 0 20px 25px;
+    }
+
+  .fnd-avatar-episodico img{
+    width: 60%; 
+    display: inline-block;
+    margin-left: 19px;
+    margin-top: 40px;
+  }
+
+  .resumen-episodico .tit-modo, .resumen-episodico p{ text-align: left; }
+
+  .explicaciones-home .resumen-episodico a{ margin-right: 15px; }
+
+}
+
+@media only screen and (max-width: $screen-xs){
+  .fnd-avatar-episodico{ float: none; margin: 30px auto 0 auto; }
+  .explicaciones-home .resumen-episodico{ text-align: center; }
+  .resumen-episodico .tit-modo, .explicaciones-home .resumen-episodico p{
+    text-align: center;
+  }
+  .explicaciones-home .resumen-episodico a{ margin-right: 0; }
+  .resumen-episodico .tit-modo{ margin-top: 30px; padding-right: 0;}
+  .explicaciones-home .resumen-episodico{ margin-left: 0; }
+}
+
+.resumen.resumen-coral{
+  background: url(../img/home/fnd-6.png) no-repeat bottom left;
+  background-size: 160px auto;
+}
+
+.fnd-avatar-coral{ 
+  float: left;
+  background: url(../img/home/fnd-coral.png) no-repeat center center; 
+  background-size: 100% auto; 
+  width: 370px;
+  height: 355px;
+  text-align: center;
+  margin-right: 55px;
+  margin-top: 70px;
+  margin-left: 35px;
+}
+
+.fnd-avatar-coral img{ 
+  width: 44%; 
+  display: inline-block;
   margin-top: 38px;
 }
 
-.cards-home .card h3{
-  padding-top: 25px;
-  font-size: 21px;
+.explicaciones-home .resumen-coral p, .explicaciones-home .resumen-coral a{
+  margin-left: 460px;
 }
 
-.cards-home .card hr{
-  margin-top: 5px;
+.explicaciones-home .resumen-coral p, .explicaciones-home .resumen-coral a{
+  text-align: left;
 }
 
-.cards-home .card .resumen{
-  font-size: 18px;
-  font-family: $akzidenz-grotesk-pro-regular;
-  margin-right: 35px;
-}
 
-@media only screen and (max-width: $screen-xs){
-  .destacado-home h1 .white{
-    background: transparent;
-    box-shadow: none;
+@media only screen and (max-width: ($screen-lg )){
+
+  .resumen.resumen-coral{
+    background: none;
+    text-align: right;
+    margin-left: 20px;
   }
 
-  .cards-home .card a{
-    padding-left: 10px;
-    padding-right: 10px;
+  .fnd-avatar-coral{ 
+    float: right;
+    background: url(../img/home/fnd-coral.png) no-repeat center center; 
+    background-size: 100% auto; 
+    width: 220px;
+    height: 220px;
+    text-align: center;
+    margin-right: 0;
+    margin-top: 90px;
+    margin-left: 20px;
   }
 
-  .cards-home .card h3{
-    padding-top: 25px;
-    font-size: 28px;
-    position: static;
-  }
-}
-
-@media only screen and (max-width: $screen-xl){
-  .cards-home .card{
-     min-height: 235px;
-  }
-  .cards-home .card img{
-    margin-bottom: 40px;
-  }
-}
-
-@media only screen and (max-width: $screen-lg){
-  .cards-home .card .resumen{
-    font-size: 20px;
-    margin-right: 65px;
-  }
-}
-
-@media only screen and (max-width: $screen-md){
-  .cards-home .card{
-    min-height: auto;
-  }
-  .cards-home .card img{
-    margin-bottom: 40px;
+  .fnd-avatar-coral img{ 
+    width: 44%; 
+    display: inline-block;
+    margin-top: 25px;
   }
 
-  .cards-home article:nth-child(1) .card img{
-    margin-top: 35px;
+  .explicaciones-home .resumen-coral .tit-modo{ text-align: left; }
+
+  .explicaciones-home .resumen-coral p, .explicaciones-home .resumen-coral a{
+    margin-left: 0;
   }
 
-  .cards-home article:nth-child(3) .card img{
-    margin-top: 42px;
-    margin-left: 30px;
-  }
-
-  .cards-home article:nth-child(4) .card img{
-    margin-top: 35px;
+  .explicaciones-home .resumen-coral p, .resumen-coral .tit-modo,{
+    text-align: left;
   }
 
 }
 
 @media only screen and (max-width: $screen-xs){
-  .cards-home .card .resumen{
-    font-size: 20px;
-    margin-right: 25px;
-    margin-bottom: 20px;
-    padding-left: 162px;
-  }
-  .cards-home .card img{
-    margin-bottom: 60px;
-  }
-}
 
-@media only screen and (min-width: $screen-xs){
-.cards-home .card .resumen{
-    padding-left: 0;
-  }
-  }
-
-@media only screen and (max-width: $screen-xs - 150) {
-    .cards-home .card .resumen{
-      padding-left: 0;
+    .resumen.resumen-coral{
+      padding-top: 30px;
+      margin-left: 0;
+      padding-right: 0;
+      text-align: center;
     }
-   .cards-home article div.card a img{ 
-     width: auto;
-     height: 100%;
-     max-height: none;
-     height: 152px;
-     margin: 0 0 50px 30px;
-   }
-   .cards-home article:nth-child(3) .card img{
-      margin-left: 40px;
-   }
 
- }
+    .resumen.resumen-coral p{
+      text-align: center;
+    }
 
-.cards-home .card .ver-mas{
-  text-indent: 0;
-  width: auto;
-  right: 4px;
-  padding-right: 25px;
+    .fnd-avatar-coral{ 
+      float: none;
+      margin: 0 auto;
+    }
+
+    .explicaciones-home .resumen-coral .tit-modo{ text-align: center; margin-top: 30px; }
+
+}
+
+.resumen-ergodico{
+  background: url(../img/home/fnd-7.png) no-repeat bottom right;
+  background-size: 100px auto;
+}
+
+.explicaciones-home .resumen-ergodico{
   text-align: right;
-  height: 26px;
-  background-position: center right;
-  font-family: $akzidenz-grotesk-pro-med;
-  font-weight: bold;
-  color: #0EA7BE;
-  font-size: 18px;
 }
 
-.cards-home .card a:hover .ver-mas, .cards-home .card a:focus .ver-mas{
-  color: #666;
+.fnd-avatar-ergodico{ 
+  float: right;
+  background: url(../img/home/fnd-ergodico.png) no-repeat center center; 
+  background-size: 100% auto; 
+  width: 400px;
+  height: 384px;
+  text-align: center;
+  margin-left: 60px;
+  margin-top: -20px;
+  margin-right: 30px;
 }
+
+.fnd-avatar-ergodico img{ 
+  width: 74%; 
+  margin-top: 110px;
+  display: inline-block;
+}
+
+
+@media only screen and (max-width: ($screen-lg )){
+  
+  .resumen-ergodico{ background: none; }
+
+  .explicaciones-home .resumen-ergodico{ text-align: right; }
+
+  .fnd-avatar-ergodico{ 
+    float: right;
+    background: url(../img/home/fnd-ergodico.png) no-repeat center center; 
+    background-size: 100% auto; 
+    width: 280px;
+    height: 224px;
+    text-align: center;
+    margin-left: 10px;
+    margin-top: 60px;
+    margin-right: 10px;
+  }
+
+  .fnd-avatar-ergodico img{ 
+    width: 74%; 
+    margin-top: 70px;
+    display: inline-block;
+  }
+
+  .explicaciones-home .resumen-ergodico p, .resumen-ergodico .tit-modo{
+    text-align: left;
+  }
+
+}
+
+@media only screen and (max-width: $screen-xs){
+
+  .explicaciones-home .resumen-ergodico{ 
+    padding-right: 0;
+    text-align: center;
+  }
+  
+  .fnd-avatar-ergodico{ 
+    float: none;
+    margin: 20px auto 0 auto;
+    width: 250px;
+    height: 190px;
+  }
+
+  .fnd-avatar-ergodico img{ 
+    width: 74%; 
+    margin-top: 45px;
+    display: inline-block;
+  }
+
+  .explicaciones-home .resumen-ergodico .tit-modo, .explicaciones-home .resumen-ergodico p{
+    text-align: center;
+  } 
+
+}
+
+.explicaciones-home .resumen-temporal{
+  padding-right: 60px;
+}
+
+.resumen.resumen-temporal{
+  padding-top: 70px;
+  margin-top: -70px;
+  padding-left: 80px;
+  width: 930px;
+  background: url(../img/home/fnd-8.png) no-repeat top left, url(../img/home/fnd-9.png) no-repeat bottom right;
+  background-size: 80px auto, 130px auto;
+}
+
+.fnd-avatar-temporal{ 
+  float: left;
+  background: url(../img/home/fnd-temporal.png) no-repeat center center; 
+  background-size: 100% auto; 
+  width: 360px;
+  height: 338px;
+  text-align: center;
+  margin-right: 70px;
+  margin-top: 10px;
+}
+
+.fnd-avatar-temporal img{ 
+  width: 65%; 
+  margin-top: 55px;
+  margin-left: -10px;
+  display: inline-block;
+}
+
+.resumen-temporal a{ margin-left: 420px; } 
+
+
+@media only screen and (max-width: ($screen-lg )){
+  
+  .resumen.resumen-temporal{ 
+    width: 98%; 
+    padding-top: 0;
+    margin-top: 0;
+    padding-left: 0;
+    background: none;
+    padding-right: 20px;
+  }
+
+  .fnd-avatar-temporal{ 
+    float: right;
+    background: url(../img/home/fnd-temporal.png) no-repeat center center; 
+    background-size: 100% auto; 
+    width: 260px;
+    height: 258px;
+    text-align: center;
+    margin-left: 25px;
+    margin-right: 0;
+    margin-top: 80px; 
+  }
+
+  .fnd-avatar-temporal img{ 
+    width: 65%; 
+    margin-top: 35px;
+    margin-left: -5px;
+    display: inline-block;
+  }
+
+  .resumen-temporal a{ margin-left: 15px; } 
+
+}
+
+@media only screen and (max-width: $screen-xs){
+
+  .resumen.resumen-temporal{
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .fnd-avatar-temporal{ 
+    float: none;
+    width: 230px;
+    height: 218px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .explicaciones-home .resumen-temporal a{ margin-left: 0; }
+
+  .explicaciones-home .resumen-temporal .tit-modo, .explicaciones-home .resumen-temporal p{
+    text-align: center;
+  } 
+
+}
+
 
 
 
 /* FAVORITOS */
 
 .tit-home{
-	color: #000;
+  color: #000;
   font-weight: 500;
   font-size: 21px;
   font-family: $akzidenz-grotesk-pro-med;

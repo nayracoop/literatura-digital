@@ -1,16 +1,43 @@
-.navbar-brand{ 
-	background: url(../img/logo/logo-lexia-gris.png) no-repeat 0 0;
-	background-size: 130px auto;
-	width: 130px;
-	height: 52px;
+@media only screen and (min-width: $screen-md){
+
+	.navbar-brand{ 
+		background: url(../img/logo/logo-lexia-gris.png) no-repeat 0 0;
+		background-size: 154px auto;
+		width: 154px;
+		height: 52px;
+	}
+
+	.home .navbar-brand{ 
+		/*background-image: url(../img/logo/logo-lexia-blanco.png);*/
+		background-size: 190px auto;
+		width: 190px;
+		height: 64px;
+	}
+
 }
 
-.home .navbar-brand{ 
-	background-image: url(../img/logo/logo-lexia-blanco.png);
+@media only screen and (max-width: $screen-lg){
+	.home .navbar-brand{ 
+		background-size: 154px auto;
+		width: 154px;
+		height: 52px;
+	}
 }
 
 .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand { 
 	margin: 10px 0 0 0; margin-top: -5px;
+}
+
+.home .navbar > .container .navbar-brand, .home .navbar > .container-fluid .navbar-brand { 
+	margin-top: -2px;
+	margin-left: 10px;
+}
+
+@media only screen and (max-width: $screen-lg){
+	.home .navbar > .container .navbar-brand, .home .navbar > .container-fluid .navbar-brand { 
+		margin-top: -5px;
+		margin-left: 0;
+	}
 }
 
 .navbar-toggle .icon-bar { background: $color-destacado; }
@@ -39,6 +66,12 @@
 }
 
 .navbar-lexia li:first-child{ margin-left: 50px; }
+
+@media only screen and (max-width: $screen-lg){
+	.navbar-lexia li:first-child {
+    margin-left: 30px;
+	}
+}
 
 .navbar-lexia li > a{
 	text-transform: uppercase;
@@ -187,12 +220,12 @@
 
 	.navbar-lexia .navbar-brand{ 
 		background: url(../img/logo/logo-lexia-mobile.png) no-repeat 0 0;
-		width: 85px;
+		width: 98px;
 		height: 30px; 
-		background-size: 72px auto;
+		background-size: 94px auto;
 	}
 
-	.navbar > .container .navbar-brand,  .navbar > .container-fluid .navbar-brand  {
+	.navbar > .container .navbar-brand,  .navbar > .container-fluid .navbar-brand, .home .navbar > .container .navbar-brand, .home .navbar > .container-fluid .navbar-brand {
 		margin-left: 15px;
 		margin-top: 9px;
 	}

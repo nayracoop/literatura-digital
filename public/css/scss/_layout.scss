@@ -10,7 +10,7 @@ body{
     min-height: 100%;
 } 
 
-@media only screen and (max-width: ($screen-md)) {
+@media only screen and (max-width: $screen-md) {
   body{ 
     min-height: auto; 
     padding-bottom: 0;
@@ -20,12 +20,12 @@ body{
 
 .reborde-right, .reborde-left{
   position: fixed;
-  z-index: -1;
+  z-index: 1;
   background: #FFF;
 }
 
 
-@media only screen and (max-width: ($screen-md)) {
+@media only screen and (max-width: $screen-md) {
   .reborde-right, .reborde-left{ display: none; }
 }
 
@@ -42,7 +42,7 @@ body{
   margin-right: 30px;
 }
 
-@media only screen and (max-width: ($screen-md)) {
+@media only screen and (max-width: $screen-md - 1) {
   .fondo-gris{ 
     margin-left: 0;
     margin-right: 0;

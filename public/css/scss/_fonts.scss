@@ -12,6 +12,12 @@ $font-face-akzidenz-light: 'AkzidenzGroteskPro-Light';
 $font-face-brandon-grotesque-regular: 'brandon_reg';
 $font-face-brandon-grotesque-bold: 'brandon_bld';
 
+$font-face-roboto-regular: "Roboto-Regular-webfont";
+$font-face-roboto-medium: "Roboto-Medium-webfont";
+$font-face-roboto-light: "Roboto-Light-webfont";
+$font-face-roboto-light-italic: "Roboto-LightItalic-webfont";
+
+
 /* Texto de copia */
 
 @font-face {
@@ -132,13 +138,13 @@ $font-face-brandon-grotesque-bold: 'brandon_bld';
  }
 
   @font-face {
-    font-family: 'Maax Rounded'; font-style: normal; font-weight: bold;
-    src: url('../fonts/maax/maax-rounded-webfont.eot');
-    src: url('../fonts/maax/maax-rounded-rounded-webfont.eot?') format('eot'),
-        url('../fonts/maax/maax-rounded-webfont.woff2') format('woff2'),
-        url('../fonts/maax/maax-rounded-webfont.woff') format('woff'),
-        url('../fonts/maax/maax-rounded-webfont.ttf')  format('truetype'),
-        url('../fonts/maax/maax-rounded-webfont.svg') format('svg');
+    font-family: 'Maax Rounded Medium'; font-style: normal; font-weight: bold;
+    src: url('../fonts/maax/MaaxRoundedMedium-webfont.eot');
+    src: url('../fonts/maax/MaaxRoundedMedium-webfont.eot?') format('eot'),
+        url('../fonts/maax/MaaxRoundedMedium-webfont.woff2') format('woff2'),
+        url('../fonts/maax/MaaxRoundedMedium-webfont.woff') format('woff'),
+        url('../fonts/maax/MaaxRoundedMedium-webfont.ttf')  format('truetype'),
+        url('../fonts/maax/MaaxRoundedMedium-webfont.svg') format('svg');
  }
 
 @font-face {
@@ -151,8 +157,53 @@ $font-face-brandon-grotesque-bold: 'brandon_bld';
         url('../fonts/playlist/playlist-script.svg') format('svg');
  }
 
+@font-face {
+    font-family: $font-face-roboto-regular; font-style: normal; font-weight: normal;
+    src: url('../fonts/roboto/#{$font-face-roboto-regular}.eot');
+    src: url('../fonts/roboto/#{$font-face-roboto-regular}.eot?') format('eot'),
+        url('../fonts/roboto/#{$font-face-roboto-regular}.woff') format('woff'),
+        url('../fonts/roboto/#{$font-face-roboto-regular}.ttf')  format('truetype'),
+        url('../fonts/roboto/#{$font-face-roboto-regular}.svg') format('svg');
+ }
+
+ @font-face {
+    font-family: $font-face-roboto-medium; font-style: normal; font-weight: normal;
+    src: url('../fonts/roboto/#{$font-face-roboto-medium}.eot');
+    src: url('../fonts/roboto/#{$font-face-roboto-medium}.eot?') format('eot'),
+        url('../fonts/roboto/#{$font-face-roboto-medium}.woff') format('woff'),
+        url('../fonts/roboto/#{$font-face-roboto-medium}.ttf')  format('truetype'),
+        url('../fonts/roboto/#{$font-face-roboto-medium}.svg') format('svg');
+ }
+
+@font-face {
+    font-family: $font-face-roboto-light; font-style: normal; font-weight: normal;
+    src: url('../fonts/roboto/#{$font-face-roboto-light}.eot');
+    src: url('../fonts/roboto/#{$font-face-roboto-light}.eot?') format('eot'),
+        url('../fonts/roboto/#{$font-face-roboto-light}.woff') format('woff'),
+        url('../fonts/roboto/#{$font-face-roboto-light}.ttf')  format('truetype'),
+        url('../fonts/roboto/#{$font-face-roboto-light}.svg') format('svg');
+}
+
+@font-face {
+    font-family: $font-face-roboto-light-italic; font-style: italic; font-weight: normal;
+    src: url('../fonts/roboto/#{$font-face-roboto-light-italic}.eot');
+    src: url('../fonts/roboto/#{$font-face-roboto-light-italic}.eot?') format('eot'),
+        url('../fonts/roboto/#{$font-face-roboto-light-italic}.woff') format('woff'),
+        url('../fonts/roboto/#{$font-face-roboto-light-italic}.ttf')  format('truetype'),
+        url('../fonts/roboto/#{$font-face-roboto-light-italic}.svg') format('svg');
+}
+
+@font-face {
+    font-family: 'Droid Serif'; font-style: italic; font-weight: normal;
+    src: url('../fonts/playlist/DroidSerif-Italic-webfont.eot');
+    src: url('../fonts/playlist/DroidSerif-Italic-webfont.eot?') format('eot'),
+        url('../fonts/playlist/DroidSerif-Italic-webfont.woff') format('woff'),
+        url('../fonts/playlist/DroidSerif-Italic-webfont.ttf')  format('truetype');
+ }
+
+
 $maax: 'Maax', Arial,  Helvetica, 'Liberation Sans', sans-serif;
-$maax-rounded: 'Maax Rounded', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$maax-rounded-medium: 'Maax Rounded Medium', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 $playlist-script: 'Playlist', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 
 $caecilia-roman: 'Caecilia', Arial,  Helvetica, 'Liberation Sans', sans-serif;
@@ -168,3 +219,10 @@ $akzidenz-grotesk-pro-bold: 'Akzidenz-Grotesk Pro Bold', Arial,  Helvetica, 'Lib
 
 $brandon-grotesque-bold: 'Brandon Grotesque', Arial,  Helvetica, 'Liberation Sans', sans-serif;
 $brandon-grotesque-regular: 'Brandon Grotesque', Arial,  Helvetica, 'Liberation Sans', sans-serif;
+
+$roboto-regular: $font-face-roboto-regular, Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$roboto-medium: $font-face-roboto-medium, Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$roboto-light: $font-face-roboto-light, Arial,  Helvetica, 'Liberation Sans', sans-serif;
+$roboto-light-italic: $font-face-roboto-light-italic, Arial,  Helvetica, 'Liberation Sans', sans-serif;
+
+$droid-serif-italic: "Droid Serif", "Georgia", "Times New Roman", "Palatino", "Hoefler Text", "Baskerville", serif;
