@@ -1,6 +1,6 @@
 # Literatura Digital (Lexias)
 
-Creative Writing web application ( &  with Moloquent ). It allows to create non linear stories with different type of visualizations organization
+Creative Writing web application. It allows to create non linear stories with different type of visualizations
 
  :sparkles: **This is a work in progress.** :sparkles:
 
