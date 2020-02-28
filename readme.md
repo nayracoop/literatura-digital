@@ -18,6 +18,10 @@ Please make sure to update tests as appropriate.
 ## License
 [GPL-3.0] GNU General Public License v3.0
 
+## Credits
+
+UX & UI Design by Marcelo Terreni
+
 ## Screenshots
 
 ### Home page
